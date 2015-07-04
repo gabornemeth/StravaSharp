@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/packages/FubarCoder.RestSharp.Portable.2.4.3/lib
+/packages
+/StravaSharp.NET45/obj/Debug
+/StravaSharp.NET45/bin/Debug
+/StravaSharp.Tests.NET45/bin/Debug
+/StravaSharp.Tests.NET45/obj/Debug

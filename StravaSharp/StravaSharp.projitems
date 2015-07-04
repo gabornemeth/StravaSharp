@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>caf2e2dc-c3e2-4fd9-a6df-f55efe8b8130</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>StravaSharp</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Activity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ActivityType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IAuthenticator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RestSharpAuthenticator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StaticAuthenticator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StravaClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UploadResult.cs" />
+  </ItemGroup>
+</Project>
