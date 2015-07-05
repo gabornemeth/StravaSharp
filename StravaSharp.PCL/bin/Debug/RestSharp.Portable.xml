@@ -1,0 +1,2628 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RestSharp.Portable</name>
+    </assembly>
+    <members>
+        <member name="T:RestSharp.Portable.Authenticators.AsyncAuthenticator">
+            <summary>
+            Abstract base class for asynchronous authenticators
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.IAuthenticator">
+            <summary>
+            The authenticator interface
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.IAuthenticator.Authenticate(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Modifies the request to ensure that the authentication requirements are met.
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.IAsyncAuthenticator">
+            <summary>
+            The async authenticator interface
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.IAsyncAuthenticator.Authenticate(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Modifies the request to ensure that the authentication requirements are met.
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+            <returns>The task the authentication is performed on</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.AsyncAuthenticator.Authenticate(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Modifies the request to ensure that the authentication requirements are met.
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+            <returns>The task the authentication is performed on</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.AsyncAuthenticator.RestSharp#Portable#Authenticators#IAuthenticator#Authenticate(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Modifies the request to ensure that the authentication requirements are met.
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.HttpBasicAuthenticator">
+            <summary>
+            The default HTTP Basic authenticator
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.HttpBasicAuthenticator.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.HttpBasicAuthenticator"/> class.
+            </summary>
+            <param name="username">User name</param>
+            <param name="password">The users password</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.HttpBasicAuthenticator.Authenticate(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Modifies the request to ensure that the authentication requirements are met.
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.HttpDigestAuthenticator">
+            <summary>
+            HTTP Digest authenticator
+            </summary>
+            <remarks>
+            Code was taken from http://www.ifjeffcandoit.com/2013/05/16/digest-authentication-with-restsharp/
+            </remarks>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.IRoundTripAuthenticator">
+            <summary>
+            This authenticator can handle 401 responses and modify the Authentication behavior/result.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.IRoundTripAuthenticator.AuthenticationFailed(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest,RestSharp.Portable.IRestResponse)">
+            <summary>
+            Will be called when the authentication failed
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+            <param name="response">Response of the failed request</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.IRoundTripAuthenticator.StatusCodes">
+            <summary>
+            Gets all the status codes where a round trip is allowed
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.HttpDigestAuthenticator.#ctor(System.Net.ICredentials)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.HttpDigestAuthenticator"/> class.
+            </summary>
+            <param name="credentials">The authentication credentials</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.HttpDigestAuthenticator.Authenticate(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Modifies the request to ensure that the authentication requirements are met.
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.HttpDigestAuthenticator.AuthenticationFailed(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest,RestSharp.Portable.IRestResponse)">
+            <summary>
+            Will be called when the authentication failed
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+            <param name="response">Response of the failed request</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.HttpDigestAuthenticator.StatusCodes">
+            <summary>
+            Gets all the status codes where a round trip is allowed
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.IAsyncRoundTripAuthenticator">
+            <summary>
+            This authenticator can handle 401 responses and modify the Authentication behavior/result.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.IAsyncRoundTripAuthenticator.AuthenticationFailed(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest,RestSharp.Portable.IRestResponse)">
+            <summary>
+            Will be called when the authentication failed
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+            <param name="response">Response of the failed request</param>
+            <returns>Task where the handler for a failed authentication gets executed</returns>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.IAsyncRoundTripAuthenticator.StatusCodes">
+            <summary>
+            Gets all the status codes where a round trip is allowed
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.NtlmAuthenticator">
+            <summary>
+            Tries to Authenticate with the credentials of the currently logged in user, or impersonate a user
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.NtlmAuthenticator.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.NtlmAuthenticator"/> class.
+            </summary>
+            <param name="username">User name</param>
+            <param name="password">The users password</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.NtlmAuthenticator.#ctor(System.Net.ICredentials)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.NtlmAuthenticator"/> class.
+            </summary>
+            <param name="credentials">The credentials to use</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.NtlmAuthenticator.Authenticate(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Modifies the request to ensure that the authentication requirements are met.
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.SimpleAuthenticator">
+            <summary>
+            Simple authenticator that adds the authentication information as GetOrPost parameter
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.SimpleAuthenticator.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.SimpleAuthenticator"/> class.
+            </summary>
+            <param name="usernameKey">GetOrPost parameter name for the user name</param>
+            <param name="username">User name</param>
+            <param name="passwordKey">GetOrPost parameter name for the password</param>
+            <param name="password">The users password</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.SimpleAuthenticator.Authenticate(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Modifies the request to ensure that the authentication requirements are met.
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+        </member>
+        <member name="T:RestSharp.Portable.ContentCollectionMode">
+            <summary>
+            Controls if basic content or multi part content is used
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.ContentCollectionMode.BasicContent">
+            <summary>
+            Basic content only (ignores file parameters)
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.ContentCollectionMode.MultiPartForFileParameters">
+            <summary>
+            MultiPart only if file parameters are used
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.ContentCollectionMode.MultiPart">
+            <summary>
+            Always use multi part content
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Deserializers.IDeserializer">
+            <summary>
+            Deserialize for a content type
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Deserializers.IDeserializer.Deserialize``1(RestSharp.Portable.IRestResponse)">
+            <summary>
+            Deserialize the response
+            </summary>
+            <typeparam name="T">Object type to deserialize the result to</typeparam>
+            <param name="response">The response to deserialize the result from</param>
+            <returns>The deserialized object</returns>
+        </member>
+        <member name="T:RestSharp.Portable.Deserializers.JsonDeserializer">
+            <summary>
+            The default JSON deserializer using Json.Net
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Deserializers.JsonDeserializer.Deserialize``1(RestSharp.Portable.IRestResponse)">
+            <summary>
+            Deserialize the response
+            </summary>
+            <typeparam name="T">Object type to deserialize the result to</typeparam>
+            <param name="response">The response to deserialize the result from</param>
+            <returns>The deserialized object</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Deserializers.JsonDeserializer.ConfigureSerializer(Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Configure the JsonSerializer
+            </summary>
+            <param name="serializer">The serializer to configure</param>
+        </member>
+        <member name="T:RestSharp.Portable.Deserializers.XmlDataContractDeserializer">
+            <summary>
+            Deserializes a XML using the DataContractSerializer
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Deserializers.XmlDataContractDeserializer.Deserialize``1(RestSharp.Portable.IRestResponse)">
+            <summary>
+            Deserialize the response
+            </summary>
+            <typeparam name="T">Object type to deserialize the result to</typeparam>
+            <param name="response">The response to deserialize the result from</param>
+            <returns>The deserialized object</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Deserializers.XmlDataContractDeserializer.CreateSerializer(System.Type)">
+            <summary>
+            Create a new data contract serializer
+            </summary>
+            <remarks>Override this method when you want a custom data contract serializer configuration.</remarks>
+            <param name="t">The type to create the serializer for</param>
+            <returns>A new data contract serializer.</returns>
+        </member>
+        <member name="T:RestSharp.Portable.Encodings.IEncoding">
+            <summary>
+            Content encoding handler interface
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Encodings.IEncoding.Decode(System.Byte[])">
+            <summary>
+            Decode the content
+            </summary>
+            <param name="data">Content to decode</param>
+            <returns>Decoded content</returns>
+        </member>
+        <member name="T:RestSharp.Portable.FileParameter">
+            <summary>
+            Container for files to be uploaded with requests
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Parameter">
+            <summary>
+            Parameter container for REST requests
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Parameter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Parameter"/> class.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Parameter.AsString">
+            <summary>
+            Returns the parameter value as string
+            </summary>
+            <returns>Returns the value as string</returns>
+        </member>
+        <member name="P:RestSharp.Portable.Parameter.Name">
+            <summary>
+            Gets or sets the name of the parameter
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Parameter.Value">
+            <summary>
+            Gets or sets the value of the parameter
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Parameter.Type">
+            <summary>
+            Gets or sets the type of the parameter
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Parameter.ContentType">
+            <summary>
+            Gets or sets the content type of the parameter
+            </summary>
+            <remarks>
+            Applies to the following parameter types:
+            - RequestBody
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.Parameter.ValidateOnAdd">
+            <summary>
+            Gets or sets a value indicating whether this parameter should be validated?
+            </summary>
+            <remarks>
+            Applies to the following parameter types:
+            - HttpHeader
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.Parameter.Encoding">
+            <summary>
+            Gets or sets the encoding of this parameters value
+            </summary>
+            <remarks>
+            Applies to the following parameter types:
+            - GetOrPost
+            - QueryString
+            - UrlSegment
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.FileParameter.Create(System.String,System.Byte[],System.String,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+             Creates a file parameter from an array of bytes.
+            </summary>
+            <param name="name">The parameter name to use in the request.</param>
+            <param name="data">The data to use as the file's contents.</param>
+            <param name="filename">The filename to use in the request.</param>
+            <param name="contentType">The content type to use in the request.</param>
+            <returns>The <see cref="T:RestSharp.Portable.FileParameter"/></returns>
+        </member>
+        <member name="M:RestSharp.Portable.FileParameter.Create(System.String,System.Byte[],System.String)">
+            <summary>
+             Creates a file parameter from an array of bytes.
+            </summary>
+            <param name="name">The parameter name to use in the request.</param>
+            <param name="data">The data to use as the file's contents.</param>
+            <param name="filename">The filename to use in the request.</param>
+            <returns>The <see cref="T:RestSharp.Portable.FileParameter"/> using the default content type.</returns>
+        </member>
+        <member name="M:RestSharp.Portable.FileParameter.Create(System.String,System.IO.Stream,System.String,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+             Creates a file parameter from an array of bytes.
+            </summary>
+            <param name="name">The parameter name to use in the request.</param>
+            <param name="input">The input stream for the file's contents.</param>
+            <param name="filename">The filename to use in the request.</param>
+            <param name="contentType">The content type to use in the request.</param>
+            <returns>The <see cref="T:RestSharp.Portable.FileParameter"/></returns>
+        </member>
+        <member name="M:RestSharp.Portable.FileParameter.Create(System.String,System.IO.Stream,System.String)">
+            <summary>
+             Creates a file parameter from an array of bytes.
+            </summary>
+            <param name="name">The parameter name to use in the request.</param>
+            <param name="input">The input stream for the file's contents.</param>
+            <param name="filename">The filename to use in the request.</param>
+            <returns>The <see cref="T:RestSharp.Portable.FileParameter"/> using the default content type.</returns>
+        </member>
+        <member name="P:RestSharp.Portable.FileParameter.ContentLength">
+            <summary>
+            Gets or sets the length of data to be sent
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.FileParameter.FileName">
+            <summary>
+            Gets or sets the name of the file to use when uploading
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory">
+            <summary>
+            The default HTTP client factory
+            </summary>
+            <remarks>
+            Any other implementation should derive from this class, because it contains several
+            useful utility functions for the creation of a HTTP client and request message.
+            </remarks>
+        </member>
+        <member name="T:RestSharp.Portable.IHttpClientFactory">
+            <summary>
+            Interface to allow custom creation of HttpClient and HttpRequestMessage objects
+            </summary>
+            <remarks>
+            The DefaultHttpClientFactory contains some helpful protected methods that helps gathering
+            the data required for a proper configuration of the HttpClient.
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.IHttpClientFactory.CreateClient(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Create the client
+            </summary>
+            <param name="client">The REST client that wants to create the HTTP client</param>
+            <param name="request">The REST request for which the HTTP client is created</param>
+            <returns>A new HttpClient object</returns>
+            <remarks>
+            The DefaultHttpClientFactory contains some helpful protected methods that helps gathering
+            the data required for a proper configuration of the HttpClient.
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.IHttpClientFactory.CreateRequestMessage(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Create the request message
+            </summary>
+            <param name="client">The REST client that wants to create the HTTP request message</param>
+            <param name="request">The REST request for which the HTTP request message is created</param>
+            <returns>A new HttpRequestMessage object</returns>
+            <remarks>
+            The DefaultHttpClientFactory contains some helpful protected methods that helps gathering
+            the data required for a proper configuration of the HttpClient.
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory"/> class.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory.CreateClient(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Create the client
+            </summary>
+            <param name="client">The REST client that wants to create the HTTP client</param>
+            <param name="request">The REST request for which the HTTP client is created</param>
+            <returns>A new HttpClient object</returns>
+            <remarks>
+            The DefaultHttpClientFactory contains some helpful protected methods that helps gathering
+            the data required for a proper configuration of the HttpClient.
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory.CreateRequestMessage(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Create the request message
+            </summary>
+            <param name="client">The REST client that wants to create the HTTP request message</param>
+            <param name="request">The REST request for which the HTTP request message is created</param>
+            <returns>A new HttpRequestMessage object</returns>
+            <remarks>
+            The DefaultHttpClientFactory contains some helpful protected methods that helps gathering
+            the data required for a proper configuration of the HttpClient.
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory.HasCookies(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Returns if the HTTP client should be aware of cookies
+            </summary>
+            <param name="client">REST client</param>
+            <param name="request">REST request</param>
+            <returns>true == HTTP client should use a cookie container</returns>
+        </member>
+        <member name="M:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory.GetBaseAddress(RestSharp.Portable.IRestClient)">
+            <summary>
+            Get the REST requests base address (for HTTP client)
+            </summary>
+            <param name="client">REST client</param>
+            <returns>The base URL</returns>
+        </member>
+        <member name="M:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory.GetMessageAddress(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Get the REST requests relative address (for HTTP request message)
+            </summary>
+            <param name="client">REST client</param>
+            <param name="request">REST request</param>
+            <returns>The relative request message URL</returns>
+        </member>
+        <member name="M:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory.GetProxy(RestSharp.Portable.IRestClient)">
+            <summary>
+            The proxy to be used by the HTTP client
+            </summary>
+            <param name="client">REST client</param>
+            <returns>Proxy object or null</returns>
+        </member>
+        <member name="M:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory.GetCredentials(RestSharp.Portable.IRestRequest)">
+            <summary>
+            Get the credentials required for the REST request
+            </summary>
+            <param name="request">REST request</param>
+            <returns>Credentials for the HTTP client or null</returns>
+        </member>
+        <member name="M:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory.GetCookies(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Get the cookies for the HTTP client
+            </summary>
+            <param name="client">REST client</param>
+            <param name="request">REST request</param>
+            <returns>The cookie container or null</returns>
+        </member>
+        <member name="M:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory.GetHttpMethod(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Returns the HTTP method for the request message.
+            </summary>
+            <param name="client">The REST client that wants to create the HTTP client</param>
+            <param name="request">REST request</param>
+            <returns>HTTP method</returns>
+        </member>
+        <member name="M:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory.AddHttpHeaderParameters(System.Net.Http.HttpRequestMessage,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Returns a modified HTTP request message object with HTTP header parameters
+            </summary>
+            <param name="message">HTTP request message</param>
+            <param name="request">REST request</param>
+            <returns>The modified HTTP request message</returns>
+        </member>
+        <member name="M:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory.AddHttpHeaderParameters(System.Net.Http.HttpClient,RestSharp.Portable.IRestClient)">
+            <summary>
+            Returns a modified HTTP client object with the default HTTP header parameters
+            </summary>
+            <param name="httpClient">HTTP client</param>
+            <param name="restClient">REST client</param>
+            <returns>The modified HTTP request message</returns>
+        </member>
+        <member name="M:RestSharp.Portable.HttpClientImpl.DefaultHttpClientFactory.CreateMessageHandler(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Create the message handler
+            </summary>
+            <param name="client">The REST client that wants to create the HTTP client</param>
+            <param name="request">The REST request for which the HTTP client is created</param>
+            <returns>A new HttpMessageHandler object</returns>
+        </member>
+        <member name="T:RestSharp.Portable.IRestClient">
+            <summary>
+            REST client
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.IRestClient.Execute(RestSharp.Portable.IRestRequest)">
+            <summary>
+            Execute the given request
+            </summary>
+            <param name="request">Request to execute</param>
+            <returns>Response returned</returns>
+        </member>
+        <member name="M:RestSharp.Portable.IRestClient.Execute``1(RestSharp.Portable.IRestRequest)">
+            <summary>
+            Execute the given request
+            </summary>
+            <typeparam name="T">The type to deserialize to</typeparam>
+            <param name="request">Request to execute</param>
+            <returns>Response returned, with a deserialized object</returns>
+        </member>
+        <member name="M:RestSharp.Portable.IRestClient.Execute(RestSharp.Portable.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Cancellable request execution
+            </summary>
+            <param name="request">Request to execute</param>
+            <param name="ct">The cancellation token</param>
+            <returns>Response returned</returns>
+        </member>
+        <member name="M:RestSharp.Portable.IRestClient.Execute``1(RestSharp.Portable.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Cancellable request execution
+            </summary>
+            <typeparam name="T">The type to deserialize to</typeparam>
+            <param name="request">Request to execute</param>
+            <param name="ct">The cancellation token</param>
+            <returns>Response returned, with a deserialized object</returns>
+        </member>
+        <member name="M:RestSharp.Portable.IRestClient.AddHandler(System.String,RestSharp.Portable.Deserializers.IDeserializer)">
+            <summary>
+            Add a new content type handler
+            </summary>
+            <param name="contentType">The Accept header value</param>
+            <param name="deserializer">The deserializer to decode the content</param>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.IRestClient.RemoveHandler(System.String)">
+            <summary>
+            Remove a previously added content type handler
+            </summary>
+            <param name="contentType">The Accept header value that identifies the handler</param>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.IRestClient.ClearHandlers">
+            <summary>
+            Remove all previously added content type handlers
+            </summary>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.IRestClient.GetHandler(System.String)">
+            <summary>
+            Get a previously added content type handler
+            </summary>
+            <param name="contentType">The Accept header value that identifies the handler</param>
+            <returns>The deserializer that can handle the given content type.</returns>
+            <remarks>
+            This function returns NULL if the handler for the given content type cannot be found.
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.IRestClient.ReplaceHandler(System.Type,RestSharp.Portable.Deserializers.IDeserializer)">
+            <summary>
+            Replace all handlers of a given type with a new deserializer
+            </summary>
+            <param name="oldType">The type of the old deserializer</param>
+            <param name="deserializer">The new deserializer</param>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.IRestClient.AddEncoding(System.String,RestSharp.Portable.Encodings.IEncoding)">
+            <summary>
+            Add a new content encoding handler
+            </summary>
+            <param name="encodingId">The Accept-Encoding header value</param>
+            <param name="encoding">The encoding engine to decode the content</param>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.IRestClient.RemoveEncoding(System.String)">
+            <summary>
+            Remove a previously added content encoding handler
+            </summary>
+            <param name="encodingId">The Accept-Encoding header value that identifies the handler</param>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.IRestClient.ClearEncodings">
+            <summary>
+            Remove all previously added content encoding handlers
+            </summary>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.IRestClient.GetEncoding(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Get a previously added content encoding handler
+            </summary>
+            <param name="encodingIds">The Accept-Encoding header value that identifies the handler</param>
+            <returns>The handler that can decode the given content encoding.</returns>
+            <remarks>
+            This function returns NULL if the handler for the given content encoding cannot be found.
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.IRestClient.Authenticator">
+            <summary>
+            Gets or sets the authenticator to use for all requests
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestClient.BaseUrl">
+            <summary>
+            Gets or sets the base URL for all requests
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestClient.DefaultParameters">
+            <summary>
+            Gets the default parameters for all requests
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestClient.CookieContainer">
+            <summary>
+            Gets or sets the cookies for all requests
+            </summary>
+            <remarks>
+            Cookies set by the server will be collected here.
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.IRestClient.Proxy">
+            <summary>
+            Gets or sets a proxy to use for the requests
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestClient.IgnoreResponseStatusCode">
+            <summary>
+            Gets or sets a value indicating whether the response status code should be ignored?
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestClient.DefaultParameterNameComparer">
+            <summary>
+            Gets or sets the default <see cref="T:System.StringComparer"/> to be used for the requests.
+            </summary>
+            <remarks>
+            If this property is null, the <see cref="P:System.StringComparer.Ordinal"/> is used.
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.IRestClient.Timeout">
+            <summary>
+            Gets or sets the timeout to be used for requests.
+            </summary>
+            <remarks>
+            When the value isn't set, it uses the default timeout of <see cref="T:System.Net.Http.HttpClient"/> (100 seconds) or whatever
+            is used to implement the <see cref="T:RestSharp.Portable.IHttpClientFactory"/>.
+            </remarks>
+        </member>
+        <member name="T:RestSharp.Portable.IRestRequest">
+            <summary>
+            Defines a REST request
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestRequest.Serializer">
+            <summary>
+            Gets or sets the serializer that should serialize the body
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestRequest.Method">
+            <summary>
+            Gets or sets the HTTP request method (GET, POST, etc...)
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestRequest.Resource">
+            <summary>
+            Gets the resource relative to the REST clients base URL
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestRequest.Parameters">
+            <summary>
+            Gets the REST request parameters
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestRequest.Credentials">
+            <summary>
+            Gets or sets the credentials used for the request (e.g. NTLM authentication)
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestRequest.ContentCollectionMode">
+            <summary>
+            Gets or sets the content collection mode which controls if we use basic content or multi part content by default.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestRequest.ParameterNameComparer">
+            <summary>
+            Gets or sets the <see cref="T:System.StringComparer"/> to be used for this request.
+            </summary>
+            <remarks>
+            If this property is null, the <see cref="P:RestSharp.Portable.IRestClient.DefaultParameterNameComparer"/> is used.
+            </remarks>
+        </member>
+        <member name="T:RestSharp.Portable.IRestResponse">
+            <summary>
+            The generic REST response
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestResponse.Request">
+            <summary>
+            Gets the Request that resulted in this response
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestResponse.ResponseUri">
+            <summary>
+            Gets the full response URL
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestResponse.RawBytes">
+            <summary>
+            Gets the raw data
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestResponse.ContentType">
+            <summary>
+            Gets the content type of the raw data
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestResponse.Headers">
+            <summary>
+            Gets the response headers (without content headers)
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestResponse.IsSuccess">
+            <summary>
+            Gets a value indicating whether the request was successful.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestResponse.StatusCode">
+            <summary>
+            Gets the HTTP status code
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.IRestResponse.StatusDescription">
+            <summary>
+            Gets the description for the HTTP status code
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.IRestResponse`1">
+            <summary>
+            Typed response
+            </summary>
+            <typeparam name="T">
+            Type of the object to deserialize from the raw data
+            </typeparam>
+        </member>
+        <member name="P:RestSharp.Portable.IRestResponse`1.Data">
+            <summary>
+            Gets the deserialized object of type T
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.CanBeNullAttribute">
+            <summary>
+            Indicates that the value of the marked element could be <c>null</c> sometimes,
+            so the check for <c>null</c> is necessary before its usage
+            </summary>
+            <example><code>
+            [CanBeNull] public object Test() { return null; }
+            public void UseTest() {
+              var p = Test();
+              var s = p.ToString(); // Warning: Possible 'System.NullReferenceException'
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.NotNullAttribute">
+            <summary>
+            Indicates that the value of the marked element could never be <c>null</c>
+            </summary>
+            <example><code>
+            [NotNull] public object Foo() {
+              return null; // Warning: Possible 'null' assignment
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.ItemNotNullAttribute">
+            <summary>
+            Indicates that collection or enumerable value does not contain null elements
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.ItemCanBeNullAttribute">
+            <summary>
+            Indicates that collection or enumerable value can contain null elements
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.StringFormatMethodAttribute">
+            <summary>
+            Indicates that the marked method builds string by format pattern and (optional) arguments.
+            Parameter, which contains format string, should be given in constructor. The format string
+            should be in <see cref="M:System.String.Format(System.IFormatProvider,System.String,System.Object[])"/>-like form
+            </summary>
+            <example><code>
+            [StringFormatMethod("message")]
+            public void ShowError(string message, params object[] args) { /* do something */ }
+            public void Foo() {
+              ShowError("Failed: {0}"); // Warning: Non-existing argument in format string
+            }
+            </code></example>
+        </member>
+        <member name="M:JetBrains.Annotations.StringFormatMethodAttribute.#ctor(System.String)">
+            <param name="formatParameterName">
+            Specifies which parameter of an annotated method should be treated as format-string
+            </param>
+        </member>
+        <member name="T:JetBrains.Annotations.ValueProviderAttribute">
+            <summary>
+            For a parameter that is expected to be one of the limited set of values.
+            Specify fields of which type should be used as values for this parameter.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.InvokerParameterNameAttribute">
+            <summary>
+            Indicates that the function argument should be string literal and match one
+            of the parameters of the caller function. For example, ReSharper annotates
+            the parameter of <see cref="T:System.ArgumentNullException"/>
+            </summary>
+            <example><code>
+            public void Foo(string param) {
+              if (param == null)
+                throw new ArgumentNullException("par"); // Warning: Cannot resolve symbol
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.NotifyPropertyChangedInvocatorAttribute">
+             <summary>
+             Indicates that the method is contained in a type that implements
+             <c>System.ComponentModel.INotifyPropertyChanged</c> interface and this method
+             is used to notify that some property value changed
+             </summary>
+             <remarks>
+             The method should be non-static and conform to one of the supported signatures:
+             <list>
+             <item><c>NotifyChanged(string)</c></item>
+             <item><c>NotifyChanged(params string[])</c></item>
+             <item><c>NotifyChanged{T}(Expression{Func{T}})</c></item>
+             <item><c>NotifyChanged{T,U}(Expression{Func{T,U}})</c></item>
+             <item><c>SetProperty{T}(ref T, T, string)</c></item>
+             </list>
+             </remarks>
+             <example><code>
+             public class Foo : INotifyPropertyChanged {
+               public event PropertyChangedEventHandler PropertyChanged;
+               [NotifyPropertyChangedInvocator]
+               protected virtual void NotifyChanged(string propertyName) { ... }
+            
+               private string _name;
+               public string Name {
+                 get { return _name; }
+                 set { _name = value; NotifyChanged("LastName"); /* Warning */ }
+               }
+             }
+             </code>
+             Examples of generated notifications:
+             <list>
+             <item><c>NotifyChanged("Property")</c></item>
+             <item><c>NotifyChanged(() =&gt; Property)</c></item>
+             <item><c>NotifyChanged((VM x) =&gt; x.Property)</c></item>
+             <item><c>SetProperty(ref myField, value, "Property")</c></item>
+             </list>
+             </example>
+        </member>
+        <member name="T:JetBrains.Annotations.ContractAnnotationAttribute">
+            <summary>
+            Describes dependency between method input and output
+            </summary>
+            <syntax>
+            <p>Function Definition Table syntax:</p>
+            <list>
+            <item>FDT      ::= FDTRow [;FDTRow]*</item>
+            <item>FDTRow   ::= Input =&gt; Output | Output &lt;= Input</item>
+            <item>Input    ::= ParameterName: Value [, Input]*</item>
+            <item>Output   ::= [ParameterName: Value]* {halt|stop|void|nothing|Value}</item>
+            <item>Value    ::= true | false | null | notnull | canbenull</item>
+            </list>
+            If method has single input parameter, it's name could be omitted.<br/>
+            Using <c>halt</c> (or <c>void</c>/<c>nothing</c>, which is the same)
+            for method output means that the methos doesn't return normally.<br/>
+            <c>canbenull</c> annotation is only applicable for output parameters.<br/>
+            You can use multiple <c>[ContractAnnotation]</c> for each FDT row,
+            or use single attribute with rows separated by semicolon.<br/>
+            </syntax>
+            <examples><list>
+            <item><code>
+            [ContractAnnotation("=> halt")]
+            public void TerminationMethod()
+            </code></item>
+            <item><code>
+            [ContractAnnotation("halt &lt;= condition: false")]
+            public void Assert(bool condition, string text) // regular assertion method
+            </code></item>
+            <item><code>
+            [ContractAnnotation("s:null => true")]
+            public bool IsNullOrEmpty(string s) // string.IsNullOrEmpty()
+            </code></item>
+            <item><code>
+            // A method that returns null if the parameter is null,
+            // and not null if the parameter is not null
+            [ContractAnnotation("null => null; notnull => notnull")]
+            public object Transform(object data) 
+            </code></item>
+            <item><code>
+            [ContractAnnotation("s:null=>false; =>true,result:notnull; =>false, result:null")]
+            public bool TryParse(string s, out Person result)
+            </code></item>
+            </list></examples>
+        </member>
+        <member name="T:JetBrains.Annotations.LocalizationRequiredAttribute">
+            <summary>
+            Indicates that marked element should be localized or not
+            </summary>
+            <example><code>
+            [LocalizationRequiredAttribute(true)]
+            public class Foo {
+              private string str = "my string"; // Warning: Localizable string
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.CannotApplyEqualityOperatorAttribute">
+            <summary>
+            Indicates that the value of the marked type (or its derivatives)
+            cannot be compared using '==' or '!=' operators and <c>Equals()</c>
+            should be used instead. However, using '==' or '!=' for comparison
+            with <c>null</c> is always permitted.
+            </summary>
+            <example><code>
+            [CannotApplyEqualityOperator]
+            class NoEquality { }
+            class UsesNoEquality {
+              public void Test() {
+                var ca1 = new NoEquality();
+                var ca2 = new NoEquality();
+                if (ca1 != null) { // OK
+                  bool condition = ca1 == ca2; // Warning
+                }
+              }
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.BaseTypeRequiredAttribute">
+            <summary>
+            When applied to a target attribute, specifies a requirement for any type marked
+            with the target attribute to implement or inherit specific type or types.
+            </summary>
+            <example><code>
+            [BaseTypeRequired(typeof(IComponent)] // Specify requirement
+            public class ComponentAttribute : Attribute { }
+            [Component] // ComponentAttribute requires implementing IComponent interface
+            public class MyComponent : IComponent { }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.UsedImplicitlyAttribute">
+            <summary>
+            Indicates that the marked symbol is used implicitly
+            (e.g. via reflection, in external library), so this symbol
+            will not be marked as unused (as well as by other usage inspections)
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.MeansImplicitUseAttribute">
+            <summary>
+            Should be used on attributes and causes ReSharper
+            to not mark symbols marked with such attributes as unused
+            (as well as by other usage inspections)
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.Access">
+            <summary>Only entity marked with attribute considered used</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.Assign">
+            <summary>Indicates implicit assignment to a member</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature">
+            <summary>
+            Indicates implicit instantiation of a type with fixed constructor signature.
+            That means any unused constructor parameters won't be reported as such.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.InstantiatedNoFixedConstructorSignature">
+            <summary>Indicates implicit instantiation of a type</summary>
+        </member>
+        <member name="T:JetBrains.Annotations.ImplicitUseTargetFlags">
+            <summary>
+            Specify what is considered used implicitly when marked
+            with <see cref="T:JetBrains.Annotations.MeansImplicitUseAttribute"/> or <see cref="T:JetBrains.Annotations.UsedImplicitlyAttribute"/>
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseTargetFlags.Members">
+            <summary>Members of entity marked with attribute are considered used</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseTargetFlags.WithMembers">
+            <summary>Entity marked with attribute and all its members considered used</summary>
+        </member>
+        <member name="T:JetBrains.Annotations.PublicAPIAttribute">
+            <summary>
+            This attribute is intended to mark publicly available API
+            which should not be removed and so is treated as used
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.InstantHandleAttribute">
+            <summary>
+            Tells code analysis engine if the parameter is completely handled
+            when the invoked method is on stack. If the parameter is a delegate,
+            indicates that delegate is executed while the method is executed.
+            If the parameter is an enumerable, indicates that it is enumerated
+            while the method is executed
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.PureAttribute">
+            <summary>
+            Indicates that a method does not make any observable state changes.
+            The same as <c>System.Diagnostics.Contracts.PureAttribute</c>
+            </summary>
+            <example><code>
+            [Pure] private int Multiply(int x, int y) { return x * y; }
+            public void Foo() {
+              const int a = 2, b = 2;
+              Multiply(a, b); // Waring: Return value of pure method is not used
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.PathReferenceAttribute">
+            <summary>
+            Indicates that a parameter is a path to a file or a folder within a web project.
+            Path can be relative or absolute, starting from web root (~)
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcActionAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
+            is an MVC action. If applied to a method, the MVC action name is calculated
+            implicitly from the context. Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcAreaAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC area.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcControllerAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter is
+            an MVC controller. If applied to a method, the MVC controller name is calculated
+            implicitly from the context. Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String, String)</c>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcMasterAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC Master. Use this attribute
+            for custom wrappers similar to <c>System.Web.Mvc.Controller.View(String, String)</c>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcModelTypeAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC model type. Use this attribute
+            for custom wrappers similar to <c>System.Web.Mvc.Controller.View(String, Object)</c>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcPartialViewAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC
+            partial view. If applied to a method, the MVC partial view name is calculated implicitly
+            from the context. Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.RenderPartialExtensions.RenderPartial(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcSupressViewErrorAttribute">
+            <summary>
+            ASP.NET MVC attribute. Allows disabling inspections for MVC views within a class or a method
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcDisplayTemplateAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC display template.
+            Use this attribute for custom wrappers similar to 
+            <c>System.Web.Mvc.Html.DisplayExtensions.DisplayForModel(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcEditorTemplateAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC editor template.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.EditorExtensions.EditorForModel(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcTemplateAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC template.
+            Use this attribute for custom wrappers similar to
+            <c>System.ComponentModel.DataAnnotations.UIHintAttribute(System.String)</c>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcViewAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
+            is an MVC view. If applied to a method, the MVC view name is calculated implicitly
+            from the context. Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Controller.View(Object)</c>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcActionSelectorAttribute">
+            <summary>
+            ASP.NET MVC attribute. When applied to a parameter of an attribute,
+            indicates that this parameter is an MVC action name
+            </summary>
+            <example><code>
+            [ActionName("Foo")]
+            public ActionResult Login(string returnUrl) {
+              ViewBag.ReturnUrl = Url.Action("Foo"); // OK
+              return RedirectToAction("Bar"); // Error: Cannot resolve action
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.RazorSectionAttribute">
+            <summary>
+            Razor attribute. Indicates that a parameter or a method is a Razor section.
+            Use this attribute for custom wrappers similar to 
+            <c>System.Web.WebPages.WebPageBase.RenderSection(String)</c>
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.CollectionAccessAttribute">
+            <summary>
+            Indicates how method invocation affects content of the collection
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.CollectionAccessType.None">
+            <summary>Method does not use or modify content of the collection</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.CollectionAccessType.Read">
+            <summary>Method only reads content of the collection but does not modify it</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.CollectionAccessType.ModifyExistingContent">
+            <summary>Method can change content of the collection but does not add new elements</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.CollectionAccessType.UpdatedContent">
+            <summary>Method can add new elements to the collection</summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AssertionMethodAttribute">
+            <summary>
+            Indicates that the marked method is assertion method, i.e. it halts control flow if
+            one of the conditions is satisfied. To set the condition, mark one of the parameters with 
+            <see cref="T:JetBrains.Annotations.AssertionConditionAttribute"/> attribute
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AssertionConditionAttribute">
+            <summary>
+            Indicates the condition parameter of the assertion method. The method itself should be
+            marked by <see cref="T:JetBrains.Annotations.AssertionMethodAttribute"/> attribute. The mandatory argument of
+            the attribute is the assertion type.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AssertionConditionType">
+            <summary>
+            Specifies assertion type. If the assertion method argument satisfies the condition,
+            then the execution continues. Otherwise, execution is assumed to be halted
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.AssertionConditionType.IS_TRUE">
+            <summary>Marked parameter should be evaluated to true</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.AssertionConditionType.IS_FALSE">
+            <summary>Marked parameter should be evaluated to false</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.AssertionConditionType.IS_NULL">
+            <summary>Marked parameter should be evaluated to null value</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.AssertionConditionType.IS_NOT_NULL">
+            <summary>Marked parameter should be evaluated to not null value</summary>
+        </member>
+        <member name="T:JetBrains.Annotations.TerminatesProgramAttribute">
+            <summary>
+            Indicates that the marked method unconditionally terminates control flow execution.
+            For example, it could unconditionally throw exception
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.LinqTunnelAttribute">
+            <summary>
+            Indicates that method is pure LINQ method, with postponed enumeration (like Enumerable.Select,
+            .Where). This annotation allows inference of [InstantHandle] annotation for parameters
+            of delegate type by analyzing LINQ method chains.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.NoEnumerationAttribute">
+            <summary>
+            Indicates that IEnumerable, passed as parameter, is not enumerated.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.RegexPatternAttribute">
+            <summary>
+            Indicates that parameter is regular expression pattern.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.XamlItemsControlAttribute">
+            <summary>
+            XAML attribute. Indicates the type that has <c>ItemsSource</c> property and should be
+            treated as <c>ItemsControl</c>-derived type, to enable inner  items <c>DataContext</c>
+            type resolve.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.XamlItemBindingOfItemsControlAttribute">
+            <summary>
+            XAML attibute. Indicates the property of some <c>BindingBase</c>-derived type, that
+            is used to bind some item of <c>ItemsControl</c>-derived type. This annotation will
+            enable the <c>DataContext</c> type resolve for XAML bindings for such properties.
+            </summary>
+            <remarks>
+            Property should have the tree ancestor of the <c>ItemsControl</c> type or
+            marked with the <see cref="T:JetBrains.Annotations.XamlItemsControlAttribute"/> attribute.
+            </remarks>
+        </member>
+        <member name="T:JetBrains.Annotations.NoReorder">
+            <summary>
+            Prevents the Member Reordering feature from tossing members of the marked class.
+            </summary>
+            <remarks>
+            The attribute must be mentioned in your member reordering patterns.
+            </remarks>
+        </member>
+        <member name="T:RestSharp.Portable.ParameterComparer">
+            <summary>
+            Compares parameters by name
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.ParameterComparer.#ctor(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.ParameterComparer"/> class.
+            </summary>
+            <param name="client">The client this parameter comparer is for</param>
+            <param name="request">The request this parameter comparer is for</param>
+        </member>
+        <member name="M:RestSharp.Portable.ParameterComparer.#ctor(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest,System.StringComparer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.ParameterComparer"/> class.
+            </summary>
+            <param name="client">The client this parameter comparer is for</param>
+            <param name="request">The request this parameter comparer is for</param>
+            <param name="stringComparer">The string comparer to use (default: Ordinal)</param>
+        </member>
+        <member name="M:RestSharp.Portable.ParameterComparer.Equals(RestSharp.Portable.Parameter,RestSharp.Portable.Parameter)">
+            <summary>
+            Parameters have the same name?
+            </summary>
+            <param name="x">The parameter to compare with</param>
+            <param name="y">The parameter to compare to</param>
+            <returns>true if both parameters are equal</returns>
+        </member>
+        <member name="M:RestSharp.Portable.ParameterComparer.GetHashCode(RestSharp.Portable.Parameter)">
+            <summary>
+            Calculate the hash code for a given parameter
+            </summary>
+            <param name="obj">The object to get the hash code for</param>
+            <returns>The hash code</returns>
+        </member>
+        <member name="M:RestSharp.Portable.ParameterComparer.Compare(RestSharp.Portable.Parameter,RestSharp.Portable.Parameter)">
+            <summary>
+            Compare two parameters
+            </summary>
+            <param name="x">The parameter to compare with</param>
+            <param name="y">The parameter to compare to</param>
+            <returns>0 if both parameters are equal, &lt;0 when the <paramref name="x"/> is &lt; <paramref name="y"/>, otherwise &gt;0.</returns>
+        </member>
+        <member name="T:RestSharp.Portable.ParameterExtensions">
+            <summary>
+            Extension methods for Parameter(s)
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.ParameterExtensions.GetGetOrPostParameters(System.Collections.Generic.IEnumerable{RestSharp.Portable.Parameter})">
+            <summary>
+            Get the GetOrPost parameters (by default without file parameters, which are POST-only)
+            </summary>
+            <param name="parameters">
+            The list of parameters to filter
+            </param>
+            <returns>
+            The list of GET or POST parameters
+            </returns>
+        </member>
+        <member name="M:RestSharp.Portable.ParameterExtensions.GetGetOrPostParameters(System.Collections.Generic.IEnumerable{RestSharp.Portable.Parameter},System.Boolean)">
+            <summary>
+            Get the GetOrPost parameters (by default without file parameters, which are POST-only)
+            </summary>
+            <param name="parameters">
+            The list of parameters to filter
+            </param>
+            <param name="withFile">
+            true == with file parameters, but those are POST-only!
+            </param>
+            <returns>
+            The list of GET or POST parameters
+            </returns>
+        </member>
+        <member name="M:RestSharp.Portable.ParameterExtensions.GetFileParameters(System.Collections.Generic.IEnumerable{RestSharp.Portable.Parameter})">
+            <summary>
+            Get the file parameters
+            </summary>
+            <param name="parameters">
+            The list of parameters to filter
+            </param>
+            <returns>
+            The list of POST file parameters
+            </returns>
+        </member>
+        <member name="T:RestSharp.Portable.ParameterType">
+            <summary>
+            Parameter type
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.ParameterType.GetOrPost">
+            <summary>
+            Parameter will be stored in the URL query for a GET request, or in the body for a POST request
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.ParameterType.UrlSegment">
+            <summary>
+            The parameter is part of the IRestResponse.Resource
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.ParameterType.QueryString">
+            <summary>
+            The parameter is part of the resulting URL query
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.ParameterType.HttpHeader">
+            <summary>
+            The parameter will be sent as HTTP header
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.ParameterType.RequestBody">
+            <summary>
+            The parameter will be sent in the HTTP POST body
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.ParameterType.Cookie">
+            <summary>
+            The parameter will be sent as cookie value.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.PropertyFilterMode">
+            <summary>
+            Filter mode for the <see cref="M:RestSharp.Portable.RestRequestExtensions.AddObject(RestSharp.Portable.IRestRequest,System.Object,System.Collections.Generic.IEnumerable{System.String},RestSharp.Portable.PropertyFilterMode)"/> extension method
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.PropertyFilterMode.Include">
+            <summary>
+            Include the given properties
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.PropertyFilterMode.Exclude">
+            <summary>
+            Exclude the given properties
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.RestClient">
+            <summary>
+            The default REST client
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.RestClient"/> class.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.#ctor(System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.RestClient"/> class.
+            </summary>
+            <param name="baseUrl">Base URL</param>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.RestClient"/> class.
+            </summary>
+            <param name="baseUrl">Base URL</param>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.Execute(RestSharp.Portable.IRestRequest)">
+            <summary>
+            Execute the given request
+            </summary>
+            <param name="request">Request to execute</param>
+            <returns>Response returned</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.Execute``1(RestSharp.Portable.IRestRequest)">
+            <summary>
+            Execute the given request
+            </summary>
+            <typeparam name="T">
+            The type to deserialize the response to.
+            </typeparam>
+            <param name="request">
+            Request to execute
+            </param>
+            <returns>
+            Response returned, with a deserialized object
+            </returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.Execute(RestSharp.Portable.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Cancellable request execution
+            </summary>
+            <param name="request">Request to execute</param>
+            <param name="ct">The cancellation token</param>
+            <returns>Response returned</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.Execute``1(RestSharp.Portable.IRestRequest,System.Threading.CancellationToken)">
+            <summary>
+            Cancellable request execution
+            </summary>
+            <typeparam name="T">The type to deserialize to</typeparam>
+            <param name="request">Request to execute</param>
+            <param name="ct">The cancellation token</param>
+            <returns>Response returned, with a deserialized object</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.AddHandler(System.String,RestSharp.Portable.Deserializers.IDeserializer)">
+            <summary>
+            Add a new content type handler
+            </summary>
+            <param name="contentType">The Accept header value</param>
+            <param name="deserializer">The deserializer to decode the content</param>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.RemoveHandler(System.String)">
+            <summary>
+            Remove a previously added content type handler
+            </summary>
+            <param name="contentType">The Accept header value that identifies the handler</param>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.ClearHandlers">
+            <summary>
+            Remove all previously added content type handlers
+            </summary>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.GetHandler(System.String)">
+            <summary>
+            Get a previously added content type handler
+            </summary>
+            <param name="contentType">The Accept header value that identifies the handler</param>
+            <returns>The deserializer that can handle the given content type.</returns>
+            <remarks>
+            This function returns NULL if the handler for the given content type cannot be found.
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.ReplaceHandler(System.Type,RestSharp.Portable.Deserializers.IDeserializer)">
+            <summary>
+            Replace all handlers of a given type with a new deserializer
+            </summary>
+            <param name="oldType">The type of the old deserializer</param>
+            <param name="deserializer">The new deserializer</param>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.AddEncoding(System.String,RestSharp.Portable.Encodings.IEncoding)">
+            <summary>
+            Add a new content encoding handler
+            </summary>
+            <param name="encodingId">The Accept-Encoding header value</param>
+            <param name="encoding">The encoding engine to decode the content</param>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.RemoveEncoding(System.String)">
+            <summary>
+            Remove a previously added content encoding handler
+            </summary>
+            <param name="encodingId">The Accept-Encoding header value that identifies the handler</param>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.ClearEncodings">
+            <summary>
+            Remove all previously added content encoding handlers
+            </summary>
+            <returns>The client itself, to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.GetEncoding(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Get a previously added content encoding handler
+            </summary>
+            <param name="encodingIds">The Accept-Encoding header value that identifies the handler</param>
+            <returns>The handler that can decode the given content encoding.</returns>
+            <remarks>
+            This function returns NULL if the handler for the given content encoding cannot be found.
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.Dispose">
+            <summary>
+            Close the used HTTP client
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.AddDefaultParameters(RestSharp.Portable.IRestRequest)">
+            <summary>
+            Add overridable default parameters to the request
+            </summary>
+            <param name="request">The requests to add the default parameters to.</param>
+        </member>
+        <member name="M:RestSharp.Portable.RestClient.NotifyAuthenticatorAboutFailedRequest(RestSharp.Portable.IRestRequest,System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Notify the authenticator about a failed request to be able to retry the request
+            with updated authentication information.
+            </summary>
+            <param name="request">The failed request</param>
+            <param name="response">The response of the failed request</param>
+            <returns>true == Authenticator notified</returns>
+        </member>
+        <member name="P:RestSharp.Portable.RestClient.HttpClientFactory">
+            <summary>
+            Gets or sets the HTTP client factory used to create IHttpClient implementations
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestClient.BaseUrl">
+            <summary>
+            Gets or sets the base URL for all requests
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestClient.Authenticator">
+            <summary>
+            Gets or sets the Authenticator to use for all requests
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestClient.CookieContainer">
+            <summary>
+            Gets or sets the Cookies for all requests
+            </summary>
+            <remarks>
+            Cookies set by the server will be collected here.
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.RestClient.DefaultParameterNameComparer">
+            <summary>
+            Gets or sets the default <see cref="T:System.StringComparer"/> to be used for the requests.
+            </summary>
+            <remarks>
+            If this property is null, the <see cref="P:System.StringComparer.Ordinal"/> is used.
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.RestClient.Timeout">
+            <summary>
+            Gets or sets the timeout to be used for requests.
+            </summary>
+            <remarks>
+            When the value isn't set, it uses the default timeout of <see cref="T:System.Net.Http.HttpClient"/> (100 seconds) or whatever
+            is used to implement the <see cref="T:RestSharp.Portable.IHttpClientFactory"/>.
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.RestClient.DefaultParameters">
+            <summary>
+            Gets the collection of the default parameters for all requests
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestClient.IgnoreResponseStatusCode">
+            <summary>
+            Gets or sets a value indicating whether the response status code should be ignored by default.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestClient.Proxy">
+            <summary>
+            Gets or sets the proxy to use for the requests
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.RestClientExtensions">
+            <summary>
+            Extension functions for REST clients
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.RestClientExtensions.AddDefaultParameter(RestSharp.Portable.IRestClient,System.String,System.Object)">
+            <summary>
+            Add a default parameter to a REST client
+            </summary>
+            <param name="client">REST client to add the new parameter to</param>
+            <param name="name">Name of the parameter</param>
+            <param name="value">Value of the parameter</param>
+            <returns>The REST client to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClientExtensions.AddDefaultParameter(RestSharp.Portable.IRestClient,System.String,System.Object,RestSharp.Portable.ParameterType)">
+            <summary>
+            Add a default parameter to a REST client
+            </summary>
+            <param name="client">REST client to add the new parameter to</param>
+            <param name="name">Name of the parameter</param>
+            <param name="value">Value of the parameter</param>
+            <param name="type">Type of the parameter</param>
+            <returns>The REST client to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClientExtensions.AddDefaultParameter(RestSharp.Portable.IRestClient,RestSharp.Portable.Parameter)">
+            <summary>
+            Add a default parameter to a REST client
+            </summary>
+            <param name="client">REST client to add the new parameter to</param>
+            <param name="parameter">The parameter to add</param>
+            <returns>The REST client to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClientExtensions.RemoveDefaultParameter(RestSharp.Portable.IRestClient,System.String)">
+            <summary>
+            Remove a default parameter from the REST client
+            </summary>
+            <param name="client">REST client to remove the parameter from</param>
+            <param name="name">Name of the parameter</param>
+            <returns>The REST client to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClientExtensions.MergeParameters(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Merge parameters from client and request
+            </summary>
+            <param name="client">The REST client that will execute the request</param>
+            <param name="request">The REST request</param>
+            <returns>A list of merged parameters</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClientExtensions.BuildUri(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Build the full URL for a request
+            </summary>
+            <param name="client">The REST client that will execute the request</param>
+            <param name="request">The REST request</param>
+            <returns>Resulting URL</returns>
+            <remarks>
+            The resulting URL is a combination of the REST client's BaseUrl and the REST requests
+            Resource, where all URL segments are replaced and - optionally - the query parameters
+            added.
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.RestClientExtensions.BuildUri(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest,System.Boolean)">
+            <summary>
+            Build the full URL for a request
+            </summary>
+            <param name="client">The REST client that will execute the request</param>
+            <param name="request">The REST request</param>
+            <param name="withQuery">Should the resulting URL contain the query?</param>
+            <returns>Resulting URL</returns>
+            <remarks>
+            The resulting URL is a combination of the REST client's BaseUrl and the REST requests
+            Resource, where all URL segments are replaced and - optionally - the query parameters
+            added.
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.RestClientExtensions.GetContent(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Gets the content for a request
+            </summary>
+            <param name="client">The REST client that will execute the request</param>
+            <param name="request">REST request to get the content for</param>
+            <returns>The HTTP content to be sent</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClientExtensions.GetEffectiveHttpMethod(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Returns the real HTTP method that must be used to execute a request
+            </summary>
+            <param name="client">The REST client that will execute the request</param>
+            <param name="request">The request to determine the HTTP method for</param>
+            <returns>The real HTTP method that must be used</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClientExtensions.GetBasicContent(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Gets the basic content (without files) for a request
+            </summary>
+            <param name="client">The REST client that will execute the request</param>
+            <param name="request">REST request to get the content for</param>
+            <returns>The HTTP content to be sent</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClientExtensions.GetMultiPartContent(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Gets the multi-part content (with files) for a request
+            </summary>
+            <param name="client">The REST client that will execute the request</param>
+            <param name="request">REST request to get the content for</param>
+            <returns>The HTTP content to be sent</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestClientExtensions.GetDefaultMethod(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Returns the HTTP method GET or POST - depending on the parameters
+            </summary>
+            <param name="client">The REST client that will execute the request</param>
+            <param name="request">The request to determine the HTTP method for</param>
+            <returns>GET or POST</returns>
+        </member>
+        <member name="T:RestSharp.Portable.RestRequest">
+            <summary>
+            The default REST request
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.RestRequest"/> class.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequest.#ctor(System.Net.Http.HttpMethod)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.RestRequest"/> class.
+            </summary>
+            <param name="method">The HTTP request method to use</param>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequest.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.RestRequest"/> class.
+            </summary>
+            <param name="resource">The resource this request is targeting</param>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequest.#ctor(System.String,System.Net.Http.HttpMethod)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.RestRequest"/> class.
+            </summary>
+            <param name="resource">The resource this request is targeting</param>
+            <param name="method">The HTTP request method</param>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequest.#ctor(System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.RestRequest"/> class.
+            </summary>
+            <param name="resource">The resource this request is targeting</param>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequest.#ctor(System.Uri,System.Net.Http.HttpMethod)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.RestRequest"/> class.
+            </summary>
+            <param name="resource">The resource this request is targeting</param>
+            <param name="method">The HTTP request method</param>
+        </member>
+        <member name="P:RestSharp.Portable.RestRequest.Method">
+            <summary>
+            Gets or sets the HTTP request method (GET, POST, etc...)
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestRequest.Resource">
+            <summary>
+            Gets or sets the resource relative to the REST clients base URL
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestRequest.Parameters">
+            <summary>
+            Gets the REST request parameters
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestRequest.Serializer">
+            <summary>
+            Gets or sets the serializer that should serialize the body
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestRequest.Credentials">
+            <summary>
+            Gets or sets the credentials used for the request (e.g. NTLM authentication)
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestRequest.ContentCollectionMode">
+            <summary>
+            Gets or sets the content collection mode which controls if we use basic content or multi part content by default.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestRequest.ParameterNameComparer">
+            <summary>
+            Gets or sets the <see cref="T:System.StringComparer"/> to be used for this request.
+            </summary>
+            <remarks>
+            If this property is null, the <see cref="P:RestSharp.Portable.IRestClient.DefaultParameterNameComparer"/> is used.
+            </remarks>
+        </member>
+        <member name="T:RestSharp.Portable.RestRequestExtensions">
+            <summary>
+            Extension functions for REST requests
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddBody(RestSharp.Portable.IRestRequest,System.Object)">
+            <summary>
+            Body to add to the parameters using the <see cref="P:RestSharp.Portable.IRestRequest.Serializer"/>
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="obj">Object to serialize to the request body</param>
+            <returns>The request object to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddJsonBody(RestSharp.Portable.IRestRequest,System.Object)">
+            <summary>
+            Body to add to the parameters using a default <see cref="T:RestSharp.Portable.Serializers.JsonSerializer"/>.
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="obj">Object to serialize to the request body</param>
+            <returns>The request object to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddXmlBody(RestSharp.Portable.IRestRequest,System.Object)">
+            <summary>
+            Body to add to the parameters using a default <see cref="T:RestSharp.Portable.Serializers.XmlDataContractSerializer"/>.
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="obj">Object to serialize to the request body</param>
+            <returns>The request object to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddObject(RestSharp.Portable.IRestRequest,System.Object,System.String[])">
+            <summary>
+            Port of AddObject to RestSharp.Portable
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="obj">Object to serialize to the request body</param>
+            <param name="includedProperties">Properties to include</param>
+            <returns>The request object to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddObject(RestSharp.Portable.IRestRequest,System.Object,System.Collections.Generic.IEnumerable{System.String},RestSharp.Portable.PropertyFilterMode)">
+            <summary>
+            Port of AddObject to RestSharp.Portable
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="obj">Object to serialize to the request body</param>
+            <param name="objProperties">The object properties</param>
+            <param name="filterMode">Include or exclude the properties?</param>
+            <returns>The request object to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddParameter(RestSharp.Portable.IRestRequest,RestSharp.Portable.Parameter)">
+            <summary>
+            Generic add parameters function
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="parameter">Parameter to add</param>
+            <returns>The request object to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddQueryParameter(RestSharp.Portable.IRestRequest,System.String,System.Object)">
+            <summary>
+            Add a query parameter to a REST request
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="name">Name of the parameter</param>
+            <param name="value">Value of the parameter</param>
+            <returns>The REST request to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddUrlSegment(RestSharp.Portable.IRestRequest,System.String,System.Object)">
+            <summary>
+            Add an URL segment parameter to a REST request
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="name">Name of the parameter</param>
+            <param name="value">Value of the parameter</param>
+            <returns>The REST request to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddHeader(RestSharp.Portable.IRestRequest,System.String,System.Object)">
+            <summary>
+            Add a HTTP HEADER parameter to a REST request
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="name">Name of the parameter</param>
+            <param name="value">Value of the parameter</param>
+            <returns>The REST request to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddParameter(RestSharp.Portable.IRestRequest,System.String,System.Object)">
+            <summary>
+            Add a parameter to a REST request
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="name">Name of the parameter</param>
+            <param name="value">Value of the parameter</param>
+            <returns>The REST request to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddParameter(RestSharp.Portable.IRestRequest,System.String,System.Object,RestSharp.Portable.ParameterType)">
+            <summary>
+            Add a parameter to a REST request
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="name">Name of the parameter</param>
+            <param name="value">Value of the parameter</param>
+            <param name="type">Type of the parameter</param>
+            <returns>The REST request to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddParameter(RestSharp.Portable.IRestRequest,System.String,System.Object,RestSharp.Portable.ParameterType,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Add a parameter to a REST request
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="name">Name of the parameter</param>
+            <param name="value">Value of the parameter</param>
+            <param name="type">Type of the parameter</param>
+            <param name="contentType">Content type for the parameter (only applicable to a Body parameter)</param>
+            <returns>The REST request to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddFile(RestSharp.Portable.IRestRequest,System.String,System.Byte[],System.String)">
+            <summary>
+            Add a file parameter to a REST request
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="name">Name of the parameter</param>
+            <param name="bytes">File content</param>
+            <param name="fileName">File name</param>
+            <returns>The REST request to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddFile(RestSharp.Portable.IRestRequest,System.String,System.Byte[],System.String,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Add a file parameter to a REST request
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="name">Name of the parameter</param>
+            <param name="bytes">File content</param>
+            <param name="fileName">File name</param>
+            <param name="contentType">Content type for the parameter (only applicable to a Body parameter)</param>
+            <returns>The REST request to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddFile(RestSharp.Portable.IRestRequest,System.String,System.IO.Stream,System.String)">
+            <summary>
+            Add a file parameter to a REST request
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="name">Name of the parameter</param>
+            <param name="input">File content</param>
+            <param name="fileName">File name</param>
+            <returns>The REST request to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddFile(RestSharp.Portable.IRestRequest,System.String,System.IO.Stream,System.String,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Add a file parameter to a REST request
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="name">Name of the parameter</param>
+            <param name="input">File content</param>
+            <param name="fileName">File name</param>
+            <param name="contentType">Content type for the parameter (only applicable to a Body parameter)</param>
+            <returns>The REST request to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.AddFile(RestSharp.Portable.IRestRequest,RestSharp.Portable.FileParameter)">
+            <summary>
+            Add a file parameter to a REST request
+            </summary>
+            <param name="request">The REST request to add this parameter to</param>
+            <param name="parameter">The new file parameter</param>
+            <returns>The REST request to allow call chains</returns>
+        </member>
+        <member name="M:RestSharp.Portable.RestRequestExtensions.GetBodyContent(RestSharp.Portable.IRestRequest,RestSharp.Portable.Parameter)">
+            <summary>
+            Returns the HttpContent for the body parameter
+            </summary>
+            <param name="request">The request the body parameter belongs to</param>
+            <param name="body">The body parameter</param>
+            <returns>The resulting HttpContent</returns>
+        </member>
+        <member name="T:RestSharp.Portable.RestResponse">
+            <summary>
+            The default REST response
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.RestResponse.#ctor(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.RestResponse"/> class.
+            </summary>
+            <param name="client">REST client</param>
+            <param name="request">REST request</param>
+        </member>
+        <member name="M:RestSharp.Portable.RestResponse.LoadResponse(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Utility function that really initializes this response object from
+            a HttpResponseMessage
+            </summary>
+            <param name="response">Response that will be used to initialize this response.</param>
+            <returns>Task, because this function runs asynchronously</returns>
+        </member>
+        <member name="P:RestSharp.Portable.RestResponse.Request">
+            <summary>
+            Gets the Request that resulted in this response
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestResponse.ResponseUri">
+            <summary>
+            Gets the full response URL
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestResponse.RawBytes">
+            <summary>
+            Gets the raw data
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestResponse.ContentType">
+            <summary>
+            Gets the content type of the raw data
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestResponse.Headers">
+            <summary>
+            Gets the response headers (without content headers)
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestResponse.IsSuccess">
+            <summary>
+            Gets a value indicating whether the request was successful.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestResponse.StatusCode">
+            <summary>
+            Gets the HTTP status code
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestResponse.StatusDescription">
+            <summary>
+            Gets the description for the HTTP status code
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.RestResponse.Client">
+            <summary>
+            Gets the REST client that created this response
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.RestResponse`1">
+            <summary>
+            The REST response which contains the deserialized value.
+            </summary>
+            <typeparam name="T">
+            The type to deserialize
+            </typeparam>
+        </member>
+        <member name="M:RestSharp.Portable.RestResponse`1.#ctor(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.RestResponse`1"/> class.
+            </summary>
+            <param name="client">
+            REST client
+            </param>
+            <param name="request">
+            REST request
+            </param>
+        </member>
+        <member name="M:RestSharp.Portable.RestResponse`1.LoadResponse(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Utility function that really initializes this response object from
+            a HttpResponseMessage
+            </summary>
+            <param name="response">
+            Response that will be used to initialize this response.
+            </param>
+            <returns>
+            Task, because this function runs asynchronously
+            </returns>
+            <remarks>
+            This override also deserializes the response
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.RestResponse`1.Data">
+            <summary>
+            Gets the deserialized object of type T
+            </summary>
+            <remarks>
+            When the object cannot be deserialized, this property
+            contains the value of default(T).
+            </remarks>
+        </member>
+        <member name="T:RestSharp.Portable.Serializers.ISerializer">
+            <summary>
+            Serializer for a content type
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Serializers.ISerializer.Serialize(System.Object)">
+            <summary>
+            Serialize the object into a byte array
+            </summary>
+            <param name="obj">Object to serialize</param>
+            <returns>Byte array to send in the request body</returns>
+        </member>
+        <member name="P:RestSharp.Portable.Serializers.ISerializer.ContentType">
+            <summary>
+            Gets or sets the content type produced by the serializer
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Serializers.JsonSerializer">
+            <summary>
+            The default JSON serializer using Json.Net
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Serializers.JsonSerializer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Serializers.JsonSerializer"/> class.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Serializers.JsonSerializer.Serialize(System.Object)">
+            <summary>
+            Serialize the object into a byte array
+            </summary>
+            <param name="obj">Object to serialize</param>
+            <returns>Byte array to send in the request body</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Serializers.JsonSerializer.ConfigureSerializer(Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Configure the <see cref="T:RestSharp.Portable.Serializers.JsonSerializer"/>
+            </summary>
+            <param name="serializer">The serializer to configure</param>
+        </member>
+        <member name="P:RestSharp.Portable.Serializers.JsonSerializer.ContentType">
+            <summary>
+            Gets or sets the content type produced by the serializer
+            </summary>
+            <remarks>
+            This serializer will return application/json
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.Serializers.JsonSerializer.Default">
+            <summary>
+            Gets the default JSON serializer for <see cref="M:RestSharp.Portable.RestRequestExtensions.AddJsonBody(RestSharp.Portable.IRestRequest,System.Object)"/>
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Serializers.XmlDataContractSerializer">
+            <summary>
+            Serializes an object using the DataContractSerializer
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Serializers.XmlDataContractSerializer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Serializers.XmlDataContractSerializer"/> class.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Serializers.XmlDataContractSerializer.Serialize(System.Object)">
+            <summary>
+            Serialize the object into a byte array
+            </summary>
+            <param name="obj">Object to serialize</param>
+            <returns>Byte array to send in the request body</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Serializers.XmlDataContractSerializer.CreateSerializer(System.Object)">
+            <summary>
+            Create a new data contract serializer
+            </summary>
+            <param name="obj">The object to create the serializer for</param>
+            <returns>A new instance of the serializer for the given instance.</returns>
+        </member>
+        <member name="P:RestSharp.Portable.Serializers.XmlDataContractSerializer.ContentType">
+            <summary>
+            Gets or sets the content type produced by the serializer
+            </summary>
+            <remarks>
+            As long as there is no manually set content type, the content type character set will always reflect the encoding
+            of the XmlWriterSettings.
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.Serializers.XmlDataContractSerializer.Default">
+            <summary>
+            Gets the default XML serializer for AddXmlBody
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Serializers.XmlDataContractSerializer.XmlWriterSettings">
+            <summary>
+            Gets or sets the configuration used to create an XML writer
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.UrlEscapeFlags">
+            <summary>
+            Modifies how the URL escape functions work
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.UrlEscapeFlags.Default">
+            <summary>
+            Default behavior
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.UrlEscapeFlags.LikeEscapeDataString">
+            <summary>
+            Compatibility with Uri.EscapeDataString(string)
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.UrlEscapeFlags.LikeUrlEncode">
+            <summary>
+            Compatibility with HttpUtility.UrlEncode(string)
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.UrlEscapeFlags.AllowLikeEscapeDataString">
+            <summary>
+            Allow all characters that are allowed by EscapeDataString
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.UrlEscapeFlags.AllowAllUnreserved">
+            <summary>
+            Allow all unreserved characters and not just -_.!~
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.UrlEscapeFlags.AllowLikeUrlEncode">
+            <summary>
+            Allow all characters that are allowed by UrlEncode
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.UrlEscapeFlags.AllowMask">
+            <summary>
+            The mask for all variants of allowed character sets
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.UrlEscapeFlags.LowerCaseHexCharacters">
+            <summary>
+            Lower case hexadecimal characters
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.UrlEscapeFlags.EscapeSpaceAsPlus">
+            <summary>
+            Escapes a space character (0x20) as plus
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.UrlEscapeFlags.BuilderVariantMask">
+            <summary>
+            The mask for all builder variants
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.UrlEscapeFlags.BuilderVariantListByteArray">
+            <summary>
+            Use a list of byte arrays to build the result
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.UrlEscapeFlags.BuilderVariantListByte">
+            <summary>
+            Use a list of bytes to build the result
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.Escape(System.String)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escape</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.Escape(System.String,System.Text.Encoding)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="encoding">The encoding to use to convert the string to a byte array</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.Escape(System.Byte[])">
+            <summary>
+            URL escape for bytes
+            </summary>
+            <param name="data">The data to escape</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.EscapeToBytes(System.String)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escape</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.EscapeToBytes(System.String,System.Text.Encoding)">
+            <summary>
+            URL escape for bytes
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="encoding">The encoding to use to convert the string to a byte array</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.EscapeToBytes(System.Byte[])">
+            <summary>
+            URL escape for bytes
+            </summary>
+            <param name="data">The data to escape</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.Escape(System.String,RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="flags">The flags to modify the behavior</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.Escape(System.String,System.Text.Encoding,RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="encoding">The encoding to use to convert the string to a byte array</param>
+            <param name="flags">The flags to modify the behavior</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.Escape(System.Byte[],RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            URL escape for bytes
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="flags">The flags to modify the behavior</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.EscapeToBytes(System.String,RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="flags">The flags to modify the behavior</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.EscapeToBytes(System.String,System.Text.Encoding,RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="encoding">The encoding to use to convert the string to a byte array</param>
+            <param name="flags">The flags to modify the behavior</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.EscapeToBytes(System.Byte[],RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            URL escape for bytes
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="flags">The flags to modify the behavior</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.ComputeLength(System.String)">
+            <summary>
+            Compute length of the data after escaping its values
+            </summary>
+            <param name="data">The data to escape</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.ComputeLength(System.String,System.Text.Encoding)">
+            <summary>
+            Compute length of the data after escaping its values
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="encoding">The encoding to use to convert the string to a byte array</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.ComputeLength(System.String,RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            Compute length of the data after escaping its values
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="flags">The flags to modify the behavior</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.ComputeLength(System.String,System.Text.Encoding,RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            Compute length of the data after escaping its values
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="encoding">The encoding to use to convert the string to a byte array</param>
+            <param name="flags">The flags to modify the behavior</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.ComputeLength(System.Byte[])">
+            <summary>
+            Compute length of the data after escaping its values
+            </summary>
+            <param name="data">The data to escape</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.ComputeLength(System.Byte[],RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            Compute length of the data after escaping its values
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="flags">The flags to modify the behavior</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.ComputeLength(System.Byte[],RestSharp.Portable.UrlEscapeFlags,System.Collections.Generic.ISet{System.Byte})">
+            <summary>
+            Compute length of the data after escaping its values
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="flags">The flags to modify the behavior</param>
+            <param name="allowedBytes">The bytes that don't need to be escaped</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.EscapeToBytes1(System.Byte[],RestSharp.Portable.UrlEscapeFlags,System.Byte[],System.Collections.Generic.ISet{System.Byte})">
+            <summary>
+            Variant 1 of EscapeToBytes
+            </summary>
+            <remarks>
+            This variant uses a list of bytes.
+            </remarks>
+            <param name="data">The data to escape</param>
+            <param name="flags">The flags to modify the behavior</param>
+            <param name="hexChars">The HEX characters used to write the output</param>
+            <param name="allowedBytes">The bytes that don't need to be escaped</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlEscapeUtility.EscapeToBytes2(System.Byte[],RestSharp.Portable.UrlEscapeFlags,System.Byte[],System.Collections.Generic.ISet{System.Byte})">
+            <summary>
+            Variant 2 of EscapeToBytes
+            </summary>
+            <remarks>
+            This variant uses a list of byte arrays
+            </remarks>
+            <param name="data">The data to escape</param>
+            <param name="flags">The flags to modify the behavior</param>
+            <param name="hexChars">The HEX characters used to write the output</param>
+            <param name="allowedBytes">The bytes that don't need to be escaped</param>
+            <returns>The escaped data</returns>
+        </member>
+        <member name="T:RestSharp.Portable.UrlUtility">
+            <summary>
+            URL utility functions
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.Escape(System.String)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escaped</param>
+            <returns>Returns the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.Escape(System.String,System.Text.Encoding)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="encoding">The encoding to use</param>
+            <returns>Returns the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.Escape(System.Byte[])">
+            <summary>
+            URL escape for bytes
+            </summary>
+            <param name="data">The data to escape</param>
+            <returns>Returns the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.EscapeToBytes(System.String)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escape</param>
+            <returns>Returns the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.EscapeToBytes(System.String,System.Text.Encoding)">
+            <summary>
+            URL escape for bytes
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="encoding">The encoding to use to convert the string into a byte array</param>
+            <returns>Returns the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.EscapeToBytes(System.Byte[])">
+            <summary>
+            URL escape for bytes
+            </summary>
+            <param name="data">The data to escape</param>
+            <returns>Returns the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.Escape(System.String,RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="flags">The flags to modify the escaping behavior</param>
+            <returns>Returns the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.Escape(System.String,System.Text.Encoding,RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="encoding">The encoding to use to convert the string into a byte array</param>
+            <param name="flags">The flags to modify the escaping behavior</param>
+            <returns>Returns the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.Escape(System.Byte[],RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            URL escape for bytes
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="flags">The flags to modify the escaping behavior</param>
+            <returns>Returns the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.EscapeToBytes(System.String,RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="flags">The flags to modify the escaping behavior</param>
+            <returns>Returns the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.EscapeToBytes(System.String,System.Text.Encoding,RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            URL escape
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="encoding">The encoding to use to convert the string into a byte array</param>
+            <param name="flags">The flags to modify the escaping behavior</param>
+            <returns>Returns the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.EscapeToBytes(System.Byte[],RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            URL escape for bytes
+            </summary>
+            <param name="data">The data to escape</param>
+            <param name="flags">The flags to modify the escaping behavior</param>
+            <returns>Returns the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.ComputeLength(System.String)">
+            <summary>
+            Compute length of the data after escaping its values
+            </summary>
+            <param name="data">The data to compute the escaped length for</param>
+            <returns>Returns the length of the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.ComputeLength(System.String,System.Text.Encoding)">
+            <summary>
+            Compute length of the data after escaping its values
+            </summary>
+            <param name="data">The data to compute the escaped length for</param>
+            <param name="encoding">The encoding to use to convert the string into a byte array</param>
+            <returns>Returns the length of the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.ComputeLength(System.String,RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            Compute length of the data after escaping its values
+            </summary>
+            <param name="data">The data to compute the escaped length for</param>
+            <param name="flags">The flags to modify the escaping behavior</param>
+            <returns>Returns the length of the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.ComputeLength(System.String,System.Text.Encoding,RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            Compute length of the data after escaping its values
+            </summary>
+            <param name="data">The data to compute the escaped length for</param>
+            <param name="encoding">The encoding to use to convert the string into a byte array</param>
+            <param name="flags">The flags to modify the escaping behavior</param>
+            <returns>Returns the length of the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.ComputeLength(System.Byte[])">
+            <summary>
+            Compute length of the data after escaping its values
+            </summary>
+            <param name="data">The data to compute the escaped length for</param>
+            <returns>Returns the length of the escaped data</returns>
+        </member>
+        <member name="M:RestSharp.Portable.UrlUtility.ComputeLength(System.Byte[],RestSharp.Portable.UrlEscapeFlags)">
+            <summary>
+            Compute length of the data after escaping its values
+            </summary>
+            <param name="data">The data to compute the escaped length for</param>
+            <param name="flags">The flags to modify the escaping behavior</param>
+            <returns>Returns the length of the escaped data</returns>
+        </member>
+        <member name="T:System.Security.Cryptography.MD5Managed">
+            <summary>
+            MD5Managed: A HashAlgorithm implementation that acts as a thin wrapper
+            around a C# translation of the MD5 reference implementation. The C code
+            has been translated as closely as possible so that most of the original
+            structure remains and comparisons between the two are straightforward.
+            </summary>
+            <remarks>
+            Derived from the RSA Data Security, Inc. MD5 Message-Digest Algorithm.
+            
+            Specification:
+            RFC1321 - The MD5 Message-Digest Algorithm
+            http://www.faqs.org/rfcs/rfc1321.html
+            
+            Original license:
+            Copyright (C) 1991-2, RSA Data Security, Inc. Created 1991. All
+            rights reserved.
+            
+            License to copy and use this software is granted provided that it
+            is identified as the "RSA Data Security, Inc. MD5 Message-Digest
+            Algorithm" in all material mentioning or referencing this software
+            or this function.
+            
+            License is also granted to make and use derivative works provided
+            that such works are identified as "derived from the RSA Data
+            Security, Inc. MD5 Message-Digest Algorithm" in all material
+            mentioning or referencing the derived work.
+            
+            RSA Data Security, Inc. makes no representations concerning either
+            the merchantability of this software or the suitability of this
+            software for any particular purpose. It is provided "as is"
+            without express or implied warranty of any kind.
+            
+            These notices must be retained in any copies of any part of this
+            documentation and/or software.
+            </remarks>
+        </member>
+        <member name="M:System.Security.Cryptography.MD5Managed.#ctor">
+            <summary>
+            Initializes a new instance.
+            </summary>
+        </member>
+        <member name="M:System.Security.Cryptography.MD5Managed.Initialize">
+            <summary>
+            Initializes internal state.
+            </summary>
+        </member>
+        <member name="M:System.Security.Cryptography.MD5Managed.InitializeVariables">
+            <summary>
+            Initializes variables.
+            </summary>
+        </member>
+        <member name="M:System.Security.Cryptography.MD5Managed.HashCore(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Updates the hash code with the data provided.
+            </summary>
+            <param name="array">Data to hash.</param>
+            <param name="ibStart">Start position.</param>
+            <param name="cbSize">Number of bytes.</param>
+        </member>
+        <member name="M:System.Security.Cryptography.MD5Managed.HashFinal">
+            <summary>
+            Finalizes the hash code and returns it.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:System.Security.Cryptography.MD5Managed.Hash">
+            <summary>
+            Returns the hash as an array of bytes.
+            </summary>
+        </member>
+    </members>
+</doc>

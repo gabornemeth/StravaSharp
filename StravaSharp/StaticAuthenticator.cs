@@ -3,6 +3,9 @@ using System;
 
 namespace StravaSharp
 {
+    /// <summary>
+    /// Static authenticator - mainly used for testing
+    /// </summary>
     public class StaticAuthenticator : IAuthenticator
     {
         private class RestSharpStaticAuthenticator : RestSharp.Portable.Authenticators.IAuthenticator
@@ -17,7 +20,8 @@ namespace StravaSharp
             public void Authenticate(IRestClient client, IRestRequest request)
             {
                 if (!string.IsNullOrEmpty(_accessToken))
-                    request.Parameters.Add(new Parameter { Name = "access_token", Value = _accessToken, Type = ParameterType.GetOrPost });
+                    request.AddHeader("Authorization", "Bearer " + _accessToken);
+                //request.Parameters.Add(new Parameter { Name = "access_token", Value = _accessToken, Type = ParameterType.HttpHeader });
             }
         }
 
@@ -53,6 +57,7 @@ namespace StravaSharp
 
         public void Authenticate()
         {
+            // already authenticated - got the access token
         }
     }
 }

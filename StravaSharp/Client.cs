@@ -1,12 +1,12 @@
 ﻿using RestSharp.Portable;
-using RestSharp.Portable.Authenticators.OAuth2.Infrastructure;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
+using System.Globalization;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RestSharp.Portable.Authenticators.OAuth2.Infrastructure;
 
 namespace StravaSharp
 {
@@ -18,42 +18,39 @@ namespace StravaSharp
         private IAuthenticator _authenticator;
         private RestClient _restClient;
 
+        internal RestClient RestClient
+        {
+            get
+            {
+                return _restClient;
+            }
+        }
+
         public Client(StravaClient client, IAuthenticator authenticator)
         {
             _authenticator = authenticator;
-            _restClient = new RestClient(StravaClient.ApiBaseUrl);
-
-            _restClient.Authenticator = authenticator.RestSharpAuthenticator;
+            _restClient = new RestClient(StravaClient.ApiBaseUrl) { Authenticator = authenticator.RestSharpAuthenticator };
+            Athletes = new AthleteClient(this);
+            Activities = new ActivityClient(this);
+            Segments = new SegmentClient(this);
         }
 
-        public async Task<List<Activity>> GetActivities()
+        public AthleteClient Athletes { get; private set; }
+        /// <summary>
+        /// Activities endpoint
+        /// </summary>
+        public ActivityClient Activities { get; private set; }
+        /// <summary>
+        /// Segments endpoint
+        /// </summary>
+        public SegmentClient Segments { get; private set; }
+
+        public async Task<List<Stream>> GetActivityStreams(int activityId, params StreamType[] types)
         {
-            var request = new RestRequest("/api/v3/athlete/activities");
-            var response = await _restClient.Execute<List<Activity>>(request);
-
-            return response.Data;
-        }
-
-
-        public Task DeleteActivity(Activity activity)
-        {
-            return DeleteActivity(activity.Id);
-        }
-
-        public async Task DeleteActivity(string id)
-        {
-            var request = new RestRequest("/api/v3/activities/{id}", HttpMethod.Delete);
-            request.AddParameter("id", id);
-            await _restClient.Execute(request);
-        }
-
-        public async Task<UploadResult> UploadActivity(ActivityType activityType, DataType dataType, Stream input, string fileName)
-        {
-            var request = new RestRequest("/api/v3/uploads", HttpMethod.Post);
-            request.AddParameter("activity_type", activityType.ToStravaType());
-            request.AddParameter("data_type", dataType.ToStravaType());
-            request.AddFile("file", input, fileName);
-            var response = await _restClient.Execute<UploadResult>(request);
+            var request = new RestRequest("/api/v3/activities/{id}/streams/{types}", HttpMethod.Get);
+            request.AddParameter("id", activityId, ParameterType.UrlSegment);
+            request.AddParameter("types", EnumHelper.ToString<StreamType>(types), ParameterType.UrlSegment);
+            var response = await _restClient.Execute<List<Stream>>(request);
             return response.Data;
         }
     }

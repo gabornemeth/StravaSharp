@@ -1,0 +1,431 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RestSharp.Portable.OAuth</name>
+    </assembly>
+    <members>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth1Authenticator">
+            <summary>
+            OAuth 1.0a authenticator
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth1Authenticator.ForRequestToken(System.String,System.String)">
+            <summary>
+            Create an authenticator to gather a request token
+            </summary>
+            <param name="consumerKey"></param>
+            <param name="consumerSecret"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth1Authenticator.ForRequestToken(System.String,System.String,System.String)">
+            <summary>
+            Create an authenticator to gather a request token
+            </summary>
+            <param name="consumerKey"></param>
+            <param name="consumerSecret"></param>
+            <param name="callbackUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth1Authenticator.ForAccessToken(System.String,System.String,System.String,System.String)">
+            <summary>
+            Create an authenticator to gather an access token
+            </summary>
+            <param name="consumerKey"></param>
+            <param name="consumerSecret"></param>
+            <param name="token"></param>
+            <param name="tokenSecret"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth1Authenticator.ForAccessToken(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Create an authenticator to gather an access token
+            </summary>
+            <param name="consumerKey"></param>
+            <param name="consumerSecret"></param>
+            <param name="token"></param>
+            <param name="tokenSecret"></param>
+            <param name="verifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth1Authenticator.ForAccessTokenRefresh(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Create an authenticator to refresh an access token
+            </summary>
+            <param name="consumerKey"></param>
+            <param name="consumerSecret"></param>
+            <param name="token"></param>
+            <param name="tokenSecret"></param>
+            <param name="sessionHandle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth1Authenticator.ForAccessTokenRefresh(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Create an authenticator to refresh an access token
+            </summary>
+            <param name="consumerKey"></param>
+            <param name="consumerSecret"></param>
+            <param name="token"></param>
+            <param name="tokenSecret"></param>
+            <param name="verifier"></param>
+            <param name="sessionHandle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth1Authenticator.ForClientAuthentication(System.String,System.String,System.String,System.String)">
+            <summary>
+            Create an authenticator to authenticate the client
+            </summary>
+            <param name="consumerKey"></param>
+            <param name="consumerSecret"></param>
+            <param name="username"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth1Authenticator.ForProtectedResource(System.String,System.String,System.String,System.String)">
+            <summary>
+            Create an authenticator to access a protected resource
+            </summary>
+            <param name="consumerKey"></param>
+            <param name="consumerSecret"></param>
+            <param name="accessToken"></param>
+            <param name="accessTokenSecret"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth1Authenticator.#ctor">
+            <summary>
+            Constructor
+            </summary>
+            <remarks>
+            Sets the default CreateTimestamp function. Creation is only allowed by
+            using the static functions like <see cref="M:RestSharp.Portable.Authenticators.OAuth1Authenticator.ForRequestToken(System.String,System.String)"/>.
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth1Authenticator.Authenticate(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Modifies the request to ensure that the authentication requirements are met.
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth1Authenticator.Realm">
+            <summary>
+            Realm
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth1Authenticator.ParameterHandling">
+            <summary>
+            OAuth parameter handling
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth1Authenticator.SignatureMethod">
+            <summary>
+            OAuth signature method
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth1Authenticator.SignatureTreatment">
+            <summary>
+            OAuth signature treatment
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth1Authenticator.CreateTimestampFunc">
+            <summary>
+            The function specified is used to create a timestamp
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth.OAuthCreateTimestampDelegate">
+            <summary>
+            This delegate is used to specify the function to create a timestamp
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth.OAuthParameterHandling">
+            <summary>
+            Where are the OAuth parameters stored?
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth.OAuthParameterHandling.HttpAuthorizationHeader">
+            <summary>
+            The OAuth parameter is stored in the HTTP header
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth.OAuthParameterHandling.UrlOrPostParameters">
+            <summary>
+            The OAuth parameter is stored in the URL or as POST parameter
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth.OAuthSignatureMethod">
+            <summary>
+            The signature method for OAuth
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth.OAuthSignatureMethod.HmacSha1">
+            <summary>
+            HMAC-SHA1
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth.OAuthSignatureMethod.PlainText">
+            <summary>
+            Plain text
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth.OAuthSignatureMethod.RsaSha1">
+            <summary>
+            RSA-SHA1 (not supported yet)
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth.OAuthSignatureTreatment">
+            <summary>
+            The kind of OAuth signature
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth.OAuthSignatureTreatment.Escaped">
+            <summary>
+            Escaped OAuth signature
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth.OAuthSignatureTreatment.Unescaped">
+            <summary>
+            Unescaped OAuth signature
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth.OAuthTools._encoding">
+            <summary>
+            All text parameters are UTF-8 encoded (per section 5.1).
+            </summary>
+            <a href="http://www.hueniverse.com/hueniverse/2008/10/beginners-gui-1.html"/>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth.OAuthTools._uriRfc3986CharsToEscape">
+            <summary>
+            The set of characters that are unreserved in RFC 2396 but are NOT unreserved in RFC 3986.
+            </summary>
+            <a href="http://stackoverflow.com/questions/846487/how-to-get-uri-escapedatastring-to-comply-with-rfc-3986" />
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthTools.GetNonce">
+            <summary>
+            Generates a random 16-byte lowercase alphanumeric string.
+            </summary>
+            <a href="http://oauth.net/core/1.0#nonce"/>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthTools.GetTimestamp">
+            <summary>
+            Generates a timestamp based on the current elapsed seconds since '01/01/1970 0000 GMT"
+            </summary>
+            <a href="http://oauth.net/core/1.0#nonce"/>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthTools.GetTimestamp(System.DateTime)">
+            <summary>
+            Generates a timestamp based on the elapsed seconds of a given time since '01/01/1970 0000 GMT"
+            </summary>
+            <a href="http://oauth.net/core/1.0#nonce"/>
+            <param name="dateTime">A specified point in time.</param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthTools.UrlEncodeRelaxed(System.String)">
+            <summary>
+            URL encodes a string based on section 5.1 of the OAuth spec.
+            Namely, percent encoding with [RFC3986], avoiding unreserved characters,
+            upper-casing hexadecimal characters, and UTF-8 encoding for text value pairs.
+            </summary>
+            <param name="value">The value to escape.</param>
+            <returns>The escaped value.</returns>
+            <remarks>
+            The <see cref="M:System.Uri.EscapeDataString(System.String)"/> method is <i>supposed</i> to take on
+            RFC 3986 behavior if certain elements are present in a .config file. Even if this
+            actually worked (which in my experiments it <i>doesn't</i>), we can't rely on every
+            host actually having this configuration element present.
+            </remarks>
+            <a href="http://oauth.net/core/1.0#encoding_parameters"/>
+            <a href="http://stackoverflow.com/questions/846487/how-to-get-uri-escapedatastring-to-comply-with-rfc-3986"/>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthTools.UrlEncodeStrict(System.String)">
+            <summary>
+            URL encodes a string based on section 5.1 of the OAuth spec.
+            Namely, percent encoding with [RFC3986], avoiding unreserved characters,
+            upper-casing hexadecimal characters, and UTF-8 encoding for text value pairs.
+            </summary>
+            <param name="value"></param>
+            <a href="http://oauth.net/core/1.0#encoding_parameters" />
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthTools.NormalizeRequestParameters(RestSharp.Portable.Authenticators.OAuth.WebParameterCollection)">
+            <summary>
+            Sorts a collection of key-value pairs by name, and then value if equal,
+            concatenating them into a single string. This string should be encoded
+            prior to, or after normalization is run.
+            </summary>
+            <a href="http://oauth.net/core/1.0#rfc.section.9.1.1"/>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthTools.SortParametersExcludingSignature(RestSharp.Portable.Authenticators.OAuth.WebParameterCollection)">
+            <summary>
+            Sorts a <see cref="T:RestSharp.Portable.Authenticators.OAuth.WebParameterCollection"/> by name, and then value if equal.
+            </summary>
+            <param name="parameters">A collection of parameters to sort</param>
+            <returns>A sorted parameter collection</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthTools.ConstructRequestUrl(System.Uri)">
+            <summary>
+            Creates a request URL suitable for making OAuth requests.
+            Resulting URLs must exclude port 80 or port 443 when accompanied by HTTP and HTTPS, respectively.
+            Resulting URLs must be lower case.
+            </summary>
+            <a href="http://oauth.net/core/1.0#rfc.section.9.1.2"/>
+            <param name="url">The original request URL</param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthTools.ConcatenateRequestElements(System.String,System.String,RestSharp.Portable.Authenticators.OAuth.WebParameterCollection)">
+            <summary>
+            Creates a request elements concatentation value to send with a request.
+            This is also known as the signature base.
+            </summary>
+            <a href="http://oauth.net/core/1.0#rfc.section.9.1.3"/>
+            <a href="http://oauth.net/core/1.0#sig_base_example"/>
+            <param name="method">The request's HTTP method type</param>
+            <param name="url">The request URL</param>
+            <param name="parameters">The request's parameters</param>
+            <returns>A signature base string</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthTools.GetSignature(RestSharp.Portable.Authenticators.OAuth.OAuthSignatureMethod,System.String,System.String)">
+            <summary>
+            Creates a signature value given a signature base and the consumer secret.
+            This method is used when the token secret is currently unknown.
+            </summary>
+            <a href="http://oauth.net/core/1.0#rfc.section.9.2"/>
+            <param name="signatureMethod">The hashing method</param>
+            <param name="signatureBase">The signature base</param>
+            <param name="consumerSecret">The consumer key</param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthTools.GetSignature(RestSharp.Portable.Authenticators.OAuth.OAuthSignatureMethod,RestSharp.Portable.Authenticators.OAuth.OAuthSignatureTreatment,System.String,System.String)">
+            <summary>
+            Creates a signature value given a signature base and the consumer secret.
+            This method is used when the token secret is currently unknown.
+            </summary>
+            <a href="http://oauth.net/core/1.0#rfc.section.9.2"/>
+            <param name="signatureMethod">The hashing method</param>
+            <param name="signatureTreatment">The treatment to use on a signature value</param>
+            <param name="signatureBase">The signature base</param>
+            <param name="consumerSecret">The consumer key</param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthTools.GetSignature(RestSharp.Portable.Authenticators.OAuth.OAuthSignatureMethod,System.String,System.String,System.String)">
+            <summary>
+            Creates a signature value given a signature base and the consumer secret and a known token secret.
+            </summary>
+            <a href="http://oauth.net/core/1.0#rfc.section.9.2"/>
+            <param name="signatureMethod">The hashing method</param>
+            <param name="signatureBase">The signature base</param>
+            <param name="consumerSecret">The consumer secret</param>
+            <param name="tokenSecret">The token secret</param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthTools.GetSignature(RestSharp.Portable.Authenticators.OAuth.OAuthSignatureMethod,RestSharp.Portable.Authenticators.OAuth.OAuthSignatureTreatment,System.String,System.String,System.String)">
+            <summary>
+            Creates a signature value given a signature base and the consumer secret and a known token secret.
+            </summary>
+            <a href="http://oauth.net/core/1.0#rfc.section.9.2"/>
+            <param name="signatureMethod">The hashing method</param>
+            <param name="signatureTreatment">The treatment to use on a signature value</param>
+            <param name="signatureBase">The signature base</param>
+            <param name="consumerSecret">The consumer secret</param>
+            <param name="tokenSecret">The token secret</param>
+            <returns></returns>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth.OAuthType">
+            <summary>
+            OAuth state
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth.OAuthType.RequestToken">
+            <summary>
+            Request token
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth.OAuthType.AccessToken">
+            <summary>
+            Access token
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth.OAuthType.ProtectedResource">
+            <summary>
+            Access to a protected resource
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth.OAuthType.ClientAuthentication">
+            <summary>
+            Client authentication
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth.OAuthWorkflow">
+            <summary>
+            A class to encapsulate OAuth authentication flow. (<a href="http://oauth.net/core/1.0#anchor9"/>)
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthWorkflow.BuildRequestTokenInfo(System.String)">
+            <summary>
+            Generates a <see cref="T:RestSharp.Portable.Authenticators.OAuth.OAuthWebQueryInfo"/> instance to pass to an
+            <see cref="T:RestSharp.Portable.Authenticators.IAuthenticator"/> for the purpose of requesting an
+            unauthorized request token.
+            </summary>
+            <param name="method">The HTTP method for the intended request (<a href="http://oauth.net/core/1.0#anchor9"/>)</param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthWorkflow.BuildRequestTokenInfo(System.String,RestSharp.Portable.Authenticators.OAuth.WebParameterCollection)">
+            <summary>
+            Generates a <see cref="T:RestSharp.Portable.Authenticators.OAuth.OAuthWebQueryInfo"/> instance to pass to an
+            <see cref="T:RestSharp.Portable.Authenticators.IAuthenticator"/> for the purpose of requesting an
+            unauthorized request token.
+            </summary>
+            <param name="method">The HTTP method for the intended request</param>
+            <param name="parameters">Any existing, non-OAuth query parameters desired in the request</param>
+            <a href="http://oauth.net/core/1.0#anchor9"/>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthWorkflow.BuildAccessTokenInfo(System.String)">
+            <summary>
+            Generates a <see cref="T:RestSharp.Portable.Authenticators.OAuth.OAuthWebQueryInfo"/> instance to pass to an
+            <see cref="T:RestSharp.Portable.Authenticators.IAuthenticator"/> for the purpose of exchanging a request token
+            for an access token authorized by the user at the Service Provider site.
+            </summary>
+            <param name="method">The HTTP method for the intended request</param>
+            <a href="http://oauth.net/core/1.0#anchor9"/>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthWorkflow.BuildAccessTokenInfo(System.String,RestSharp.Portable.Authenticators.OAuth.WebParameterCollection)">
+            <summary>
+            Generates a <see cref="T:RestSharp.Portable.Authenticators.OAuth.OAuthWebQueryInfo"/> instance to pass to an
+            <see cref="T:RestSharp.Portable.Authenticators.IAuthenticator"/> for the purpose of exchanging a request token
+            for an access token authorized by the user at the Service Provider site.
+            </summary>
+            <param name="method">The HTTP method for the intended request</param>
+            <a href="http://oauth.net/core/1.0#anchor9"/>
+            <param name="parameters">Any existing, non-OAuth query parameters desired in the request</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth.OAuthWorkflow.BuildClientAuthAccessTokenInfo(System.String,RestSharp.Portable.Authenticators.OAuth.WebParameterCollection)">
+            <summary>
+            Generates a <see cref="T:RestSharp.Portable.Authenticators.OAuth.OAuthWebQueryInfo"/> instance to pass to an
+            <see cref="T:RestSharp.Portable.Authenticators.IAuthenticator"/> for the purpose of exchanging user credentials
+            for an access token authorized by the user at the Service Provider site.
+            </summary>
+            <param name="method">The HTTP method for the intended request</param>
+            <a href="http://tools.ietf.org/html/draft-dehora-farrell-oauth-accesstoken-creds-00#section-4"/>
+            <param name="parameters">Any existing, non-OAuth query parameters desired in the request</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth.OAuthWorkflow.RequestTokenUrl">
+            <summary>
+            The URL to query the request token (<a href="http://oauth.net/core/1.0#request_urls"/>
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth.OAuthWorkflow.AccessTokenUrl">
+            <a href="http://oauth.net/core/1.0#request_urls"/>
+            <summary>
+            The URL to query the access token (<a href="http://oauth.net/core/1.0#request_urls"/>
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth.OAuthWorkflow.AuthorizationUrl">
+            <summary>
+            The URL where the user has to authorize the app
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -10,13 +10,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Activity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ActivityType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ActivityClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Athlete.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AthleteClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EnumHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LatLng.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IAuthenticator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RestSharpAuthenticator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Properties\AssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Segment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SegmentClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StaticAuthenticator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StravaClient.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UploadResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StravaObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Stream.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UploadStatus.cs" />
   </ItemGroup>
 </Project>

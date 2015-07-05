@@ -1,40 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Runtime.Serialization;
 
 namespace StravaSharp
 {
+    /// <summary>
+    /// Type of data for upload
+    /// </summary>
     public enum DataType
     {
+        [EnumMember(Value="fit")]
         Fit,
+        [EnumMember(Value = "fit.gz")]
         FitGz,
+        [EnumMember(Value = "tcx")]
         Tcx,
+        [EnumMember(Value = "tcx.gz")]
         TcxGz,
+        [EnumMember(Value = "gpx")]
         Gpx,
+        [EnumMember(Value = "gpx.gz")]
         GpxGz
-    }
-
-    public static class DataTypeExtensions
-    {
-        public static string ToStravaType(this DataType type)
-        {
-            switch (type)
-            {
-                case DataType.Fit:
-                    return "fit";
-                case DataType.FitGz:
-                    return "fit.gz";
-                case DataType.Tcx:
-                    return "tcx";
-                case DataType.TcxGz:
-                    return "tcx.gz";
-                case DataType.Gpx:
-                    return "gpx";
-                case DataType.GpxGz:
-                    return "gpx.gz";
-                default:
-                    throw new NotSupportedException(type.ToString());
-            }
-        }
     }
 }

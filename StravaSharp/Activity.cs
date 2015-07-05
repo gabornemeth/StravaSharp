@@ -1,14 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 
 namespace StravaSharp
 {
-    public class Activity
+    /// <summary>
+    /// Type of the activity
+    /// </summary>
+    public enum ActivityType
+    {
+        [EnumMember(Value = "ride")]
+        Ride,
+        [EnumMember(Value = "run")]
+        Run,
+        [EnumMember(Value = "swim")]
+        Swim,
+        [EnumMember(Value = "workout")]
+        Workout,
+        [EnumMember(Value = "hike")]
+        Hike,
+        [EnumMember(Value = "walk")]
+        Walk,
+        [EnumMember(Value = "nordicski")]
+        NordicSki,
+        [EnumMember(Value = "alpineski")]
+        AlpineSki,
+        [EnumMember(Value = "backcountryski")]
+        BackcountrySki,
+        [EnumMember(Value = "iceskate")]
+        IceSkate,
+        [EnumMember(Value = "inlineskate")]
+        InlineSkate,
+        [EnumMember(Value = "kitesurf")]
+        Kitesurf,
+        [EnumMember(Value = "rollerski")]
+        RollerSki,
+        [EnumMember(Value = "windsurf")]
+        WindSurf,
+        [EnumMember(Value = "snowboard")]
+        Snowboard,
+        [EnumMember(Value = "snowshoe")]
+        SnowShoe
+    }
+
+    /// <summary>
+    /// Summary representation of an activity
+    /// </summary>
+    public class ActivitySummary
     {
         [JsonProperty("id")]
-        public string Id { get; internal set; }
+        public int Id { get; internal set; }
         /// <summary>
         /// indicates level of detail
         /// </summary>
@@ -24,8 +67,6 @@ namespace StravaSharp
         public int UploadId { get; internal set; }
         [JsonProperty("name")]
         public string Name { get; internal set; }
-        [JsonProperty("description")]
-        public string Description { get; internal set; }
         //athlete: object
         //meta or summary representation of the athlete
         /// <summary>
@@ -33,10 +74,10 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("distance")]
         public float Distance { get; internal set; }
-        [JsonProperty("moving_time")]
         /// <summary>
         /// Moving time [sec]
         /// </summary>
+        [JsonProperty("moving_time")]
         public int MovingTime { get; internal set; }
         /// <summary>
         /// seconds
@@ -70,8 +111,6 @@ namespace StravaSharp
         // number of Instagram photos
         //total_photo_count: integer
         // total number of photos(Instagram and Strava)
-        //photos: object
-        //photos summary
         //map: object
         // detailed representation of the route
         //trainer: boolean
@@ -83,8 +122,6 @@ namespace StravaSharp
         // for runs only, 0 -> ‘default’, 1 -> ‘race’, 2 -> ‘long run’, 3 -> ‘intervals’ 
         //gear_id: string
         // corresponds to a bike or pair of shoes included in athlete details
-        //gear: object
-        //gear summary
         //average_speed: float
         // meters per second
         //max_speed: float
@@ -103,17 +140,34 @@ namespace StravaSharp
         //average_heartrate: float only if recorded with heartrate
         // average over moving portion
         //max_heartrate: integer only if recorded with heartrate
-        //calories: float
-        // kilocalories, uses kilojoules for rides and speed/pace for runs
         //has_kudoed: boolean 
         // if the authenticated athlete has kudoed this activity
+    }
+
+
+    public class Activity : ActivitySummary
+    {
+        [JsonProperty("description")]
+        public string Description { get; internal set; }
+        //calories: float
+        // kilocalories, uses kilojoules for rides and speed/pace for runs
+
+        //gear: object
+        //gear summary
+
         //segment_efforts: array of objects
         // array of summary representations of the segment efforts, segment effort ids must be represented as 64-bit datatypes
+
         //splits_metric: array of metric split summaries
         // running activities only
+        
         //splits_standard: array of standard split summaries
         // running activities only
+
         //best_efforts: array of best effort summaries
         // running activities only
+
+        //photos: object
+        //photos summary
     }
 }

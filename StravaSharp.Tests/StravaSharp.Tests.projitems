@@ -9,8 +9,14 @@
     <Import_RootNamespace>StravaSharp.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)FetchTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ActivityTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AthleteTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SegmentTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UploadTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Files\2011-08-10-17-51-31.fit" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,1723 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RestSharp.Portable.OAuth2</name>
+    </assembly>
+    <members>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2Authenticator">
+            <summary>
+            Base class for OAuth 2 Authenticators.
+            </summary>
+            <remarks>
+            Since there are many ways to authenticate in OAuth2,
+            this is used as a base class to differentiate between 
+            other authenticators.
+            
+            Any other OAuth2 authenticators must derive from this
+            abstract class.
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2Authenticator.#ctor(RestSharp.Portable.Authenticators.OAuth2.OAuth2Client)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2Authenticator"/> class.
+            </summary>
+            <param name="client">The OAuth2 client</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2Authenticator.AuthenticationFailed(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest,RestSharp.Portable.IRestResponse)">
+            <summary>
+            Will be called when the authentication failed
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+            <param name="response">Response of the failed request</param>
+            <returns>Task where the handler for a failed authentication gets executed</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2Authenticator.RestSharp#Portable#Authenticators#IRoundTripAuthenticator#AuthenticationFailed(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest,RestSharp.Portable.IRestResponse)">
+            <summary>
+            Will be called when the authentication failed
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+            <param name="response">Response of the failed request</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2Authenticator.Client">
+            <summary>
+            The OAuth client that is used by this authenticator
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2Authenticator.StatusCodes">
+            <summary>
+            Returns all the status codes where a round trip is allowed
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2UriQueryParameterAuthenticator">
+            <summary>
+            The OAuth 2 authenticator using URI query parameter.
+            </summary>
+            <remarks>
+            Based on http://tools.ietf.org/html/draft-ietf-oauth-v2-10#section-5.1.2
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2UriQueryParameterAuthenticator.#ctor(RestSharp.Portable.Authenticators.OAuth2.OAuth2Client)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2UriQueryParameterAuthenticator"/> class.
+            </summary>
+            <param name="client">The OAuth2 client</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2UriQueryParameterAuthenticator.Authenticate(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Modifies the request to ensure that the authentication requirements are met.
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+            <returns></returns>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator">
+            <summary>
+            The OAuth 2 authenticator using the authorization request header field.
+            </summary>
+            <remarks>
+            Based on http://tools.ietf.org/html/draft-ietf-oauth-v2-10#section-5.1.1
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator.#ctor(RestSharp.Portable.Authenticators.OAuth2.OAuth2Client)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator"/> class.
+            </summary>
+            <param name="client">The OAuth2 client</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator.#ctor(RestSharp.Portable.Authenticators.OAuth2.OAuth2Client,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator"/> class.
+            </summary>
+            <param name="client">The OAuth2 client</param>
+            <param name="tokenType">
+            The token type.
+            </param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator.AuthenticationFailed(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest,RestSharp.Portable.IRestResponse)">
+            <summary>
+            Will be called when the authentication failed
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+            <param name="response">Response of the failed request</param>
+            <returns>Task where the handler for a failed authentication gets executed</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator.Authenticate(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Modifies the request to ensure that the authentication requirements are met.
+            </summary>
+            <param name="client">Client executing this request</param>
+            <param name="request">Request to authenticate</param>
+            <returns></returns>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.AuthorizationRoot">
+            <summary>
+            Provides an interface to all supported authentication methods
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.AuthorizationRoot.#ctor(RestSharp.Portable.Authenticators.OAuth2.Configuration.IConfigurationManager,System.String,RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.AuthorizationRoot"/> class.
+            </summary>
+            <param name="configurationManager">The configuration manager.</param>
+            <param name="configurationSectionName">Name of the configuration section.</param>
+            <param name="requestFactory">The request factory.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.AuthorizationRoot.GetClientTypes">
+            <summary>
+            Returns collection of client types to consider
+            </summary>        
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.AuthorizationRoot.Clients">
+            <summary>
+            Returns collection of clients which were configured 
+            using application configuration file and are enabled.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs">
+            <summary>
+            Event arguments used before and after a request.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs.Client">
+            <summary>
+            Client instance.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs.Request">
+            <summary>
+            Request instance.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs.Response">
+            <summary>
+            Response instance.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs.Parameters">
+            <summary>
+            Values received from service.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs.Configuration">
+            <summary>
+            Client configuration.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.AsanaClient">
+            <summary>
+            Asana authentication client.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client">
+            <summary>
+            Base class for OAuth2 client implementation.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.IClient">
+            <summary>
+            Defines API for doing user authentication using certain third-party service.
+            </summary>
+            <remarks>
+            Standard flow is:
+            - client is used to generate login link (<see cref="M:RestSharp.Portable.Authenticators.OAuth2.IClient.GetLoginLinkUri(System.String)"/>)
+            - hosting app renders page with generated login link
+            - user clicks login link - this leads to redirect to third-party service site
+            - user authenticates and allows app access their basic information
+            - third-party service redirects user to hosting app
+            - hosting app reads user information using <see cref="M:RestSharp.Portable.Authenticators.OAuth2.IClient.GetUserInfo(System.Linq.ILookup{System.String,System.String})"/> method
+            </remarks>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.IClient.GetLoginLinkUri(System.String)">
+            <summary>
+            Returns URI of service which should be called in order to start authentication process. 
+            You should use this URI when rendering login link.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.IClient.GetUserInfo(System.Linq.ILookup{System.String,System.String})">
+            <summary>
+            Obtains user information using third-party authentication service 
+            using data provided via callback request.
+            </summary>
+            <param name="parameters">
+            Callback request payload (parameters).
+            <example>Request.QueryString</example>
+            </param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.IClient.Name">
+            <summary>
+            Friendly name of provider (third-party authentication service). 
+            Defined by client implementation developer and supposed to be unique.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.IClient.State">
+            <summary>
+            State which was posted as additional parameter 
+            to service and then received along with main answer.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.IClient.Configuration">
+            <summary>
+            Client configuration object.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.GetLoginLinkUri(System.String)">
+            <summary>
+            Returns URI of service which should be called in order to start authentication process.
+            This URI should be used for rendering login link.
+            </summary>
+            <param name="state">Any additional information that will be posted back by service.</param>
+            <returns>A string containing the login link URI</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.GetUserInfo(System.Linq.ILookup{System.String,System.String})">
+            <summary>
+            Obtains user information using RestSharp.Portable.Authenticators.OAuth2 service and data provided via callback request.
+            </summary>
+            <param name="parameters">Callback request payload (parameters).</param>
+            <returns>The user information</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.GetToken(System.Linq.ILookup{System.String,System.String})">
+            <summary>
+            Issues query for access token and returns access token.
+            </summary>
+            <param name="parameters">Callback request payload (parameters).</param>
+            <returns>The access token</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.GetCurrentToken(System.String,System.Boolean,System.Nullable{System.TimeSpan})">
+            <summary>
+            Get the current access token - and optionally refreshes it if it is expired
+            </summary>
+            <param name="refreshToken">The refresh token to use (null == default)</param>
+            <param name="forceUpdate">Enforce an update of the access token?</param>
+            <param name="safetyMargin">A custom safety margin to check if the access token is expired</param>
+            <returns>The current access token</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.ParseStringResponse(System.String,System.String)">
+            <summary>
+            Parse the response, search for a key and return its value.
+            </summary>
+            <param name="content">The content to parse</param>
+            <param name="key">The key to query</param>
+            <returns>The value for the queried key</returns>
+            <exception cref="T:RestSharp.Portable.Authenticators.OAuth2.UnexpectedResponseException">Thrown when the key wasn't found</exception>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.ParseStringResponse(System.String,System.String[])">
+            <summary>
+            Parse the response for a given key/value using either JSON or form url encoded parameters
+            </summary>
+            <param name="content">The content to parse</param>
+            <param name="keys">The keys to query</param>
+            <returns>The values for the queried keys</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.ParseAccessTokenResponse(System.String)">
+            <summary>
+            Parse the access token response using either JSON or form url encoded parameters
+            </summary>
+            <param name="content">The content to parse the access token from</param>
+            <returns>The access token</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> using content received from provider.
+            </summary>
+            <param name="content">The content which is received from provider.</param>
+            <returns>The found user information</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.BeforeGetLoginLinkUri(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before building the request URI when everything is ready.
+            Allows to add extra parameters to request or do any other needed preparations.
+            </summary>
+            <param name="args">The request/response arguments</param>
+            <returns>The task this handler is processed on</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.BeforeGetAccessToken(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called before the request to get the access token
+            </summary>
+            <param name="args">The request/response arguments</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.AfterGetAccessToken(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just after obtaining response with access token from service.
+            Allows to read extra data returned along with access token.
+            </summary>
+            <param name="args">The request/response arguments</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.BeforeGetUserInfo(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before issuing request to service when everything is ready.
+            Allows to add extra parameters to request or do any other needed preparations.
+            </summary>
+            <param name="args">The request/response arguments</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.GetUserInfo">
+            <summary>
+            Obtains user information using provider API.
+            </summary>
+            <returns>The queried user information</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.QueryAccessToken(System.Linq.ILookup{System.String,System.String})">
+            <summary>
+            Issues query for access token and parses response.
+            </summary>
+            <param name="parameters">Callback request payload (parameters).</param>
+            <returns>The task the query is performed on</returns>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.Configuration">
+            <summary>
+            Gets the client configuration object.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.Name">
+            <summary>
+            Gets the friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.State">
+            <summary>
+            Gets the state (any additional information that was provided by application and is posted back by service).
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.AccessToken">
+            <summary>
+            Gets or sets the access token returned by provider. Can be used for further calls of provider API.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.RefreshToken">
+            <summary>
+            Gets or sets the refresh token returned by provider. Can be used for further calls of provider API.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.TokenType">
+            <summary>
+            Gets the token type returned by provider. Can be used for further calls of provider API.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.ExpiresAt">
+            <summary>
+            Gets or sets the time when the access token expires
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.ExpirationSafetyMargin">
+            <summary>
+            Gets or sets a safety margin that's used to see if an access token is expired
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.AccessCodeServiceEndpoint">
+            <summary>
+            Gets the URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.AccessTokenServiceEndpoint">
+            <summary>
+            Gets the URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuth2Client.UserInfoServiceEndpoint">
+            <summary>
+            Gets the URI of service which allows to obtain information about user
+            who is currently logged in.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.AsanaClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.AsanaClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.AsanaClient.BeforeGetUserInfo(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before issuing request to third-party service when everything is ready.
+            Allows to add extra parameters to request or do any other needed preparations.
+            </summary>
+            <param name="args">
+            </param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.AsanaClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> from content received from third-party service.
+            </summary>
+            <param name="content">
+            The content which is received from third-party service.
+            </param>
+            <returns>
+            </returns>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.AsanaClient.AccessCodeServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.AsanaClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.AsanaClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which allows to obtain information about user which is currently logged in.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.AsanaClient.Name">
+            <summary>
+            Friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.DigitalOceanClient">
+            <summary>
+            OAuth2 client for Digital Ocean
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.DigitalOceanClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="factory"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.DigitalOceanClient.AfterGetAccessToken(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just after obtaining response with access token from service.
+            Allows to read extra data returned along with access token.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.DigitalOceanClient.GetUserInfo">
+            <summary>
+            Obtains user information using provider API.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.DigitalOceanClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> using content received from provider.
+            </summary>
+            <param name="content">The content which is received from provider.</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.DigitalOceanClient.Name">
+            <summary>
+            Friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.DigitalOceanClient.AccessCodeServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.DigitalOceanClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.DigitalOceanClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which allows to obtain information about user 
+            who is currently logged in.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.FacebookClient">
+            <summary>
+            Facebook authentication client.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.FacebookClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.FacebookClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.FacebookClient.BeforeGetUserInfo(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before issuing request to third-party service when everything is ready.
+            Allows to add extra parameters to request or do any other needed preparations.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.FacebookClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> from content received from third-party service.
+            </summary>
+            <param name="content">The content which is received from third-party service.</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.FacebookClient.AccessCodeServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.FacebookClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.FacebookClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which allows to obtain information about user which is currently logged in.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.FacebookClient.Name">
+            <summary>
+            Friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.FoursquareClient">
+            <summary>
+            Foursquare authentication client.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.FoursquareClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.FoursquareClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.FoursquareClient.BeforeGetUserInfo(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before issuing request to third-party service when everything is ready.
+            Allows to add extra parameters to request or do any other needed preparations.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.FoursquareClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> from content received from third-party service.
+            </summary>
+            <param name="content">The content which is received from third-party service.</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.FoursquareClient.AccessCodeServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.FoursquareClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.FoursquareClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which allows to obtain information about user which is currently logged in.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.FoursquareClient.Name">
+            <summary>
+            Friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient">
+            <summary>
+            GitHub authentication client.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.BeforeGetAccessToken(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called before the request to get the access token
+            </summary>
+            <param name="args">The request/response arguments</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.GetUserInfo">
+            <summary>
+            Obtains user information using provider API.
+            </summary>
+            <returns>The queried user information</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.ParseEmailAddresses(System.String)">
+            <summary>
+            Parse the email addresses
+            </summary>
+            <param name="content">The JSON response to parse</param>
+            <returns>The list of user email addresses</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> using content received from provider.
+            </summary>
+            <param name="content">The content which is received from provider.</param>
+            <returns>The found user information</returns>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.Name">
+            <summary>
+            Gets the friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.AccessCodeServiceEndpoint">
+            <summary>
+            Gets the URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.AccessTokenServiceEndpoint">
+            <summary>
+            Gets the URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.UserInfoServiceEndpoint">
+            <summary>
+            Gets the URI of service which allows to obtain information about user
+            who is currently logged in.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.UserEmailServiceEndpoint">
+            <summary>
+            Gets the URI of service which allows to obtain information about user email.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.UserEmails">
+            <summary>
+            Information about a user email.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.UserEmails.Email">
+            <summary>
+            Gets or sets the email address
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.UserEmails.IsPrimary">
+            <summary>
+            Gets or sets a value indicating whether this is the primary email address?
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.GitHubClient.UserEmails.IsVerified">
+            <summary>
+            Gets or sets a value indicating whether this email address is verified?
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.GoogleClient">
+            <summary>
+            Google authentication client.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.GoogleClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.GoogleClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.GoogleClient.BeforeGetLoginLinkUri(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before building the request URI when everything is ready.
+            Allows to add extra parameters to request or do any other needed preparations.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.GoogleClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> from content received from third-party service.
+            </summary>
+            <param name="content">The content which is received from third-party service.</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.GoogleClient.AccessCodeServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.GoogleClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.GoogleClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which allows to obtain information about user which is currently logged in.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.GoogleClient.Name">
+            <summary>
+            Friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.InstagramClient">
+            <summary>
+            Instagram authentication client.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.InstagramClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.InstagramClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.InstagramClient.AfterGetAccessToken(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just after obtaining response with access token from service.
+            Allows to read extra data returned along with access token.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.InstagramClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> from content received from third-party service.
+            </summary>
+            <param name="content">The content which is received from third-party service.</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.InstagramClient.AccessCodeServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.InstagramClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.InstagramClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which allows to obtain information about user which is currently logged in.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.InstagramClient.Name">
+            <summary>
+            Friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.LinkedInClient">
+            <summary>
+            LinkedIn authentication client.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.LinkedInClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.LinkedInClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.LinkedInClient.GetLoginLinkUri(System.String)">
+            <summary>
+            Returns URI of service which should be called in order to start authentication process.
+            This URI should be used for rendering login link.
+            </summary>
+            <param name="state">
+            Any additional information that will be posted back by service.
+            </param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.LinkedInClient.BeforeGetUserInfo(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before issuing request to service when everything is ready.
+            Allows to add extra parameters to request or do any other needed preparations.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.LinkedInClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> from content received from third-party service.
+            </summary>
+            <param name="content">The content which is received from third-party service.</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.LinkedInClient.AccessCodeServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.LinkedInClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.LinkedInClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which allows to obtain information about user which is currently logged in.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.LinkedInClient.Name">
+            <summary>
+            Friendly name of provider (OAuth service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.MailRuClient">
+            <summary>
+            Mail.Ru authentication client.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.MailRuClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.MailRuClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.MailRuClient.BeforeGetUserInfo(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before issuing request to third-party service when everything is ready.
+            Allows to add extra parameters to request or do any other needed preparations.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.MailRuClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> from content received from third-party service.
+            </summary>
+            <param name="content">The content which is received from third-party service.</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.MailRuClient.AccessCodeServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.MailRuClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.MailRuClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which allows to obtain information about user which is currently logged in.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.MailRuClient.Name">
+            <summary>
+            Friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.OdnoklassnikiClient">
+            <summary>
+            Odnoklassniki authentication client.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.OdnoklassnikiClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.OdnoklassnikiClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.OdnoklassnikiClient.BeforeGetUserInfo(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before issuing request to third-party service when everything is ready.
+            Allows to add extra parameters to request or do any other needed preparations.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.OdnoklassnikiClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> from content received from third-party service.
+            </summary>
+            <param name="content">The content which is received from third-party service.</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.OdnoklassnikiClient.AccessCodeServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.OdnoklassnikiClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.OdnoklassnikiClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which allows to obtain information about user which is currently logged in.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.OdnoklassnikiClient.Name">
+            <summary>
+            Friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.SalesforceClient">
+            <summary>
+            Salesforce authentication client.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.SalesforceClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.SalesforceClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.SalesforceClient.ParseAccessTokenResponse(System.String)">
+            <summary>
+            Parse the access token response using either JSON or form url encoded parameters
+            </summary>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.SalesforceClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> from content received from third-party service.
+            </summary>
+            <param name="content">The content which is received from third-party service.</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.SalesforceClient.AccessCodeServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.SalesforceClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.SalesforceClient.SalesforceProfileUrl">
+            <summary>
+            URI for the Salesforce profile
+            </summary>
+            <remarks>
+            Will be set after the retireval of the access token.
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.SalesforceClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which allows to obtain information about user which is currently logged in.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.SalesforceClient.Name">
+            <summary>
+            Friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.TwitterClient">
+            <summary>
+            Twitter authentication client.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.OAuthClient">
+            <summary>
+            Base class for OAuth (version 1) client implementation.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.OAuthClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.GetLoginLinkUri(System.String)">
+            <summary>
+            Returns URI of service which should be called in order to start authentication process.
+            You should use this URI when rendering login link.
+            </summary>
+            <param name="state">Any additional information needed by application.</param>
+            <returns>Login link URI.</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.GetUserInfo(System.Linq.ILookup{System.String,System.String})">
+            <summary>
+            Obtains user information using third-party authentication service
+            using data provided via callback request.
+            </summary>
+            <param name="parameters">Callback request payload (parameters).
+            <example>Request.QueryString</example></param>
+            <returns>The user information</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.BeforeGetAccessToken(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before obtaining response with access token from service.
+            Allows to modify the request.
+            </summary>
+            <param name="args">The request arguments (client, request, configuration)</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.AfterGetAccessToken(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just after obtaining response with access token from service.
+            Allows to read extra data returned along with access token.
+            </summary>
+            <param name="args">The request arguments (response only)</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.BeforeGetUserInfo(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before issuing request to service when everything is ready.
+            Allows to add extra parameters to request or do any other needed preparations.
+            </summary>
+            <param name="args">The request arguments (client, request, configuration)</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> using content of callback issued by service.
+            </summary>
+            <param name="content">The content to parse the user information from</param>
+            <returns>The new user information</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.QueryRequestToken">
+            <summary>
+            Issues request for request token and returns result.
+            </summary>
+            <returns>The task the request token gets queried on</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.GetLoginRequestUri(System.String)">
+            <summary>
+            Composes login link URI.
+            </summary>
+            <param name="state">Any additional information needed by application.</param>
+            <returns>The login request URI</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.QueryAccessToken(System.String)">
+            <summary>
+            Obtains access token by calling corresponding service.
+            </summary>
+            <param name="verifier">Verifier posted with callback issued by provider.</param>
+            <returns>Access token and other extra info.</returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.QueryUserInfo">
+            <summary>
+            Queries user info using corresponding service and data received by access token request.
+            </summary>
+            <returns>The task that queries the user information and the string that was returned by the query</returns>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.Configuration">
+            <summary>
+            Gets the client configuration object.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.Name">
+            <summary>
+            Gets the friendly name of provider (OAuth service).
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.State">
+            <summary>
+            Gets the state which was posted as additional parameter
+            to service and then received along with main answer.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.AccessToken">
+            <summary>
+            Gets the access token received from service. Can be used for further service API calls.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.AccessTokenSecret">
+            <summary>
+            Gets the access token secret received from service. Can be used for further service API calls.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.RequestTokenServiceEndpoint">
+            <summary>
+            Gets the URI of service which is called for obtaining request token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.LoginServiceEndpoint">
+            <summary>
+            Gets the URI of service which should be called to initiate authentication process.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.AccessTokenServiceEndpoint">
+            <summary>
+            Gets the URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.OAuthClient.UserInfoServiceEndpoint">
+            <summary>
+            Gets the URI of service which is called to obtain user information.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.TwitterClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="factory"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.TwitterClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> using content of callback issued by service.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.TwitterClient.RequestTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which is called for obtaining request token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.TwitterClient.LoginServiceEndpoint">
+            <summary>
+            Defines URI of service which should be called to initiate authentication process.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.TwitterClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.TwitterClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which is called to obtain user information.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.TwitterClient.Name">
+            <summary>
+            Friendly name of provider (OAuth service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.VkClient">
+            <summary>
+            VK (Vkontakte) authentication client.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.VkClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.VkClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.VkClient.AfterGetAccessToken(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just after obtaining response with access token from third-party service.
+            Allows to read extra data returned along with access token.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.VkClient.BeforeGetUserInfo(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before issuing request to third-party service when everything is ready.
+            Allows to add extra parameters to request or do any other needed preparations.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.VkClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> from content received from third-party service.
+            </summary>
+            <param name="content">The content which is received from third-party service.</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.VkClient.AccessCodeServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.VkClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.VkClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which allows to obtain information about user which is currently logged in.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.VkClient.Name">
+            <summary>
+            Friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.WindowsLiveClient">
+            <summary>
+            Windows Live authentication client.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.WindowsLiveClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.WindowsLiveClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.WindowsLiveClient.BeforeGetUserInfo(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before issuing request to third-party service when everything is ready.
+            Allows to add extra parameters to request or do any other needed preparations.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.WindowsLiveClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> from content received from third-party service.
+            </summary>
+            <param name="content">The content which is received from third-party service.</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.WindowsLiveClient.AccessCodeServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.WindowsLiveClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.WindowsLiveClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which allows to obtain information about user which is currently logged in.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.WindowsLiveClient.Name">
+            <summary>
+            Friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.XingClient">
+            <summary>
+            Xing authentication client.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.XingClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.XingClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.XingClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> using content of callback issued by service.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.XingClient.Name">
+            <summary>
+            Friendly name of provider (OAuth service).
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.XingClient.RequestTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which is called for obtaining request token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.XingClient.LoginServiceEndpoint">
+            <summary>
+            Defines URI of service which should be called to initiate authentication process.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.XingClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.XingClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which is called to obtain user information.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Client.YandexClient">
+            <summary>
+            Yandex authentication client.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.YandexClient.#ctor(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Client.YandexClient"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.YandexClient.BeforeGetUserInfo(RestSharp.Portable.Authenticators.OAuth2.BeforeAfterRequestArgs)">
+            <summary>
+            Called just before issuing request to third-party service when everything is ready.
+            Allows to add extra parameters to request or do any other needed preparations.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Client.YandexClient.ParseUserInfo(System.String)">
+            <summary>
+            Should return parsed <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> from content received from third-party service.
+            </summary>
+            <param name="content">The content which is received from third-party service.</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.YandexClient.AccessCodeServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access code.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.YandexClient.AccessTokenServiceEndpoint">
+            <summary>
+            Defines URI of service which issues access token.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.YandexClient.UserInfoServiceEndpoint">
+            <summary>
+            Defines URI of service which allows to obtain information about user which is currently logged in.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Client.YandexClient.Name">
+            <summary>
+            Friendly name of provider (OAuth2 service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration">
+            <summary>
+            Configuration of third-party authentication service client.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration.ClientTypeName">
+            <summary>
+            Name of client type.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration.IsEnabled">
+            <summary>
+            Client state: enabled or disabled.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration.ClientId">
+            <summary>
+            Client ID (ID of your application).
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration.ClientSecret">
+            <summary>
+            Client secret.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration.ClientPublic">
+            <summary>
+            Public key.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration.Scope">
+            <summary>
+            Scope - contains set of permissions which user should give to your application.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration.RedirectUri">
+            <summary>
+            Redirect URI (URI user will be redirected to 
+            after authentication using third-party service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Configuration.IConfigurationManager">
+            <summary>
+            API to access OAuth2 provider configurations
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Configuration.IConfigurationManager.GetAppSetting(System.String)">
+            <summary>
+            Returns an application setting value
+            </summary>
+            <param name="key">Key of the application setting</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Configuration.IConfigurationManager.GetConfiguration``1(System.String)">
+            <summary>
+            Returns configuration section object model.
+            </summary>
+            <typeparam name="T">Type representing root of configuration section.</typeparam>
+            <param name="name">Name of configuration section.</param>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Configuration.IOAuth2Configuration">
+            <summary>
+            OAuth2 library configuration.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.IOAuth2Configuration.Item(System.String)">
+            <summary>
+            Returns settings for service client with given name.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Configuration.RuntimeClientConfiguration">
+            <summary>
+            Runtime client configuration. 
+            </summary>
+            <remarks>
+            This is a small in-memory implementation of <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration"/>
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.RuntimeClientConfiguration.ClientTypeName">
+            <summary>
+            Name of client type.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.RuntimeClientConfiguration.IsEnabled">
+            <summary>
+            Client state: enabled or disabled.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.RuntimeClientConfiguration.ClientId">
+            <summary>
+            Client ID (ID of your application).
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.RuntimeClientConfiguration.ClientSecret">
+            <summary>
+            Client secret.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.RuntimeClientConfiguration.ClientPublic">
+            <summary>
+            Public key.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.RuntimeClientConfiguration.Scope">
+            <summary>
+            Scope - contains set of permissions which user should give to your application.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Configuration.RuntimeClientConfiguration.RedirectUri">
+            <summary>
+            Redirect URI (URI user will be redirected to
+            after authentication using third-party service).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Endpoint">
+            <summary>
+            Defines endpoint URI (service address).
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Endpoint.BaseUri">
+            <summary>
+            Base URI (service host address).
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Endpoint.Resource">
+            <summary>
+            Resource URI (service method).
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Endpoint.Uri">
+            <summary>
+            Complete URI of endpoint (base URI combined with resource URI).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.EnumerableExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.EnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Allows processing of each item using arbitrary action.
+            </summary>
+            <param name="enumerable">The enumerable.</param>
+            <param name="action">The action.</param>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory">
+            <summary>
+            Intended for REST client/request creation.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory.CreateClient">
+            <summary>
+            Returns new REST client instance.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory.CreateRequest(System.String)">
+            <summary>
+            Returns new REST request instance.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.LookupExtensions">
+            <summary>
+            Extension methods for lookups
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.LookupExtensions.GetOrThrowUnexpectedResponse(System.Linq.ILookup{System.String,System.String},System.String)">
+            <summary>
+            Returns the values for a given key (comma separated) or throws an exception if the key wasn't found or all its values were empty.
+            </summary>
+            <param name="collection"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.ObjectExtensions">
+            <summary>
+            Common extensions.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.ObjectExtensions.AllPropertiesAreEqualTo(System.Object,System.Object)">
+            <summary>
+            Returns true if all equally named and typed properties have 
+            same values on two different objects (types of objects can be different).
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.RequestFactory">
+            <summary>
+            Default implementation of <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory"/>.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.RequestFactory.CreateClient">
+            <summary>
+            Returns new REST client instance.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.RequestFactory.CreateRequest(System.String)">
+            <summary>
+            Returns new REST request instance.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.RequestFactoryExtensions">
+            <summary>
+            Extension methods for the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory"/>.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.RequestFactoryExtensions.CreateClient(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Endpoint)">
+            <summary>
+            Create a new REST client
+            </summary>
+            <param name="factory"></param>
+            <param name="endpoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.RequestFactoryExtensions.CreateRequest(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Endpoint)">
+            <summary>
+            Creates a new REST request
+            </summary>
+            <param name="factory"></param>
+            <param name="endpoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.RequestFactoryExtensions.CreateRequest(RestSharp.Portable.Authenticators.OAuth2.Infrastructure.IRequestFactory,RestSharp.Portable.Authenticators.OAuth2.Endpoint,System.Net.Http.HttpMethod)">
+            <summary>
+            Creates a new REST request
+            </summary>
+            <param name="factory"></param>
+            <param name="endpoint"></param>
+            <param name="method"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.RestClientExtensions">
+            <summary>
+            REST client extensions
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.RestClientExtensions.ExecuteAndVerify(RestSharp.Portable.IRestClient,RestSharp.Portable.IRestRequest)">
+            <summary>
+            Execute a request and test if the status code is OK
+            </summary>
+            <param name="client">
+            The client that executes the request
+            </param>
+            <param name="request">
+            The request to be executed
+            </param>
+            <returns>
+            The response of the request
+            </returns>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.RestResponseExtensions">
+            <summary>
+            REST response extensions
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.RestResponseExtensions.IsEmpty(RestSharp.Portable.IRestResponse)">
+            <summary>
+            IsEmpty for RestSharp.Portable
+            </summary>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.RestResponseExtensions.GetContent(RestSharp.Portable.IRestResponse)">
+            <summary>
+            Replacement of "Content" property for RestSharp.Portable
+            </summary>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.RestResponseExtensions.GetContent(RestSharp.Portable.IRestResponse,System.Text.Encoding)">
+            <summary>
+            Replacement of "Content" property for RestSharp.Portable
+            </summary>
+            <param name="response"></param>
+            <param name="encoding"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.SafeExtensions">
+            <summary>
+            Set of extension methods for safe operation on nullable types.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.SafeExtensions.SafeGet``2(``0,System.Func{``0,``1})">
+            <summary>
+            Executes selector on instance and returns result or returns default value of target type if given instance is null.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.StringExtensions">
+            <summary>
+            Set of extension methods for <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.StringExtensions.Fill(System.String,System.Object[])">
+            <summary>
+            Alias for <code>string.Format</code>.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="args">The args.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.StringExtensions.Join``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Alias for <code>string.Join</code>.
+            </summary>
+            <param name="enumerable">The enumerable.</param>
+            <param name="separator">The separator.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.StringExtensions.IsEmpty(System.String)">
+            <summary>
+            Returns true if given line is null, empty or contains only whitespaces.
+            </summary>
+            <param name="line">The line.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.StringExtensions.GetMd5Hash(System.String)">
+            <summary>
+            Returns MD5 Hash of input.
+            </summary>
+            <param name="input">The line.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Infrastructure.StringExtensions.ParseQueryString(System.String)">
+            <summary>
+            Replacement for HttpUtility.ParseQueryString
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Models.AvatarInfo">
+            <summary>
+            Information about you avatar.
+            </summary>
+        </member>
+        <member name="F:RestSharp.Portable.Authenticators.OAuth2.Models.AvatarInfo.SmallSize">
+            <summary>
+            Image size constants.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Models.AvatarInfo.Small">
+            <summary>
+            Uri of small photo.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Models.AvatarInfo.Normal">
+            <summary>
+            Uri of normal photo.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Models.AvatarInfo.Large">
+            <summary>
+            Uri of large photo.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo">
+            <summary>
+            Contains information about user who is being authenticated.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo.Id">
+            <summary>
+            Unique identifier.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo.ProviderName">
+            <summary>
+            Friendly name of <see cref="T:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo"/> provider (which is, in its turn, the client of OAuth/OAuth2 provider).
+            </summary>
+            <remarks>
+            Supposed to be unique per OAuth/OAuth2 client.
+            </remarks>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo.Email">
+            <summary>
+            Email address.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo.FirstName">
+            <summary>
+            First name.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo.LastName">
+            <summary>
+            Last name.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo.PhotoUri">
+            <summary>
+            Photo URI.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.Models.UserInfo.AvatarUri">
+            <summary>
+            Contains URIs of different sizes of avatar.
+            </summary>
+        </member>
+        <member name="T:RestSharp.Portable.Authenticators.OAuth2.UnexpectedResponseException">
+            <summary>
+            Indicates unexpected response from service.
+            </summary>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.UnexpectedResponseException.#ctor(RestSharp.Portable.IRestResponse)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.UnexpectedResponseException"/> class.
+            </summary>
+            <param name="response">The response.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.UnexpectedResponseException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.UnexpectedResponseException"/> class.
+            </summary>
+            <param name="fieldName">Name of the field.</param>
+        </member>
+        <member name="M:RestSharp.Portable.Authenticators.OAuth2.UnexpectedResponseException.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RestSharp.Portable.Authenticators.OAuth2.UnexpectedResponseException"/> class.
+            </summary>
+            <param name="fieldName">Name of the field.</param>
+            <param name="message">Error message</param>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.UnexpectedResponseException.FieldName">
+            <summary>
+            Name of field which contains unexpected (GET) response.
+            </summary>
+        </member>
+        <member name="P:RestSharp.Portable.Authenticators.OAuth2.UnexpectedResponseException.Response">
+            <summary>
+            Unexpected response itself (can be null, if error occured later in the response processing pipeline).
+            </summary>
+        </member>
+    </members>
+</doc>

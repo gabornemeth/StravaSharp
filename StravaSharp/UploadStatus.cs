@@ -1,7 +1,14 @@
-﻿using Newtonsoft.Json;
+﻿//
+// UploadResult.cs
+//
+// Author:
+//    Gabor Nemeth (gabor.nemeth.dev@gmail.com)
+//
+//    Copyright (C) 2015, Gabor Nemeth
+//
+        
 using System;
-using System.Collections.Generic;
-using System.Text;
+using Newtonsoft.Json;
 
 namespace StravaSharp
 {
@@ -9,14 +16,14 @@ namespace StravaSharp
     /// Result of the upload procedure
     /// This can be used to further check the status of uploading
     /// </summary>
-    public class UploadResult
+    public class UploadStatus
     {
         [JsonProperty("id")]
-        public string Id { get; internal set; }
+        public int Id { get; internal set; }
         [JsonProperty("external_id")]
         public string ExternalId { get; internal set; }
-        [JsonProperty("activity_id")]
-        public string ActivityId { get; internal set; }
+        [JsonProperty("activity_id", NullValueHandling = NullValueHandling.Ignore)]
+        public int ActivityId { get; internal set; }
         [JsonProperty("status")]
         public string Status { get; internal set; }
         [JsonProperty("error")]
