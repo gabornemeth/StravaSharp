@@ -4,7 +4,11 @@
 
 /packages/FubarCoder.RestSharp.Portable.2.4.3/lib
 /packages
-/StravaSharp.NET45/obj/Debug
-/StravaSharp.NET45/bin/Debug
-/StravaSharp.Tests.NET45/bin/Debug
-/StravaSharp.Tests.NET45/obj/Debug
+/StravaSharp.NET45/obj
+/StravaSharp.NET45/bin
+/StravaSharp.Tests.NET45/bin
+/StravaSharp.Tests.NET45/obj
+/StravaSharp.Droid/obj
+/StravaSharp.Droid/bin
+/StravaSharp.PCL/obj
+/StravaSharp.PCL/bin

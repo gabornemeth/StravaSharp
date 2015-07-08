@@ -26,12 +26,18 @@ namespace StravaSharp.Tests
             var segments = await client.Segments.Explore(southWest, northEast);
             Assert.NotNull(segments);
             Assert.True(segments.Count > 1);
-            // check the first segment in detail
+            // check each segment in detail
             foreach (var segment in segments)
             {
                 var segmentDetails = await client.Segments.Get(segment.Id);
                 Assert.NotNull(segmentDetails);
                 Assert.NotNull(segmentDetails.Map);
+                // retrieve each coordinate of the segment's polylinef
+                var points = PolylineDecoder.DecodePolylinePoints(segmentDetails.Map.Polyline);
+                Assert.NotNull(points);
+                Assert.True(points.Count > 0);
+                foreach (var point in points)
+                    Assert.True(point.IsEmpty() == false);
             }
         }
     }

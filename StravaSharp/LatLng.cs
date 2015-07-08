@@ -8,10 +8,7 @@
 //
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace StravaSharp
 {
@@ -29,6 +26,11 @@ namespace StravaSharp
         /// WGS84 longitude
         /// </summary>
         public float Longitude { get; set; }
+
+        public bool IsEmpty()
+        {
+            return Latitude.Equals(0.0f) && Longitude.Equals(0.0f);
+        }
     }
 
     internal class LatLngConverter : JsonConverter
