@@ -49,9 +49,9 @@ namespace StravaSharp
         {
             var request = new RestRequest("/api/v3/athlete/activities");
             if (before != DateTime.MinValue)
-                request.AddParameter("before", before.GetSecondsSinceUnixEpoch());
+                request.AddQueryParameter("before", before.GetSecondsSinceUnixEpoch());
             if (after != DateTime.MinValue)
-                request.AddParameter("after", after.GetSecondsSinceUnixEpoch());
+                request.AddQueryParameter("after", after.GetSecondsSinceUnixEpoch());
             if (page != 0)
                 request.AddParameter("page", page);
             if (itemsPerPage != 0)

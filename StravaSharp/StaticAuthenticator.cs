@@ -8,35 +8,26 @@ namespace StravaSharp
     /// </summary>
     public class StaticAuthenticator : IAuthenticator
     {
-        private class RestSharpStaticAuthenticator : RestSharp.Portable.Authenticators.IAuthenticator
-        {
-            private string _accessToken;
-
-            public RestSharpStaticAuthenticator(string accessToken)
-            {
-                _accessToken = accessToken;
-            }
-
-            public void Authenticate(IRestClient client, IRestRequest request)
-            {
-                if (!string.IsNullOrEmpty(_accessToken))
-                    request.AddHeader("Authorization", "Bearer " + _accessToken);
-                //request.Parameters.Add(new Parameter { Name = "access_token", Value = _accessToken, Type = ParameterType.HttpHeader });
-            }
-        }
-
         private RestSharpStaticAuthenticator _authenticator;
 
         public StaticAuthenticator(string accessToken)
         {
+            _authenticator = new RestSharpStaticAuthenticator();
             AccessToken = accessToken;
-            _authenticator = new RestSharpStaticAuthenticator(accessToken);
         }
 
+        private string _accessToken;
         public string AccessToken
         {
-            get;
-            private set;
+            get { return _accessToken; }
+            set
+            {
+                if (_accessToken != value)
+                {
+                    _accessToken = value;
+                    _authenticator.AccessToken = _accessToken;
+                }
+            }
         }
 
         public bool IsAuthenticated
@@ -55,7 +46,7 @@ namespace StravaSharp
             }
         }
 
-        public void Authenticate()
+        public async System.Threading.Tasks.Task Authenticate()
         {
             // already authenticated - got the access token
         }

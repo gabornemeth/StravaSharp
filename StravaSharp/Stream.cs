@@ -21,14 +21,17 @@ namespace StravaSharp
         /// <summary>
         /// float meters
         /// </summary>
+        [EnumMember(Value = "distance")]
         Distance,
         /// <summary>
         /// float meters
         /// </summary>
+        [EnumMember(Value = "altitude")]
         Altitude,
         /// <summary>
         /// float meters per second
         /// </summary>
+        [EnumMember(Value = "velocity_smooth")]
         VelocitySmooth,
         /// <summary>
         /// integer BPM
@@ -38,25 +41,31 @@ namespace StravaSharp
         /// <summary>
         /// integer RPM
         /// </summary>
+        [EnumMember(Value = "cadence")]
         Cadence,
         /// <summary>
         /// integer watts
         /// </summary>
+        [EnumMember(Value = "watts")]
         Watts,
         /// <summary>
         /// integer degrees Celsius
         /// </summary>
+        [EnumMember(Value = "temp")]
         Temperature,
         /// <summary>
         /// boolean
         /// </summary>
+        [EnumMember(Value = "moving")]
         Moving,
         /// <summary>
         /// float percent
         /// </summary>
+        [EnumMember(Value = "grade_smooth")]
         GradeSmooth
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum StreamResolution
     {
         [EnumMember(Value = "low")]
@@ -67,6 +76,7 @@ namespace StravaSharp
         High
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum SeriesType
     {
         [EnumMember(Value = "time")]

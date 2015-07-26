@@ -6,7 +6,7 @@
 //
 //    Copyright (C) 2015, Gabor Nemeth
 //
-        
+
 using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
@@ -42,6 +42,14 @@ namespace StravaSharp.Tests
         }
 
         [Test]
+        public async Task GetActivitiesDate()
+        {
+            var client = TestHelper.CreateStravaClient();
+            var activities = await client.Activities.GetAthleteActivities(DateTime.Now, DateTime.Now.AddYears(-10));
+            Assert.True(activities.Count > 0);
+        }
+
+        [Test]
         public async Task GetStream()
         {
             var client = TestHelper.CreateStravaClient();
@@ -51,6 +59,11 @@ namespace StravaSharp.Tests
             var streams = await client.GetActivityStreams(activities[0].Id, StreamType.HeartRate, StreamType.LatLng);
             Assert.NotNull(streams);
             Assert.True(streams.Count > 0);
+            foreach (var stream in streams)
+            {
+                Assert.NotNull(stream);
+                Assert.NotNull(stream.Data);
+            }
         }
     }
 }

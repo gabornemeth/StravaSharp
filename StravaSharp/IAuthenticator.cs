@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace StravaSharp
 {
@@ -7,7 +8,7 @@ namespace StravaSharp
         /// <summary>
         /// The access token received from Strava.
         /// </summary>
-        string AccessToken { get; }
+        string AccessToken { get; set; }
 
         /// <summary>
         /// Returns if the client has been successfully authenticated.
@@ -17,7 +18,7 @@ namespace StravaSharp
         /// <summary>
         /// Authenticate the client
         /// </summary>
-        void Authenticate();
+        Task Authenticate();
 
         RestSharp.Portable.Authenticators.IAuthenticator RestSharpAuthenticator { get; }
     }

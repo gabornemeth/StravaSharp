@@ -15,6 +15,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.PCL", "StravaSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.Droid", "StravaSharp.Droid\StravaSharp.Droid.csproj", "{3316897E-1303-4815-A6CD-20D047997733}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F4DA7CEA-AD05-42D1-A662-1DBFD8964C8A}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		StravaSharp\StravaSharp.projitems*{0a0c916a-0825-45bf-a14d-ad0053ca712c}*SharedItemsImports = 4

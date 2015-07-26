@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StravaSharp
 {
@@ -48,15 +47,8 @@ namespace StravaSharp
     /// <summary>
     /// Summary representation of an activity
     /// </summary>
-    public class ActivitySummary
+    public class ActivitySummary : StravaObject<int>
     {
-        [JsonProperty("id")]
-        public int Id { get; internal set; }
-        /// <summary>
-        /// indicates level of detail
-        /// </summary>
-        [JsonProperty("resource_state")]
-        public int ResourceState { get; internal set; }
         /// <summary>
         /// provided at upload
         /// </summary>
@@ -93,9 +85,15 @@ namespace StravaSharp
         /// Activity type, ie.ride, run, swim, etc.
         /// </summary>
         [JsonProperty("type")]
-        public string Type { get; internal set; }
-        //       start_date: time string
-        //       start_date_local: time string
+        public ActivityType Type { get; internal set; }
+
+        [JsonProperty("start_date")]
+        [JsonConverter(typeof(IsoDateTimeConverter))]
+        public DateTime StartDate { get; internal set; }
+
+        [JsonProperty("start_date_local")]
+        [JsonConverter(typeof(IsoDateTimeConverter))]
+        public DateTime StartDateLocal { get; internal set; }
         //       timezone: string
         //       start_latlng: [latitude, longitude]
         //        end_latlng: [latitude, longitude]
@@ -122,24 +120,62 @@ namespace StravaSharp
         // for runs only, 0 -> ‘default’, 1 -> ‘race’, 2 -> ‘long run’, 3 -> ‘intervals’ 
         //gear_id: string
         // corresponds to a bike or pair of shoes included in athlete details
-        //average_speed: float
-        // meters per second
-        //max_speed: float
-        // meters per second
-        //average_cadence: float
-        // RPM, if provided at upload
-        //average_temp: float
-        // degrees Celsius, if provided at upload
-        //average_watts: float rides only
-        //weighted_average_watts: integer rides with power meter data only
-        // similar to xPower or Normalized Power
+        /// <summary>
+        /// Average speed [meters per second]
+        /// </summary>
+        [JsonProperty("average_speed")]
+        public float AverageSpeed { get; internal set; }
+        /// <summary>
+        /// Maximum speed [meters per second]
+        /// </summary>
+        [JsonProperty("max_speed")]
+        public float MaxSpeed { get; internal set; }
+        /// <summary>
+        /// Average cadence [rpm]
+        /// </summary>
+        [JsonProperty("average_cadence")]
+        public float AverageCadence { get; internal set; }
+
+        /// <summary>
+        /// degrees Celsius, if provided at upload
+        /// </summary>
+        [JsonProperty("average_temp")]
+        public float AverageTemperature { get; internal set; }
+
+        /// <summary>
+        /// Average watts (rides only)
+        /// </summary>
+        [JsonProperty("average_watts")]
+        public float AveragePower { get; internal set; }
+
+        /// <summary>
+        /// weighted_average_watts: integer rides with power meter data only
+        /// similar to xPower or Normalized Power
+        /// </summary>
+        [JsonProperty("weighted_average_watts")]
+        public int NormalizedPower { get; internal set; }
+        
         //kilojoules: float rides only
         // uses estimated power if necessary
+
+        /// <summary>
+        /// true if the watts are from a power meter, false if estimated
+        /// </summary>
+        [JsonProperty("device_watts")]
+        public bool HasPower { get; internal set; }
         //device_watts: boolean 
-        // true if the watts are from a power meter, false if estimated
-        //average_heartrate: float only if recorded with heartrate
-        // average over moving portion
-        //max_heartrate: integer only if recorded with heartrate
+
+        /// <summary>
+        /// average_heartrate: float only if recorded with heartrate
+        /// average over moving portion
+        /// </summary>
+        [JsonProperty("average_heartrate")]
+        public float AverageHeartRate { get; internal set; }
+        /// <summary>
+        /// max_heartrate: integer only if recorded with heartrate
+        /// </summary>
+        [JsonProperty("max_heartrate")]
+        public float MaxHeartRate { get; internal set; }
         //has_kudoed: boolean 
         // if the authenticated athlete has kudoed this activity
     }
@@ -149,8 +185,12 @@ namespace StravaSharp
     {
         [JsonProperty("description")]
         public string Description { get; internal set; }
-        //calories: float
-        // kilocalories, uses kilojoules for rides and speed/pace for runs
+
+        /// <summary>
+        /// kilocalories, uses kilojoules for rides and speed/pace for runs
+        /// </summary>
+        [JsonProperty("calories")]
+        public float Calories { get; internal set; }
 
         //gear: object
         //gear summary
@@ -160,7 +200,7 @@ namespace StravaSharp
 
         //splits_metric: array of metric split summaries
         // running activities only
-        
+
         //splits_standard: array of standard split summaries
         // running activities only
 

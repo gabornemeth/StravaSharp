@@ -1,13 +1,21 @@
-﻿using RestSharp.Portable;
+﻿//
+// StravaClient.cs
+//
+// Author:
+//    Gabor Nemeth (gabor.nemeth.dev@gmail.com)
+//
+//    Copyright (C) 2015, Gabor Nemeth
+//
+        
+using RestSharp.Portable;
 using RestSharp.Portable.Authenticators.OAuth2;
 using RestSharp.Portable.Authenticators.OAuth2.Infrastructure;
 using RestSharp.Portable.Authenticators.OAuth2.Models;
-using System;
 
 namespace StravaSharp
 {
     /// <summary>
-    /// Client configuration for Strava
+    /// RestSharp.Portable Client configuration for Strava
     /// </summary>
     public class StravaClient : OAuth2Client
     {
@@ -51,11 +59,6 @@ namespace StravaSharp
         {
             // cannot return null
             return new UserInfo();
-        }
-
-        protected override void BeforeGetAccessToken(BeforeAfterRequestArgs args)
-        {
-            base.BeforeGetAccessToken(args);
         }
 
         protected override void BeforeGetUserInfo(BeforeAfterRequestArgs args)
