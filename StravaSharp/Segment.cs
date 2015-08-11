@@ -9,7 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Newtonsoft.Json;
 
 namespace StravaSharp
@@ -54,7 +53,7 @@ namespace StravaSharp
         [JsonProperty("start_latlng")]
         public LatLng StartLatLng { get; internal set; }
         [JsonProperty("end_latlng")]
-        public LatLng EndatLng { get; internal set; }
+        public LatLng EndLatLng { get; internal set; }
         /// <summary>
         /// [0, 5], lower is harder
         /// </summary>

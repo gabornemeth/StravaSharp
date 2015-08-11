@@ -16,36 +16,60 @@ namespace StravaSharp
         Run,
         [EnumMember(Value = "swim")]
         Swim,
-        [EnumMember(Value = "workout")]
-        Workout,
         [EnumMember(Value = "hike")]
         Hike,
         [EnumMember(Value = "walk")]
         Walk,
-        [EnumMember(Value = "nordicski")]
-        NordicSki,
         [EnumMember(Value = "alpineski")]
         AlpineSki,
         [EnumMember(Value = "backcountryski")]
         BackcountrySki,
+        [EnumMember(Value = "canoeing")]
+        Canoeing,
+        [EnumMember(Value = "crosscountryskiing")]
+        CrossCountrySkiing,
+        [EnumMember(Value = "crossfit")]
+        Crossfit,
+        [EnumMember(Value = "ebikeride")]
+        EBikeRide,
+        [EnumMember(Value = "elliptical")]
+        Elliptical,
         [EnumMember(Value = "iceskate")]
         IceSkate,
         [EnumMember(Value = "inlineskate")]
         InlineSkate,
+        [EnumMember(Value = "kayaking")]
+        Kayaking,
         [EnumMember(Value = "kitesurf")]
         Kitesurf,
+        [EnumMember(Value = "nordicski")]
+        NordicSki,
+        [EnumMember(Value = "rockclimbing")]
+        RockClimbing,
         [EnumMember(Value = "rollerski")]
         RollerSki,
-        [EnumMember(Value = "windsurf")]
-        WindSurf,
+        [EnumMember(Value = "rowing")]
+        Rowing,
         [EnumMember(Value = "snowboard")]
         Snowboard,
         [EnumMember(Value = "snowshoe")]
         SnowShoe,
-        [EnumMember(Value = "ebikeride")]
-        EBikeRide,
+        [EnumMember(Value = "stairstepper")]
+        StairStepper,
+        [EnumMember(Value = "standuppaddling")]
+        StandUpPaddling,
+        [EnumMember(Value = "surfing")]
+        Surfing,
         [EnumMember(Value = "virtualride")]
-        VirtualRide
+        VirtualRide,
+        [EnumMember(Value = "weighttraining")]
+        WeightTraining,
+        [EnumMember(Value = "windsurf")]
+        WindSurf,
+        [EnumMember(Value = "workout")]
+        Workout,
+        [EnumMember(Value = "yoga")]
+        Yoga
     }
 
     /// <summary>
@@ -98,28 +122,54 @@ namespace StravaSharp
         [JsonProperty("start_date_local")]
         [JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime StartDateLocal { get; internal set; }
-        //       timezone: string
-        //       start_latlng: [latitude, longitude]
-        //        end_latlng: [latitude, longitude]
-        //        location_city: string
-        //        location_state: string
-        //        location_country: string
-        //        achievement_count: integer
-        //        kudos_count: integer
-        //        comment_count: integer
-        //        athlete_count: integer
-        //         number of athletes taking part in this “group activity”. >= 1 
-        //photo_count: integer
-        // number of Instagram photos
-        //total_photo_count: integer
-        // total number of photos(Instagram and Strava)
+        [JsonProperty("timezone")]
+        public string TimeZone { get; internal set; }
+        [JsonProperty("start_latlng")]
+        public LatLng StartLatLng { get; internal set; }
+        [JsonProperty("end_ltlng")]
+        public LatLng EndLatLng { get; internal set; }
+        [JsonProperty("location_city")]
+        public string LocationCity { get; internal set; }
+        [JsonProperty("location_state")]
+        public string LocationState { get; internal set; }
+        [JsonProperty("location_country")]
+        public string LocationCountry { get; internal set; }
+        [JsonProperty("achievement_count")]
+        public int AchievementCount { get; internal set; }
+        [JsonProperty("kudos_count")]
+        public int KudosCount { get; internal set; }
+        [JsonProperty("comment_count")]
+        public int CommentCount { get; internal set; }
+        
+        /// <summary>
+        /// number of athletes taking part in this “group activity”. >= 1 
+        /// </summary>
+        [JsonProperty("athlete_count")]
+        public int AthleteCount { get; internal set; }
+        
+        /// <summary>
+        /// number of Instagram photos
+        /// </summary>
+        [JsonProperty("photo_count")]
+        public int PhotoCount { get; internal set; }
+        /// <summary>
+        /// total number of photos(Instagram and Strava)
+        /// </summary>
+        [JsonProperty("total_photo_count")]
+        public int TotalPhotoCount { get; internal set; }
+        
         //map: object
         // detailed representation of the route
-        //trainer: boolean
-        //commute: boolean
-        //manual: boolean
-        //private: boolean
-        //flagged: boolean
+        [JsonProperty("trainer")]
+        public bool Trainer { get; internal set; }
+        [JsonProperty("commute")]
+        public bool Commute { get; internal set; }
+        [JsonProperty("manual")]
+        public bool Manual { get; internal set; }
+        [JsonProperty("private")]
+        public bool Private { get; internal set; }
+        [JsonProperty("flagged")]
+        public bool Flagged { get; internal set; }
         //workout_type: integer 
         // for runs only, 0 -> ‘default’, 1 -> ‘race’, 2 -> ‘long run’, 3 -> ‘intervals’ 
         //gear_id: string
@@ -159,15 +209,18 @@ namespace StravaSharp
         [JsonProperty("weighted_average_watts")]
         public int NormalizedPower { get; internal set; }
 
-        //kilojoules: float rides only
-        // uses estimated power if necessary
+        /// <summary>
+        /// kilojoules: float rides only
+        /// uses estimated power if necessary
+        /// </summary>
+        [JsonProperty("kilojoules")]
+        public float Kilojoules { get; internal set; }
 
         /// <summary>
         /// true if the watts are from a power meter, false if estimated
         /// </summary>
         [JsonProperty("device_watts")]
-        public bool HasPower { get; internal set; }
-        //device_watts: boolean 
+        public bool DeviceWatts { get; internal set; }
 
         /// <summary>
         /// average_heartrate: float only if recorded with heartrate
@@ -180,11 +233,17 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("max_heartrate")]
         public float MaxHeartRate { get; internal set; }
-        //has_kudoed: boolean 
-        // if the authenticated athlete has kudoed this activity
+
+        /// <summary>
+        /// if the authenticated athlete has kudoed this activity
+        /// </summary>
+        [JsonProperty("has_kudoed")]
+        public bool HasKudoed { get; internal set; }
     }
 
-
+    /// <summary>
+    /// Detailed activity representation
+    /// </summary>
     public class Activity : ActivitySummary
     {
         [JsonProperty("description")]
