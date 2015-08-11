@@ -41,7 +41,11 @@ namespace StravaSharp
         [EnumMember(Value = "snowboard")]
         Snowboard,
         [EnumMember(Value = "snowshoe")]
-        SnowShoe
+        SnowShoe,
+        [EnumMember(Value = "ebikeride")]
+        EBikeRide,
+        [EnumMember(Value = "virtualride")]
+        VirtualRide
     }
 
     /// <summary>
@@ -154,7 +158,7 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("weighted_average_watts")]
         public int NormalizedPower { get; internal set; }
-        
+
         //kilojoules: float rides only
         // uses estimated power if necessary
 
