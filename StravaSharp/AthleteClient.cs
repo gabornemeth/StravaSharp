@@ -25,5 +25,12 @@ namespace StravaSharp
             var response = await _client.RestClient.Execute<Athlete>(request);
             return response.Data;
         }
+
+        public async Task<Athlete> Get(int id)
+        {
+            var request = new RestRequest(string.Format("/api/v3/athletes/{0}", id), HttpMethod.Get);
+            var response = await _client.RestClient.Execute<Athlete>(request);
+            return response.Data;
+        }
     }
 }

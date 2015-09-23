@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3316897E-1303-4815-A6CD-20D047997733}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
@@ -15,7 +13,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.1</TargetFrameworkVersion>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -39,20 +37,16 @@
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="RestSharp.Portable, Version=2.4.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubarCoder.RestSharp.Portable.2.4.3\lib\MonoAndroid10\RestSharp.Portable.dll</HintPath>
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.2.4.4\lib\MonoAndroid10\RestSharp.Portable.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp.Portable.OAuth, Version=2.4.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubarCoder.RestSharp.Portable.OAuth.2.4.3\lib\MonoAndroid10\RestSharp.Portable.OAuth.dll</HintPath>
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.OAuth.2.4.4\lib\MonoAndroid10\RestSharp.Portable.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp.Portable.OAuth2, Version=2.4.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubarCoder.RestSharp.Portable.OAuth2.2.4.3\lib\MonoAndroid10\RestSharp.Portable.OAuth2.dll</HintPath>
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.OAuth2.2.4.4\lib\MonoAndroid10\RestSharp.Portable.OAuth2.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -61,6 +55,9 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

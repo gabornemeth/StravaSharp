@@ -16,12 +16,8 @@ namespace StravaSharp
     /// <summary>
     /// Meta representation of an athlete
     /// </summary>
-    public class AthleteMeta
+    public class AthleteMeta : StravaObject<int>
     {
-        [JsonProperty("id")]
-        public int Id { get; internal set; }
-        [JsonProperty("resource_state")]
-        public int ResourceState { get; internal set; }
     }
 
     /// <summary>

@@ -73,9 +73,16 @@ namespace StravaSharp
     }
 
     /// <summary>
+    /// Simple activity representation
+    /// </summary>
+    public class ActivityMeta : StravaObject<int>
+    {
+    }
+
+    /// <summary>
     /// Summary representation of an activity
     /// </summary>
-    public class ActivitySummary : StravaObject<int>
+    public class ActivitySummary : ActivityMeta
     {
         /// <summary>
         /// provided at upload
@@ -87,8 +94,11 @@ namespace StravaSharp
         public int UploadId { get; internal set; }
         [JsonProperty("name")]
         public string Name { get; internal set; }
-        //athlete: object
-        //meta or summary representation of the athlete
+        /// <summary>
+        /// meta or summary representation of the athlete
+        /// </summary>
+        [JsonProperty("athlete")]
+        public AthleteMeta Athlete { get; internal set; }
         /// <summary>
         /// Distance [meters]
         /// </summary>

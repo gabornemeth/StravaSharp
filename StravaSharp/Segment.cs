@@ -19,6 +19,9 @@ namespace StravaSharp
         public List<SegmentSummary> Segments { get; internal set; }
     }
 
+    /// <summary>
+    /// Summary info about a segment
+    /// </summary>
     public class SegmentSummary : StravaObject<int>
     {
         [JsonProperty("name")]
