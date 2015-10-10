@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -32,26 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RestSharp.Portable, Version=2.4.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubarCoder.RestSharp.Portable.2.4.4\lib\net45\RestSharp.Portable.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RestSharp.Portable.OAuth, Version=2.4.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubarCoder.RestSharp.Portable.OAuth.2.4.4\lib\net45\RestSharp.Portable.OAuth.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RestSharp.Portable.OAuth2, Version=2.4.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FubarCoder.RestSharp.Portable.OAuth2.2.4.4\lib\net45\RestSharp.Portable.OAuth2.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -63,6 +43,21 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.Portable, Version=2.4.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f">
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.2.4.4\lib\net45\RestSharp.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.Portable.OAuth, Version=2.4.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f">
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.OAuth.2.4.4\lib\net45\RestSharp.Portable.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.Portable.OAuth2, Version=2.4.0.0, Culture=neutral, PublicKeyToken=be81bb0f53eab22f">
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.OAuth2.2.4.4\lib\net45\RestSharp.Portable.OAuth2.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StravaSharp.NET45\StravaSharp.NET45.csproj">
-      <Project>{18226de9-354a-4e42-b64d-f9f00260dcfe}</Project>
+      <Project>{18226DE9-354A-4E42-B64D-F9F00260DCFE}</Project>
       <Name>StravaSharp.NET45</Name>
     </ProjectReference>
   </ItemGroup>
