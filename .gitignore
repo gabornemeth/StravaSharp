@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -12,3 +12,6 @@
 /StravaSharp.Droid/bin
 /StravaSharp.PCL/obj
 /StravaSharp.PCL/bin
+StravaSharp.iOS/bin/
+StravaSharp.iOS/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+StravaSharp.iOS/obj/

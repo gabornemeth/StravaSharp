@@ -77,7 +77,7 @@ namespace StravaSharp.Tests
         {
             var segments = await RetrieveSegments();
             var segment = segments[0];
-            var leaderboard = await _client.Segments.GetLeaderboard(segment.Id);
+            var leaderboard = await _client.Segments.GetLeaderboard(segment.Id, null, null);
             Assert.NotNull(leaderboard);
             //Assert.AreEqual(leaderboard.EntryCount, leaderboard.Entries.Count);
             //Assert.AreEqual(2, efforts.Length);

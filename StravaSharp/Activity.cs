@@ -26,8 +26,6 @@ namespace StravaSharp
         BackcountrySki,
         [EnumMember(Value = "canoeing")]
         Canoeing,
-        [EnumMember(Value = "crosscountryskiing")]
-        CrossCountrySkiing,
         [EnumMember(Value = "crossfit")]
         Crossfit,
         [EnumMember(Value = "ebikeride")]

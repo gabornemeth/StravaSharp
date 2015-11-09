@@ -92,23 +92,34 @@ namespace StravaSharp
             return response.Data;
         }
 
-        public Task<Leaderboard> GetLeaderboard(int segmentId)
+        /// <summary>
+        /// Gets leaderboard for a segment.
+        /// </summary>
+        /// <param name="segmentId">ID of the segment.</param>
+        /// <param name="gender"></param>
+        /// <returns>Leaderboard of the segment</returns>
+        public Task<Leaderboard> GetLeaderboard(int segmentId, Gender? gender, AgeGroup? ageGroup)
         {
-            return GetLeaderboardInternal(segmentId, null, null);
+            return GetLeaderboardInternal(segmentId, null, null, gender, ageGroup);
         }
 
-        public Task<Leaderboard> GetLeaderboard(int segmentId, int page, int perPage)
+        public Task<Leaderboard> GetLeaderboard(int segmentId, int page, int perPage, Gender? gender, AgeGroup? ageGroup)
         {
-            return GetLeaderboardInternal(segmentId, page, perPage);
+            return GetLeaderboardInternal(segmentId, page, perPage, gender, ageGroup);
         }
 
-        private async Task<Leaderboard> GetLeaderboardInternal(int segmentId, int? page, int? perPage)
+        private async Task<Leaderboard> GetLeaderboardInternal(int segmentId, int? page, int? perPage, Gender? gender, AgeGroup? ageGroup, bool following = false)
         {
             var request = new RestRequest(EndPoint + "/" + segmentId + "/leaderboard", HttpMethod.Get);
             if (page != null)
                 request.AddParameter("page", page);
             if (perPage != null)
                 request.AddParameter("per_page", perPage);
+            request.AddParameter("following", following ? "true" : "false");
+            if (gender.HasValue)
+                request.AddParameter("gender", gender.Value.ToStravaString());
+            if (ageGroup.HasValue)
+                request.AddParameter("age_group", ageGroup.Value.ToStravaString());
             var response = await _client.RestClient.Execute<Leaderboard>(request);
             return response.Data;
         }
