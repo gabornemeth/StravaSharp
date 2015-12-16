@@ -38,7 +38,7 @@ namespace StravaSharp
             }
         }
 
-        public RestSharp.Portable.Authenticators.IAuthenticator RestSharpAuthenticator
+        public RestSharp.Portable.IAuthenticator RestSharpAuthenticator
         {
             get
             {

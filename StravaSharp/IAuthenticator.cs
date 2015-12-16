@@ -20,6 +20,6 @@ namespace StravaSharp
         /// </summary>
         Task Authenticate();
 
-        RestSharp.Portable.Authenticators.IAuthenticator RestSharpAuthenticator { get; }
+        RestSharp.Portable.IAuthenticator RestSharpAuthenticator { get; }
     }
 }

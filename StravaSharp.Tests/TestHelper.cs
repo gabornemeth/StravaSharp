@@ -20,7 +20,13 @@ namespace StravaSharp.Tests
         public static System.IO.Stream GetResourceStream(string resourceName)
         {
             var asm = typeof(TestHelper).GetTypeInfo().Assembly;
-            return asm.GetManifestResourceStream("StravaSharp.Tests." + resourceName);
+            foreach (var name in asm.GetManifestResourceNames())
+            {
+                if (name.Contains(resourceName))
+                    return asm.GetManifestResourceStream(name);
+            }
+
+            return null;
         }
 
         public static Client CreateStravaClient()

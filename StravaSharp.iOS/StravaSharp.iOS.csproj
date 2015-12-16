@@ -35,19 +35,23 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="RestSharp.Portable">
-      <HintPath>..\packages\FubarCoder.RestSharp.Portable.2.4.4\lib\Xamarin.iOS10\RestSharp.Portable.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="RestSharp.Portable.OAuth">
-      <HintPath>..\packages\FubarCoder.RestSharp.Portable.OAuth.2.4.4\lib\Xamarin.iOS10\RestSharp.Portable.OAuth.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp.Portable.OAuth2">
-      <HintPath>..\packages\FubarCoder.RestSharp.Portable.OAuth2.2.4.4\lib\Xamarin.iOS10\RestSharp.Portable.OAuth2.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.Portable.Core">
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.Core.3.1.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\RestSharp.Portable.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="RestSharp.Portable.OAuth">
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.OAuth.3.1.0\lib\Xamarin.iOS10\RestSharp.Portable.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.Portable.OAuth2">
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.OAuth2.3.1.0\lib\Xamarin.iOS10\RestSharp.Portable.OAuth2.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.Portable.HttpClient">
+      <HintPath>..\packages\FubarCoder.RestSharp.Portable.HttpClient.3.1.0\lib\Xamarin.iOS10\RestSharp.Portable.HttpClient.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

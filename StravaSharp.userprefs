@@ -1,12 +1,37 @@
-﻿<Properties StartupItem="StravaSharp.NET45/StravaSharp.NET45.csproj">
+﻿<Properties StartupItem="StravaSharp.NET45/StravaSharp.NET45.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="StravaSharp.iOS/Properties/AssemblyInfo.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="StravaSharp.Tests/TestHelper.cs">
     <Files>
-      <File FileName="StravaSharp.iOS/Properties/AssemblyInfo.cs" Line="9" Column="1" />
+      <File FileName="StravaSharp/Client.cs" Line="10" Column="26" />
+      <File FileName="StravaSharp.Tests/Settings.cs" Line="23" Column="65" />
+      <File FileName="StravaSharp/ActivityClient.cs" Line="70" Column="1" />
+      <File FileName="StravaSharp.Tests/UploadTest.cs" Line="21" Column="47" />
+      <File FileName="StravaSharp.Tests/TestHelper.cs" Line="20" Column="9" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State name="__root__">
+          <Node name="StravaSharp" expanded="True">
+            <Node name="StravaSharp.Tests.NET45" expanded="True">
+              <Node name="StravaSharp" expanded="True">
+                <Node name="Tests" expanded="True">
+                  <Node name="UploadTest" expanded="True">
+                    <Node name="UploadTest(&quot;2011-08-10-17-51-31.fit&quot;)" expanded="True">
+                      <Node name="UploadAndDelete" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/gabor/Projects/StravaSharp/StravaSharp/ActivityClient.cs" line="70" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

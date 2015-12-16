@@ -20,6 +20,7 @@ namespace StravaSharp.Tests
             var client = TestHelper.CreateStravaClient();
             using (var stream = TestHelper.GetResourceStream(_fileName))
             {
+                Assert.NotNull(stream);
                 // upload the activity
                 var result = await client.Activities.Upload(ActivityType.Ride, DataType.Fit, stream, _fileName);
                 Assert.IsNotNull(result);

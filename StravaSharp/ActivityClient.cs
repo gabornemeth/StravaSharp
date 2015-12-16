@@ -19,7 +19,7 @@ namespace StravaSharp
 
         public async Task<Activity> Get(int activityId, bool includeAllEfforts = true)
         {
-            var request = new RestRequest(EndPoint + "/{id}", HttpMethod.Get);
+            var request = new RestRequest(EndPoint + "/{id}", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
             var response = await _client.RestClient.Execute<Activity>(request);
             return response.Data;
@@ -63,7 +63,7 @@ namespace StravaSharp
 
         public async Task<UploadStatus> Upload(ActivityType activityType, DataType dataType, System.IO.Stream input, string fileName)
         {
-            var request = new RestRequest("/api/v3/uploads?data_type={data_type}&activity_type={activity_type}", HttpMethod.Post);
+            var request = new RestRequest("/api/v3/uploads?data_type={data_type}&activity_type={activity_type}", Method.POST);
             request.ContentCollectionMode = ContentCollectionMode.MultiPart;
             request.AddParameter("data_type", "fit", ParameterType.UrlSegment);
             request.AddParameter("activity_type", EnumHelper.ToString(activityType), ParameterType.UrlSegment);
@@ -74,7 +74,7 @@ namespace StravaSharp
 
         public async Task<UploadStatus> GetUploadStatus(int id)
         {
-            var request = new RestRequest("/api/v3/uploads/{id}", HttpMethod.Get);
+            var request = new RestRequest("/api/v3/uploads/{id}", Method.GET);
             request.AddParameter("id", id, ParameterType.UrlSegment);
             var response = await _client.RestClient.Execute<UploadStatus>(request);
             return response.Data;
@@ -87,7 +87,7 @@ namespace StravaSharp
 
         public async Task Delete(int id)
         {
-            var request = new RestRequest(EndPoint + "/{id}", HttpMethod.Delete);
+            var request = new RestRequest(EndPoint + "/{id}", Method.DELETE);
             request.AddParameter("id", id, ParameterType.UrlSegment);
             await _client.RestClient.Execute(request);
         }

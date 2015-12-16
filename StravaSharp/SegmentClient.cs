@@ -19,7 +19,7 @@ namespace StravaSharp
 
         public async Task<Segment> Get(int segmentId)
         {
-            var request = new RestRequest(EndPoint + "/{id}", HttpMethod.Get);
+            var request = new RestRequest(EndPoint + "/{id}", Method.GET);
             request.AddParameter("id", segmentId, ParameterType.UrlSegment);
             var response = await _client.RestClient.Execute<Segment>(request);
             return response.Data;
@@ -27,7 +27,7 @@ namespace StravaSharp
 
         public async Task<List<SegmentSummary>> Explore(LatLng southWest, LatLng northEast, ActivityType activityType = ActivityType.Ride)
         {
-            var request = new RestRequest(EndPoint + "/explore", HttpMethod.Get);
+            var request = new RestRequest(EndPoint + "/explore", Method.GET);
             request.AddParameter("bounds",
                 string.Format("{0},{1},{2},{3}", southWest.Latitude.ToString(CultureInfo.InvariantCulture), southWest.Longitude.ToString(CultureInfo.InvariantCulture),
                 northEast.Latitude.ToString(CultureInfo.InvariantCulture), northEast.Longitude.ToString(CultureInfo.InvariantCulture)));
@@ -77,7 +77,7 @@ namespace StravaSharp
 
         private async Task<IEnumerable<SegmentEffort>> GetEfforts(int segmentId, int? athleteId, DateTime? startDateLocal, DateTime? endDateLocal, int? page, int? perPage)
         {
-            var request = new RestRequest(EndPoint + "/" + segmentId + "/all_efforts", HttpMethod.Get);
+            var request = new RestRequest(EndPoint + "/" + segmentId + "/all_efforts", Method.GET);
             if (athleteId != null)
                 request.AddParameter("athlete_id", athleteId.Value);
             if (startDateLocal != null)
@@ -110,7 +110,7 @@ namespace StravaSharp
 
         private async Task<Leaderboard> GetLeaderboardInternal(int segmentId, int? page, int? perPage, Gender? gender, AgeGroup? ageGroup, bool following = false)
         {
-            var request = new RestRequest(EndPoint + "/" + segmentId + "/leaderboard", HttpMethod.Get);
+            var request = new RestRequest(EndPoint + "/" + segmentId + "/leaderboard", Method.GET);
             if (page != null)
                 request.AddParameter("page", page);
             if (perPage != null)

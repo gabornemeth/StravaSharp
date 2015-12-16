@@ -20,7 +20,7 @@ namespace StravaSharp.Tests
         {
             get
             {
-                return "use your access token";
+                return "392b0ea3b6e8eafa73519b8c51a719b73c48af85";
             }
         }
     }
