@@ -19,14 +19,6 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetActivities()
         {
-            //var config = new RestSharp.Portable.Authenticators.OAuth2.Configuration.RuntimeClientConfiguration();
-            //config.IsEnabled = false;
-            //config.ClientId = clientId;
-            //config.ClientSecret = clientSecret;
-            //config.RedirectUri = redirectUrl.AbsoluteUri;
-            //config.Scope = scope;
-            //var client = new StravaClient(new RequestFactory(), config);
-
             var client = TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
             Assert.True(activities.Count > 0);
@@ -47,6 +39,35 @@ namespace StravaSharp.Tests
             var client = TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities(DateTime.Now, DateTime.Now.AddYears(-10));
             Assert.True(activities.Count > 0);
+        }
+
+        [Test]
+        public async Task GetLaps()
+        {
+            var client = TestHelper.CreateStravaClient();
+            var activities = await client.Activities.GetAthleteActivities();
+            Assert.True(activities.Count > 0);
+            foreach (var activity in activities)
+            {
+                var laps = await client.Activities.GetLaps(activity.Id);
+                Assert.True(laps.Count > 0);
+            }
+        }
+
+        [Test]
+        public async Task GetRelatedActivities()
+        {
+            var client = TestHelper.CreateStravaClient();
+            var activities = await client.Activities.GetAthleteActivities();
+            Assert.True(activities.Count > 0);
+            foreach (var activity in activities)
+            {
+                if (activity.AthleteCount > 1)
+                {
+                    var relatedActivities = await client.Activities.GetRelatedActivities(activity.Id, 1, 1);
+                    Assert.AreEqual(1, relatedActivities.Count);
+                }
+            }
         }
 
         [Test]

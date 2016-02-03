@@ -80,16 +80,135 @@ namespace StravaSharp
             return response.Data;
         }
 
+        /// <summary>
+        /// Delete an activity.
+        /// </summary>
+        /// <param name="activity">Activity to delete.</param>
+        /// <returns></returns>
         public Task Delete(Activity activity)
         {
             return Delete(activity.Id);
         }
 
+        /// <summary>
+        /// Delete an activity.
+        /// </summary>
+        /// <param name="id">Identifier of the activity.</param>
+        /// <returns></returns>
         public async Task Delete(int id)
         {
             var request = new RestRequest(EndPoint + "/{id}", Method.DELETE);
             request.AddParameter("id", id, ParameterType.UrlSegment);
             await _client.RestClient.Execute(request);
+        }
+
+        /// <summary>
+        /// List the recent activities performed by the current athlete and those they are following.
+        /// </summary>
+        /// <param name="page">Page number (optional).</param>
+        /// <param name="itemsPerPage">Number of items per page (optional).</param>
+        /// <returns>List of activities.</returns>
+        public Task<List<ActivitySummary>> GetFollowingActivities(int page = 0, int itemsPerPage = 0)
+        {
+            return GetAthleteActivities(DateTime.MinValue, DateTime.MinValue, page, itemsPerPage);
+        }
+
+        /// <summary>
+        /// List the recent activities performed by the current athlete and those they are following.
+        /// </summary>
+        /// <param name="before">Result will start with activities whose start_date is before this value.</param>
+        /// <returns>List of activities.</returns>
+        public Task<List<ActivitySummary>> GetFollowingActivities(DateTime before)
+        {
+            return GetFollowingActivities(before, 0, 0);
+        }
+
+        /// <summary>
+        /// List the recent activities performed by the current athlete and those they are following.
+        /// </summary>
+        /// <param name="before">Result will start with activities whose start_date is before this value.</param>
+        /// <param name="page">Page number (optional).</param>
+        /// <param name="itemsPerPage">Number of items per page (optional).</param>
+        /// <returns>List of activities.</returns>
+        private async Task<List<ActivitySummary>> GetFollowingActivities(DateTime before, int page, int itemsPerPage)
+        {
+            var request = new RestRequest("/api/v3/activities/following");
+            if (before != DateTime.MinValue)
+                request.AddQueryParameter("before", before.GetSecondsSinceUnixEpoch());
+            if (page != 0)
+                request.AddParameter("page", page);
+            if (itemsPerPage != 0)
+                request.AddParameter("per_page", itemsPerPage);
+            var response = await _client.RestClient.Execute<List<ActivitySummary>>(request);
+
+            return response.Data;
+        }
+
+        /// <summary>
+        /// List the laps of an activity.
+        /// </summary>
+        /// <param name="activityId">Identifier of the activity.</param>
+        /// <returns>List of laps.</returns>
+        public async Task<List<ActivitySummary>> GetLaps(int activityId)
+        {
+            var request = new RestRequest("/api/v3/activities/{id}/laps", Method.GET);
+            request.AddParameter("id", activityId, ParameterType.UrlSegment);
+            var response = await _client.RestClient.Execute<List<ActivitySummary>>(request);
+            return response.Data;
+        }
+
+        /// <summary>
+        /// Returns the activities that were matched as “with this group”. The number equals activity.athlete_count-1. Pagination is supported.
+        /// </summary>
+        /// <param name="activityId"></param>
+        /// <param name="page"></param>
+        /// <param name="itemsPerPage"></param>
+        /// <returns></returns>
+        public async Task<List<ActivitySummary>> GetRelatedActivities(int activityId, int page = 0, int itemsPerPage = 0)
+        {
+            var request = new RestRequest("/api/v3/activities/{id}/related", Method.GET);
+            request.AddParameter("id", activityId, ParameterType.UrlSegment);
+            if (page != 0)
+                request.AddParameter("page", page);
+            if (itemsPerPage != 0)
+                request.AddParameter("per_page", itemsPerPage);
+            var response = await _client.RestClient.Execute<List<ActivitySummary>>(request);
+
+            return response.Data;
+        }
+
+
+        public async Task<List<Comment>> GetComments(int activityId, int page = 0, int itemsPerPage = 0)
+        {
+            var request = new RestRequest("/api/v3/activities/{id}/comments", Method.GET);
+            request.AddParameter("id", activityId, ParameterType.UrlSegment);
+            if (page != 0)
+                request.AddParameter("page", page);
+            if (itemsPerPage != 0)
+                request.AddParameter("per_page", itemsPerPage);
+            var response = await _client.RestClient.Execute<List<Comment>>(request);
+
+            return response.Data;
+        }
+
+        /// <summary>
+        /// List activity kudoers
+        /// </summary>
+        /// <param name="activityId">Identifier of the activity.</param>
+        /// <param name="page"></param>
+        /// <param name="itemsPerPage"></param>
+        /// <returns></returns>
+        public async Task<List<AthleteSummary>> GetKudoers(int activityId, int page = 0, int itemsPerPage = 0)
+        {
+            var request = new RestRequest("/api/v3/activities/{id}/kudos", Method.GET);
+            request.AddParameter("id", activityId, ParameterType.UrlSegment);
+            if (page != 0)
+                request.AddParameter("page", page);
+            if (itemsPerPage != 0)
+                request.AddParameter("per_page", itemsPerPage);
+            var response = await _client.RestClient.Execute<List<AthleteSummary>>(request);
+
+            return response.Data;
         }
 
     }

@@ -11,12 +11,14 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Activity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ActivityClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Comment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Athlete.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AthleteClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Leaderboard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SegmentEffort.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />

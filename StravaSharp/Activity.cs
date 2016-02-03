@@ -136,16 +136,27 @@ namespace StravaSharp
         public LatLng StartLatLng { get; internal set; }
         [JsonProperty("end_ltlng")]
         public LatLng EndLatLng { get; internal set; }
-        [JsonProperty("location_city")]
-        public string LocationCity { get; internal set; }
-        [JsonProperty("location_state")]
-        public string LocationState { get; internal set; }
-        [JsonProperty("location_country")]
-        public string LocationCountry { get; internal set; }
+        
+        // DEPRECATED ATTRIBUTES
+        //[JsonProperty("location_city")]
+        //public string LocationCity { get; internal set; }
+        //[JsonProperty("location_state")]
+        //public string LocationState { get; internal set; }
+        //[JsonProperty("location_country")]
+        //public string LocationCountry { get; internal set; }
+        
         [JsonProperty("achievement_count")]
         public int AchievementCount { get; internal set; }
+
+        /// <summary>
+        /// Number of kudos.
+        /// </summary>
         [JsonProperty("kudos_count")]
         public int KudosCount { get; internal set; }
+
+        /// <summary>
+        /// Number of commen.ts
+        /// </summary>
         [JsonProperty("comment_count")]
         public int CommentCount { get; internal set; }
         
@@ -156,18 +167,23 @@ namespace StravaSharp
         public int AthleteCount { get; internal set; }
         
         /// <summary>
-        /// number of Instagram photos
+        /// Number of Instagram photos
         /// </summary>
         [JsonProperty("photo_count")]
         public int PhotoCount { get; internal set; }
+        
         /// <summary>
-        /// total number of photos(Instagram and Strava)
+        /// Total number of photos(Instagram and Strava)
         /// </summary>
         [JsonProperty("total_photo_count")]
         public int TotalPhotoCount { get; internal set; }
         
-        //map: object
-        // detailed representation of the route
+        /// <summary>
+        /// detailed representation of the route
+        /// </summary>
+        [JsonProperty("map")]
+        public Map Map { get; internal set; }
+
         [JsonProperty("trainer")]
         public bool Trainer { get; internal set; }
         [JsonProperty("commute")]
@@ -178,10 +194,12 @@ namespace StravaSharp
         public bool Private { get; internal set; }
         [JsonProperty("flagged")]
         public bool Flagged { get; internal set; }
+        
         //workout_type: integer 
         // for runs only, 0 -> ‘default’, 1 -> ‘race’, 2 -> ‘long run’, 3 -> ‘intervals’ 
         //gear_id: string
         // corresponds to a bike or pair of shoes included in athlete details
+        
         /// <summary>
         /// Average speed [meters per second]
         /// </summary>
@@ -209,6 +227,12 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("average_watts")]
         public float AveragePower { get; internal set; }
+
+        /// <summary>
+        /// Maximum watts (rides only)
+        /// </summary>
+        [JsonProperty("max_watts")]
+        public int MaxPower { get; internal set; }
 
         /// <summary>
         /// weighted_average_watts: integer rides with power meter data only

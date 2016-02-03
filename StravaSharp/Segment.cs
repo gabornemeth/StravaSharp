@@ -118,10 +118,4 @@ namespace StravaSharp
         [JsonProperty("star_count")]
         public int StarCount { get; internal set; }
     }
-
-    public class Map : StravaObject<string>
-    {
-        [JsonProperty("polyline")]
-        public string Polyline { get; internal set; }
-    }
 }
