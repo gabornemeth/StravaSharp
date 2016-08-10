@@ -65,9 +65,10 @@ namespace StravaSharp
 
         public async Task<UploadStatus> Upload(ActivityType activityType, DataType dataType, System.IO.Stream input, string fileName, bool @private = false, bool commute = false)
         {
+            // parameters should be GetOrPost as it should be with a POST request, but does not work that way
             var request = new RestRequest("/api/v3/uploads?data_type={data_type}&activity_type={activity_type}&private={private}&commute={commute}", Method.POST);
             request.ContentCollectionMode = ContentCollectionMode.MultiPart;
-            request.AddParameter("data_type", "fit", ParameterType.UrlSegment);
+            request.AddParameter("data_type", dataType, ParameterType.UrlSegment);
             request.AddParameter("activity_type", EnumHelper.ToString(activityType), ParameterType.UrlSegment);
             request.AddParameter("private", @private ? 1 : 0, ParameterType.UrlSegment);
             request.AddParameter("commute", commute ? 1 : 0, ParameterType.UrlSegment);

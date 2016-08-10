@@ -112,6 +112,7 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("elapsed_time")]
         public int ElapsedTime { get; internal set; }
+
         /// <summary>
         /// meters
         /// </summary>
@@ -130,21 +131,16 @@ namespace StravaSharp
         [JsonProperty("start_date_local")]
         [JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime StartDateLocal { get; internal set; }
+
         [JsonProperty("timezone")]
         public string TimeZone { get; internal set; }
+
         [JsonProperty("start_latlng")]
         public LatLng StartLatLng { get; internal set; }
+
         [JsonProperty("end_ltlng")]
         public LatLng EndLatLng { get; internal set; }
-        
-        // DEPRECATED ATTRIBUTES
-        //[JsonProperty("location_city")]
-        //public string LocationCity { get; internal set; }
-        //[JsonProperty("location_state")]
-        //public string LocationState { get; internal set; }
-        //[JsonProperty("location_country")]
-        //public string LocationCountry { get; internal set; }
-        
+
         [JsonProperty("achievement_count")]
         public int AchievementCount { get; internal set; }
 
@@ -159,13 +155,13 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("comment_count")]
         public int CommentCount { get; internal set; }
-        
-        /// <summary>
+
+    /// <summary>
         /// number of athletes taking part in this “group activity”. >= 1 
         /// </summary>
         [JsonProperty("athlete_count")]
         public int AthleteCount { get; internal set; }
-        
+
         /// <summary>
         /// Number of Instagram photos
         /// </summary>

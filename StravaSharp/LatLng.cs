@@ -16,7 +16,7 @@ namespace StravaSharp
     /// Geographical position
     /// </summary>
     [JsonConverter(typeof(LatLngConverter))]
-    public struct LatLng
+    public class LatLng
     {
         /// <summary>
         /// WGS84 latitude
@@ -42,20 +42,15 @@ namespace StravaSharp
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var latlng = new LatLng();
-            var idx = 0;
-            while (reader.TokenType != JsonToken.EndArray)
+            if (reader.TokenType == JsonToken.Null)
+                return null;
+
+            var result = serializer.Deserialize<float[]>(reader);
+            return new LatLng
             {
-                reader.Read();
-                if (reader.TokenType == JsonToken.Float)
-                {
-                    if (idx++ == 0)
-                        latlng.Latitude = Convert.ToSingle(reader.Value);
-                    else
-                        latlng.Longitude = Convert.ToSingle(reader.Value);
-                }
-            }
-            return latlng;
+                Latitude = result[0],
+                Longitude = result[1]
+            };
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

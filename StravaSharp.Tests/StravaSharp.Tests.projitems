@@ -19,4 +19,7 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Files\2011-08-10-17-51-31.fit" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Files\activities.json" />
+  </ItemGroup>
 </Project>

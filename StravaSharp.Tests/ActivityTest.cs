@@ -7,8 +7,11 @@
 //    Copyright (C) 2015, Gabor Nemeth
 //
 
+using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
@@ -84,6 +87,19 @@ namespace StravaSharp.Tests
             {
                 Assert.NotNull(stream);
                 Assert.NotNull(stream.Data);
+            }
+        }
+
+        [Test]
+        public void ParseJson()
+        {
+            var serializer = new JsonSerializer() { ObjectCreationHandling = ObjectCreationHandling.Reuse };
+            using (var stream = TestHelper.GetResourceStream("activities.json"))
+            {
+                var reader = new JsonTextReader(new StreamReader(stream));
+                //var result = serializer.Deserialize(reader);
+                var result = serializer.Deserialize<List<ActivitySummary>>(reader);
+                Assert.NotNull(result);
             }
         }
     }
