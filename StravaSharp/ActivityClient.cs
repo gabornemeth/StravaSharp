@@ -4,6 +4,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using RestSharp.Portable;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace StravaSharp
 {
@@ -61,12 +63,14 @@ namespace StravaSharp
             return response.Data;
         }
 
-        public async Task<UploadStatus> Upload(ActivityType activityType, DataType dataType, System.IO.Stream input, string fileName)
+        public async Task<UploadStatus> Upload(ActivityType activityType, DataType dataType, System.IO.Stream input, string fileName, bool @private = false, bool commute = false)
         {
-            var request = new RestRequest("/api/v3/uploads?data_type={data_type}&activity_type={activity_type}", Method.POST);
+            var request = new RestRequest("/api/v3/uploads?data_type={data_type}&activity_type={activity_type}&private={private}&commute={commute}", Method.POST);
             request.ContentCollectionMode = ContentCollectionMode.MultiPart;
             request.AddParameter("data_type", "fit", ParameterType.UrlSegment);
             request.AddParameter("activity_type", EnumHelper.ToString(activityType), ParameterType.UrlSegment);
+            request.AddParameter("private", @private ? 1 : 0, ParameterType.UrlSegment);
+            request.AddParameter("commute", commute ? 1 : 0, ParameterType.UrlSegment);
             request.AddFile("file", input, Uri.EscapeDataString(fileName));
             var response = await _client.RestClient.Execute<UploadStatus>(request);
             return response.Data;
