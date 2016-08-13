@@ -22,7 +22,7 @@ namespace StravaSharp.Tests
             {
                 Assert.NotNull(stream);
                 // upload the activity
-                var result = await client.Activities.Upload(ActivityType.Ride, DataType.Fit, stream, _fileName);
+                var result = await client.Activities.Upload(ActivityType.Ride, DataType.Fit, stream, _fileName, null, null, true);
                 Assert.IsNotNull(result);
                 Assert.IsNullOrEmpty(result.Error);
                 // wait till upload has completed
