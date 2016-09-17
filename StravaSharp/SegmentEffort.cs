@@ -78,11 +78,13 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("average_watts")]
         public float AvgWatts { get; internal set; }
+        
         /// <summary>
-        /// Average watts from device - rides only
+        /// True if watts from a real power meter
         /// </summary>
         [JsonProperty("device_watts")]
-        public float DeviceWatts { get; internal set; }
+        public bool DeviceWatts { get; internal set; }
+
         /// <summary>
         /// BPM, missing if not provided
         /// </summary>

@@ -1,5 +1,6 @@
 ﻿using RestSharp.Portable;
 using System;
+using System.Threading.Tasks;
 
 namespace StravaSharp
 {
@@ -46,9 +47,10 @@ namespace StravaSharp
             }
         }
 
-        public async System.Threading.Tasks.Task Authenticate()
+        public System.Threading.Tasks.Task Authenticate()
         {
             // already authenticated - got the access token
+            return Task.Run(() => { });
         }
     }
 }

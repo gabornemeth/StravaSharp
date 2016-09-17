@@ -31,6 +31,11 @@ namespace StravaSharp
         {
             return Latitude.Equals(0.0f) && Longitude.Equals(0.0f);
         }
+
+        public bool Equals(LatLng latLng)
+        {
+            return latLng.Latitude == Latitude && latLng.Longitude == Longitude;
+        }
     }
 
     internal class LatLngConverter : JsonConverter

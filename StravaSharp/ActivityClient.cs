@@ -19,7 +19,7 @@ namespace StravaSharp
             _client = client;
         }
 
-        public async Task<Activity> Get(int activityId, bool includeAllEfforts = true)
+        public async Task<Activity> Get(long activityId, bool includeAllEfforts = true)
         {
             var request = new RestRequest(EndPoint + "/{id}", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
@@ -111,7 +111,7 @@ namespace StravaSharp
         /// </summary>
         /// <param name="id">Identifier of the activity.</param>
         /// <returns></returns>
-        public async Task Delete(int id)
+        public async Task Delete(long id)
         {
             var request = new RestRequest(EndPoint + "/{id}", Method.DELETE);
             request.AddParameter("id", id, ParameterType.UrlSegment);
@@ -165,7 +165,7 @@ namespace StravaSharp
         /// </summary>
         /// <param name="activityId">Identifier of the activity.</param>
         /// <returns>List of laps.</returns>
-        public async Task<List<ActivitySummary>> GetLaps(int activityId)
+        public async Task<List<ActivitySummary>> GetLaps(long activityId)
         {
             var request = new RestRequest("/api/v3/activities/{id}/laps", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
@@ -180,7 +180,7 @@ namespace StravaSharp
         /// <param name="page"></param>
         /// <param name="itemsPerPage"></param>
         /// <returns></returns>
-        public async Task<List<ActivitySummary>> GetRelatedActivities(int activityId, int page = 0, int itemsPerPage = 0)
+        public async Task<List<ActivitySummary>> GetRelatedActivities(long activityId, int page = 0, int itemsPerPage = 0)
         {
             var request = new RestRequest("/api/v3/activities/{id}/related", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
@@ -194,7 +194,7 @@ namespace StravaSharp
         }
 
 
-        public async Task<List<Comment>> GetComments(int activityId, int page = 0, int itemsPerPage = 0)
+        public async Task<List<Comment>> GetComments(long activityId, int page = 0, int itemsPerPage = 0)
         {
             var request = new RestRequest("/api/v3/activities/{id}/comments", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
@@ -214,7 +214,7 @@ namespace StravaSharp
         /// <param name="page"></param>
         /// <param name="itemsPerPage"></param>
         /// <returns></returns>
-        public async Task<List<AthleteSummary>> GetKudoers(int activityId, int page = 0, int itemsPerPage = 0)
+        public async Task<List<AthleteSummary>> GetKudoers(long activityId, int page = 0, int itemsPerPage = 0)
         {
             var request = new RestRequest("/api/v3/activities/{id}/kudos", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);

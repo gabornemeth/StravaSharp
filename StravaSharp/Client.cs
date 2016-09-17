@@ -44,7 +44,7 @@ namespace StravaSharp
         /// </summary>
         public SegmentClient Segments { get; private set; }
 
-        public async Task<List<Stream>> GetActivityStreams(int activityId, params StreamType[] types)
+        public async Task<List<Stream>> GetActivityStreams(long activityId, params StreamType[] types)
         {
             var request = new RestRequest("/api/v3/activities/{id}/streams/{types}", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);

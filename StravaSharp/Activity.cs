@@ -73,7 +73,7 @@ namespace StravaSharp
     /// <summary>
     /// Simple activity representation
     /// </summary>
-    public class ActivityMeta : StravaObject<int>
+    public class ActivityMeta : StravaObject<long>
     {
     }
 
