@@ -74,23 +74,6 @@ namespace StravaSharp.Tests
         }
 
         [Test]
-        public async Task GetStream()
-        {
-            var client = TestHelper.CreateStravaClient();
-            var activities = await client.Activities.GetAthleteActivities();
-            Assert.True(activities.Count > 0);
-
-            var streams = await client.GetActivityStreams(activities[0].Id, StreamType.HeartRate, StreamType.LatLng);
-            Assert.NotNull(streams);
-            Assert.True(streams.Count > 0);
-            foreach (var stream in streams)
-            {
-                Assert.NotNull(stream);
-                Assert.NotNull(stream.Data);
-            }
-        }
-
-        [Test]
         public void ParseJson()
         {
             var serializer = new JsonSerializer() { ObjectCreationHandling = ObjectCreationHandling.Reuse };
@@ -100,6 +83,23 @@ namespace StravaSharp.Tests
                 //var result = serializer.Deserialize(reader);
                 var result = serializer.Deserialize<List<ActivitySummary>>(reader);
                 Assert.NotNull(result);
+            }
+        }
+
+        [Test]
+        public async Task GetActivityStream()
+        {
+            var client = TestHelper.CreateStravaClient();
+            var activities = await client.Activities.GetAthleteActivities();
+            Assert.True(activities.Count > 0);
+
+            var streams = await client.Activities.GetActivityStreams(activities[0].Id, StreamType.HeartRate, StreamType.LatLng);
+            Assert.NotNull(streams);
+            Assert.True(streams.Count > 0);
+            foreach (var stream in streams)
+            {
+                Assert.NotNull(stream);
+                Assert.NotNull(stream.Data);
             }
         }
     }

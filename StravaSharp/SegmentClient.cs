@@ -123,5 +123,34 @@ namespace StravaSharp
             var response = await _client.RestClient.Execute<Leaderboard>(request);
             return response.Data;
         }
+
+        public Task<List<Stream>> GetSegmentStreams(SegmentSummary segment, params StreamType[] types)
+        {
+            return GetSegmentStreams(segment.Id, types);
+        }
+
+        public async Task<List<Stream>> GetSegmentStreams(int segmentId, params StreamType[] types)
+        {
+            var request = new RestRequest("/api/v3/segments/{id}/streams/{types}", Method.GET);
+            request.AddParameter("id", segmentId, ParameterType.UrlSegment);
+            request.AddParameter("types", EnumHelper.ToString<StreamType>(types), ParameterType.UrlSegment);
+            var response = await _client.RestClient.Execute<List<Stream>>(request);
+            return response.Data;
+        }
+
+        public Task<List<Stream>> GetEffortStreams(SegmentEffort effort, params StreamType[] types)
+        {
+            return GetEffortStreams(effort.Id, types);
+        }
+
+        public async Task<List<Stream>> GetEffortStreams(long segmentEffortId, params StreamType[] types)
+        {
+            var request = new RestRequest("/api/v3/segment_efforts/{id}/streams/{types}", Method.GET);
+            request.AddParameter("id", segmentEffortId, ParameterType.UrlSegment);
+            request.AddParameter("types", EnumHelper.ToString<StreamType>(types), ParameterType.UrlSegment);
+            var response = await _client.RestClient.Execute<List<Stream>>(request);
+            return response.Data;
+        }
+
     }
 }

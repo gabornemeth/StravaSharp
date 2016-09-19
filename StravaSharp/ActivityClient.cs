@@ -227,5 +227,18 @@ namespace StravaSharp
             return response.Data;
         }
 
+        public Task<List<Stream>> GetActivityStreams(ActivityMeta activity, params StreamType[] types)
+        {
+            return GetActivityStreams(activity.Id, types);
+        }
+
+        public async Task<List<Stream>> GetActivityStreams(long activityId, params StreamType[] types)
+        {
+            var request = new RestRequest("/api/v3/activities/{id}/streams/{types}", Method.GET);
+            request.AddParameter("id", activityId, ParameterType.UrlSegment);
+            request.AddParameter("types", EnumHelper.ToString<StreamType>(types), ParameterType.UrlSegment);
+            var response = await _client.RestClient.Execute<List<Stream>>(request);
+            return response.Data;
+        }
     }
 }

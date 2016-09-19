@@ -11,6 +11,8 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Activity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ActivityClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Club.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ClubClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Comment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Athlete.cs" />

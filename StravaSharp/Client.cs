@@ -32,6 +32,7 @@ namespace StravaSharp
             Athletes = new AthleteClient(this);
             Activities = new ActivityClient(this);
             Segments = new SegmentClient(this);
+            Clubs = new ClubClient(this);
         }
 
         public AthleteClient Athletes { get; private set; }
@@ -43,14 +44,9 @@ namespace StravaSharp
         /// Segments endpoint
         /// </summary>
         public SegmentClient Segments { get; private set; }
-
-        public async Task<List<Stream>> GetActivityStreams(long activityId, params StreamType[] types)
-        {
-            var request = new RestRequest("/api/v3/activities/{id}/streams/{types}", Method.GET);
-            request.AddParameter("id", activityId, ParameterType.UrlSegment);
-            request.AddParameter("types", EnumHelper.ToString<StreamType>(types), ParameterType.UrlSegment);
-            var response = await _restClient.Execute<List<Stream>>(request);
-            return response.Data;
-        }
+        /// <summary>
+        /// Clubs endpoint
+        /// </summary>
+        public ClubClient Clubs { get; private set; }
     }
 }

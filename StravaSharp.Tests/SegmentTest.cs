@@ -6,7 +6,7 @@
 //
 //    Copyright (C) 2015, Gabor Nemeth
 //
-        
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,5 +89,44 @@ namespace StravaSharp.Tests
             //}
         }
 
+        [Test]
+        public async Task GetSegmentStreams()
+        {
+            var segments = await RetrieveSegments();
+            var segment = segments[0];
+
+            var streams = await _client.Segments.GetSegmentStreams(segment, StreamType.Distance, StreamType.LatLng);
+            Assert.NotNull(streams);
+            Assert.True(streams.Count > 0);
+            foreach (var stream in streams)
+            {
+                Assert.NotNull(stream);
+                Assert.NotNull(stream.Data);
+            }
+        }
+
+        private async Task<SegmentEffort> RetrieveEffort(SegmentSummary segment)
+        {
+            var efforts = (await _client.Segments.GetEfforts(segment.Id, 1, 2)).ToArray();
+            Assert.AreEqual(2, efforts.Length);
+            return efforts[0];
+        }
+
+        [Test]
+        public async Task GetEffortStreams()
+        {
+            var segments = await RetrieveSegments();
+            var segment = segments[0];
+            var effort = await RetrieveEffort(segment);
+
+            var streams = await _client.Segments.GetEffortStreams(effort, StreamType.Distance, StreamType.LatLng);
+            Assert.NotNull(streams);
+            Assert.True(streams.Count > 0);
+            foreach (var stream in streams)
+            {
+                Assert.NotNull(stream);
+                Assert.NotNull(stream.Data);
+            }
+        }
     }
 }

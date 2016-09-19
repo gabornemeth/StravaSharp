@@ -6,7 +6,7 @@
 //
 //    Copyright (C) 2015, Gabor Nemeth
 //
-        
+
 using System;
 
 namespace StravaSharp.Tests
@@ -21,6 +21,18 @@ namespace StravaSharp.Tests
             get
             {
                 return "use your access token";
+            }
+        }
+
+        /// <summary>
+        /// Identifier of test club: Femat-ZKSE
+        /// </summary>
+        public static int ClubId
+        {
+            get
+            {
+                // return your test club id
+                return 0;
             }
         }
     }
