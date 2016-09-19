@@ -2,13 +2,51 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>StravaSharp</id>
-    <version>0.1.0</version>
+    <title>StravaSharp</title>
+    <version>0.2.0</version>
     <authors>Gabor Nemeth</authors>
+    <licenseUrl>https://github.com/gabornemeth/StravaSharp/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/gabornemeth/StravaSharp/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Portable .NET library for using Strava written in C#.</description>
+    <description>Strava client library.</description>
     <language>en-US</language>
+    <copyright>Copyright - Gabor Nemeth © 2015-2016</copyright>
+    <tags>strava</tags>
+    <releaseNotes>first release on Nuget</releaseNotes>
+    <dependencies>
+      <group targetFramework="portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10">
+        <dependency id="Newtonsoft.Json" version="8.0.3" />
+        <dependency id="FubarCoder.RestSharp.Portable.Core" version="3.3.0" />
+        <dependency id="FubarCoder.RestSharp.Portable.HttpClient" version="3.3.0" />
+        <dependency id="FubarCoder.RestSharp.Portable.OAuth" version="3.3.0" />
+        <dependency id="FubarCoder.RestSharp.Portable.OAuth2" version="3.3.0" />
+        <dependency id="Microsoft.Bcl" version="1.1.10" />
+        <dependency id="Microsoft.Bcl.Build" version="1.0.21" />
+        <dependency id="Microsoft.Net.Http" version="2.2.29" />
+        <dependency id="Portable.BouncyCastle-Signed" version="1.7.0.2" />
+      </group>
+      <group targetFramework="Xamarin.iOS10">
+        <dependency id="Newtonsoft.Json" version="8.0.3" />
+        <dependency id="FubarCoder.RestSharp.Portable.Core" version="3.3.0" />
+        <dependency id="FubarCoder.RestSharp.Portable.HttpClient" version="3.3.0" />
+        <dependency id="FubarCoder.RestSharp.Portable.OAuth" version="3.3.0" />
+        <dependency id="FubarCoder.RestSharp.Portable.OAuth2" version="3.3.0" />
+      </group>
+      <group targetFramework="MonoAndroid60">
+        <dependency id="Newtonsoft.Json" version="8.0.3" />
+        <dependency id="FubarCoder.RestSharp.Portable.Core" version="3.3.0" />
+        <dependency id="FubarCoder.RestSharp.Portable.HttpClient" version="3.3.0" />
+        <dependency id="FubarCoder.RestSharp.Portable.OAuth" version="3.3.0" />
+        <dependency id="FubarCoder.RestSharp.Portable.OAuth2" version="3.3.0" />
+      </group>
+    </dependencies>
   </metadata>
   <files>
-    <file src="StravaSharp.NET45\bin\Release\StravaSharp.dll" target="lib\net45\" />
+    <!-- Portable -->
+    <file src="StravaSharp.PCL/bin/Release/StravaSharp.dll" target="lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10" />
+    <!-- Xamarin.iOS -->
+    <file src="StravaSharp.iOS/bin/Release/StravaSharp.dll" target="lib/Xamarin.iOS10" />
+    <!-- Xamarin.Android -->
+    <file src="StravaSharp.Droid/bin/Release/StravaSharp.dll" target="lib/MonoAndroid60" />
   </files>
 </package>

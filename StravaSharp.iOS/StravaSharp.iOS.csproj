@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>StravaSharp.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>StravaSharp.iOS</AssemblyName>
+    <AssemblyName>StravaSharp</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Extrava_dev\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
