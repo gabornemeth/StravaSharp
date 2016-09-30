@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StravaSharp", "StravaSharp\StravaSharp.shproj", "{CAF2E2DC-C3E2-4FD9-A6DF-F55EFE8B8130}"
 EndProject
@@ -29,9 +29,9 @@ Global
 		StravaSharp\StravaSharp.projitems*{05fdaa13-140a-4de8-876b-80ec56f1624b}*SharedItemsImports = 4
 		StravaSharp\StravaSharp.projitems*{0a0c916a-0825-45bf-a14d-ad0053ca712c}*SharedItemsImports = 4
 		StravaSharp\StravaSharp.projitems*{18226de9-354a-4e42-b64d-f9f00260dcfe}*SharedItemsImports = 4
-		StravaSharp\StravaSharp.projitems*{caf2e2dc-c3e2-4fd9-a6df-f55efe8b8130}*SharedItemsImports = 13
 		StravaSharp\StravaSharp.projitems*{3316897e-1303-4815-a6cd-20d047997733}*SharedItemsImports = 4
 		StravaSharp.Tests\StravaSharp.Tests.projitems*{5e80b020-ea6b-4256-a092-aebd1fd9bcf7}*SharedItemsImports = 4
+		StravaSharp\StravaSharp.projitems*{caf2e2dc-c3e2-4fd9-a6df-f55efe8b8130}*SharedItemsImports = 13
 		StravaSharp.Tests\StravaSharp.Tests.projitems*{dcecdd8a-813e-47f1-937f-31b825e140bf}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +52,7 @@ Global
 		{0A0C916A-0825-45BF-A14D-AD0053CA712C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A0C916A-0825-45BF-A14D-AD0053CA712C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3316897E-1303-4815-A6CD-20D047997733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3316897E-1303-4815-A6CD-20D047997733}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3316897E-1303-4815-A6CD-20D047997733}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3316897E-1303-4815-A6CD-20D047997733}.Release|Any CPU.Build.0 = Release|Any CPU
 		{05FDAA13-140A-4DE8-876B-80EC56F1624B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
