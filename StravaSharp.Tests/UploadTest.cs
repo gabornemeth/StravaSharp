@@ -24,7 +24,7 @@ namespace StravaSharp.Tests
                 // upload the activity
                 var result = await client.Activities.Upload(ActivityType.Ride, DataType.Fit, stream, _fileName, null, null, true);
                 Assert.IsNotNull(result);
-                Assert.IsNullOrEmpty(result.Error);
+                Assert.True(string.IsNullOrEmpty(result.Error));
                 // wait till upload has completed
                 while (result.ActivityId == 0)
                 {

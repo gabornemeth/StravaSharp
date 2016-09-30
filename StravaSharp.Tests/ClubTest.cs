@@ -22,8 +22,8 @@ namespace StravaSharp.Tests
             var client = TestHelper.CreateStravaClient();
             var club = await client.Clubs.Get(Settings.ClubId);
             Assert.NotNull(club);
-            Assert.IsNotNullOrEmpty(club.Name);
-            Assert.IsNotNullOrEmpty(club.Country);
+            Assert.True(string.IsNullOrEmpty(club.Name) == false);
+            Assert.True(string.IsNullOrEmpty(club.Country) == false);
         }
 
         [Test]

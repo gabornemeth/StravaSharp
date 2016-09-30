@@ -3,7 +3,7 @@
   <metadata>
     <id>StravaSharp</id>
     <title>StravaSharp</title>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
     <authors>Gabor Nemeth</authors>
     <licenseUrl>https://github.com/gabornemeth/StravaSharp/blob/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/gabornemeth/StravaSharp/</projectUrl>
@@ -12,7 +12,7 @@
     <language>en-US</language>
     <copyright>Copyright - Gabor Nemeth © 2015-2016</copyright>
     <tags>strava</tags>
-    <releaseNotes>first release on Nuget</releaseNotes>
+    <releaseNotes>Added support of clubs, effort streams</releaseNotes>
     <dependencies>
       <group targetFramework="portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10">
         <dependency id="Newtonsoft.Json" version="8.0.3" />
@@ -32,7 +32,7 @@
         <dependency id="FubarCoder.RestSharp.Portable.OAuth" version="3.3.0" />
         <dependency id="FubarCoder.RestSharp.Portable.OAuth2" version="3.3.0" />
       </group>
-      <group targetFramework="MonoAndroid60">
+      <group targetFramework="MonoAndroid70">
         <dependency id="Newtonsoft.Json" version="8.0.3" />
         <dependency id="FubarCoder.RestSharp.Portable.Core" version="3.3.0" />
         <dependency id="FubarCoder.RestSharp.Portable.HttpClient" version="3.3.0" />
@@ -47,6 +47,6 @@
     <!-- Xamarin.iOS -->
     <file src="StravaSharp.iOS/bin/Release/StravaSharp.dll" target="lib/Xamarin.iOS10" />
     <!-- Xamarin.Android -->
-    <file src="StravaSharp.Droid/bin/Release/StravaSharp.dll" target="lib/MonoAndroid60" />
+    <file src="StravaSharp.Droid/bin/Release/StravaSharp.dll" target="lib/MonoAndroid70" />
   </files>
 </package>
