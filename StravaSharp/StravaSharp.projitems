@@ -24,15 +24,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)SegmentEffort.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IOAuth2Authenticator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LatLng.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IAuthenticator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PolylineDecoder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Properties\AssemblyInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RestSharpStaticAuthenticator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Segment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SegmentClient.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)StaticAuthenticator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StravaClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StravaObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Stream.cs" />

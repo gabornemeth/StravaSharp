@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AthleteTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SegmentTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestAuthenticator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UploadTest.cs" />
   </ItemGroup>

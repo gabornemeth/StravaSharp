@@ -28,7 +28,7 @@ namespace StravaSharp
 
         public Client(IAuthenticator authenticator)
         {
-            _restClient = new RestClient(StravaClient.ApiBaseUrl) { Authenticator = authenticator.RestSharpAuthenticator };
+            _restClient = new RestClient(StravaClient.ApiBaseUrl) { Authenticator = authenticator };
             Athletes = new AthleteClient(this);
             Activities = new ActivityClient(this);
             Segments = new SegmentClient(this);

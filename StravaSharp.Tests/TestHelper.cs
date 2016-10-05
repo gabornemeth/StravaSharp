@@ -31,7 +31,7 @@ namespace StravaSharp.Tests
 
         public static Client CreateStravaClient()
         {
-            var authenticator = new StaticAuthenticator(Settings.AccessToken);
+            var authenticator = new TestAuthenticator(Settings.AccessToken);
             return new Client(authenticator);
         }
     }

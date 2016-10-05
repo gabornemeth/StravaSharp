@@ -1,12 +1,29 @@
-﻿using System;
+﻿//
+// TestAuthenticator.cs
+//
+// Author:
+//    Gabor Nemeth (gabor.nemeth.dev@gmail.com)
+//
+//    Copyright (C) 2016, Gabor Nemeth
+//
+
 using RestSharp.Portable;
+using System;
 using System.Threading.Tasks;
 
-namespace StravaSharp
+namespace StravaSharp.Tests
 {
-    public class RestSharpStaticAuthenticator : RestSharp.Portable.IAuthenticator
+    /// <summary>
+    /// Authenticator used for tests
+    /// </summary>
+    public class TestAuthenticator : RestSharp.Portable.IAuthenticator
     {
-        public string AccessToken { get; set; }
+        public string AccessToken { get; private set; }
+
+        public TestAuthenticator(string accessToken)
+        {
+            AccessToken = accessToken;
+        }
 
         #region IAuthenticator implementation
 
@@ -28,10 +45,10 @@ namespace StravaSharp
         public System.Threading.Tasks.Task PreAuthenticate(IRestClient client, IRestRequest request, System.Net.ICredentials credentials)
         {
             return Task.Run(() =>
-                {
-                    if (!string.IsNullOrEmpty(AccessToken))
-                        request.AddHeader("Authorization", "Bearer " + AccessToken);
-                });
+            {
+                if (!string.IsNullOrEmpty(AccessToken))
+                    request.AddHeader("Authorization", "Bearer " + AccessToken);
+            });
         }
 
         public System.Threading.Tasks.Task PreAuthenticate(IHttpClient client, IHttpRequestMessage request, System.Net.ICredentials credentials)
