@@ -52,6 +52,10 @@
       <HintPath>..\packages\FubarCoder.RestSharp.Portable.OAuth2.3.3.0\lib\net45\RestSharp.Portable.OAuth2.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SharpGeo, Version=1.0.0.17470, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpGeo.1.0.1\lib\portable-net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SharpGeo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />

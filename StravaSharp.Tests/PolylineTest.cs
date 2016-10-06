@@ -29,7 +29,7 @@ namespace StravaSharp.Tests
             Assert.NotNull(activity);
             activity = await client.Activities.Get(activity.Id);
             Assert.NotNull(activity);
-            var points = PolylineDecoder.DecodePolylinePoints(activity.Map.SummaryPolyline);
+            var points = SharpGeo.Google.PolylineEncoder.Decode(activity.Map.SummaryPolyline);
             Assert.NotNull(points);
             Assert.True(points.Count > 0);
         }

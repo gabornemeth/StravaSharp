@@ -25,7 +25,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)EnumHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LatLng.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PolylineDecoder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Properties\AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Segment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SegmentClient.cs" />

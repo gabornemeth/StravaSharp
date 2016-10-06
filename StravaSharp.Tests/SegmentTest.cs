@@ -48,12 +48,13 @@ namespace StravaSharp.Tests
                 var segmentDetails = await _client.Segments.Get(segment.Id);
                 Assert.NotNull(segmentDetails);
                 Assert.NotNull(segmentDetails.Map);
+                Assert.NotNull(segmentDetails.Map.Polyline);
                 // retrieve each coordinate of the segment's polylinef
-                var points = PolylineDecoder.DecodePolylinePoints(segmentDetails.Map.Polyline);
+                var points = SharpGeo.Google.PolylineEncoder.Decode(segmentDetails.Map.Polyline);
                 Assert.NotNull(points);
                 Assert.True(points.Count > 0);
                 foreach (var point in points)
-                    Assert.True(point.IsEmpty() == false);
+                    Assert.True(point.IsEmpty == false);
             }
         }
 
