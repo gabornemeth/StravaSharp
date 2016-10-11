@@ -3,7 +3,7 @@
   <metadata>
     <id>StravaSharp</id>
     <title>StravaSharp</title>
-    <version>0.2.2</version>
+    <version>0.3.0</version>
     <authors>Gabor Nemeth</authors>
     <licenseUrl>https://github.com/gabornemeth/StravaSharp/blob/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/gabornemeth/StravaSharp/</projectUrl>
