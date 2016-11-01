@@ -1,0 +1,28 @@
+{
+	"version": {
+		"VersionFile": "./version.json",
+		"AssemblyInfoFile": "./StravaSharp/Properties/AssemblyInfo.cs",
+		"LoadFrom": "VersionFile",
+		"AutoIncrementVersion": false,
+		"NamespaceBase": "StravaSharp"
+	},
+	"build": {
+		"SourcePath": "./",
+		"SolutionFileSpec": "./*.sln",
+		"TreatWarningsAsErrors": false,
+		"NugetConfigPath": "./.nuget/NuGet.Config",
+		"EnableXamarinIOS": false,
+		"MacAgentIPAddress": "",
+		"MacAgentUserName": "",
+		"MacAgentUserPassword": ""
+	},
+	"nuget": {
+		"NuGetConfig": "./.nuget/NuGet.config",
+		"FeedUrl": "https://www.nuget.org",
+		"FeedAPIKey": "",
+		"ArtifactsPath": "./artifacts/packages",
+		"NuspecPath": "./nuspec",
+		"UpdateVersion": true,
+		"VersionDependencyForLibrary": "exact"
+	}
+}

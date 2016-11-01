@@ -43,10 +43,10 @@
   </metadata>
   <files>
     <!-- Portable -->
-    <file src="StravaSharp.PCL/bin/Release/StravaSharp.dll" target="lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10" />
+    <file src="../StravaSharp.PCL/bin/Release/StravaSharp.dll" target="lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10" />
     <!-- Xamarin.iOS -->
-    <file src="StravaSharp.iOS/bin/Release/StravaSharp.dll" target="lib/Xamarin.iOS10" />
+    <file src="../StravaSharp.iOS/bin/Release/StravaSharp.dll" target="lib/Xamarin.iOS10" />
     <!-- Xamarin.Android -->
-    <file src="StravaSharp.Droid/bin/Release/StravaSharp.dll" target="lib/MonoAndroid70" />
+    <file src="../StravaSharp.Droid/bin/Release/StravaSharp.dll" target="lib/MonoAndroid70" />
   </files>
 </package>

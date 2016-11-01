@@ -20,7 +20,7 @@ namespace StravaSharp.Tests
         {
             get
             {
-                return "use your access token";
+                return Environment.GetEnvironmentVariable("STRAVASHARP_ACCESS_TOKEN");
             }
         }
 
@@ -31,8 +31,7 @@ namespace StravaSharp.Tests
         {
             get
             {
-                // return your test club id
-                return 0;
+                return 226000;
             }
         }
     }
