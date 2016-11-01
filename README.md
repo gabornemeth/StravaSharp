@@ -1,6 +1,6 @@
 # StravaSharp
 
-[![Build status](https://gabornemeth.visualstudio.com/_apis/public/build/definitions/dca0e7fd-facd-4f7f-8a36-7ffba148fe5a/3/badge)
+[![Build Status](https://www.bitrise.io/app/863736459f8c67df.svg?token=UeYuCvD4a6S_XMPWdMriVg&branch=master)](https://www.bitrise.io/app/863736459f8c67df)
 
 StravaSharp makes [Strava V3 API](https://strava.github.io/api/) consumable in .NET projects.
 
