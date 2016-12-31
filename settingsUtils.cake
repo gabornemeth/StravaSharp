@@ -87,10 +87,23 @@ public class BuildSettings
 	public string MacAgentUserPassword {get;set;}
 
 	public string SolutionFilePath {
-		get {
-			if (SolutionFileSpec.Contains("/")) return SolutionFileSpec;
+		get
+		{
+			if (SolutionFileSpec.Contains("/"))
+				return SolutionFileSpec;
 
 			return string.Format("{0}{1}{2}", SourcePath, SolutionFileSpec.Contains("*") ? "/**/" : "", SolutionFileSpec);
+		}
+	}
+
+	public IEnumerable<FilePath> GetProjectFiles(ICakeContext context)
+	{
+		foreach (var solutionFile in context.GetFiles(SolutionFilePath))
+		{
+			foreach (var csprojFile in context.GetFiles(solutionFile.GetDirectory() + "/**/*.csproj"))
+			{
+				yield return csprojFile;
+			}
 		}
 	}
 

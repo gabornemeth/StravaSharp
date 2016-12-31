@@ -8,7 +8,7 @@
 	},
 	"build": {
 		"SourcePath": "./",
-		"SolutionFileSpec": "./*.sln",
+		"SolutionFileSpec": "./**/*.sln",
 		"TreatWarningsAsErrors": false,
 		"NugetConfigPath": "./.nuget/NuGet.Config",
 		"EnableXamarinIOS": false,

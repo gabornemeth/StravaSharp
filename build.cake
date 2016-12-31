@@ -122,16 +122,12 @@ Task("Build")
 		RunTarget("IncrementVersion");
 	}
 
+    // Build all projects.
     // iOS project cannot be built using .sln file on Mac OS X, using XBuild
 	// reason: facade assemblies not referenced!
-	// workaround: prebuild the csproj alone in advance
-    var projectsToBuild = (from s in solutions select s).ToList();
-	projectsToBuild.Insert(0, "StravaSharp.iOS/StravaSharp.iOS.csproj");
-
-    // Build all solutions.
-    foreach(var solution in projectsToBuild)
+    foreach(var project in buildSettings.Build.GetProjectFiles(Context))
     {
-        Information("Building {0}", solution);
+        Information("Building {0}", project);
 
 				/*if (buildSettings.Build.EnableXamarinIOS)
 				{
@@ -148,7 +144,7 @@ Task("Build")
 						PlatformTarget = PlatformTarget.MSIL
 					}.WithProperty("TreatWarningsAsErrors",buildSettings.Build.TreatWarningsAsErrors.ToString())
 					 .WithTarget("Build");
-				 	MSBuild(solution, msBuildSettings);
+				 	MSBuild(project, msBuildSettings);
 				}
 				else
 				{
@@ -156,7 +152,7 @@ Task("Build")
 						Configuration = configuration
 					}.WithProperty("TreatWarningsAsErrors",buildSettings.Build.TreatWarningsAsErrors.ToString())
 					 .WithTarget("Build");
-					XBuild(solution, settings);
+					XBuild(project, settings);
 				}
     }
 });
