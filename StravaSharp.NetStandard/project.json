@@ -1,0 +1,16 @@
+﻿{
+  "supports": {},
+  "dependencies": {
+    "FubarCoder.RestSharp.Portable.Core": "4.0.7",
+    "FubarCoder.RestSharp.Portable.HttpClient": "4.0.7",
+    "FubarCoder.RestSharp.Portable.OAuth2": "4.0.7",
+    "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
+    "NETStandard.Library": "1.6.0",
+    "Newtonsoft.Json": "9.0.1",
+    "Portable.BouncyCastle": "1.8.1.2"
+  },
+  "frameworks": {
+    "netstandard1.1": {
+    }
+  }
+}

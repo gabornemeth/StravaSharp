@@ -6,11 +6,12 @@
 //
 //    Copyright (C) 2015, Gabor Nemeth
 //
-        
+
+using System;
 using RestSharp.Portable;
-using RestSharp.Portable.Authenticators.OAuth2;
-using RestSharp.Portable.Authenticators.OAuth2.Infrastructure;
-using RestSharp.Portable.Authenticators.OAuth2.Models;
+using RestSharp.Portable.OAuth2;
+using RestSharp.Portable.OAuth2.Infrastructure;
+using RestSharp.Portable.OAuth2.Models;
 
 namespace StravaSharp
 {
@@ -21,7 +22,7 @@ namespace StravaSharp
     {
         public const string ApiBaseUrl = "https://www.strava.com";
 
-        public StravaClient(IRequestFactory factory, RestSharp.Portable.Authenticators.OAuth2.Configuration.IClientConfiguration configuration)
+        public StravaClient(IRequestFactory factory, RestSharp.Portable.OAuth2.Configuration.IClientConfiguration configuration)
             : base(factory, configuration)
         {
         }
@@ -55,7 +56,7 @@ namespace StravaSharp
             get { return "strava"; }
         }
 
-        protected override UserInfo ParseUserInfo(string content)
+        protected override UserInfo ParseUserInfo(IRestResponse response)
         {
             // cannot return null
             return new UserInfo();

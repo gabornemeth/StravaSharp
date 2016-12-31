@@ -169,7 +169,7 @@ Task("Run-Unit-Tests")
 
 Task("Package")
     .Description("Packages all nuspec files into nupkg packages.")
-//    .IsDependentOn("Build")
+    .IsDependentOn("Run-Unit-Tests")
     .Does(() =>
 {
 	var artifactsPath = Directory(buildSettings.NuGet.ArtifactsPath);
@@ -319,7 +319,7 @@ Task("DisplaySettings")
 
 Task("Default")
     .Description("This is the default task which will be ran if no specific target is passed in.")
-    .IsDependentOn("Build");
+    .IsDependentOn("Run-Unit-Tests");
 
 ///////////////////////////////////////////////////////////////////////////////
 // EXECUTION

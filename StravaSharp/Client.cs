@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using RestSharp.Portable.Authenticators.OAuth2.Infrastructure;
 using RestSharp.Portable.HttpClient;
 
 namespace StravaSharp

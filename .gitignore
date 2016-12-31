@@ -18,3 +18,5 @@ StravaSharp.iOS/obj/
 *.nupkg
 tools
 .vs
+StravaSharp.NetStandard/obj/
+StravaSharp.NetStandard/bin/

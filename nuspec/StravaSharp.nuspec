@@ -3,7 +3,6 @@
   <metadata>
     <id>StravaSharp</id>
     <title>StravaSharp</title>
-    <version>0.3.0</version>
     <authors>Gabor Nemeth</authors>
     <licenseUrl>https://github.com/gabornemeth/StravaSharp/blob/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/gabornemeth/StravaSharp/</projectUrl>
@@ -12,7 +11,7 @@
     <language>en-US</language>
     <copyright>Copyright - Gabor Nemeth © 2015-2016</copyright>
     <tags>strava</tags>
-    <releaseNotes>Simplified authentication interface.</releaseNotes>
+<!--    <releaseNotes>Simplified authentication interface.</releaseNotes>-->
     <dependencies>
       <group targetFramework="portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10">
         <dependency id="Newtonsoft.Json" version="8.0.3" />
