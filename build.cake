@@ -140,8 +140,7 @@ Task("Build")
 					var msBuildSettings = new MSBuildSettings {
 						MaxCpuCount = 1,
 						Configuration = configuration,
-						PlatformTarget = PlatformTarget.MSIL,
-						Verbosity = Verbosity.Diagnostic
+						PlatformTarget = PlatformTarget.MSIL
 					}.WithProperty("TreatWarningsAsErrors",buildSettings.Build.TreatWarningsAsErrors.ToString())
 					 .WithTarget("Build");
 				 	MSBuild(solution, msBuildSettings);
@@ -149,8 +148,7 @@ Task("Build")
 				else
 				{
 					var settings = new XBuildSettings {
-						Configuration = configuration,
-						Verbosity = Verbosity.Diagnostic
+						Configuration = configuration
 					}.WithProperty("TreatWarningsAsErrors",buildSettings.Build.TreatWarningsAsErrors.ToString())
 					 .WithTarget("Build");
 					XBuild(solution, settings);
