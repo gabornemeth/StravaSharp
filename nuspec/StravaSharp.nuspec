@@ -14,29 +14,29 @@
 <!--    <releaseNotes>Simplified authentication interface.</releaseNotes>-->
     <dependencies>
       <group targetFramework="portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10">
-        <dependency id="Newtonsoft.Json" version="8.0.3" />
-        <dependency id="FubarCoder.RestSharp.Portable.Core" version="3.3.0" />
-        <dependency id="FubarCoder.RestSharp.Portable.HttpClient" version="3.3.0" />
-        <dependency id="FubarCoder.RestSharp.Portable.OAuth" version="3.3.0" />
-        <dependency id="FubarCoder.RestSharp.Portable.OAuth2" version="3.3.0" />
-        <dependency id="Microsoft.Bcl" version="1.1.10" />
-        <dependency id="Microsoft.Bcl.Build" version="1.0.21" />
-        <dependency id="Microsoft.Net.Http" version="2.2.29" />
-        <dependency id="Portable.BouncyCastle-Signed" version="1.7.0.2" />
+        <dependency id="Newtonsoft.Json" version="9.0.1" />
+        <dependency id="FubarCoder.RestSharp.Portable.Core" version="4.0.7" />
+        <dependency id="FubarCoder.RestSharp.Portable.HttpClient" version="4.0.7" />
+        <dependency id="FubarCoder.RestSharp.Portable.OAuth2" version="4.0.7" />
       </group>
       <group targetFramework="Xamarin.iOS10">
-        <dependency id="Newtonsoft.Json" version="8.0.3" />
-        <dependency id="FubarCoder.RestSharp.Portable.Core" version="3.3.0" />
-        <dependency id="FubarCoder.RestSharp.Portable.HttpClient" version="3.3.0" />
-        <dependency id="FubarCoder.RestSharp.Portable.OAuth" version="3.3.0" />
-        <dependency id="FubarCoder.RestSharp.Portable.OAuth2" version="3.3.0" />
+        <dependency id="Newtonsoft.Json" version="9.0.1" />
+        <dependency id="FubarCoder.RestSharp.Portable.Core" version="4.0.7" />
+        <dependency id="FubarCoder.RestSharp.Portable.HttpClient" version="4.0.7" />
+        <dependency id="FubarCoder.RestSharp.Portable.OAuth2" version="4.0.7" />
       </group>
       <group targetFramework="MonoAndroid70">
-        <dependency id="Newtonsoft.Json" version="8.0.3" />
-        <dependency id="FubarCoder.RestSharp.Portable.Core" version="3.3.0" />
-        <dependency id="FubarCoder.RestSharp.Portable.HttpClient" version="3.3.0" />
-        <dependency id="FubarCoder.RestSharp.Portable.OAuth" version="3.3.0" />
-        <dependency id="FubarCoder.RestSharp.Portable.OAuth2" version="3.3.0" />
+        <dependency id="Newtonsoft.Json" version="9.0.1" />
+        <dependency id="FubarCoder.RestSharp.Portable.Core" version="4.0.7" />
+        <dependency id="FubarCoder.RestSharp.Portable.HttpClient" version="4.0.7" />
+        <dependency id="FubarCoder.RestSharp.Portable.OAuth2" version="4.0.7" />
+      </group>
+      <group targetFramework="netstandard1.1">
+        <dependency id="Newtonsoft.Json" version="9.0.1" />
+        <dependency id="FubarCoder.RestSharp.Portable.Core" version="4.0.7" />
+        <dependency id="FubarCoder.RestSharp.Portable.HttpClient" version="4.0.7" />
+        <dependency id="FubarCoder.RestSharp.Portable.OAuth2" version="4.0.7" />
+        <dependency id="Portable.BouncyCastle" version="1.8.1.2" />
       </group>
     </dependencies>
   </metadata>
@@ -47,5 +47,7 @@
     <file src="../StravaSharp.iOS/bin/Release/StravaSharp.dll" target="lib/Xamarin.iOS10" />
     <!-- Xamarin.Android -->
     <file src="../StravaSharp.Droid/bin/Release/StravaSharp.dll" target="lib/MonoAndroid70" />
+    <!-- NetStandard 1.1 -->
+    <file src="../StravaSharp.NetStandard/bin/Release/StravaSharp.dll" target="lib/netstandard1.1" />
   </files>
 </package>
