@@ -1,6 +1,6 @@
 {
   "projects": [
-    "Owlyzer"
+    "StravaSharp.NetStandard"
   ],
   "sdk":
   {

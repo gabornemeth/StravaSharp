@@ -26,6 +26,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.iOS", "StravaSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.NetStandard", "StravaSharp.NetStandard\StravaSharp.NetStandard.csproj", "{2A6D8396-6B6B-4ECE-8130-A6F3B5DEC396}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5D820F5A-B64F-495A-B95E-D465CF3992A2}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		StravaSharp\StravaSharp.projitems*{05fdaa13-140a-4de8-876b-80ec56f1624b}*SharedItemsImports = 4
