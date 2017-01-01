@@ -8,6 +8,7 @@ Portability is essential by design. You can use this library on the following pl
 * PCL Profile 111 (.NET Framework 4.5, Windows 8, Windows Phone 8.1, UWP)
 * Xamarin.iOS
 * Xamarin.Android
+* .NET Standard 1.1
 
 ## Nuget
 
