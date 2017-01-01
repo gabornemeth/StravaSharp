@@ -54,10 +54,7 @@ namespace StravaSharp
                 request.AddQueryParameter("before", before.GetSecondsSinceUnixEpoch());
             if (after != DateTime.MinValue)
                 request.AddQueryParameter("after", after.GetSecondsSinceUnixEpoch());
-            if (page != 0)
-                request.AddParameter("page", page);
-            if (itemsPerPage != 0)
-                request.AddParameter("per_page", itemsPerPage);
+            request.AddPaging(page, itemsPerPage);
             var response = await _client.RestClient.Execute<List<ActivitySummary>>(request);
 
             return response.Data;

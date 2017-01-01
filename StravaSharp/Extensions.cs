@@ -6,7 +6,8 @@
 //
 //    Copyright (C) 2015, Gabor Nemeth
 //
-        
+
+using RestSharp.Portable;
 using System;
 
 namespace StravaSharp
@@ -21,6 +22,17 @@ namespace StravaSharp
         public static long GetSecondsSinceUnixEpoch(this DateTime dt)
         {
             return Convert.ToInt64(dt.ToUniversalTime().Subtract(epoch).TotalSeconds);
+        }
+    }
+
+    internal static class RequestExtensions
+    {
+        public static void AddPaging(this IRestRequest request, int page = 0, int itemsPerPage = 0)
+        {
+            if (page != 0)
+                request.AddParameter("page", page);
+            if (itemsPerPage != 0)
+                request.AddParameter("per_page", itemsPerPage);
         }
     }
 }

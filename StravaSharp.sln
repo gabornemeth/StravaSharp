@@ -33,6 +33,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		StravaSharp\StravaSharp.projitems*{05fdaa13-140a-4de8-876b-80ec56f1624b}*SharedItemsImports = 4
+		StravaSharp\StravaSharp.projitems*{0a0c916a-0825-45bf-a14d-ad0053ca712c}*SharedItemsImports = 4
+		StravaSharp\StravaSharp.projitems*{18226de9-354a-4e42-b64d-f9f00260dcfe}*SharedItemsImports = 4
+		StravaSharp\StravaSharp.projitems*{2a6d8396-6b6b-4ece-8130-a6f3b5dec396}*SharedItemsImports = 4
+		StravaSharp\StravaSharp.projitems*{3316897e-1303-4815-a6cd-20d047997733}*SharedItemsImports = 4
+		StravaSharp.Tests\StravaSharp.Tests.projitems*{5e80b020-ea6b-4256-a092-aebd1fd9bcf7}*SharedItemsImports = 4
 		StravaSharp\StravaSharp.projitems*{caf2e2dc-c3e2-4fd9-a6df-f55efe8b8130}*SharedItemsImports = 13
 		StravaSharp.Tests\StravaSharp.Tests.projitems*{dcecdd8a-813e-47f1-937f-31b825e140bf}*SharedItemsImports = 13
 	EndGlobalSection
