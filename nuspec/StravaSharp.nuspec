@@ -9,7 +9,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Strava client library.</description>
     <language>en-US</language>
-    <copyright>Copyright - Gabor Nemeth © 2015-2016</copyright>
+    <copyright>Copyright - Gabor Nemeth © 2015-2017</copyright>
     <tags>strava</tags>
 <!--    <releaseNotes>Simplified authentication interface.</releaseNotes>-->
     <dependencies>
