@@ -12,6 +12,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
@@ -25,6 +26,17 @@ namespace StravaSharp.Tests
             var client = TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
             Assert.True(activities.Count > 0);
+        }
+
+        [Test]
+        public async Task GetActivitiesOfFollowedAthletes()
+        {
+            var client = TestHelper.CreateStravaClient();
+            var currentAthlete = await client.Athletes.GetCurrent();
+            var activities = await client.Activities.GetFollowingActivities();
+            Assert.True(activities.Count > 0);
+            var otherActivities = activities.Where(activity => activity.Athlete.Id != currentAthlete.Id);
+            Assert.True(otherActivities.Count() > 0);
         }
 
         [Test]

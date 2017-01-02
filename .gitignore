@@ -20,3 +20,4 @@ tools
 .vs
 StravaSharp.NetStandard/obj/
 StravaSharp.NetStandard/bin/
+*.lock.json

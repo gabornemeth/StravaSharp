@@ -123,7 +123,7 @@ namespace StravaSharp
         /// <returns>List of activities.</returns>
         public Task<List<ActivitySummary>> GetFollowingActivities(int page = 0, int itemsPerPage = 0)
         {
-            return GetAthleteActivities(DateTime.MinValue, DateTime.MinValue, page, itemsPerPage);
+            return GetFollowingActivities(DateTime.MinValue, page, itemsPerPage);
         }
 
         /// <summary>
