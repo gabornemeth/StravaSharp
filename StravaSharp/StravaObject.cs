@@ -7,7 +7,6 @@
 //    Copyright (C) 2015, Gabor Nemeth
 //
         
-using System;
 using Newtonsoft.Json;
 
 namespace StravaSharp
@@ -27,6 +26,6 @@ namespace StravaSharp
         /// Resource state
         /// </summary>
         [JsonProperty("resource_state")]
-        public int ResourceState { get; internal set; }
+        public ResourceState ResourceState { get; internal set; }
     }
 }
