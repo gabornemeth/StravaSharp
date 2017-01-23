@@ -12,6 +12,8 @@ using RestSharp.Portable;
 using RestSharp.Portable.OAuth2;
 using RestSharp.Portable.OAuth2.Infrastructure;
 using RestSharp.Portable.OAuth2.Models;
+using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 namespace StravaSharp
 {
@@ -58,8 +60,29 @@ namespace StravaSharp
 
         protected override UserInfo ParseUserInfo(IRestResponse response)
         {
-            // cannot return null
-            return new UserInfo();
+            return ParseUserInfo(response.Content);
+        }
+
+        /// <summary>
+        /// Parsing user info
+        /// This method can be overriden in test.
+        /// </summary>
+        /// <param name="content">user info in JSON</param>
+        /// <returns></returns>
+        protected virtual UserInfo ParseUserInfo(string content)
+        {
+            // we receive the inner of "athlete" node as content
+            var obj = JObject.Parse(content);
+            var userInfo = new UserInfo
+            {
+                Id = obj["id"].Value<string>(),
+                FirstName = obj["firstname"].Value<string>(),
+                LastName = obj["lastname"].Value<string>(),
+                Email = obj["email"].Value<string>(),
+            };
+            userInfo.AvatarUri.Normal = obj["profile_medium"].Value<string>();
+            userInfo.AvatarUri.Large = obj["profile"].Value<string>();
+            return userInfo;
         }
 
         protected override void BeforeGetUserInfo(BeforeAfterRequestArgs args)

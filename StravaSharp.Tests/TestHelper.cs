@@ -17,18 +17,6 @@ namespace StravaSharp.Tests
 {
     public static class TestHelper
     {
-        public static System.IO.Stream GetResourceStream(string resourceName)
-        {
-            var asm = typeof(TestHelper).GetTypeInfo().Assembly;
-            foreach (var name in asm.GetManifestResourceNames())
-            {
-                if (name.Contains(resourceName))
-                    return asm.GetManifestResourceStream(name);
-            }
-
-            return null;
-        }
-
         public static Client CreateStravaClient()
         {
             var authenticator = new TestAuthenticator(Settings.AccessToken);

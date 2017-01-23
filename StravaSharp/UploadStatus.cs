@@ -6,7 +6,7 @@
 //
 //    Copyright (C) 2015, Gabor Nemeth
 //
-        
+
 using System;
 using Newtonsoft.Json;
 
@@ -28,5 +28,14 @@ namespace StravaSharp
         public string Status { get; internal set; }
         [JsonProperty("error")]
         public string Error { get; internal set; }
+
+        [JsonIgnore]
+        public bool IsReady
+        {
+            get
+            {
+                return Status == "Your activity is ready.";
+            }
+        }
     }
 }
