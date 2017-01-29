@@ -89,7 +89,7 @@ namespace StravaSharp.Tests
         public void ParseJson()
         {
             var serializer = new JsonSerializer() { ObjectCreationHandling = ObjectCreationHandling.Reuse };
-            using (var stream = TestHelper.GetResourceStream("activities.json"))
+            using (var stream = Resource.GetStream("activities.json"))
             {
                 var reader = new JsonTextReader(new StreamReader(stream));
                 //var result = serializer.Deserialize(reader);

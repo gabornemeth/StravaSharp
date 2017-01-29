@@ -9,10 +9,12 @@
     <Import_RootNamespace>StravaSharp.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)StravaClientTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ClubTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PolylineTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ActivityTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AthleteTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Resource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SegmentTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAuthenticator.cs" />
@@ -24,5 +26,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Files\activities.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Files\userinfo.json" />
   </ItemGroup>
 </Project>
