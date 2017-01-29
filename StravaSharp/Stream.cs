@@ -5,6 +5,9 @@ using Newtonsoft.Json.Converters;
 
 namespace StravaSharp
 {
+	/// <summary>
+	/// Stream type.
+	/// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum StreamType
     {
@@ -65,22 +68,43 @@ namespace StravaSharp
         GradeSmooth
     }
 
+	/// <summary>
+	/// Resolution of the stream
+	/// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum StreamResolution
     {
+		/// <summary>
+		/// Low resolution
+		/// </summary>
         [EnumMember(Value = "low")]
         Low,
+		/// <summary>
+		/// Medium resolution
+		/// </summary>
         [EnumMember(Value = "medium")]
         Medium,
+		/// <summary>
+		/// High resolution
+		/// </summary>
         [EnumMember(Value = "high")]
         High
     }
 
+	/// <summary>
+	/// Type of series
+	/// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum SeriesType
     {
+		/// <summary>
+		/// Time based series
+		/// </summary>
         [EnumMember(Value = "time")]
         Time,
+		/// <summary>
+		/// Distance based series
+		/// </summary>
         [EnumMember(Value = "distance")]
         Distance
     }
@@ -90,25 +114,32 @@ namespace StravaSharp
     /// </summary>
     public class Stream
     {
+		/// <summary>
+		/// Type of the stream
+		/// </summary>
         [JsonProperty("type")]
         public StreamType Type { get; internal set; }
-        /// <summary>
-        /// array of stream values
+
+		/// <summary>
+        /// Array of stream values
         /// </summary>
         [JsonProperty("data")]
         public object[] Data { get; internal set; }
-        /// <summary>
-        /// series type used for down sampling, will be present even if not used
+        
+		/// <summary>
+        /// Series type used for down sampling, will be present even if not used
         /// </summary>
         [JsonProperty("series_type")]
         public SeriesType SeriesType { get; internal set; }
-        /// <summary>
-        /// complete stream length
+        
+		/// <summary>
+        /// Complete stream length
         /// </summary>
         [JsonProperty("original_size")]
         public int Originalsize { get; internal set; }
-        /// <summary>
-        /// ‘low’, ‘medium’ or ‘high’
+        
+		/// <summary>
+        /// Resolution of the stream
         /// </summary>
         [JsonProperty("resolution")]
         public StreamResolution Resolution { get; internal set; }

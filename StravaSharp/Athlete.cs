@@ -77,8 +77,14 @@ namespace StravaSharp
     /// </summary>
     public enum AthleteType
     {
+		/// <summary>
+		/// Cyclist
+		/// </summary>
         [EnumMember(Value = "0")]
         Cyclist,
+		/// <summary>
+		/// Runner
+		/// </summary>
         [EnumMember(Value = "1")]
         Runner
     }

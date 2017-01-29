@@ -20,6 +20,9 @@ namespace StravaSharp
     /// </summary>
     public class StravaClient : OAuth2Client
     {
+		/// <summary>
+		/// Base URL of the API
+		/// </summary>
         public const string ApiBaseUrl = "https://www.strava.com";
 
         public StravaClient(IRequestFactory factory, RestSharp.Portable.OAuth2.Configuration.IClientConfiguration configuration)
@@ -51,6 +54,9 @@ namespace StravaSharp
             }
         }
 
+		/// <summary>
+		/// Name of the service
+		/// </summary>
         public override string Name
         {
             get { return "strava"; }

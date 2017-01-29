@@ -103,6 +103,15 @@ namespace StravaSharp
             return GetLeaderboardInternal(segmentId, null, null, gender, ageGroup);
         }
 
+		/// <summary>
+		/// Gets the leaderboard for a segment.
+		/// </summary>
+		/// <returns>The leaderboard.</returns>
+		/// <param name="segmentId">Segment identifier.</param>
+		/// <param name="page">Page.</param>
+		/// <param name="perPage">Items per page.</param>
+		/// <param name="gender">Gender.</param>
+		/// <param name="ageGroup">Age group.</param>
         public Task<Leaderboard> GetLeaderboard(int segmentId, int page, int perPage, Gender? gender, AgeGroup? ageGroup)
         {
             return GetLeaderboardInternal(segmentId, page, perPage, gender, ageGroup);

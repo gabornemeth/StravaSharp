@@ -14,21 +14,42 @@ using System.Runtime.Serialization;
 
 namespace StravaSharp
 {
+	/// <summary>
+	/// Sport type.
+	/// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum SportType
     {
+		/// <summary>
+		/// Cycling
+		/// </summary>
         [EnumMember(Value = "cycling")]
         Cycling,
+		/// <summary>
+		/// Running
+		/// </summary>
         [EnumMember(Value = "running")]
         Running,
+		/// <summary>
+		/// Triathlon
+		/// </summary>
         [EnumMember(Value = "triathlon")]
         Triathlon,
+		/// <summary>
+		/// Other sports
+		/// </summary>
         [EnumMember(Value = "other")]
         Other
     }
 
+	/// <summary>
+	/// Summary info about a club.
+	/// </summary>
     public class ClubSummary : StravaObject<int>
     {
+		/// <summary>
+		/// Name of the club
+		/// </summary>
         [JsonProperty("name")]
         public string Name { get; internal set; }
 
