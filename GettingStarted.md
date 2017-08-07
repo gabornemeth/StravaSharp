@@ -1,4 +1,4 @@
-# Gettings started
+# Getting started
 
 You can access the full functionality of **StravaSharp** through the ```Client``` class. Basically you have to do the following.
 
