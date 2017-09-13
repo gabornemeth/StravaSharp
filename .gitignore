@@ -5,7 +5,7 @@
 *.nupkg
 tools
 !tools/packages.config
-.vs
+.vs/
 *.lock.json
 obj/
 bin/

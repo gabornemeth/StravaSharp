@@ -1,14 +1,14 @@
 {
 	"version": {
 		"VersionFile": "./version.json",
-		"AssemblyInfoFile": "./StravaSharp/Properties/AssemblyInfo.cs",
+		"AssemblyInfoFile": "./src/StravaSharp/Properties/AssemblyInfo.cs",
 		"LoadFrom": "VersionFile",
 		"AutoIncrementVersion": false,
 		"NamespaceBase": "StravaSharp"
 	},
 	"build": {
-		"SourcePath": "./",
-		"SolutionFileSpec": "./**/*.sln",
+		"SourcePath": "./src",
+		"SolutionFileSpec": "./src/**/*.sln",
 		"TreatWarningsAsErrors": false,
 		"NugetConfigPath": "./.nuget/NuGet.Config",
 	},

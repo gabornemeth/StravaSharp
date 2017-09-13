@@ -69,7 +69,7 @@ public class BuildSettings
 {
 	public BuildSettings()
 	{
-		SourcePath = "./source";
+		SourcePath = "./src";
 		SolutionFileSpec = "*.sln";
 		TreatWarningsAsErrors = false;
 		NugetConfigPath = "./.nuget/NuGet.Config";
