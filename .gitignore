@@ -4,6 +4,7 @@
 
 *.nupkg
 tools
+!tools/packages.config
 .vs
 *.lock.json
 obj/
