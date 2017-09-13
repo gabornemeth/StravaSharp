@@ -4,11 +4,7 @@
 
 **StravaSharp** makes [Strava V3 API](https://strava.github.io/api/) consumable in .NET projects.
 
-Portability is essential by design. You can use this library on the following platforms:
-* PCL Profile 111 (.NET Framework 4.5, Windows 8, Windows Phone 8.1, UWP)
-* Xamarin.iOS
-* Xamarin.Android
-* .NET Standard 1.1
+Portability is essential by design. You can use this library on any platform that supports [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) 1.1 (.NET Framework 4.5, Windows 8, Windows Phone 8.1, UWP, Xamarin.iOS, Xamarin.Android, etc.)
 
 ## Getting started
 
