@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wpa81;</PackageTargetFallback>
+    <TargetFramework>netstandard1.3</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FubarCoder.RestSharp.Portable.Core" Version="4.0.7" />
+    <PackageReference Include="FubarCoder.RestSharp.Portable.OAuth2" Version="4.0.7" />
+    <PackageReference Include="MvvmLightLibs" Version="5.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\StravaSharp.NetStandard\StravaSharp.NetStandard.csproj" />
+  </ItemGroup>
+
+</Project>

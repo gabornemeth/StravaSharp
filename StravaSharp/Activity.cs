@@ -284,6 +284,13 @@ namespace StravaSharp
         public bool Manual { get; internal set; }
         [JsonProperty("private")]
         public bool Private { get; internal set; }
+
+        /// <summary>
+        /// The name of the device used to record the activity.
+        /// </summary>
+        [JsonProperty("device_name")]
+        public string DeviceName { get; internal set; }
+
         [JsonProperty("flagged")]
         public bool Flagged { get; internal set; }
 

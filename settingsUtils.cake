@@ -73,18 +73,12 @@ public class BuildSettings
 		SolutionFileSpec = "*.sln";
 		TreatWarningsAsErrors = false;
 		NugetConfigPath = "./.nuget/NuGet.Config";
-		EnableXamarinIOS = false;
 	}
 
 	public string SourcePath {get;set;}
 	public string SolutionFileSpec {get;set;}
 	public bool TreatWarningsAsErrors {get;set;}
 	public string NugetConfigPath {get;set;}
-
-	public bool EnableXamarinIOS {get;set;}
-	public string MacAgentIPAddress {get;set;}
-	public string MacAgentUserName {get;set;}
-	public string MacAgentUserPassword {get;set;}
 
 	public string SolutionFilePath {
 		get
@@ -115,11 +109,6 @@ public class BuildSettings
 		context.Information("\tSolution File Path: {0}", SolutionFilePath);
 		context.Information("\tTreat Warnings As Errors: {0}", TreatWarningsAsErrors);
 		context.Information("\tNuget Config Path: {0}", NugetConfigPath);
-
-		context.Information("\tEnable Xamarin IOS: {0}", EnableXamarinIOS);
-		context.Information("\tMac Agent IP Address: {0}", MacAgentIPAddress);
-		context.Information("\tMac Agent User Name: {0}", MacAgentUserName);
-		//context.Information("\tMac Agent User Password: {0}", MacAgentUserPassword);
 	}
 }
 

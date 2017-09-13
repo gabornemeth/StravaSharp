@@ -1,21 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StravaSharp", "StravaSharp\StravaSharp.shproj", "{CAF2E2DC-C3E2-4FD9-A6DF-F55EFE8B8130}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.NET45", "StravaSharp.NET45\StravaSharp.NET45.csproj", "{18226DE9-354A-4E42-B64D-F9F00260DCFE}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StravaSharp.Tests", "StravaSharp.Tests\StravaSharp.Tests.shproj", "{DCECDD8A-813E-47F1-937F-31B825E140BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.Tests.NET45", "StravaSharp.Tests.NET45\StravaSharp.Tests.NET45.csproj", "{5E80B020-EA6B-4256-A092-AEBD1FD9BCF7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.PCL", "StravaSharp.PCL\StravaSharp.PCL.csproj", "{0A0C916A-0825-45BF-A14D-AD0053CA712C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.Droid", "StravaSharp.Droid\StravaSharp.Droid.csproj", "{3316897E-1303-4815-A6CD-20D047997733}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.iOS", "StravaSharp.iOS\StravaSharp.iOS.csproj", "{05FDAA13-140A-4DE8-876B-80EC56F1624B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.NetStandard", "StravaSharp.NetStandard\StravaSharp.NetStandard.csproj", "{2A6D8396-6B6B-4ECE-8130-A6F3B5DEC396}"
 EndProject
@@ -31,17 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{98A8DA7D-7E94-49BE-A8FE-F8F51FE0964E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Web", "Sample.Web\Sample.Web.csproj", "{00F95817-A02C-4A15-B1AC-C3990ADE6463}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		StravaSharp\StravaSharp.projitems*{05fdaa13-140a-4de8-876b-80ec56f1624b}*SharedItemsImports = 4
-		StravaSharp\StravaSharp.projitems*{0a0c916a-0825-45bf-a14d-ad0053ca712c}*SharedItemsImports = 4
-		StravaSharp\StravaSharp.projitems*{18226de9-354a-4e42-b64d-f9f00260dcfe}*SharedItemsImports = 4
 		StravaSharp\StravaSharp.projitems*{2a6d8396-6b6b-4ece-8130-a6f3b5dec396}*SharedItemsImports = 4
-		StravaSharp\StravaSharp.projitems*{3316897e-1303-4815-a6cd-20d047997733}*SharedItemsImports = 4
 		StravaSharp.Tests\StravaSharp.Tests.projitems*{5e80b020-ea6b-4256-a092-aebd1fd9bcf7}*SharedItemsImports = 4
 		StravaSharp\StravaSharp.projitems*{caf2e2dc-c3e2-4fd9-a6df-f55efe8b8130}*SharedItemsImports = 13
 		StravaSharp.Tests\StravaSharp.Tests.projitems*{dcecdd8a-813e-47f1-937f-31b825e140bf}*SharedItemsImports = 13
@@ -51,39 +35,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{18226DE9-354A-4E42-B64D-F9F00260DCFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18226DE9-354A-4E42-B64D-F9F00260DCFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18226DE9-354A-4E42-B64D-F9F00260DCFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18226DE9-354A-4E42-B64D-F9F00260DCFE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5E80B020-EA6B-4256-A092-AEBD1FD9BCF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5E80B020-EA6B-4256-A092-AEBD1FD9BCF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E80B020-EA6B-4256-A092-AEBD1FD9BCF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E80B020-EA6B-4256-A092-AEBD1FD9BCF7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A0C916A-0825-45BF-A14D-AD0053CA712C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A0C916A-0825-45BF-A14D-AD0053CA712C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A0C916A-0825-45BF-A14D-AD0053CA712C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A0C916A-0825-45BF-A14D-AD0053CA712C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3316897E-1303-4815-A6CD-20D047997733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3316897E-1303-4815-A6CD-20D047997733}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3316897E-1303-4815-A6CD-20D047997733}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3316897E-1303-4815-A6CD-20D047997733}.Release|Any CPU.Build.0 = Release|Any CPU
-		{05FDAA13-140A-4DE8-876B-80EC56F1624B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05FDAA13-140A-4DE8-876B-80EC56F1624B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05FDAA13-140A-4DE8-876B-80EC56F1624B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05FDAA13-140A-4DE8-876B-80EC56F1624B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A6D8396-6B6B-4ECE-8130-A6F3B5DEC396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A6D8396-6B6B-4ECE-8130-A6F3B5DEC396}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A6D8396-6B6B-4ECE-8130-A6F3B5DEC396}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A6D8396-6B6B-4ECE-8130-A6F3B5DEC396}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00F95817-A02C-4A15-B1AC-C3990ADE6463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00F95817-A02C-4A15-B1AC-C3990ADE6463}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00F95817-A02C-4A15-B1AC-C3990ADE6463}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00F95817-A02C-4A15-B1AC-C3990ADE6463}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{00F95817-A02C-4A15-B1AC-C3990ADE6463} = {98A8DA7D-7E94-49BE-A8FE-F8F51FE0964E}
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {477AA07A-0D88-4C31-A220-F2A7476179BB}
 	EndGlobalSection
 EndGlobal

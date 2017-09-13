@@ -2,24 +2,10 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/packages/FubarCoder.RestSharp.Portable.2.4.3/lib
-/packages
-/StravaSharp.NET45/obj
-/StravaSharp.NET45/bin
-/StravaSharp.Tests.NET45/bin
-/StravaSharp.Tests.NET45/obj
-/StravaSharp.Droid/obj
-/StravaSharp.Droid/bin
-/StravaSharp.PCL/obj
-/StravaSharp.PCL/bin
-StravaSharp.iOS/bin/
-StravaSharp.iOS/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
-StravaSharp.iOS/obj/
 *.nupkg
 tools
 .vs
-StravaSharp.NetStandard/obj/
-StravaSharp.NetStandard/bin/
 *.lock.json
-Sample.Web/obj/
-Sample.Web/bin/
+obj/
+bin/
+packages/

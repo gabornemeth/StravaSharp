@@ -14,9 +14,10 @@ namespace StravaSharp.Tests
             _fileName = fileName;
         }
 
+
         [Test]
 #if !DEBUG
-        [Ignore("Delete does not work somehow!")]
+        [Ignore("Delete requires application level permission.")]
 #endif
         public async Task UploadAndDelete()
         {

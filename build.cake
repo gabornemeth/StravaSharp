@@ -111,10 +111,10 @@ Task("Restore")
 
 Task("Build")
     .Description("Builds all the different parts of the project.")
-		.WithCriteria(!skipBuild)
+	.WithCriteria(!skipBuild)
     .IsDependentOn("Clean")
     .IsDependentOn("Restore")
-		.IsDependentOn("UpdateVersion")
+	.IsDependentOn("UpdateVersion")
     .Does(() =>
 {
 	if (buildSettings.Version.AutoIncrementVersion)
@@ -125,35 +125,19 @@ Task("Build")
     // Build all projects.
     // iOS project cannot be built using .sln file on Mac OS X, using XBuild
 	// reason: facade assemblies not referenced!
-    foreach(var project in buildSettings.Build.GetProjectFiles(Context))
+    foreach(var solution in solutions)
     {
-        Information("Building {0}", project);
+        Information("Building {0}", solution);
 
-				/*if (buildSettings.Build.EnableXamarinIOS)
-				{
-					// Mac build host connection properties
-					msBuildSettings.WithProperty("ServerAddress", buildSettings.Build.MacAgentIPAddress);
-					msBuildSettings.WithProperty("ServerUser", buildSettings.Build.MacAgentUserName);
-					msBuildSettings.WithProperty("ServerPassword", buildSettings.Build.MacAgentUserPassword);
-				}*/
-				if (IsRunningOnWindows())
-				{
-					var msBuildSettings = new MSBuildSettings {
-						MaxCpuCount = 1,
-						Configuration = configuration,
-						PlatformTarget = PlatformTarget.MSIL
-					}.WithProperty("TreatWarningsAsErrors",buildSettings.Build.TreatWarningsAsErrors.ToString())
-					 .WithTarget("Build");
-				 	MSBuild(project, msBuildSettings);
-				}
-				else
-				{
-					var settings = new XBuildSettings {
-						Configuration = configuration
-					}.WithProperty("TreatWarningsAsErrors",buildSettings.Build.TreatWarningsAsErrors.ToString())
-					 .WithTarget("Build");
-					XBuild(project, settings);
-				}
+		var msBuildSettings = new MSBuildSettings {
+			MaxCpuCount = 1,
+			Configuration = configuration,
+			PlatformTarget = PlatformTarget.MSIL,
+			ToolVersion = MSBuildToolVersion.VS2017,
+		}.WithProperty("TreatWarningsAsErrors",buildSettings.Build.TreatWarningsAsErrors.ToString())
+		 .WithTarget("Build");
+ 	
+	 	MSBuild(solution, msBuildSettings);
     }
 });
 
@@ -176,7 +160,7 @@ Task("Package")
 
 	CreateDirectory(artifactsPath);
 
-  Information("Nuspec path: " + buildSettings.NuGet.NuSpecFileSpec);
+	Information("Nuspec path: " + buildSettings.NuGet.NuSpecFileSpec);
 	var nuspecFiles = GetFiles(buildSettings.NuGet.NuSpecFileSpec);
 	foreach(var nsf in nuspecFiles)
 	{
