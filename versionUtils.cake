@@ -1,5 +1,5 @@
-#addin "Cake.Json"
-#addin "Cake.FileHelpers"
+#addin nuget:?package=Cake.Json&version=1.0.2.13
+#addin nuget:?package=Cake.FileHelpers&version=1.0.4
 
 #tool nuget:?package=GitVersion.CommandLine
 

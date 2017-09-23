@@ -3,6 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #tool nuget:?package=NUnit.ConsoleRunner&version=3.4.0
+
 #l "versionUtils.cake"
 #l "settingsUtils.cake"
 

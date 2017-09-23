@@ -1,4 +1,4 @@
-#addin "Cake.Json"
+#addin nuget:?package=Cake.Json&version=1.0.2.13
 
 public class SettingsUtils
 {
