@@ -13,7 +13,7 @@
 		"NugetConfigPath": "./.nuget/NuGet.Config",
 	},
 	"nuget": {
-		"NuGetConfig": "./.nuget/NuGet.config",
+		"NuGetConfig": "./src/.nuget/NuGet.config",
 		"FeedUrl": "https://www.nuget.org",
 		"FeedAPIKey": "",
 		"ArtifactsPath": "./artifacts/packages",

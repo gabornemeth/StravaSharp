@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -190,9 +191,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\StravaSharp.NetStandard\StravaSharp.NetStandard.csproj">
-      <Project>{2a6d8396-6b6b-4ece-8130-a6f3b5dec396}</Project>
-      <Name>StravaSharp.NetStandard</Name>
+    <ProjectReference Include="..\..\StravaSharp\StravaSharp.csproj">
+      <Project>{9448f233-7fcc-4a0b-a3e0-b2c59d8c28af}</Project>
+      <Name>StravaSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

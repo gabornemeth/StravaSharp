@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\StravaSharp.NetStandard\StravaSharp.NetStandard.csproj" />
+    <ProjectReference Include="..\..\StravaSharp\StravaSharp.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,13 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StravaSharp", "StravaSharp\StravaSharp.shproj", "{CAF2E2DC-C3E2-4FD9-A6DF-F55EFE8B8130}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StravaSharp.Tests", "StravaSharp.Tests\StravaSharp.Tests.shproj", "{DCECDD8A-813E-47F1-937F-31B825E140BF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.Tests.NET", "StravaSharp.Tests.NET\StravaSharp.Tests.NET.csproj", "{5E80B020-EA6B-4256-A092-AEBD1FD9BCF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.Tests", "StravaSharp.Tests\StravaSharp.Tests.csproj", "{5E80B020-EA6B-4256-A092-AEBD1FD9BCF7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F4DA7CEA-AD05-42D1-A662-1DBFD8964C8A}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,14 +12,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F4DA7C
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.NetStandard", "StravaSharp.NetStandard\StravaSharp.NetStandard.csproj", "{FC4D49F5-1D55-4539-B23A-A44FDE55B30B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StravaSharp", "StravaSharp\StravaSharp.csproj", "{FC4D49F5-1D55-4539-B23A-A44FDE55B30B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{24C6836D-9F2E-4659-B40B-72C8B5F2F659}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Rebracer.xml = Rebracer.xml
+	EndProjectSection
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		StravaSharp.Tests\StravaSharp.Tests.projitems*{5e80b020-ea6b-4256-a092-aebd1fd9bcf7}*SharedItemsImports = 4
-		StravaSharp\StravaSharp.projitems*{caf2e2dc-c3e2-4fd9-a6df-f55efe8b8130}*SharedItemsImports = 13
-		StravaSharp.Tests\StravaSharp.Tests.projitems*{dcecdd8a-813e-47f1-937f-31b825e140bf}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

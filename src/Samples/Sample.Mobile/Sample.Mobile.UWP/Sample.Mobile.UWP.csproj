@@ -148,9 +148,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\StravaSharp.NetStandard\StravaSharp.NetStandard.csproj">
-      <Project>{2a6d8396-6b6b-4ece-8130-a6f3b5dec396}</Project>
-      <Name>StravaSharp.NetStandard</Name>
+    <ProjectReference Include="..\..\..\StravaSharp\StravaSharp.csproj">
+      <Project>{9448f233-7fcc-4a0b-a3e0-b2c59d8c28af}</Project>
+      <Name>StravaSharp</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Sample.Core\Sample.Core.csproj">
       <Project>{02bb266a-e5d6-4bf3-a77b-eb7bd57608ad}</Project>

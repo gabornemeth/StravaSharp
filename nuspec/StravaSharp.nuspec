@@ -24,6 +24,6 @@
   </metadata>
   <files>
     <!-- NetStandard 1.1 -->
-    <file src="../src/StravaSharp.NetStandard/bin/Release/netstandard1.1/StravaSharp.dll" target="lib\netstandard1.1" />
+    <file src="../src/StravaSharp/bin/Release/netstandard1.1/StravaSharp.dll" target="lib\netstandard1.1" />
   </files>
 </package>

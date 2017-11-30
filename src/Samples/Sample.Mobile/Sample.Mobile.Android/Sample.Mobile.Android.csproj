@@ -17,7 +17,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <JavaMaximumHeapSize />
@@ -145,6 +145,10 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\StravaSharp\StravaSharp.csproj">
+      <Project>{9448f233-7fcc-4a0b-a3e0-b2c59d8c28af}</Project>
+      <Name>StravaSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Sample.Core\Sample.Core.csproj">
       <Project>{02bb266a-e5d6-4bf3-a77b-eb7bd57608ad}</Project>
       <Name>Sample.Core</Name>

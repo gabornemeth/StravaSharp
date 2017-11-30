@@ -77,22 +77,37 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityParseTest.cs" />
+    <Compile Include="ActivityTest.cs" />
+    <Compile Include="AthleteTest.cs" />
+    <Compile Include="ClubTest.cs" />
+    <Compile Include="PolylineTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource.cs" />
+    <Compile Include="SegmentTest.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="StravaClientTest.cs" />
+    <Compile Include="TestAuthenticator.cs" />
+    <Compile Include="TestHelper.cs" />
+    <Compile Include="UploadTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <EmbeddedResource Include="Files\2011-08-10-17-51-31.fit" />
+    <EmbeddedResource Include="Files\activities.json" />
+    <EmbeddedResource Include="Files\userinfo.json" />
+    <EmbeddedResource Include="Files\activity_watersport.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StravaSharp.NetStandard\StravaSharp.NetStandard.csproj">
+    <ProjectReference Include="..\StravaSharp\StravaSharp.csproj">
       <Project>{fc4d49f5-1d55-4539-b23a-a44fde55b30b}</Project>
-      <Name>StravaSharp.NetStandard</Name>
+      <Name>StravaSharp</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\StravaSharp.Tests\StravaSharp.Tests.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

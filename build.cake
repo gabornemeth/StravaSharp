@@ -137,7 +137,7 @@ Task("Build")
 			ToolVersion = MSBuildToolVersion.VS2017,
 		}.WithProperty("TreatWarningsAsErrors",buildSettings.Build.TreatWarningsAsErrors.ToString())
 		 .WithTarget("Build");
- 	
+
 	 	MSBuild(solution, msBuildSettings);
     }
 });
@@ -146,7 +146,7 @@ Task("Run-Unit-Tests")
     .IsDependentOn("Build")
     .Does(() =>
 {
-    NUnit3("./**/bin/" + configuration + "/*.Tests.*.dll", new NUnit3Settings {
+    NUnit3("./**/bin/" + configuration + "/*.Tests.dll", new NUnit3Settings {
         NoResults = true
         });
 });

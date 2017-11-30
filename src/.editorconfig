@@ -1,0 +1,11 @@
+; Top-most EditorConfig file
+root = true
+; Test
+; 2-column space indentation
+[*.cs]
+indent_style = space
+indent_size = 4
+
+[*.cshtml]
+indent_style = space
+indent_size = 4
