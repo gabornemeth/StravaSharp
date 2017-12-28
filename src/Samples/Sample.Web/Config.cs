@@ -2,7 +2,8 @@
 {
     public class Config
     {
-        public static string ClientId => "8472";
-        public static string ClientSecret => "afc2fc3ddfe80680521c8895892ebe86a9337c90";
+        //TODO: Add your clientId and Secret from your strava account: https://www.strava.com/settings/api
+        public static string ClientId => "xxx";
+        public static string ClientSecret => "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
     }
 }

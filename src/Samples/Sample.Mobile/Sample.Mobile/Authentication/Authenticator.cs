@@ -55,7 +55,7 @@ namespace Sample.Mobile.Authentication
                     AccessToken = Client.AccessToken;
 
                     // dismiss login page
-                    await Application.Current.MainPage.Navigation.PopAsync();
+                        await Application.Current.MainPage.Navigation.PopAsync();
                     return true;
                 }
             }
@@ -71,7 +71,7 @@ namespace Sample.Mobile.Authentication
             // Not authenticated yet
             try
             {
-                //await Application.Current.MainPage.Navigation.PushAsync(new LoginPage());
+                await Application.Current.MainPage.Navigation.PushAsync(new LoginPage(this));
             }
             catch (Exception ex)
             {

@@ -4,8 +4,10 @@ namespace Sample
 {
     public class Config
     {
-        public static string ClientId => "";
-        public static string ClientSecret => "";
+        //TODO: Add your clientId and Secret from your strava account: https://www.strava.com/settings/api
+        public static string ClientId => "xxx";
+        public static string ClientSecret => "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        public static string RedirectUrl => $"http://strava.ballendat.com/";
 
         public static StravaClient CreateOAuth2Cient(string redirectUrl)
         {
