@@ -10,7 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Sample.Mobile.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>Sample.Mobile.iOS</AssemblyName>
+    <AssemblyName>Sample.Mobile</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -163,6 +163,10 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\StravaSharp\StravaSharp.csproj">
+      <Project>{9448f233-7fcc-4a0b-a3e0-b2c59d8c28af}</Project>
+      <Name>StravaSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Sample.Core\Sample.Core.csproj">
       <Project>{02BB266A-E5D6-4BF3-A77B-EB7BD57608AD}</Project>
       <Name>Sample.Core</Name>

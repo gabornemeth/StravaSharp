@@ -25,6 +25,13 @@ namespace Sample.Mobile
         {
             base.OnAppearing();
             var loginUri = await _authenticator.GetLoginLinkUri();
+            this.browser.Source = loginUri;
+            this.browser.Navigated += Browser_Navigated;
+        }
+
+        private void Browser_Navigated(object sender, WebNavigatedEventArgs e)
+        {
+            _authenticator.OnPageLoaded(new Uri(e.Url));
         }
     }
 }
