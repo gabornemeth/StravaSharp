@@ -17,17 +17,7 @@ namespace Sample.Mobile.ViewModels
 
         static Authenticator CreateAuthenticator()
         {
-            var redirectUrl = Config.RedirectUrl;
-            var config = new RestSharp.Portable.OAuth2.Configuration.RuntimeClientConfiguration
-            {
-                IsEnabled = false,
-                ClientId = Config.ClientId,
-                ClientSecret = Config.ClientSecret,
-                RedirectUri = redirectUrl,
-                Scope = "view_private",
-            };
-            var client = new StravaClient(new RequestFactory(), config);
-
+            var client = Config.CreateOAuth2Cient();
             return new Authenticator(client);
         }
 
