@@ -60,29 +60,64 @@ namespace StravaSharp
             return response.Data;
         }
 
+        byte[] SerializeStream(System.IO.Stream stream)
+        {
+            var memoryStream = new System.IO.MemoryStream();
+            stream.CopyTo(memoryStream);
+            return memoryStream.ToArray();
+        }
+
+
         public async Task<UploadStatus> Upload(ActivityType activityType, DataType dataType, System.IO.Stream input, string fileName, string name = null, string description = null,
             bool @private = false, bool commute = false)
         {
-            var request = new RestRequest("/api/v3/uploads?data_type={data_type}&activity_type={activity_type}&private={private}&commute={commute}", Method.POST);
-            if (name != null)
+            try
             {
-                request.Resource += "&name={name}";
-                request.AddParameter("name", name, ParameterType.UrlSegment);
-            }
-            if (description != null)
-            {
-                request.Resource += "&description={description}";
-                request.AddParameter("description", description, ParameterType.UrlSegment);
-            }
+                //var httpClient = new HttpClient();
+                //httpClient.BaseAddress = _client.RestClient.BaseUrl;
 
-            request.ContentCollectionMode = ContentCollectionMode.MultiPart;
-            request.AddParameter("data_type", dataType, ParameterType.UrlSegment);
-            request.AddParameter("activity_type", EnumHelper.ToString(activityType), ParameterType.UrlSegment);
-            request.AddParameter("private", @private ? 1 : 0, ParameterType.UrlSegment);
-            request.AddParameter("commute", commute ? 1 : 0, ParameterType.UrlSegment);
-            request.AddFile("file", input, Uri.EscapeDataString(fileName));
-            var response = await _client.RestClient.Execute<UploadStatus>(request);
-            return response.Data;
+                //var msg = new HttpRequestMessage(HttpMethod.Post, "api/v3/uploads");
+                //var content = new MultipartFormDataContent();
+                //content.Add(new StreamContent(input, 512), "file", Uri.EscapeDataString(fileName));
+                //var c = new StringContent("fit");
+                //c.Headers.Clear();
+                //content.Add(new StringContent(EnumHelper.ToString(dataType), "\"data_type\"");
+                //content.Add(new StringContent(EnumHelper.ToString(activityType)), "activity_type");
+                //content.Add(new StringContent(@private ? "1" : "0"), "private");
+                //content.Add(new StringContent(commute ? "1" : "0"), "commute");
+                //msg.Content = content;
+
+                //_client.Authenticator.Authenticate(msg);
+                //var requestAsString = await msg.Content.ReadAsStringAsync();
+                //return await httpClient.SendAsync<UploadStatus>(msg);
+
+                var request = new RestRequest("/api/v3/uploads", Method.POST);
+                request.ContentCollectionMode = ContentCollectionMode.MultiPart;
+                request.AddFile("file", input, Uri.EscapeDataString(fileName));
+
+                // workaround: multipart form-data parameters has to be enclosed in ""
+                // https://github.com/dotnet/corefx/issues/26886
+
+                if (name != null)
+                {
+                    request.AddParameter("\"name\"", name);
+                }
+                if (description != null)
+                {
+                    request.AddParameter("\"description\"", description);
+                }
+
+                request.AddParameter("\"data_type\"", EnumHelper.ToString(dataType));
+                request.AddParameter("\"activity_type\"", EnumHelper.ToString(activityType));
+                request.AddParameter("\"private\"", @private ? 1 : 0);
+                request.AddParameter("\"commute\"", commute ? 1 : 0);
+                var response = await _client.RestClient.Execute<UploadStatus>(request);
+                return response.Data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<UploadStatus> GetUploadStatus(int id)
@@ -116,48 +151,6 @@ namespace StravaSharp
         }
 
         /// <summary>
-        /// List the recent activities performed by the current athlete and those they are following.
-        /// </summary>
-        /// <param name="page">Page number (optional).</param>
-        /// <param name="itemsPerPage">Number of items per page (optional).</param>
-        /// <returns>List of activities.</returns>
-        public Task<List<ActivitySummary>> GetFollowingActivities(int page = 0, int itemsPerPage = 0)
-        {
-            return GetFollowingActivities(DateTime.MinValue, page, itemsPerPage);
-        }
-
-        /// <summary>
-        /// List the recent activities performed by the current athlete and those they are following.
-        /// </summary>
-        /// <param name="before">Result will start with activities whose start_date is before this value.</param>
-        /// <returns>List of activities.</returns>
-        public Task<List<ActivitySummary>> GetFollowingActivities(DateTime before)
-        {
-            return GetFollowingActivities(before, 0, 0);
-        }
-
-        /// <summary>
-        /// List the recent activities performed by the current athlete and those they are following.
-        /// </summary>
-        /// <param name="before">Result will start with activities whose start_date is before this value.</param>
-        /// <param name="page">Page number (optional).</param>
-        /// <param name="itemsPerPage">Number of items per page (optional).</param>
-        /// <returns>List of activities.</returns>
-        private async Task<List<ActivitySummary>> GetFollowingActivities(DateTime before, int page, int itemsPerPage)
-        {
-            var request = new RestRequest("/api/v3/activities/following");
-            if (before != DateTime.MinValue)
-                request.AddQueryParameter("before", before.GetSecondsSinceUnixEpoch());
-            if (page != 0)
-                request.AddParameter("page", page);
-            if (itemsPerPage != 0)
-                request.AddParameter("per_page", itemsPerPage);
-            var response = await _client.RestClient.Execute<List<ActivitySummary>>(request);
-
-            return response.Data;
-        }
-
-        /// <summary>
         /// List the laps of an activity.
         /// </summary>
         /// <param name="activityId">Identifier of the activity.</param>
@@ -169,27 +162,6 @@ namespace StravaSharp
             var response = await _client.RestClient.Execute<List<ActivitySummary>>(request);
             return response.Data;
         }
-
-        /// <summary>
-        /// Returns the activities that were matched as “with this group”. The number equals activity.athlete_count-1. Pagination is supported.
-        /// </summary>
-        /// <param name="activityId"></param>
-        /// <param name="page"></param>
-        /// <param name="itemsPerPage"></param>
-        /// <returns></returns>
-        public async Task<List<ActivitySummary>> GetRelatedActivities(long activityId, int page = 0, int itemsPerPage = 0)
-        {
-            var request = new RestRequest("/api/v3/activities/{id}/related", Method.GET);
-            request.AddParameter("id", activityId, ParameterType.UrlSegment);
-            if (page != 0)
-                request.AddParameter("page", page);
-            if (itemsPerPage != 0)
-                request.AddParameter("per_page", itemsPerPage);
-            var response = await _client.RestClient.Execute<List<ActivitySummary>>(request);
-
-            return response.Data;
-        }
-
 
         public async Task<List<Comment>> GetComments(long activityId, int page = 0, int itemsPerPage = 0)
         {

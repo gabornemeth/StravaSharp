@@ -58,11 +58,18 @@ namespace StravaSharp.Tests
             }
         }
 
+        SegmentSummary GetTestSegment(IEnumerable<SegmentSummary> segments)
+        {
+            var segmentForTesting = segments.FirstOrDefault(s => s.Name == "Hock János utca");
+            Assert.NotNull(segmentForTesting);
+            return segmentForTesting;
+        }
+
         [Test]
         public async Task GetEfforts()
         {
             var segments = await RetrieveSegments();
-            var segment = segments[0];
+            var segment = GetTestSegment(segments);
             var efforts = (await _client.Segments.GetEfforts(segment.Id, 1, 2)).ToArray();
             Assert.AreEqual(2, efforts.Length);
             foreach (var effort in efforts)
@@ -117,7 +124,7 @@ namespace StravaSharp.Tests
         public async Task GetEffortStreams()
         {
             var segments = await RetrieveSegments();
-            var segment = segments[0];
+            var segment = GetTestSegment(segments);
             var effort = await RetrieveEffort(segment);
 
             var streams = await _client.Segments.GetEffortStreams(effort, StreamType.Distance, StreamType.LatLng);
