@@ -12,6 +12,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
@@ -25,7 +26,7 @@ namespace StravaSharp.Tests
             var client = TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
             Assert.True(activities.Count > 0);
-            var activity = activities[0];
+            var activity = activities.FirstOrDefault(a => a.Map?.SummaryPolyline != null);
             Assert.NotNull(activity);
             activity = await client.Activities.Get(activity.Id);
             Assert.NotNull(activity);
