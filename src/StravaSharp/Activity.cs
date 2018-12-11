@@ -24,7 +24,7 @@ namespace StravaSharp
         public string ExternalId { get; internal set; }
 
         [JsonProperty("upload_id", NullValueHandling = NullValueHandling.Ignore)]
-        public int UploadId { get; internal set; }
+        public long UploadId { get; internal set; }
 
         [JsonProperty("name")]
         public string Name { get; internal set; }
