@@ -23,7 +23,7 @@ namespace StravaSharp
 		/// </summary>
 		/// <value>The identifier.</value>
         [JsonProperty("id")]
-        public int Id { get; internal set; }
+        public long Id { get; internal set; }
         
 		[JsonProperty("external_id")]
         public string ExternalId { get; internal set; }

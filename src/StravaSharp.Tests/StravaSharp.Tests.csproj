@@ -97,6 +97,7 @@
     <EmbeddedResource Include="Files\activities.json" />
     <EmbeddedResource Include="Files\userinfo.json" />
     <EmbeddedResource Include="Files\activity_watersport.json" />
+    <EmbeddedResource Include="Files\gabornemeth.2018-04-21-20-04-57-385Z.GarminPush.19873008881.fit" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

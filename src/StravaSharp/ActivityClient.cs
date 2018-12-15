@@ -71,56 +71,49 @@ namespace StravaSharp
         public async Task<UploadStatus> Upload(ActivityType activityType, DataType dataType, System.IO.Stream input, string fileName, string name = null, string description = null,
             bool @private = false, bool commute = false)
         {
-            try
+            //var httpClient = new HttpClient();
+            //httpClient.BaseAddress = _client.RestClient.BaseUrl;
+
+            //var msg = new HttpRequestMessage(HttpMethod.Post, "api/v3/uploads");
+            //var content = new MultipartFormDataContent();
+            //content.Add(new StreamContent(input, 512), "file", Uri.EscapeDataString(fileName));
+            //var c = new StringContent("fit");
+            //c.Headers.Clear();
+            //content.Add(new StringContent(EnumHelper.ToString(dataType), "\"data_type\"");
+            //content.Add(new StringContent(EnumHelper.ToString(activityType)), "activity_type");
+            //content.Add(new StringContent(@private ? "1" : "0"), "private");
+            //content.Add(new StringContent(commute ? "1" : "0"), "commute");
+            //msg.Content = content;
+
+            //_client.Authenticator.Authenticate(msg);
+            //var requestAsString = await msg.Content.ReadAsStringAsync();
+            //return await httpClient.SendAsync<UploadStatus>(msg);
+
+            var request = new RestRequest("/api/v3/uploads", Method.POST);
+            request.ContentCollectionMode = ContentCollectionMode.MultiPart;
+            request.AddFile("file", input, Uri.EscapeDataString(fileName));
+
+            // workaround: multipart form-data parameters has to be enclosed in ""
+            // https://github.com/dotnet/corefx/issues/26886
+
+            if (name != null)
             {
-                //var httpClient = new HttpClient();
-                //httpClient.BaseAddress = _client.RestClient.BaseUrl;
-
-                //var msg = new HttpRequestMessage(HttpMethod.Post, "api/v3/uploads");
-                //var content = new MultipartFormDataContent();
-                //content.Add(new StreamContent(input, 512), "file", Uri.EscapeDataString(fileName));
-                //var c = new StringContent("fit");
-                //c.Headers.Clear();
-                //content.Add(new StringContent(EnumHelper.ToString(dataType), "\"data_type\"");
-                //content.Add(new StringContent(EnumHelper.ToString(activityType)), "activity_type");
-                //content.Add(new StringContent(@private ? "1" : "0"), "private");
-                //content.Add(new StringContent(commute ? "1" : "0"), "commute");
-                //msg.Content = content;
-
-                //_client.Authenticator.Authenticate(msg);
-                //var requestAsString = await msg.Content.ReadAsStringAsync();
-                //return await httpClient.SendAsync<UploadStatus>(msg);
-
-                var request = new RestRequest("/api/v3/uploads", Method.POST);
-                request.ContentCollectionMode = ContentCollectionMode.MultiPart;
-                request.AddFile("file", input, Uri.EscapeDataString(fileName));
-
-                // workaround: multipart form-data parameters has to be enclosed in ""
-                // https://github.com/dotnet/corefx/issues/26886
-
-                if (name != null)
-                {
-                    request.AddParameter("\"name\"", name);
-                }
-                if (description != null)
-                {
-                    request.AddParameter("\"description\"", description);
-                }
-
-                request.AddParameter("\"data_type\"", EnumHelper.ToString(dataType));
-                request.AddParameter("\"activity_type\"", EnumHelper.ToString(activityType));
-                request.AddParameter("\"private\"", @private ? 1 : 0);
-                request.AddParameter("\"commute\"", commute ? 1 : 0);
-                var response = await _client.RestClient.Execute<UploadStatus>(request);
-                return response.Data;
+                request.AddParameter("\"name\"", name);
             }
-            catch (Exception ex)
+            if (description != null)
             {
-                throw ex;
+                request.AddParameter("\"description\"", description);
             }
+
+            request.AddParameter("\"data_type\"", EnumHelper.ToString(dataType));
+            request.AddParameter("\"activity_type\"", EnumHelper.ToString(activityType));
+            request.AddParameter("\"private\"", @private ? 1 : 0);
+            request.AddParameter("\"commute\"", commute ? 1 : 0);
+            var response = await _client.RestClient.Execute<UploadStatus>(request);
+            return response.Data;
         }
 
-        public async Task<UploadStatus> GetUploadStatus(int id)
+        public async Task<UploadStatus> GetUploadStatus(long id)
         {
             var request = new RestRequest("/api/v3/uploads/{id}", Method.GET);
             request.AddParameter("id", id, ParameterType.UrlSegment);
