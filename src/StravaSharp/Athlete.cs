@@ -112,8 +112,6 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("measurement_preference")]
         public string MeasurementPreference { get; internal set; }
-        [JsonProperty("email")]
-        public string Email { get; internal set; }
         [JsonProperty("ftp", NullValueHandling = NullValueHandling.Ignore)]
         public int Ftp { get; internal set; }
         /// <summary>

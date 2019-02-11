@@ -18,7 +18,6 @@ namespace StravaSharp.Tests
             var client = TestHelper.CreateStravaClient();
             var athlete = await client.Athletes.GetCurrent();
             Assert.NotNull(athlete);
-            Assert.AreEqual("gabor.nemeth.dev@gmail.com", athlete.Email);
             Assert.AreEqual("Extrava", athlete.FirstName);
         }
         
@@ -28,7 +27,7 @@ namespace StravaSharp.Tests
             var client = TestHelper.CreateStravaClient();
             var athlete = await client.Athletes.Get(6632444);
             Assert.NotNull(athlete);
-            Assert.AreEqual("gabor.nemeth.dev@gmail.com", athlete.Email);
+            Assert.AreEqual("Extrava", athlete.FirstName);
         }
     }
 }

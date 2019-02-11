@@ -1,12 +1,8 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using RestSharp.Portable;
 using RestSharp.Portable.OAuth2.Configuration;
 using RestSharp.Portable.OAuth2.Infrastructure;
 using RestSharp.Portable.OAuth2.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StravaSharp.Tests
 {
@@ -24,7 +20,6 @@ namespace StravaSharp.Tests
             Assert.NotNull(userInfo);
             Assert.False(string.IsNullOrEmpty(userInfo.FirstName));
             Assert.False(string.IsNullOrEmpty(userInfo.LastName));
-            Assert.False(string.IsNullOrEmpty(userInfo.Email));
             Assert.False(string.IsNullOrEmpty(userInfo.PhotoUri));
         }
 

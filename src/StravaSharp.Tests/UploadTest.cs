@@ -20,7 +20,7 @@ namespace StravaSharp.Tests
 #if !DEBUG
         [Ignore("Delete requires application level permission.")]
 #endif
-        public async Task UploadAndDelete()
+        public async Task Upload()
         {
             var client = TestHelper.CreateStravaClient();
             using (var stream = Resource.GetStream(_fileName))
@@ -36,9 +36,6 @@ namespace StravaSharp.Tests
                     result = await client.Activities.GetUploadStatus(result.Id);
                     await Task.Delay(2000);
                 }
-                await Task.Delay(3000);
-                // delete the ready activity
-                await client.Activities.Delete(result.ActivityId);
             }
         }
     }

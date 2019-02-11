@@ -84,7 +84,6 @@ namespace StravaSharp
                 Id = obj["id"].Value<string>(),
                 FirstName = obj["firstname"].Value<string>(),
                 LastName = obj["lastname"].Value<string>(),
-                Email = obj["email"].Value<string>(),
             };
             userInfo.AvatarUri.Normal = obj["profile_medium"].Value<string>();
             userInfo.AvatarUri.Large = obj["profile"].Value<string>();
