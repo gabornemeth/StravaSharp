@@ -69,7 +69,7 @@ namespace StravaSharp
 
 
         public async Task<UploadStatus> Upload(ActivityType activityType, DataType dataType, System.IO.Stream input, string fileName, string name = null, string description = null,
-            bool @private = false, bool commute = false)
+            bool @private = false, bool commute = false, string externalId = null)
         {
             //var httpClient = new HttpClient();
             //httpClient.BaseAddress = _client.RestClient.BaseUrl;
@@ -109,6 +109,10 @@ namespace StravaSharp
             request.AddParameter("\"activity_type\"", EnumHelper.ToString(activityType));
             request.AddParameter("\"private\"", @private ? 1 : 0);
             request.AddParameter("\"commute\"", commute ? 1 : 0);
+            if (!string.IsNullOrWhiteSpace(externalId))
+            {
+                request.AddParameter("\"external_id\"", externalId);
+            }
             var response = await _client.RestClient.Execute<UploadStatus>(request);
             return response.Data;
         }
