@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -252,4 +254,64 @@ namespace StravaSharp
         //photos: object
         //photos summary
     }
+
+    /// <summary>
+    /// Contains Zone information for an activity
+    /// </summary>
+    public class ActivityZone
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("score")]
+        public long Score { get; set; }
+
+        [JsonProperty("sensor_based")]
+        public bool SensorBased { get; set; }
+
+        [JsonProperty("custom_zones")]
+        public bool CustomZones { get; set; }
+
+        [JsonProperty("max")]
+        public long Max { get; set; }
+
+        /// <summary>
+        /// Lists the times in Zones
+        /// </summary>
+        [JsonProperty("distribution_buckets", NullValueHandling = NullValueHandling.Ignore)]
+        public List<TimeZoneRange> DistributionBuckets { get; set; }
+
+        /// <summary>
+        /// May take one of the following values: heartrate, power
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        [JsonProperty("points")]
+        public long Points { get; set; }
+    }
+
+    /// <summary>
+    /// Time in a Zone
+    /// </summary>
+    public class TimeZoneRange
+    {
+        /// <summary>
+        /// Minimum Value of the Zone
+        /// </summary>
+        [JsonProperty("min")]
+        public int Min { get; set; }
+
+        /// <summary>
+        /// Maximum Value of the Zone
+        /// </summary>
+        [JsonProperty("max")]
+        public int Max { get; set; }
+
+        /// <summary>
+        /// The number of seconds spent in this zone
+        /// </summary>
+        [JsonProperty("time")]
+        public int Time { get; set; }
+    }    
 }
