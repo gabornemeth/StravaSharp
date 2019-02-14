@@ -251,7 +251,10 @@ namespace StravaSharp
         //best_efforts: array of best effort summaries
         // running activities only
 
-        //photos: object
-        //photos summary
+        /// <summary>
+        /// Photos
+        /// </summary>
+        [JsonProperty("photos")]
+        public PhotoInfo Photos { get; internal set; }
     }
 }
