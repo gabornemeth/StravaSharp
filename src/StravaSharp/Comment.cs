@@ -16,13 +16,13 @@ namespace StravaSharp
     /// <summary>
     /// Comment for an activity
     /// </summary>
-    public class Comment : StravaObject<int>
+    public class Comment : StravaObject<long>
     {
         /// <summary>
         /// Identifier of the parent activity
         /// </summary>
         [JsonProperty("activity_id")]
-        public int ActivityId { get; internal set; }
+        public long ActivityId { get; internal set; }
         /// <summary>
         /// The actual comment
         /// </summary>
