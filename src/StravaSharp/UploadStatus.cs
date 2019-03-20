@@ -32,7 +32,7 @@ namespace StravaSharp
 		/// Identifier of the activity
 		/// </summary>
         [JsonProperty("activity_id", NullValueHandling = NullValueHandling.Ignore)]
-        public int ActivityId { get; internal set; }
+        public long ActivityId { get; internal set; }
 
 		/// <summary>
 		/// Describes the error, possible values:

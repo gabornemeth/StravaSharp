@@ -23,6 +23,7 @@ namespace StravaSharp.Tests
                 var reader = new JsonTextReader(new StreamReader(stream));
                 var result = serializer.Deserialize<Activity>(reader);
                 Assert.NotNull(result);
+                Assert.AreEqual(361720123456, result.UploadId);
             }
         }
     }

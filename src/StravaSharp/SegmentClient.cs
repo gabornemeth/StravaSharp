@@ -17,7 +17,7 @@ namespace StravaSharp
             _client = client;
         }
 
-        public async Task<Segment> Get(int segmentId)
+        public async Task<Segment> Get(long segmentId)
         {
             var request = new RestRequest(EndPoint + "/{id}", Method.GET);
             request.AddParameter("id", segmentId, ParameterType.UrlSegment);
@@ -35,47 +35,47 @@ namespace StravaSharp
             return response.Data.Segments;
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(int segmentId, int page, int perPage)
+        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, int page, int perPage)
         {
             return GetEfforts(segmentId, null, null, null, page, perPage);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(int segmentId)
+        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId)
         {
             return GetEfforts(segmentId, null, null, null, null, null);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(int segmentId, int athleteId)
+        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, int athleteId)
         {
             return GetEfforts(segmentId, athleteId, null, null, null, null);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(int segmentId, int athleteId, int page, int perPage)
+        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, int athleteId, int page, int perPage)
         {
             return GetEfforts(segmentId, athleteId, null, null, page, perPage);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(int segmentId, DateTime startDateLocal, DateTime endDateLocal)
+        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, DateTime startDateLocal, DateTime endDateLocal)
         {
             return GetEfforts(segmentId, null, startDateLocal, endDateLocal, null, null);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(int segmentId, DateTime startDateLocal, DateTime endDateLocal, int page, int perPage)
+        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, DateTime startDateLocal, DateTime endDateLocal, int page, int perPage)
         {
             return GetEfforts(segmentId, null, startDateLocal, endDateLocal, page, perPage);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(int segmentId, int athleteId, DateTime startDateLocal, DateTime endDateLocal)
+        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, int athleteId, DateTime startDateLocal, DateTime endDateLocal)
         {
             return GetEfforts(segmentId, athleteId, startDateLocal, endDateLocal, null, null);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(int segmentId, int athleteId, DateTime startDateLocal, DateTime endDateLocal, int page, int perPage)
+        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, int athleteId, DateTime startDateLocal, DateTime endDateLocal, int page, int perPage)
         {
             return GetEfforts(segmentId, athleteId, startDateLocal, endDateLocal, page, perPage);
         }
 
-        private async Task<IEnumerable<SegmentEffort>> GetEfforts(int segmentId, int? athleteId, DateTime? startDateLocal, DateTime? endDateLocal, int? page, int? perPage)
+        private async Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, int? athleteId, DateTime? startDateLocal, DateTime? endDateLocal, int? page, int? perPage)
         {
             var request = new RestRequest(EndPoint + "/" + segmentId + "/all_efforts", Method.GET);
             if (athleteId != null)
@@ -98,7 +98,7 @@ namespace StravaSharp
         /// <param name="segmentId">ID of the segment.</param>
         /// <param name="gender"></param>
         /// <returns>Leaderboard of the segment</returns>
-        public Task<Leaderboard> GetLeaderboard(int segmentId, Gender? gender, AgeGroup? ageGroup)
+        public Task<Leaderboard> GetLeaderboard(long segmentId, Gender? gender, AgeGroup? ageGroup)
         {
             return GetLeaderboardInternal(segmentId, null, null, gender, ageGroup);
         }
@@ -112,12 +112,12 @@ namespace StravaSharp
 		/// <param name="perPage">Items per page.</param>
 		/// <param name="gender">Gender.</param>
 		/// <param name="ageGroup">Age group.</param>
-        public Task<Leaderboard> GetLeaderboard(int segmentId, int page, int perPage, Gender? gender, AgeGroup? ageGroup)
+        public Task<Leaderboard> GetLeaderboard(long segmentId, int page, int perPage, Gender? gender, AgeGroup? ageGroup)
         {
             return GetLeaderboardInternal(segmentId, page, perPage, gender, ageGroup);
         }
 
-        private async Task<Leaderboard> GetLeaderboardInternal(int segmentId, int? page, int? perPage, Gender? gender, AgeGroup? ageGroup, bool following = false)
+        private async Task<Leaderboard> GetLeaderboardInternal(long segmentId, int? page, int? perPage, Gender? gender, AgeGroup? ageGroup, bool following = false)
         {
             var request = new RestRequest(EndPoint + "/" + segmentId + "/leaderboard", Method.GET);
             if (page != null)
@@ -138,7 +138,7 @@ namespace StravaSharp
             return GetSegmentStreams(segment.Id, types);
         }
 
-        public async Task<List<Stream>> GetSegmentStreams(int segmentId, params StreamType[] types)
+        public async Task<List<Stream>> GetSegmentStreams(long segmentId, params StreamType[] types)
         {
             var request = new RestRequest("/api/v3/segments/{id}/streams/{types}", Method.GET);
             request.AddParameter("id", segmentId, ParameterType.UrlSegment);

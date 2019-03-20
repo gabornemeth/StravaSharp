@@ -100,7 +100,7 @@ namespace StravaSharp
         /// Id of the activity where this effort belongs to
         /// </summary>
         [JsonProperty("activity_id")]
-        public int ActivityId { get; internal set; }
+        public long ActivityId { get; internal set; }
         
         /// <summary>
         /// Id of the effort

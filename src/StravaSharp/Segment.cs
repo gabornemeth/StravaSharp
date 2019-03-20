@@ -22,7 +22,7 @@ namespace StravaSharp
     /// <summary>
     /// Summary info about a segment
     /// </summary>
-    public class SegmentSummary : StravaObject<int>
+    public class SegmentSummary : StravaObject<long>
     {
         [JsonProperty("name")]
         public string Name { get; internal set; }
