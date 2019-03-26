@@ -87,5 +87,32 @@ namespace StravaSharp.Tests
                 Assert.NotNull(stream.Data);
             }
         }
+
+
+        [Test]
+        public async Task GetSplits()
+        {
+            var client = TestHelper.CreateStravaClient();
+            var activities = await client.Activities.GetAthleteActivitiesAfter(DateTime.Today.AddMonths(-1));
+            Assert.True(activities.Count > 0);
+            foreach (var activitySummary in activities.Where(E => E.Type == ActivityType.Run))
+            {
+                var activity = await client.Activities.Get(activitySummary.Id);
+                Assert.True(activity.SplitsMetric.Length > 0);
+            }
+        }
+
+        [Test]
+        public async Task GetPhotos()
+        {
+            var client = TestHelper.CreateStravaClient();
+            var activities = await client.Activities.GetAthleteActivitiesAfter(DateTime.Today.AddMonths(-1));
+            Assert.True(activities.Count > 0);
+            foreach (var activitySummary in activities)
+            {
+                var activity = await client.Activities.Get(activitySummary.Id);
+                Assert.True(activity.Photos.Count >= 0);
+            }
+        }
     }
 }
