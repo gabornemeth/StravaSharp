@@ -212,12 +212,14 @@ namespace StravaSharp
         /// </summary>
         /// <param name="activityId"></param>
         /// <returns></returns>
-        public async Task<List<ActivityZone>> GetActivitieZones(long activityId)
+        public async Task<List<ActivityZone>> GetActivityZones(long activityId)
         {
             var request = new RestRequest("/api/v3/activities/{id}/zones", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
 
             var response = await _client.RestClient.Execute<List<ActivityZone>>(request);
+
+            var responseasString = await _client.RestClient.Execute<string>(request);
             return response.Data;
         }
     }
