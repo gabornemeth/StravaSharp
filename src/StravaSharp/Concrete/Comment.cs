@@ -16,7 +16,7 @@ namespace StravaSharp
     /// <summary>
     /// Comment for an activity
     /// </summary>
-    public class Comment : StravaObject<long>
+    internal class Comment : StravaObject<long>, IComment
     {
         /// <summary>
         /// Identifier of the parent activity
@@ -33,6 +33,8 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("athlete")]
         public AthleteSummary Athlete { get; internal set; }
+
+        IAthleteSummary IComment.Athlete => Athlete;
         /// <summary>
         /// Time of creation
         /// </summary>

@@ -17,10 +17,10 @@ namespace StravaSharp.Tests
 {
     public static class TestHelper
     {
-        public static Client CreateStravaClient()
+        public static StravaClient CreateStravaClient()
         {
             var authenticator = new TestAuthenticator(Settings.AccessToken);
-            return new Client(authenticator);
+            return new StravaClient(authenticator);
         }
     }
 }

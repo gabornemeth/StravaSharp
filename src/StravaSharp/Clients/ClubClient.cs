@@ -9,17 +9,17 @@ namespace StravaSharp
     /// <summary>
     /// Club endpoint
     /// </summary>
-    public class ClubClient
+    internal class ClubClient : IClubClient
     {
-        private Client _client;
+        private StravaClient _client;
         private const string EndPoint = "/api/v3/clubs";
 
-        internal ClubClient(Client client)
+        internal ClubClient(StravaClient client)
         {
             _client = client;
         }
 
-        public async Task<Club> Get(int id)
+        public async Task<IClub> Get(int id)
         {
             var request = new RestRequest(EndPoint + "/{id}", Method.GET);
             request.AddParameter("id", id, ParameterType.UrlSegment);
@@ -27,12 +27,12 @@ namespace StravaSharp
             return response.Data;
         }
 
-        public Task<List<AthleteSummary>> GetMembers(int id)
+        public Task<IReadOnlyList<IAthleteSummary>> GetMembers(int id)
         {
             return GetMembers(id, 0, 0);
         }
 
-        public async Task<List<AthleteSummary>> GetMembers(int id, int page, int itemsPerPage)
+        public async Task<IReadOnlyList<IAthleteSummary>> GetMembers(int id, int page, int itemsPerPage)
         {
             var request = new RestRequest(EndPoint + "/{id}/members", Method.GET);
             request.AddParameter("id", id, ParameterType.UrlSegment);
@@ -49,7 +49,7 @@ namespace StravaSharp
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<List<AthleteSummary>> GetAdmins(int id)
+        public Task<IReadOnlyList<IAthleteSummary>> GetAdmins(int id)
         {
             return GetAdmins(id, 0, 0);
         }
@@ -61,7 +61,7 @@ namespace StravaSharp
 		/// <param name="clubId">Identifier of the club.</param>
 		/// <param name="page">Page.</param>
 		/// <param name="itemsPerPage">Items per page.</param>
-		public async Task<List<AthleteSummary>> GetAdmins(int clubId, int page, int itemsPerPage)
+		public async Task<IReadOnlyList<IAthleteSummary>> GetAdmins(int clubId, int page, int itemsPerPage)
         {
             var request = new RestRequest(EndPoint + "/{id}/admins", Method.GET);
             request.AddParameter("id", clubId, ParameterType.UrlSegment);

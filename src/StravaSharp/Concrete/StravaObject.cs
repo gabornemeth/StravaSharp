@@ -15,7 +15,7 @@ namespace StravaSharp
     /// Base class of Strava objects
     /// T: identifier type
     /// </summary>
-    public class StravaObject<T>
+    internal class StravaObject<T>
     {
         /// <summary>
         /// Identifier

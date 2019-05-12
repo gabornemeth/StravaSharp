@@ -15,23 +15,23 @@ namespace StravaSharp
     /// <summary>
     /// Athlete functionality
     /// </summary>
-    public class AthleteClient
+    internal class AthleteClient : IAthleteClient
     {
-        private Client _client;
+        private StravaClient _client;
 
-        internal AthleteClient(Client client)
+        internal AthleteClient(StravaClient client)
         {
             _client = client;
         }
 
-        public async Task<Athlete> GetCurrent()
+        public async Task<IAthlete> GetCurrent()
         {
             var request = new RestRequest("/api/v3/athlete", Method.GET);
             var response = await _client.RestClient.Execute<Athlete>(request);
             return response.Data;
         }
 
-        public async Task<Athlete> Get(int athleteId)
+        public async Task<IAthlete> Get(int athleteId)
         {
             var request = new RestRequest(string.Format("/api/v3/athletes/{0}", athleteId), Method.GET);
             var response = await _client.RestClient.Execute<Athlete>(request);

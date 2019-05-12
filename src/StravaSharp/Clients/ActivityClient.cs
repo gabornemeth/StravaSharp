@@ -6,20 +6,21 @@ using System.Threading.Tasks;
 using RestSharp.Portable;
 using System.Text;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace StravaSharp
 {
-    public class ActivityClient
+    internal class ActivityClient : IActivityClient
     {
-        private Client _client;
+        private StravaClient _client;
         private const string EndPoint = "/api/v3/activities";
 
-        internal ActivityClient(Client client)
+        internal ActivityClient(StravaClient client)
         {
             _client = client;
         }
 
-        public async Task<Activity> Get(long activityId, bool includeAllEfforts = true)
+        public async Task<IActivity> Get(long activityId, bool includeAllEfforts = true)
         {
             var request = new RestRequest(EndPoint + "/{id}", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
@@ -27,27 +28,27 @@ namespace StravaSharp
             return response.Data;
         }
 
-        public Task<List<ActivitySummary>> GetAthleteActivities(int page = 0, int itemsPerPage = 0)
+        public Task<IReadOnlyList<IActivitySummary>> GetAthleteActivities(int page = 0, int itemsPerPage = 0)
         {
             return GetAthleteActivities(DateTime.MinValue, DateTime.MinValue, page, itemsPerPage);
         }
 
-        public Task<List<ActivitySummary>> GetAthleteActivities(DateTime before, DateTime after)
+        public Task<IReadOnlyList<IActivitySummary>> GetAthleteActivities(DateTime before, DateTime after)
         {
             return GetAthleteActivities(before, after, 0, 0);
         }
 
-        public Task<List<ActivitySummary>> GetAthleteActivitiesBefore(DateTime before)
+        public Task<IReadOnlyList<IActivitySummary>> GetAthleteActivitiesBefore(DateTime before)
         {
             return GetAthleteActivities(before, DateTime.MinValue, 0, 0);
         }
 
-        public Task<List<ActivitySummary>> GetAthleteActivitiesAfter(DateTime after)
+        public Task<IReadOnlyList<IActivitySummary>> GetAthleteActivitiesAfter(DateTime after)
         {
             return GetAthleteActivities(DateTime.MinValue, after, 0, 0);
         }
 
-        private async Task<List<ActivitySummary>> GetAthleteActivities(DateTime before, DateTime after, int page, int itemsPerPage)
+        private async Task<IReadOnlyList<IActivitySummary>> GetAthleteActivities(DateTime before, DateTime after, int page, int itemsPerPage)
         {
             var request = new RestRequest("/api/v3/athlete/activities");
             if (before != DateTime.MinValue)
@@ -130,7 +131,7 @@ namespace StravaSharp
         /// </summary>
         /// <param name="activity">Activity to delete.</param>
         /// <returns></returns>
-        public Task Delete(Activity activity)
+        public Task Delete(IActivity activity)
         {
             return Delete(activity.Id);
         }
@@ -152,7 +153,7 @@ namespace StravaSharp
         /// </summary>
         /// <param name="activityId">Identifier of the activity.</param>
         /// <returns>List of laps.</returns>
-        public async Task<List<ActivitySummary>> GetLaps(long activityId)
+        public async Task<IReadOnlyList<IActivitySummary>> GetLaps(long activityId)
         {
             var request = new RestRequest("/api/v3/activities/{id}/laps", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
@@ -160,7 +161,7 @@ namespace StravaSharp
             return response.Data;
         }
 
-        public async Task<List<Comment>> GetComments(long activityId, int page = 0, int itemsPerPage = 0)
+        public async Task<IReadOnlyList<IComment>> GetComments(long activityId, int page = 0, int itemsPerPage = 0)
         {
             var request = new RestRequest("/api/v3/activities/{id}/comments", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
@@ -180,7 +181,7 @@ namespace StravaSharp
         /// <param name="page"></param>
         /// <param name="itemsPerPage"></param>
         /// <returns></returns>
-        public async Task<List<AthleteSummary>> GetKudoers(long activityId, int page = 0, int itemsPerPage = 0)
+        public async Task<IReadOnlyList<IAthleteSummary>> GetKudoers(long activityId, int page = 0, int itemsPerPage = 0)
         {
             var request = new RestRequest("/api/v3/activities/{id}/kudos", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
@@ -193,12 +194,12 @@ namespace StravaSharp
             return response.Data;
         }
 
-        public Task<List<Stream>> GetActivityStreams(ActivityMeta activity, params StreamType[] types)
+        public Task<IReadOnlyList<IStream>> GetActivityStreams(IActivityMeta activity, params StreamType[] types)
         {
             return GetActivityStreams(activity.Id, types);
         }
 
-        public async Task<List<Stream>> GetActivityStreams(long activityId, params StreamType[] types)
+        public async Task<IReadOnlyList<IStream>> GetActivityStreams(long activityId, params StreamType[] types)
         {
             var request = new RestRequest("/api/v3/activities/{id}/streams/{types}", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);

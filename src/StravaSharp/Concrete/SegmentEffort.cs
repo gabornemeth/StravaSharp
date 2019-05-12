@@ -16,7 +16,7 @@ namespace StravaSharp
     /// <summary>
     /// Summary of a segment effort
     /// </summary>
-    public class SegmentEffort : StravaObject<long>
+    internal class SegmentEffort : StravaObject<long>
     {
         /// <summary>
         /// Name of the effort

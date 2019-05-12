@@ -15,7 +15,7 @@ namespace StravaSharp
     /// <summary>
     /// Detailed representation of the route
     /// </summary>
-    public class Map : StravaObject<string>
+    internal class Map : StravaObject<string>, IMap
     {
         /// <summary>
         /// Polyline with all points

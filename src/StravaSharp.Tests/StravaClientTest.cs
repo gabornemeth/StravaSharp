@@ -7,7 +7,7 @@ using RestSharp.Portable.OAuth2.Models;
 namespace StravaSharp.Tests
 {
     /// <summary>
-    /// Tests of the <see cref="StravaClient"/> class.
+    /// Tests of the <see cref="StravaOAuth2Client"/> class.
     /// </summary>
     [TestFixture]
     public class StravaClientTest
@@ -23,7 +23,7 @@ namespace StravaSharp.Tests
             Assert.False(string.IsNullOrEmpty(userInfo.PhotoUri));
         }
 
-        class StravaClientForTest : StravaClient
+        class StravaClientForTest : StravaOAuth2Client
         {
             public StravaClientForTest(IRequestFactory factory, IClientConfiguration configuration)
                     : base(factory, configuration)
