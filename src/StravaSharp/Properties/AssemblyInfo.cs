@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © Gabor Nemeth 2015-2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
+[assembly: InternalsVisibleTo("StravaSharp.Tests.Internal")]
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version

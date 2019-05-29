@@ -35,7 +35,7 @@ namespace StravaSharp
     /// <summary>
     /// Strava client
     /// </summary>
-    internal class StravaClient : IStravaClient
+    public class StravaClient : IStravaClient
     {
         internal RestClient RestClient { get; }
 

@@ -18,7 +18,7 @@ namespace StravaSharp.Tests
     [TestFixture]
     public class SegmentTest
     {
-        private StravaClient _client;
+        private IStravaClient _client;
 
         [SetUp]
         public void Setup()

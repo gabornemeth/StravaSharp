@@ -20,7 +20,8 @@ namespace StravaSharp.Tests
         {
             get
             {
-                return Environment.GetEnvironmentVariable("STRAVASHARP_ACCESS_TOKEN");
+                return "287a30961471bca32da2ff14347ab161527bfc3a";
+                //return Environment.GetEnvironmentVariable("STRAVASHARP_ACCESS_TOKEN");
             }
         }
 
