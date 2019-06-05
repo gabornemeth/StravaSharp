@@ -4,7 +4,7 @@ namespace StravaSharp
 {
     public interface IAthleteClient
     {
-        Task<IAthlete> Get(int athleteId);
-        Task<IAthlete> GetCurrent();
+        Task<Athlete> Get(int athleteId);
+        Task<Athlete> GetCurrent();
     }
 }

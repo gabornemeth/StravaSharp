@@ -22,7 +22,7 @@ namespace StravaSharp
     /// <summary>
     /// Summary info about a segment
     /// </summary>
-    internal class SegmentSummary : StravaObject<long>, ISegmentSummary
+    public class SegmentSummary : StravaObject<long>
     {
         [JsonProperty("name")]
         public string Name { get; internal set; }
@@ -80,7 +80,7 @@ namespace StravaSharp
     /// <summary>
     /// Segment info
     /// </summary>
-    internal class Segment : SegmentSummary, ISegment
+    public class Segment : SegmentSummary
     {
         [JsonProperty("created_at")]
         [JsonConverter(typeof(Newtonsoft.Json.Converters.IsoDateTimeConverter))]
@@ -99,8 +99,6 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("map")]
         public Map Map { get; internal set; }
-
-        IMap ISegment.Map => Map;
 
         /// <summary>
         /// number of attempts

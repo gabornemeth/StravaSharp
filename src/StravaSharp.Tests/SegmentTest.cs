@@ -23,10 +23,10 @@ namespace StravaSharp.Tests
         [SetUp]
         public void Setup()
         {
-            _client = TestHelper.CreateStravaClient();
+            _client = TestHelper.StravaClientFromSettings();
         }
 
-        private async Task<ISegmentSummary[]> RetrieveSegments()
+        private async Task<SegmentSummary[]> RetrieveSegments()
         {
             // retrieve segments near Zalaegerszeg, Hungary
             var southWest = new LatLng { Latitude = 46.828100f, Longitude = 16.781540f };
@@ -58,7 +58,7 @@ namespace StravaSharp.Tests
             }
         }
 
-        ISegmentSummary GetTestSegment(IEnumerable<ISegmentSummary> segments)
+        SegmentSummary GetTestSegment(IEnumerable<SegmentSummary> segments)
         {
             var segmentForTesting = segments.FirstOrDefault(s => s.Name == "Hock János utca");
             Assert.NotNull(segmentForTesting);
@@ -115,7 +115,7 @@ namespace StravaSharp.Tests
             }
         }
 
-        private async Task<ISegmentEffort> RetrieveEffort(ISegmentSummary segment)
+        private async Task<SegmentEffort> RetrieveEffort(SegmentSummary segment)
         {
             var efforts = (await _client.Segments.GetEfforts(segment.Id, 1, 2)).ToArray();
             Assert.GreaterOrEqual(efforts.Length, 1);

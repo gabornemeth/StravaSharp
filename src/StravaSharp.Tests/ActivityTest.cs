@@ -23,7 +23,7 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetActivities()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = TestHelper.StravaClientFromSettings();
             var activities = await client.Activities.GetAthleteActivities();
             Assert.True(activities.Count > 0);
         }
@@ -31,7 +31,7 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetActivitiesPage()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = TestHelper.StravaClientFromSettings();
             const int itemsPerPage = 2;
             var activities = await client.Activities.GetAthleteActivities(0, itemsPerPage);
             Assert.AreEqual(itemsPerPage, activities.Count);
@@ -40,7 +40,7 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetActivitiesDate()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = TestHelper.StravaClientFromSettings();
             var activities = await client.Activities.GetAthleteActivities(DateTime.Now, DateTime.Now.AddYears(-10));
             Assert.True(activities.Count > 0);
         }
@@ -48,7 +48,7 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetLaps()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = TestHelper.StravaClientFromSettings();
             var activities = await client.Activities.GetAthleteActivities();
             Assert.True(activities.Count > 0);
             foreach (var activity in activities)
@@ -62,7 +62,7 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetActivityStream()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = TestHelper.StravaClientFromSettings();
             var activities = await client.Activities.GetAthleteActivities();
             Assert.True(activities.Count > 0);
 

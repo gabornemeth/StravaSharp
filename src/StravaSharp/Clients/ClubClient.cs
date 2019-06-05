@@ -19,7 +19,7 @@ namespace StravaSharp
             _client = client;
         }
 
-        public async Task<IClub> Get(int id)
+        public async Task<Club> Get(int id)
         {
             var request = new RestRequest(EndPoint + "/{id}", Method.GET);
             request.AddParameter("id", id, ParameterType.UrlSegment);
@@ -27,12 +27,12 @@ namespace StravaSharp
             return response.Data;
         }
 
-        public Task<IReadOnlyList<IAthleteSummary>> GetMembers(int id)
+        public Task<IReadOnlyList<AthleteSummary>> GetMembers(int id)
         {
             return GetMembers(id, 0, 0);
         }
 
-        public async Task<IReadOnlyList<IAthleteSummary>> GetMembers(int id, int page, int itemsPerPage)
+        public async Task<IReadOnlyList<AthleteSummary>> GetMembers(int id, int page, int itemsPerPage)
         {
             var request = new RestRequest(EndPoint + "/{id}/members", Method.GET);
             request.AddParameter("id", id, ParameterType.UrlSegment);
@@ -49,7 +49,7 @@ namespace StravaSharp
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<IReadOnlyList<IAthleteSummary>> GetAdmins(int id)
+        public Task<IReadOnlyList<AthleteSummary>> GetAdmins(int id)
         {
             return GetAdmins(id, 0, 0);
         }
@@ -61,7 +61,7 @@ namespace StravaSharp
 		/// <param name="clubId">Identifier of the club.</param>
 		/// <param name="page">Page.</param>
 		/// <param name="itemsPerPage">Items per page.</param>
-		public async Task<IReadOnlyList<IAthleteSummary>> GetAdmins(int clubId, int page, int itemsPerPage)
+		public async Task<IReadOnlyList<AthleteSummary>> GetAdmins(int clubId, int page, int itemsPerPage)
         {
             var request = new RestRequest(EndPoint + "/{id}/admins", Method.GET);
             request.AddParameter("id", clubId, ParameterType.UrlSegment);

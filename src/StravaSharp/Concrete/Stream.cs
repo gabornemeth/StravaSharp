@@ -7,7 +7,7 @@ namespace StravaSharp
     /// <summary>
     /// Activity stream
     /// </summary>
-    internal class Stream : IStream
+    public class Stream
     {
 		/// <summary>
 		/// Type of the stream

@@ -22,7 +22,7 @@ namespace StravaSharp.Tests
 #endif
         public async Task Upload()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = TestHelper.StravaClientFromSettings();
             using (var stream = Resource.GetStream(_fileName))
             {
                 Assert.NotNull(stream);

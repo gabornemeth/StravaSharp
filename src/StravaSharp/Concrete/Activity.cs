@@ -8,14 +8,14 @@ namespace StravaSharp
     /// <summary>
     /// Simple activity representation
     /// </summary>
-    internal class ActivityMeta : StravaObject<long>, IActivityMeta
+    public class ActivityMeta : StravaObject<long>
     {
     }
 
     /// <summary>
     /// Summary representation of an activity
     /// </summary>
-    internal class ActivitySummary : ActivityMeta, IActivitySummary
+    public class ActivitySummary : ActivityMeta
     {
         /// <summary>
         /// provided at upload
@@ -34,8 +34,6 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("athlete")]
         public AthleteMeta Athlete { get; internal set; }
-
-        IAthleteMeta IActivitySummary.Athlete => Athlete;
 
         /// <summary>
         /// Distance [meters]
@@ -126,8 +124,6 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("map")]
         public Map Map { get; internal set; }
-
-        IMap IActivitySummary.Map => Map;
 
         [JsonProperty("trainer")]
         public bool Trainer { get; internal set; }
@@ -228,7 +224,7 @@ namespace StravaSharp
     /// <summary>
     /// Detailed activity representation
     /// </summary>
-    internal class Activity : ActivitySummary, IActivity
+    public class Activity : ActivitySummary
     {
         [JsonProperty("description")]
         public string Description { get; internal set; }

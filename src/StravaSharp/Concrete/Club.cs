@@ -45,7 +45,7 @@ namespace StravaSharp
 	/// <summary>
 	/// Summary info about a club.
 	/// </summary>
-    internal class ClubSummary : StravaObject<int>, IClubSummary
+    public class ClubSummary : StravaObject<int>
     {
 		/// <summary>
 		/// Name of the club
@@ -112,7 +112,7 @@ namespace StravaSharp
     /// <summary>
     /// Detailed representation of a club
     /// </summary>
-    internal class Club : ClubSummary, IClub
+    public class Club : ClubSummary
     {
         [JsonProperty("description")]
         public string Description { get; internal set; }

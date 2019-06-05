@@ -16,14 +16,14 @@ namespace StravaSharp
     /// <summary>
     /// Meta representation of an athlete
     /// </summary>
-    internal class AthleteMeta : StravaObject<int>, IAthleteMeta
+    public class AthleteMeta : StravaObject<int>
     {
     }
 
     /// <summary>
     /// Summary representation of an athlete
     /// </summary>
-    internal class AthleteSummary : AthleteMeta, IAthleteSummary
+    public class AthleteSummary : AthleteMeta
     {
         [JsonProperty("firstname")]
         public string FirstName { get; internal set; }
@@ -92,7 +92,7 @@ namespace StravaSharp
     /// <summary>
     /// Detailed info about an athlete
     /// </summary>
-    internal class Athlete : AthleteSummary, IAthlete
+    public class Athlete : AthleteSummary
     {
         [JsonProperty("follower_count")]
         public int FollowerCount { get; internal set; }

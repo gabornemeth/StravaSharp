@@ -33,7 +33,7 @@ namespace StravaSharp.Tests.LiveConnectionTests
         [Test]
         public async Task CheckTestAthleteData()
         {
-            IAthlete current =await StravaTestAthleteClient.Athletes.GetCurrent();
+            Athlete current =await StravaTestAthleteClient.Athletes.GetCurrent();
             Assert.AreEqual("Test", current.FirstName);
             Assert.AreEqual("Athlete", current.LastName);
             Assert.AreEqual(cAthleteId, current.Id);
@@ -44,9 +44,9 @@ namespace StravaSharp.Tests.LiveConnectionTests
         public async Task CheckActivities()
         {
             IActivityClient activityClient = StravaTestAthleteClient.Activities;
-            IReadOnlyList<IActivitySummary> activities = await activityClient.GetAthleteActivities();
+            IReadOnlyList<ActivitySummary> activities = await activityClient.GetAthleteActivities();
             Assert.AreEqual(1, activities.Count);
-            IActivitySummary act = activities[0];
+            ActivitySummary act = activities[0];
             Assert.AreEqual(cAthleteId, act.Athlete.Id);
             Assert.AreEqual(true, act.Manual);
             Assert.AreEqual(2366117371, act.Id);

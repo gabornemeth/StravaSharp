@@ -81,14 +81,12 @@
     <Compile Include="ActivityTest.cs" />
     <Compile Include="AthleteTest.cs" />
     <Compile Include="ClubTest.cs" />
-    <Compile Include="LiveConnectionTests\CheckTestAthlete.cs" />
     <Compile Include="PolylineTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource.cs" />
     <Compile Include="SegmentTest.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StravaClientTest.cs" />
-    <Compile Include="TestAuthenticator.cs" />
     <Compile Include="TestHelper.cs" />
     <Compile Include="UploadTest.cs" />
   </ItemGroup>

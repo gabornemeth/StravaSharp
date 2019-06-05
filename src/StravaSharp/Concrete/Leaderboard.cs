@@ -18,7 +18,7 @@ namespace StravaSharp
     /// <summary>
     /// Leaderboard of a segment
     /// </summary>
-    internal class Leaderboard : ILeaderboard
+    public class Leaderboard
     {
         /// <summary>
         /// Total number of entries in the leaderboard
@@ -30,14 +30,12 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("entries")]
         public List<LeaderboardEntry> Entries { get; internal set; }
-
-        IReadOnlyList<ILeaderboardEntry> ILeaderboard.Entries => Entries;
     }
 
     /// <summary>
     /// Leaderboard entry
     /// </summary>
-    internal class LeaderboardEntry : ILeaderboardEntry
+    public class LeaderboardEntry
     {
         /// <summary>
         /// Name of the athlete

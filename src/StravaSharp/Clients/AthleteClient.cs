@@ -24,14 +24,14 @@ namespace StravaSharp
             _client = client;
         }
 
-        public async Task<IAthlete> GetCurrent()
+        public async Task<Athlete> GetCurrent()
         {
             var request = new RestRequest("/api/v3/athlete", Method.GET);
             var response = await _client.RestClient.Execute<Athlete>(request);
             return response.Data;
         }
 
-        public async Task<IAthlete> Get(int athleteId)
+        public async Task<Athlete> Get(int athleteId)
         {
             var request = new RestRequest(string.Format("/api/v3/athletes/{0}", athleteId), Method.GET);
             var response = await _client.RestClient.Execute<Athlete>(request);
