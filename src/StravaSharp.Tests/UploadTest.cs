@@ -1,14 +1,13 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
 {
     [TestFixture("2011-08-10-17-51-31.fit")]
     [TestFixture("gabornemeth.2018-04-21-20-04-57-385Z.GarminPush.19873008881.fit")]
-    public class UploadTest
+    public class UploadTest : BaseTest
     {
-        private string _fileName;
+        private readonly string _fileName;
 
         public UploadTest(string fileName)
         {
@@ -22,22 +21,23 @@ namespace StravaSharp.Tests
 #endif
         public async Task Upload()
         {
-            if (!Settings.SkipAsPassedAccessTokenTests)
+            if (Settings.GaborTokenUnavailable)
             {
-                var client = TestHelper.StravaClientFromSettings();
-                using (var stream = Resource.GetStream(_fileName))
+                Assert.Ignore("Not running tests requiring tokens from Settings");
+            }
+
+            using (var stream = Resource.GetStream(_fileName))
+            {
+                Assert.NotNull(stream);
+                // upload the activity (as private)
+                var result = await _client.Activities.Upload(ActivityType.Ride, DataType.Fit, stream, _fileName, null, null, true);
+                Assert.IsNotNull(result);
+                Assert.True(string.IsNullOrEmpty(result.Error));
+                // wait till upload has completed
+                while (result.ActivityId == 0 || result.IsReady == false)
                 {
-                    Assert.NotNull(stream);
-                    // upload the activity (as private)
-                    var result = await client.Activities.Upload(ActivityType.Ride, DataType.Fit, stream, _fileName, null, null, true);
-                    Assert.IsNotNull(result);
-                    Assert.True(string.IsNullOrEmpty(result.Error));
-                    // wait till upload has completed
-                    while (result.ActivityId == 0 || result.IsReady == false)
-                    {
-                        result = await client.Activities.GetUploadStatus(result.Id);
-                        await Task.Delay(2000);
-                    }
+                    result = await _client.Activities.GetUploadStatus(result.Id);
+                    await Task.Delay(2000);
                 }
             }
         }

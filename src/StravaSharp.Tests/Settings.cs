@@ -22,15 +22,16 @@ namespace StravaSharp.Tests
         /// so there is not much point in checking it back in to GitHub.
         /// For persistent tests, use the LiveAuthenticate test project.
         /// To avoid test failures when the AccessToken here is invalid, this next flag is available
-        /// If set, all tests based on this access token will just pass.
+        /// If set, all tests based on this access token either test less or through an Ignore exception.
         /// </summary>
-        public static bool SkipAsPassedAccessTokenTests => true;
+        public static bool GaborTokenUnavailable=> AccessToken==null;
         
         public static string AccessToken
         {
             get
             {
-                return "287a30961471bca32da2ff14347ab161527bfc3a";
+                return null;
+                //return "287a30961471bca32da2ff14347ab161527bfc3a";
                 //return Environment.GetEnvironmentVariable("STRAVASHARP_ACCESS_TOKEN");
             }
         }

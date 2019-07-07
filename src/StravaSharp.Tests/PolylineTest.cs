@@ -18,17 +18,16 @@ using System.Threading.Tasks;
 namespace StravaSharp.Tests
 {
     [TestFixture]
-    public class PolylineTest
+    public class PolylineTest : BaseTest
     {
         [Test]
         public async Task DecodeMap()
         {
-            var client = TestHelper.StravaClientFromSettings();
-            var activities = await client.Activities.GetAthleteActivities();
+            var activities = await _client.Activities.GetAthleteActivities();
             Assert.True(activities.Count > 0);
             var activity = activities.FirstOrDefault(a => a.Map?.SummaryPolyline != null);
             Assert.NotNull(activity);
-            activity = await client.Activities.Get(activity.Id);
+            activity = await _client.Activities.Get(activity.Id);
             Assert.NotNull(activity);
             var points = SharpGeo.Google.PolylineEncoder.Decode(activity.Map.SummaryPolyline);
             Assert.NotNull(points);

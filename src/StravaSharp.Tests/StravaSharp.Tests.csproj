@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="ActivityTest.cs" />
     <Compile Include="AthleteTest.cs" />
+    <Compile Include="BaseTest.cs" />
     <Compile Include="ClubTest.cs" />
     <Compile Include="PolylineTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

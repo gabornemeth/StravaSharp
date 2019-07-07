@@ -10,16 +10,30 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
 {
     public static class TestHelper
     {
-        public static IStravaClient StravaClientFromSettings()
+        private readonly static HttpClient httpClient = new HttpClient();
+        private static async Task<string> GetAccessToken()
         {
-            var authenticator = new TestAuthenticator(Settings.AccessToken);
+            var response = await httpClient.GetAsync("https://stravaapitest.azurewebsites.net/api/GetToken");
+            string token = await response.Content.ReadAsStringAsync();
+            return token;
+        }
+        public static async Task<IStravaClient> StravaClientFromSettings()
+        {
+            string accessToken = Settings.AccessToken;
+            if (accessToken==null)
+            {
+                accessToken = await GetAccessToken();
+            }
+            var authenticator = new TestAuthenticator(accessToken);
             return new StravaClient(authenticator);
         }
     }
