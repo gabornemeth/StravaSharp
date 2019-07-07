@@ -9,5 +9,6 @@ namespace StravaSharp
         IAuthenticator Authenticator { get; }
         IClubClient Clubs { get; }
         ISegmentClient Segments { get; }
+        ISegmentEffortClient SegmentEfforts { get; }
     }
 }

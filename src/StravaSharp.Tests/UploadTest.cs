@@ -22,19 +22,22 @@ namespace StravaSharp.Tests
 #endif
         public async Task Upload()
         {
-            var client = TestHelper.StravaClientFromSettings();
-            using (var stream = Resource.GetStream(_fileName))
+            if (!Settings.SkipAsPassedAccessTokenTests)
             {
-                Assert.NotNull(stream);
-                // upload the activity (as private)
-                var result = await client.Activities.Upload(ActivityType.Ride, DataType.Fit, stream, _fileName, null, null, true);
-                Assert.IsNotNull(result);
-                Assert.True(string.IsNullOrEmpty(result.Error));
-                // wait till upload has completed
-                while (result.ActivityId == 0 || result.IsReady == false)
+                var client = TestHelper.StravaClientFromSettings();
+                using (var stream = Resource.GetStream(_fileName))
                 {
-                    result = await client.Activities.GetUploadStatus(result.Id);
-                    await Task.Delay(2000);
+                    Assert.NotNull(stream);
+                    // upload the activity (as private)
+                    var result = await client.Activities.Upload(ActivityType.Ride, DataType.Fit, stream, _fileName, null, null, true);
+                    Assert.IsNotNull(result);
+                    Assert.True(string.IsNullOrEmpty(result.Error));
+                    // wait till upload has completed
+                    while (result.ActivityId == 0 || result.IsReady == false)
+                    {
+                        result = await client.Activities.GetUploadStatus(result.Id);
+                        await Task.Delay(2000);
+                    }
                 }
             }
         }

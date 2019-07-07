@@ -1,12 +1,7 @@
-﻿using System;
+﻿using RestSharp.Portable;
+using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using RestSharp.Portable;
-using System.Text;
-using Newtonsoft.Json;
-using System.Linq;
 
 namespace StravaSharp
 {
@@ -24,6 +19,11 @@ namespace StravaSharp
         {
             var request = new RestRequest(EndPoint + "/{id}", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
+            if (includeAllEfforts)
+            {
+                request.AddParameter("include_all_efforts", includeAllEfforts, ParameterType.UrlSegment);
+            }
+
             var response = await _client.RestClient.Execute<Activity>(request);
             return response.Data;
         }
@@ -52,9 +52,15 @@ namespace StravaSharp
         {
             var request = new RestRequest("/api/v3/athlete/activities");
             if (before != DateTime.MinValue)
+            {
                 request.AddQueryParameter("before", before.GetSecondsSinceUnixEpoch());
+            }
+
             if (after != DateTime.MinValue)
+            {
                 request.AddQueryParameter("after", after.GetSecondsSinceUnixEpoch());
+            }
+
             request.AddPaging(page, itemsPerPage);
             var response = await _client.RestClient.Execute<List<ActivitySummary>>(request);
 
@@ -166,9 +172,15 @@ namespace StravaSharp
             var request = new RestRequest("/api/v3/activities/{id}/comments", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
             if (page != 0)
+            {
                 request.AddParameter("page", page);
+            }
+
             if (itemsPerPage != 0)
+            {
                 request.AddParameter("per_page", itemsPerPage);
+            }
+
             var response = await _client.RestClient.Execute<List<Comment>>(request);
 
             return response.Data;
@@ -186,9 +198,15 @@ namespace StravaSharp
             var request = new RestRequest("/api/v3/activities/{id}/kudos", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
             if (page != 0)
+            {
                 request.AddParameter("page", page);
+            }
+
             if (itemsPerPage != 0)
+            {
                 request.AddParameter("per_page", itemsPerPage);
+            }
+
             var response = await _client.RestClient.Execute<List<AthleteSummary>>(request);
 
             return response.Data;

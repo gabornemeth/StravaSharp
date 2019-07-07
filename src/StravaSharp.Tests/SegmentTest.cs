@@ -68,20 +68,22 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetEfforts()
         {
-            var segments = await RetrieveSegments();
-            var segment = GetTestSegment(segments);
-            var efforts = (await _client.Segments.GetEfforts(segment.Id, 1, 2)).ToArray();
-            Assert.GreaterOrEqual(efforts.Length, 1);
-            Assert.LessOrEqual(efforts.Length, 2);
-
-            foreach (var effort in efforts)
+            if (!Settings.SkipAsPassedAccessTokenTests)
             {
-                Assert.NotNull(effort.Activity);
-                Assert.NotNull(effort.Athlete);
-                Assert.NotNull(effort.Segment);
+                var segments = await RetrieveSegments();
+                var segment = GetTestSegment(segments);
+                var efforts = (await _client.Segments.GetEfforts(segment.Id, 1, 2)).ToArray();
+                Assert.GreaterOrEqual(efforts.Length, 1);
+                Assert.LessOrEqual(efforts.Length, 2);
+
+                foreach (var effort in efforts)
+                {
+                    Assert.NotNull(effort.Activity);
+                    Assert.NotNull(effort.Athlete);
+                    Assert.NotNull(effort.Segment);
+                }
             }
         }
-
         [Test]
         public async Task GetLeaderboard()
         {
@@ -126,17 +128,20 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetEffortStreams()
         {
-            var segments = await RetrieveSegments();
-            var segment = GetTestSegment(segments);
-            var effort = await RetrieveEffort(segment);
-
-            var streams = await _client.Segments.GetEffortStreams(effort, StreamType.Distance, StreamType.LatLng);
-            Assert.NotNull(streams);
-            Assert.True(streams.Count > 0);
-            foreach (var stream in streams)
+            if (!Settings.SkipAsPassedAccessTokenTests)
             {
-                Assert.NotNull(stream);
-                Assert.NotNull(stream.Data);
+                var segments = await RetrieveSegments();
+                var segment = GetTestSegment(segments);
+                var effort = await RetrieveEffort(segment);
+
+                var streams = await _client.SegmentEfforts.GetEffortStreams(effort.Id, StreamType.Distance, StreamType.LatLng);
+                Assert.NotNull(streams);
+                Assert.True(streams.Count > 0);
+                foreach (var stream in streams)
+                {
+                    Assert.NotNull(stream);
+                    Assert.NotNull(stream.Data);
+                }
             }
         }
     }

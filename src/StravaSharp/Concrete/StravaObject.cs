@@ -21,11 +21,11 @@ namespace StravaSharp
         /// Identifier
         /// </summary>
         [JsonProperty("id")]
-        public T Id { get; internal set; }
+        public T Id { get; set; }
         /// <summary>
         /// Resource state
         /// </summary>
         [JsonProperty("resource_state")]
-        public ResourceState ResourceState { get; internal set; }
+        public ResourceState ResourceState { get; set; }
     }
 }

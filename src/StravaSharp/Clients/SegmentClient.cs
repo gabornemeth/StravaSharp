@@ -35,47 +35,47 @@ namespace StravaSharp
             return response.Data.Segments;
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, int page, int perPage)
+        public Task<IReadOnlyList<SegmentEffort>> GetEfforts(long segmentId, int page, int perPage)
         {
             return GetEfforts(segmentId, null, null, null, page, perPage);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId)
+        public Task<IReadOnlyList<SegmentEffort>> GetEfforts(long segmentId)
         {
             return GetEfforts(segmentId, null, null, null, null, null);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, int athleteId)
+        public Task<IReadOnlyList<SegmentEffort>> GetEfforts(long segmentId, int athleteId)
         {
             return GetEfforts(segmentId, athleteId, null, null, null, null);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, int athleteId, int page, int perPage)
+        public Task<IReadOnlyList<SegmentEffort>> GetEfforts(long segmentId, int athleteId, int page, int perPage)
         {
             return GetEfforts(segmentId, athleteId, null, null, page, perPage);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, DateTime startDateLocal, DateTime endDateLocal)
+        public Task<IReadOnlyList<SegmentEffort>> GetEfforts(long segmentId, DateTime startDateLocal, DateTime endDateLocal)
         {
             return GetEfforts(segmentId, null, startDateLocal, endDateLocal, null, null);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, DateTime startDateLocal, DateTime endDateLocal, int page, int perPage)
+        public Task<IReadOnlyList<SegmentEffort>> GetEfforts(long segmentId, DateTime startDateLocal, DateTime endDateLocal, int page, int perPage)
         {
             return GetEfforts(segmentId, null, startDateLocal, endDateLocal, page, perPage);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, int athleteId, DateTime startDateLocal, DateTime endDateLocal)
+        public Task<IReadOnlyList<SegmentEffort>> GetEfforts(long segmentId, int athleteId, DateTime startDateLocal, DateTime endDateLocal)
         {
             return GetEfforts(segmentId, athleteId, startDateLocal, endDateLocal, null, null);
         }
 
-        public Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, int athleteId, DateTime startDateLocal, DateTime endDateLocal, int page, int perPage)
+        public Task<IReadOnlyList<SegmentEffort>> GetEfforts(long segmentId, int athleteId, DateTime startDateLocal, DateTime endDateLocal, int page, int perPage)
         {
             return GetEfforts(segmentId, athleteId, startDateLocal, endDateLocal, page, perPage);
         }
 
-        private async Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, int? athleteId, DateTime? startDateLocal, DateTime? endDateLocal, int? page, int? perPage)
+        private async Task<IReadOnlyList<SegmentEffort>> GetEfforts(long segmentId, int? athleteId, DateTime? startDateLocal, DateTime? endDateLocal, int? page, int? perPage)
         {
             var request = new RestRequest(EndPoint + "/" + segmentId + "/all_efforts", Method.GET);
             if (athleteId != null)
@@ -147,19 +147,6 @@ namespace StravaSharp
             return response.Data;
         }
 
-        public Task<IReadOnlyList<Stream>> GetEffortStreams(SegmentEffort effort, params StreamType[] types)
-        {
-            return GetEffortStreams(effort.Id, types);
-        }
-
-        public async Task<IReadOnlyList<Stream>> GetEffortStreams(long segmentEffortId, params StreamType[] types)
-        {
-            var request = new RestRequest("/api/v3/segment_efforts/{id}/streams/{types}", Method.GET);
-            request.AddParameter("id", segmentEffortId, ParameterType.UrlSegment);
-            request.AddParameter("types", EnumHelper.ToString<StreamType>(types), ParameterType.UrlSegment);
-            var response = await _client.RestClient.Execute<List<Stream>>(request);
-            return response.Data;
-        }
 
     }
 }

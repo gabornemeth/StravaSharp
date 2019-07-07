@@ -8,7 +8,6 @@
 //
 
 using NUnit.Framework;
-using System;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
@@ -19,29 +18,36 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetClub()
         {
-            var client = TestHelper.StravaClientFromSettings();
-            var club = await client.Clubs.Get(Settings.ClubId);
-            Assert.NotNull(club);
-            Assert.True(string.IsNullOrEmpty(club.Name) == false);
-            Assert.True(string.IsNullOrEmpty(club.Country) == false);
+            if (!Settings.SkipAsPassedAccessTokenTests)
+            {
+                var client = TestHelper.StravaClientFromSettings();
+                var club = await client.Clubs.Get(Settings.ClubId);
+                Assert.NotNull(club);
+                Assert.True(string.IsNullOrEmpty(club.Name) == false);
+                Assert.True(string.IsNullOrEmpty(club.Country) == false);
+            }
         }
-
         [Test]
         public async Task GetClubMembers()
         {
-            var client = TestHelper.StravaClientFromSettings();
-            var members = await client.Clubs.GetMembers(Settings.ClubId);
-            Assert.NotNull(members);
-            Assert.True(members.Count > 0);
+            if (!Settings.SkipAsPassedAccessTokenTests)
+            {
+                var client = TestHelper.StravaClientFromSettings();
+                var members = await client.Clubs.GetMembers(Settings.ClubId);
+                Assert.NotNull(members);
+                Assert.True(members.Count > 0);
+            }
         }
-
         [Test]
         public async Task GetClubAdmins()
         {
-            var client = TestHelper.StravaClientFromSettings();
-            var admins = await client.Clubs.GetAdmins(Settings.ClubId);
-            Assert.NotNull(admins);
-            Assert.True(admins.Count > 0);
+            if (!Settings.SkipAsPassedAccessTokenTests)
+            {
+                var client = TestHelper.StravaClientFromSettings();
+                var admins = await client.Clubs.GetAdmins(Settings.ClubId);
+                Assert.NotNull(admins);
+                Assert.True(admins.Count > 0);
+            }
         }
     }
 }

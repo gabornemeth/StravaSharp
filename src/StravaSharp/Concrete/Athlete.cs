@@ -26,50 +26,50 @@ namespace StravaSharp
     public class AthleteSummary : AthleteMeta
     {
         [JsonProperty("firstname")]
-        public string FirstName { get; internal set; }
+        public string FirstName { get; set; }
         [JsonProperty("lastname")]
-        public string LastName { get; internal set; }
+        public string LastName { get; set; }
         /// <summary>
         /// URL to a 62x62 pixel profile picture
         /// </summary>
         [JsonProperty("profile_medium")]
-        public string ProfileMedium { get; internal set; }
+        public string ProfileMedium { get; set; }
         /// <summary>
         /// URL to a 124x124 pixel profile picture
         /// </summary>
         [JsonProperty("profile")]
-        public string Profile { get; internal set; }
+        public string Profile { get; set; }
         [JsonProperty("city")]
-        public string City { get; internal set; }
+        public string City { get; set; }
         [JsonProperty("state")]
-        public string State { get; internal set; }
+        public string State { get; set; }
         [JsonProperty("country")]
-        public string Country { get; internal set; }
+        public string Country { get; set; }
         /// <summary>
         /// ‘M’, ‘F’ or null
         /// </summary>
         [JsonProperty("sex")]
-        public string Sex { get; internal set; }
+        public string Sex { get; set; }
         /// <summary>
         /// ‘pending’, ‘accepted’, ‘blocked’ or ‘null’ 
         /// the authenticated athlete’s following status of this athlete
         /// </summary>
         [JsonProperty("friend")]
-        public string Friend { get; internal set; }
+        public string Friend { get; set; }
         /// <summary>
         /// ‘pending’, ‘accepted’, ‘blocked’ or ‘null’ 
         /// this athlete’s following status of the authenticated athlete
         /// </summary>
         [JsonProperty("follower")]
-        public string Follower { get; internal set; }
+        public string Follower { get; set; }
         [JsonProperty("premium")]
-        public bool Premium { get; internal set; }
+        public bool Premium { get; set; }
         [JsonProperty("created_at")]
         [JsonConverter(typeof(Newtonsoft.Json.Converters.IsoDateTimeConverter))]
-        public DateTime CreatedAt { get; internal set; }
+        public DateTime CreatedAt { get; set; }
         [JsonProperty("updated_at")]
         [JsonConverter(typeof(Newtonsoft.Json.Converters.IsoDateTimeConverter))]
-        public DateTime UpdatedAt { get; internal set; }
+        public DateTime UpdatedAt { get; set; }
     }
 
     /// <summary>
@@ -95,30 +95,30 @@ namespace StravaSharp
     public class Athlete : AthleteSummary
     {
         [JsonProperty("follower_count")]
-        public int FollowerCount { get; internal set; }
+        public int FollowerCount { get; set; }
         [JsonProperty("friend_count")]
-        public int FriendCount { get; internal set; }
+        public int FriendCount { get; set; }
         [JsonProperty("mutual_friend_count")]
-        public int MutualFriendCount { get; internal set; }
+        public int MutualFriendCount { get; set; }
         /// <summary>
         /// athlete’s default sport type: 0=cyclist, 1=runner
         /// </summary>
         [JsonProperty("athlete_type")]
-        public AthleteType AthleteType { get; internal set; }
+        public AthleteType AthleteType { get; set; }
         [JsonProperty("date_preference")]
-        public string DatePreference { get; internal set; }
+        public string DatePreference { get; set; }
         /// <summary>
         /// ‘feet’ or ‘meters’
         /// </summary>
         [JsonProperty("measurement_preference")]
-        public string MeasurementPreference { get; internal set; }
+        public string MeasurementPreference { get; set; }
         [JsonProperty("ftp", NullValueHandling = NullValueHandling.Ignore)]
-        public int Ftp { get; internal set; }
+        public int Ftp { get; set; }
         /// <summary>
         /// kilograms
         /// </summary>
         [JsonProperty("weight")]
-        public float Weight { get; internal set; }
+        public float Weight { get; set; }
 
         //clubs:	array of object 
         //array of summary representations of the athlete’s clubs

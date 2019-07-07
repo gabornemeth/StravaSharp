@@ -23,56 +23,70 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetActivities()
         {
-            var client = TestHelper.StravaClientFromSettings();
-            var activities = await client.Activities.GetAthleteActivities();
-            Assert.True(activities.Count > 0);
+            if (!Settings.SkipAsPassedAccessTokenTests)
+            {
+                var client = TestHelper.StravaClientFromSettings();
+                var activities = await client.Activities.GetAthleteActivities();
+                Assert.True(activities.Count > 0);
+            }
         }
 
         [Test]
         public async Task GetActivitiesPage()
         {
-            var client = TestHelper.StravaClientFromSettings();
-            const int itemsPerPage = 2;
-            var activities = await client.Activities.GetAthleteActivities(0, itemsPerPage);
-            Assert.AreEqual(itemsPerPage, activities.Count);
+            if (!Settings.SkipAsPassedAccessTokenTests)
+            {
+                var client = TestHelper.StravaClientFromSettings();
+                const int itemsPerPage = 2;
+                var activities = await client.Activities.GetAthleteActivities(0, itemsPerPage);
+                Assert.AreEqual(itemsPerPage, activities.Count);
+            }
         }
 
         [Test]
         public async Task GetActivitiesDate()
         {
-            var client = TestHelper.StravaClientFromSettings();
-            var activities = await client.Activities.GetAthleteActivities(DateTime.Now, DateTime.Now.AddYears(-10));
-            Assert.True(activities.Count > 0);
+            if (!Settings.SkipAsPassedAccessTokenTests)
+            {
+                var client = TestHelper.StravaClientFromSettings();
+                var activities = await client.Activities.GetAthleteActivities(DateTime.Now, DateTime.Now.AddYears(-10));
+                Assert.True(activities.Count > 0);
+            }
         }
 
         [Test]
         public async Task GetLaps()
         {
-            var client = TestHelper.StravaClientFromSettings();
-            var activities = await client.Activities.GetAthleteActivities();
-            Assert.True(activities.Count > 0);
-            foreach (var activity in activities)
+            if (!Settings.SkipAsPassedAccessTokenTests)
             {
-                var laps = await client.Activities.GetLaps(activity.Id);
-                Assert.True(laps.Count > 0);
+                var client = TestHelper.StravaClientFromSettings();
+                var activities = await client.Activities.GetAthleteActivities();
+                Assert.True(activities.Count > 0);
+                foreach (var activity in activities)
+                {
+                    var laps = await client.Activities.GetLaps(activity.Id);
+                    Assert.True(laps.Count > 0);
+                }
             }
         }
-
 
         [Test]
         public async Task GetActivityStream()
         {
-            var client = TestHelper.StravaClientFromSettings();
-            var activities = await client.Activities.GetAthleteActivities();
-            Assert.True(activities.Count > 0);
-
-            var streams = await client.Activities.GetActivityStreams(activities[0].Id, StreamType.HeartRate, StreamType.LatLng);
-            Assert.NotNull(streams);
-            Assert.True(streams.Count > 0);
-            foreach (var stream in streams)
+            if (!Settings.SkipAsPassedAccessTokenTests)
             {
-                Assert.NotNull(stream);
-                Assert.NotNull(stream.Data);
+                var client = TestHelper.StravaClientFromSettings();
+                var activities = await client.Activities.GetAthleteActivities();
+                Assert.True(activities.Count > 0);
+
+                var streams = await client.Activities.GetActivityStreams(activities[0].Id, StreamType.HeartRate, StreamType.LatLng);
+                Assert.NotNull(streams);
+                Assert.True(streams.Count > 0);
+                foreach (var stream in streams)
+                {
+                    Assert.NotNull(stream);
+                    Assert.NotNull(stream.Data);
+                }
             }
         }
     }

@@ -54,6 +54,7 @@ namespace StravaSharp
             Athletes = new AthleteClient(this);
             Activities = new ActivityClient(this);
             Segments = new SegmentClient(this);
+            SegmentEfforts = new SegmentEffortClient(this);
             Clubs = new ClubClient(this);
         }
 
@@ -67,8 +68,11 @@ namespace StravaSharp
         /// </summary>
         public ISegmentClient Segments { get; private set; }
         /// <summary>
-        /// Clubs endpoint
+        /// SegmentEfforts endpoint
         /// </summary>
+        public ISegmentEffortClient SegmentEfforts { get; private set; }        /// <summary>
+                                                                    /// Clubs endpoint
+                                                                    /// </summary>
         public IClubClient Clubs { get; private set; }
     }
 }

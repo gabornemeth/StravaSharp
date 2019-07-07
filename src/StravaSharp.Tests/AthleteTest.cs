@@ -15,19 +15,25 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetCurrentAthlete()
         {
-            var client = TestHelper.StravaClientFromSettings();
-            var athlete = await client.Athletes.GetCurrent();
-            Assert.NotNull(athlete);
-            Assert.AreEqual("Extrava", athlete.FirstName);
+            if (!Settings.SkipAsPassedAccessTokenTests)
+            {
+                var client = TestHelper.StravaClientFromSettings();
+                var athlete = await client.Athletes.GetCurrent();
+                Assert.NotNull(athlete);
+                Assert.AreEqual("Extrava", athlete.FirstName);
+            }
         }
-        
+
         [Test]
         public async Task GetAthlete()
         {
-            var client = TestHelper.StravaClientFromSettings();
-            var athlete = await client.Athletes.Get(6632444);
-            Assert.NotNull(athlete);
-            Assert.AreEqual("Extrava", athlete.FirstName);
+            if (!Settings.SkipAsPassedAccessTokenTests)
+            {
+                var client = TestHelper.StravaClientFromSettings();
+                var athlete = await client.Athletes.Get(6632444);
+                Assert.NotNull(athlete);
+                Assert.AreEqual("Extrava", athlete.FirstName);
+            }
         }
     }
 }
