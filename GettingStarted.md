@@ -3,7 +3,7 @@
 You can access the full functionality of **StravaSharp** through the ```Client``` class. Basically you have to do the following.
 
 ```csharp
-using StarvaSharp;
+using StravaSharp;
 ...
 
 var client = new Client(authenticator);
