@@ -8,26 +8,24 @@ namespace StravaSharp.Tests
     /// Access token is read-write for gabor.nemeth.dev@gmail.com (Extrava Test Account)
     /// </summary>
     [TestFixture]
-    public class AthleteTest
+    public class AthleteTest : BaseTest
     {
         private const int TestAthleteId = 4076458; // gabor.nemeth1982@gmail.com
 
         [Test]
         public async Task GetCurrentAthlete()
         {
-            var client = TestHelper.CreateStravaClient();
-            var athlete = await client.Athletes.GetCurrent();
+            var athlete = await _client.Athletes.GetCurrent();
             Assert.NotNull(athlete);
-            Assert.AreEqual("Extrava", athlete.FirstName);
+            Assert.IsTrue(athlete.FirstName == "Extrava" || athlete.FirstName == "Test");
         }
-        
+
         [Test]
         public async Task GetAthlete()
         {
-            var client = TestHelper.CreateStravaClient();
-            var athlete = await client.Athletes.Get(6632444);
+            var athlete = await _client.Athletes.Get((await _client.Athletes.GetCurrent()).Id);
             Assert.NotNull(athlete);
-            Assert.AreEqual("Extrava", athlete.FirstName);
+            Assert.IsTrue( athlete.FirstName == "Extrava" || athlete.FirstName=="Test");
         }
     }
 }

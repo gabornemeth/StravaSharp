@@ -8,38 +8,32 @@
 //
 
 using NUnit.Framework;
-using System;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
 {
     [TestFixture]
-    public class ClubTest
+    public class ClubTest : BaseTest
     {
         [Test]
         public async Task GetClub()
         {
-            var client = TestHelper.CreateStravaClient();
-            var club = await client.Clubs.Get(Settings.ClubId);
+            var club = await _client.Clubs.Get(Settings.ClubId);
             Assert.NotNull(club);
             Assert.True(string.IsNullOrEmpty(club.Name) == false);
             Assert.True(string.IsNullOrEmpty(club.Country) == false);
         }
-
         [Test]
         public async Task GetClubMembers()
         {
-            var client = TestHelper.CreateStravaClient();
-            var members = await client.Clubs.GetMembers(Settings.ClubId);
+            var members = await _client.Clubs.GetMembers(Settings.ClubId);
             Assert.NotNull(members);
-            Assert.True(members.Count > 0);
+            Assert.True(Settings.GaborTokenUnavailable || members.Count > 0);
         }
-
         [Test]
         public async Task GetClubAdmins()
         {
-            var client = TestHelper.CreateStravaClient();
-            var admins = await client.Clubs.GetAdmins(Settings.ClubId);
+            var admins = await _client.Clubs.GetAdmins(Settings.ClubId);
             Assert.NotNull(admins);
             Assert.True(admins.Count > 0);
         }

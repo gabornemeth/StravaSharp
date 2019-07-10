@@ -20,14 +20,14 @@ namespace StravaSharp
     /// <summary>
     /// RestSharp.Portable Client configuration for Strava
     /// </summary>
-    public class StravaClient : OAuth2Client
+    public class StravaOAuth2Client : OAuth2Client
     {
 		/// <summary>
 		/// Base URL of the API
 		/// </summary>
         public const string ApiBaseUrl = "https://www.strava.com";
 
-        public StravaClient(IRequestFactory factory, RestSharp.Portable.OAuth2.Configuration.IClientConfiguration configuration)
+        public StravaOAuth2Client(IRequestFactory factory, RestSharp.Portable.OAuth2.Configuration.IClientConfiguration configuration)
             : base(factory, configuration)
         {
         }

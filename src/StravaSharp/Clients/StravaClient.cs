@@ -35,18 +35,16 @@ namespace StravaSharp
     /// <summary>
     /// Strava client
     /// </summary>
-    public class Client
+    public class StravaClient : IStravaClient
     {
-        private RestClient _restClient;
-
-        internal RestClient RestClient => _restClient;
+        internal RestClient RestClient { get; }
 
         public IAuthenticator Authenticator { get; private set; }
 
-        public Client(IAuthenticator authenticator)
+        public StravaClient(IAuthenticator authenticator)
         {
             Authenticator = authenticator;
-            _restClient = new RestClient(StravaClient.ApiBaseUrl)
+            RestClient = new RestClient(StravaOAuth2Client.ApiBaseUrl)
             {
                 Authenticator = authenticator,
 #if DEBUG
@@ -56,21 +54,25 @@ namespace StravaSharp
             Athletes = new AthleteClient(this);
             Activities = new ActivityClient(this);
             Segments = new SegmentClient(this);
+            SegmentEfforts = new SegmentEffortClient(this);
             Clubs = new ClubClient(this);
         }
 
-        public AthleteClient Athletes { get; private set; }
+        public IAthleteClient Athletes { get; private set; }
         /// <summary>
         /// Activities endpoint
         /// </summary>
-        public ActivityClient Activities { get; private set; }
+        public IActivityClient Activities { get; private set; }
         /// <summary>
         /// Segments endpoint
         /// </summary>
-        public SegmentClient Segments { get; private set; }
+        public ISegmentClient Segments { get; private set; }
         /// <summary>
-        /// Clubs endpoint
+        /// SegmentEfforts endpoint
         /// </summary>
-        public ClubClient Clubs { get; private set; }
+        public ISegmentEffortClient SegmentEfforts { get; private set; }        /// <summary>
+                                                                    /// Clubs endpoint
+                                                                    /// </summary>
+        public IClubClient Clubs { get; private set; }
     }
 }

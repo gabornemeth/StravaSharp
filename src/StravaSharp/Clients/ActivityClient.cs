@@ -1,20 +1,16 @@
-﻿using System;
+﻿using RestSharp.Portable;
+using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using RestSharp.Portable;
-using System.Text;
-using Newtonsoft.Json;
 
 namespace StravaSharp
 {
-    public class ActivityClient
+    internal class ActivityClient : IActivityClient
     {
-        private Client _client;
+        private StravaClient _client;
         private const string EndPoint = "/api/v3/activities";
 
-        internal ActivityClient(Client client)
+        internal ActivityClient(StravaClient client)
         {
             _client = client;
         }
@@ -23,37 +19,48 @@ namespace StravaSharp
         {
             var request = new RestRequest(EndPoint + "/{id}", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
+            if (includeAllEfforts)
+            {
+                request.AddParameter("include_all_efforts", includeAllEfforts, ParameterType.UrlSegment);
+            }
+
             var response = await _client.RestClient.Execute<Activity>(request);
             return response.Data;
         }
 
-        public Task<List<ActivitySummary>> GetAthleteActivities(int page = 0, int itemsPerPage = 0)
+        public Task<IReadOnlyList<ActivitySummary>> GetAthleteActivities(int page = 0, int itemsPerPage = 0)
         {
             return GetAthleteActivities(DateTime.MinValue, DateTime.MinValue, page, itemsPerPage);
         }
 
-        public Task<List<ActivitySummary>> GetAthleteActivities(DateTime before, DateTime after)
+        public Task<IReadOnlyList<ActivitySummary>> GetAthleteActivities(DateTime before, DateTime after)
         {
             return GetAthleteActivities(before, after, 0, 0);
         }
 
-        public Task<List<ActivitySummary>> GetAthleteActivitiesBefore(DateTime before)
+        public Task<IReadOnlyList<ActivitySummary>> GetAthleteActivitiesBefore(DateTime before)
         {
             return GetAthleteActivities(before, DateTime.MinValue, 0, 0);
         }
 
-        public Task<List<ActivitySummary>> GetAthleteActivitiesAfter(DateTime after)
+        public Task<IReadOnlyList<ActivitySummary>> GetAthleteActivitiesAfter(DateTime after)
         {
             return GetAthleteActivities(DateTime.MinValue, after, 0, 0);
         }
 
-        private async Task<List<ActivitySummary>> GetAthleteActivities(DateTime before, DateTime after, int page, int itemsPerPage)
+        private async Task<IReadOnlyList<ActivitySummary>> GetAthleteActivities(DateTime before, DateTime after, int page, int itemsPerPage)
         {
             var request = new RestRequest("/api/v3/athlete/activities");
             if (before != DateTime.MinValue)
+            {
                 request.AddQueryParameter("before", before.GetSecondsSinceUnixEpoch());
+            }
+
             if (after != DateTime.MinValue)
+            {
                 request.AddQueryParameter("after", after.GetSecondsSinceUnixEpoch());
+            }
+
             request.AddPaging(page, itemsPerPage);
             var response = await _client.RestClient.Execute<List<ActivitySummary>>(request);
 
@@ -152,7 +159,7 @@ namespace StravaSharp
         /// </summary>
         /// <param name="activityId">Identifier of the activity.</param>
         /// <returns>List of laps.</returns>
-        public async Task<List<ActivitySummary>> GetLaps(long activityId)
+        public async Task<IReadOnlyList<ActivitySummary>> GetLaps(long activityId)
         {
             var request = new RestRequest("/api/v3/activities/{id}/laps", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
@@ -160,14 +167,20 @@ namespace StravaSharp
             return response.Data;
         }
 
-        public async Task<List<Comment>> GetComments(long activityId, int page = 0, int itemsPerPage = 0)
+        public async Task<IReadOnlyList<Comment>> GetComments(long activityId, int page = 0, int itemsPerPage = 0)
         {
             var request = new RestRequest("/api/v3/activities/{id}/comments", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
             if (page != 0)
+            {
                 request.AddParameter("page", page);
+            }
+
             if (itemsPerPage != 0)
+            {
                 request.AddParameter("per_page", itemsPerPage);
+            }
+
             var response = await _client.RestClient.Execute<List<Comment>>(request);
 
             return response.Data;
@@ -180,25 +193,31 @@ namespace StravaSharp
         /// <param name="page"></param>
         /// <param name="itemsPerPage"></param>
         /// <returns></returns>
-        public async Task<List<AthleteSummary>> GetKudoers(long activityId, int page = 0, int itemsPerPage = 0)
+        public async Task<IReadOnlyList<AthleteSummary>> GetKudoers(long activityId, int page = 0, int itemsPerPage = 0)
         {
             var request = new RestRequest("/api/v3/activities/{id}/kudos", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
             if (page != 0)
+            {
                 request.AddParameter("page", page);
+            }
+
             if (itemsPerPage != 0)
+            {
                 request.AddParameter("per_page", itemsPerPage);
+            }
+
             var response = await _client.RestClient.Execute<List<AthleteSummary>>(request);
 
             return response.Data;
         }
 
-        public Task<List<Stream>> GetActivityStreams(ActivityMeta activity, params StreamType[] types)
+        public Task<IReadOnlyList<Stream>> GetActivityStreams(ActivityMeta activity, params StreamType[] types)
         {
             return GetActivityStreams(activity.Id, types);
         }
 
-        public async Task<List<Stream>> GetActivityStreams(long activityId, params StreamType[] types)
+        public async Task<IReadOnlyList<Stream>> GetActivityStreams(long activityId, params StreamType[] types)
         {
             var request = new RestRequest("/api/v3/activities/{id}/streams/{types}", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);

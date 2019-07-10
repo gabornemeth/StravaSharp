@@ -33,6 +33,7 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("athlete")]
         public AthleteSummary Athlete { get; internal set; }
+
         /// <summary>
         /// Time of creation
         /// </summary>

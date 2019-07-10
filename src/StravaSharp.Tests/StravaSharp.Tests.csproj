@@ -78,9 +78,9 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityParseTest.cs" />
     <Compile Include="ActivityTest.cs" />
     <Compile Include="AthleteTest.cs" />
+    <Compile Include="BaseTest.cs" />
     <Compile Include="ClubTest.cs" />
     <Compile Include="PolylineTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,7 +88,6 @@
     <Compile Include="SegmentTest.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StravaClientTest.cs" />
-    <Compile Include="TestAuthenticator.cs" />
     <Compile Include="TestHelper.cs" />
     <Compile Include="UploadTest.cs" />
   </ItemGroup>

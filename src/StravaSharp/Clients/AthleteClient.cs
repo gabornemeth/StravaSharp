@@ -15,11 +15,11 @@ namespace StravaSharp
     /// <summary>
     /// Athlete functionality
     /// </summary>
-    public class AthleteClient
+    internal class AthleteClient : IAthleteClient
     {
-        private Client _client;
+        private StravaClient _client;
 
-        internal AthleteClient(Client client)
+        internal AthleteClient(StravaClient client)
         {
             _client = client;
         }
