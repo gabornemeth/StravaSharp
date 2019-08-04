@@ -92,6 +92,7 @@ namespace StravaSharp.Tests
 
 
         [Test]
+        [Ignore("Premium feature.")]
         public async Task GetActivityZones()
         {
             var client = TestHelper.CreateStravaClient();

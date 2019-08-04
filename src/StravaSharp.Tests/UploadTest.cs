@@ -31,11 +31,12 @@ namespace StravaSharp.Tests
                 Assert.IsNotNull(result);
                 Assert.True(string.IsNullOrEmpty(result.Error));
                 // wait till upload has completed
-                while (result.ActivityId == 0 || result.IsReady == false)
+                while (result.ActivityId == 0 && result.IsReady == false && string.IsNullOrEmpty(result.Error))
                 {
                     result = await client.Activities.GetUploadStatus(result.Id);
-                    await Task.Delay(2000);
+                    await Task.Delay(1000);
                 }
+                Assert.True(string.IsNullOrEmpty(result.Error));
             }
         }
     }
