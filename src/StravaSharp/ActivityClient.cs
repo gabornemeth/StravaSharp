@@ -206,5 +206,21 @@ namespace StravaSharp
             var response = await _client.RestClient.Execute<List<Stream>>(request);
             return response.Data;
         }
+
+        /// <summary>
+        /// Summit Feature. Returns the zones of a given activity. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.
+        /// </summary>
+        /// <param name="activityId"></param>
+        /// <returns></returns>
+        public async Task<List<ActivityZone>> GetActivityZones(long activityId)
+        {
+            var request = new RestRequest("/api/v3/activities/{id}/zones", Method.GET);
+            request.AddParameter("id", activityId, ParameterType.UrlSegment);
+
+            var response = await _client.RestClient.Execute<List<ActivityZone>>(request);
+
+            var responseasString = await _client.RestClient.Execute<string>(request);
+            return response.Data;
+        }
     }
 }

@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="ActivityParseTest.cs" />
     <Compile Include="ActivityTest.cs" />
+    <Compile Include="ActivityZoneParseTest.cs" />
     <Compile Include="AthleteTest.cs" />
     <Compile Include="ClubTest.cs" />
     <Compile Include="PolylineTest.cs" />
@@ -99,6 +100,7 @@
     <EmbeddedResource Include="Files\userinfo.json" />
     <EmbeddedResource Include="Files\activity_watersport.json" />
     <EmbeddedResource Include="Files\gabornemeth.2018-04-21-20-04-57-385Z.GarminPush.19873008881.fit" />
+    <EmbeddedResource Include="Files\activitiyZones.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
