@@ -63,7 +63,7 @@ public class VersionUtils
 
 		try {
 			var assemblyInfo = context.ParseAssemblyInfo(assemblyInfoFile);
-			var v = Version.Parse(assemblyInfo.AssemblyVersion);
+			var v = new Version(assemblyInfo.AssemblyVersion);
 
 			var verInfo = new VersionInfo {
 				Major = v.Major,
