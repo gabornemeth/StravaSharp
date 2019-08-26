@@ -8,149 +8,189 @@ namespace StravaSharp
     /// </summary>
     public enum ActivityType
     {
-		/// <summary>
-		/// Ride
-		/// </summary>
+        /// <summary>
+        /// Ride
+        /// </summary>
         [EnumMember(Value = "ride")]
         Ride,
-		/// <summary>
-		/// Running
-		/// </summary>
+        /// <summary>
+        /// Running
+        /// </summary>
         [EnumMember(Value = "run")]
         Run,
-		/// <summary>
-		/// Swimming
-		/// </summary>
+        /// <summary>
+        /// Swimming
+        /// </summary>
         [EnumMember(Value = "swim")]
         Swim,
-		/// <summary>
-		/// Hiking
-		/// </summary>
+        /// <summary>
+        /// Hiking
+        /// </summary>
         [EnumMember(Value = "hike")]
         Hike,
-		/// <summary>
-		/// Walking
-		/// </summary>
+        /// <summary>
+        /// Walking
+        /// </summary>
         [EnumMember(Value = "walk")]
         Walk,
-		/// <summary>
-		/// Alpine skiing
-		/// </summary>
+        /// <summary>
+        /// Alpine skiing
+        /// </summary>
         [EnumMember(Value = "alpineski")]
         AlpineSki,
-		/// <summary>
-		/// Backcountry skiing
-		/// </summary>
+        /// <summary>
+        /// Backcountry skiing
+        /// </summary>
         [EnumMember(Value = "backcountryski")]
         BackcountrySki,
-		/// <summary>
-		/// Canoeing
-		/// </summary>
+        /// <summary>
+        /// Canoeing
+        /// </summary>
         [EnumMember(Value = "canoeing")]
         Canoeing,
-		/// <summary>
-		/// Crossfit
-		/// </summary>
+        /// <summary>
+        /// Crossfit
+        /// </summary>
         [EnumMember(Value = "crossfit")]
         Crossfit,
-		/// <summary>
-		/// E-bike cycling
-		/// </summary>
+        /// <summary>
+        /// E-bike cycling
+        /// </summary>
         [EnumMember(Value = "ebikeride")]
         EBikeRide,
-		/// <summary>
-		/// Elliptical trainer
-		/// </summary>
+        /// <summary>
+        /// Elliptical trainer
+        /// </summary>
         [EnumMember(Value = "elliptical")]
         Elliptical,
-		/// <summary>
-		/// Ice skating
-		/// </summary>
+        /// <summary>
+        /// Golf
+        /// </summary>
+        [EnumMember(Value = "golf")]
+        Golf,
+        /// <summary>
+        /// Handcycle
+        /// </summary>
+        [EnumMember(Value = "handcycle")]
+        Handcycle,
+        /// <summary>
+        /// Ice skating
+        /// </summary>
         [EnumMember(Value = "iceskate")]
         IceSkate,
-		/// <summary>
-		/// Inline skating
-		/// </summary>
+        /// <summary>
+        /// Inline skating
+        /// </summary>
         [EnumMember(Value = "inlineskate")]
         InlineSkate,
-		/// <summary>
-		/// Kayaking
-		/// </summary>
+        /// <summary>
+        /// Kayaking
+        /// </summary>
         [EnumMember(Value = "kayaking")]
         Kayaking,
-		/// <summary>
-		/// Kitesurfing
-		/// </summary>
+        /// <summary>
+        /// Kitesurfing
+        /// </summary>
         [EnumMember(Value = "kitesurf")]
         Kitesurf,
-		/// <summary>
-		/// Nordic skiing
-		/// </summary>
+        /// <summary>
+        /// Nordic skiing
+        /// </summary>
         [EnumMember(Value = "nordicski")]
         NordicSki,
-		/// <summary>
-		/// Rock climbing
-		/// </summary>
+        /// <summary>
+        /// Rock climbing
+        /// </summary>
         [EnumMember(Value = "rockclimbing")]
         RockClimbing,
-		/// <summary>
-		/// Roller skiing
-		/// </summary>
+        /// <summary>
+        /// Roller skiing
+        /// </summary>
         [EnumMember(Value = "rollerski")]
         RollerSki,
-		/// <summary>
-		/// Rowing
-		/// </summary>
+        /// <summary>
+        /// Rowing
+        /// </summary>
         [EnumMember(Value = "rowing")]
         Rowing,
-		/// <summary>
-		/// Snowboarding
-		/// </summary>
+        /// <summary>
+        /// Sailing
+        /// </summary>
+        [EnumMember(Value = "sail")]
+        Sail,
+        /// <summary>
+        /// Skateboarding
+        /// </summary>
+        [EnumMember(Value = "skateboard")]
+        Skateboard,
+        /// <summary>
+        /// Snowboarding
+        /// </summary>
         [EnumMember(Value = "snowboard")]
         Snowboard,
-		/// <summary>
-		/// Snowshoe walking
-		/// </summary>
+        /// <summary>
+        /// Snowshoe walking
+        /// </summary>
         [EnumMember(Value = "snowshoe")]
         SnowShoe,
-		/// <summary>
-		/// Stair stepping
-		/// </summary>
+        /// <summary>
+        /// Soccer
+        /// </summary>
+        [EnumMember(Value = "soccer")]
+        Soccer,
+        /// <summary>
+        /// Stair stepping
+        /// </summary>
         [EnumMember(Value = "stairstepper")]
         StairStepper,
-		/// <summary>
-		/// Stand up paddling (SUP)
-		/// </summary>
+        /// <summary>
+        /// Stand up paddling (SUP)
+        /// </summary>
         [EnumMember(Value = "standuppaddling")]
         StandUpPaddling,
-		/// <summary>
-		/// Surfing
-		/// </summary>
+        /// <summary>
+        /// Surfing
+        /// </summary>
         [EnumMember(Value = "surfing")]
         Surfing,
-		/// <summary>
-		/// Virtual cycling
-		/// </summary>
+        /// <summary>
+        /// Velomobile
+        /// </summary>
+        [EnumMember(Value = "velomobile")]
+        Velomobile,
+        /// <summary>
+        /// Virtual cycling
+        /// </summary>
         [EnumMember(Value = "virtualride")]
         VirtualRide,
-		/// <summary>
-		/// Weight training
-		/// </summary>
+        /// <summary>
+        /// Virtual Run
+        /// </summary>
+        [EnumMember(Value = "virtualrun")]
+        VirtualRun,
+        /// <summary>
+        /// Weight training
+        /// </summary>
         [EnumMember(Value = "weighttraining")]
         WeightTraining,
-		/// <summary>
-		/// Wind surfing
-		/// </summary>
+        /// <summary>
+        /// Wheelchair
+        /// </summary>
+        [EnumMember(Value = "wheelchair")]
+        Wheelchair,
+        /// <summary>
+        /// Wind surfing
+        /// </summary>
         [EnumMember(Value = "windsurf")]
         WindSurf,
-		/// <summary>
-		/// General workout
-		/// </summary>
+        /// <summary>
+        /// General workout
+        /// </summary>
         [EnumMember(Value = "workout")]
         Workout,
-		/// <summary>
-		/// Yoga
-		/// </summary>
+        /// <summary>
+        /// Yoga
+        /// </summary>
         [EnumMember(Value = "yoga")]
         Yoga,
 
