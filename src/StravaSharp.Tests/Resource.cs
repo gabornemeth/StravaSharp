@@ -18,8 +18,8 @@ namespace StravaSharp.Tests
     /// </summary>
     class Resource
     {
-        public const string UserInfoJson = "userinfo.json";
-        public const string ActivitiesJson = "activities.json";
+        public const string UserInfoJson = "StravaSharp.Tests.Files.userinfo.json";
+
 
         public static System.IO.Stream GetStream(string resourceName)
         {

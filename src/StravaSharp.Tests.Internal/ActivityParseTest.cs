@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace StravaSharp.Tests
 {
-    [TestFixture("activity_watersport.json")]
+    [TestFixture("StravaSharp.Tests.Internal.Files.activity_watersport.json")]
     public class ActivityParseTest
     {
         private readonly string _resourceName;
@@ -25,7 +25,7 @@ namespace StravaSharp.Tests
                 var reader = new JsonTextReader(new StreamReader(stream));
                 var result = serializer.Deserialize<Activity>(reader);
                 Assert.NotNull(result);
-                Assert.AreEqual(361720123455 /*6*/, result.UploadId);
+                Assert.AreEqual(361720123456, result.UploadId);
             }
         }
 
@@ -33,7 +33,7 @@ namespace StravaSharp.Tests
         public void ParseJson()
         {
             var serializer = new JsonSerializer() { ObjectCreationHandling = ObjectCreationHandling.Reuse };
-            using (var stream = Assembly.GetAssembly(GetType()).GetManifestResourceStream("activities.json"))
+            using (var stream = Assembly.GetAssembly(GetType()).GetManifestResourceStream("StravaSharp.Tests.Internal.Files.activities.json"))
             {
                 var reader = new JsonTextReader(new StreamReader(stream));
                 //var result = serializer.Deserialize(reader);

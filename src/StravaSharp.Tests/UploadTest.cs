@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
 {
-    [TestFixture("2011-08-10-17-51-31.fit")]
-    [TestFixture("gabornemeth.2018-04-21-20-04-57-385Z.GarminPush.19873008881.fit")]
+    [TestFixture("StravaSharp.Tests.Files.2011-08-10-17-51-31.fit")]
+    [TestFixture("StravaSharp.Tests.Files.gabornemeth.2018-04-21-20-04-57-385Z.GarminPush.19873008881.fit")]
     public class UploadTest : BaseTest
     {
         private readonly string _fileName;

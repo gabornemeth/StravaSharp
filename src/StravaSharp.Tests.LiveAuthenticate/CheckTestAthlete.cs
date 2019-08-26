@@ -45,12 +45,12 @@ namespace StravaSharp.Tests
             Assert.AreEqual("Cloned test ride", detail.Name);
             // Note that we can't guarantee the segmenteffort count will stay static as people
             // may create new segments, which will then appear as efforts for this ride
-            Assert.GreaterOrEqual(24, detail.SegmentEfforts.Count);
+            Assert.GreaterOrEqual(detail.SegmentEfforts.Count,24);
             var noDetail = await activityClient.Get(act.Id, false);
             Assert.AreEqual("Cloned test ride", noDetail.Name);
             // The docs suggest this should be 0, but in reality we do always get the 
             // segment details.  So we can detect this, test it.
-            Assert.GreaterOrEqual(24, noDetail.SegmentEfforts.Count);
+            Assert.GreaterOrEqual(noDetail.SegmentEfforts.Count,24);
 
         }
     }
