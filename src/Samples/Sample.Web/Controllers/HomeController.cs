@@ -37,7 +37,7 @@ namespace Sample.Web.Controllers
                 ClientId = Config.ClientId,
                 ClientSecret = Config.ClientSecret,
                 RedirectUri = redirectUrl,
-                Scope = "view_private",
+                Scope = "activity:read_all",
             };
             var client = new StravaClient(new Authentication.RequestFactory(), config);
 
