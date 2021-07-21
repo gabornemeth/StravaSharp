@@ -61,7 +61,7 @@ namespace Sample.ViewModels
             get => _status;
             set
             {
-                Set(()=>Status, ref _status, value);
+                Set(() => Status, ref _status, value);
             }
         }
     }

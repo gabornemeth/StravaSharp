@@ -1,38 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using RestSharp.Portable;
 using RestSharp.Portable.OAuth2;
 using RestSharp.Portable.OAuth2.Infrastructure;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 
 namespace Sample.Web
 {
-    public class Authenticator : RestSharp.Portable.OAuth2.OAuth2Authenticator
+    public class Authenticator : OAuth2Authenticator, IAuthenticator
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
         /// <summary>
         /// The access token that was received from the server.
         /// </summary>
-        public string AccessToken
-        {
-            get
-            {
-                var accessToken = HttpContext.Current.Session["AccessToken"];
-                return accessToken == null ? null : accessToken as string;
+        public string AccessToken {
+            get {
+                return _httpContextAccessor.HttpContext.Session.GetString("AccessToken");
             }
-            set
-            {
-                HttpContext.Current.Session["AccessToken"] = value;
+            set {
+                _httpContextAccessor.HttpContext.Session.SetString("AccessToken", value);
             }
         }
 
         public bool IsAuthenticated => AccessToken != null;
 
-        public Authenticator(OAuth2Client client) : base(client)
+        public Authenticator(OAuth2Client client, IHttpContextAccessor httpContextAccessor) : base(client)
         {
+            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
 
         public async Task<Uri> GetLoginLinkUri()

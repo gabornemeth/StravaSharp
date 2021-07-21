@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [{
+  "provider": "cdnjs",
+  "library": "bootstrap@5.3.1",
+  "destination": "wwwroot/bootstrap/"
+}
+]
+}

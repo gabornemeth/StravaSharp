@@ -14,6 +14,7 @@ using RestSharp.Portable.OAuth2.Infrastructure;
 using RestSharp.Portable.OAuth2.Models;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace StravaSharp
 {
@@ -95,6 +96,35 @@ namespace StravaSharp
             args.Request.Parameters.Add(new Parameter { Name = "access_token", Value = AccessToken, Type = ParameterType.GetOrPost });
             base.BeforeGetUserInfo(args);
         }
+
+        //protected override void BeforeGetAccessToken(BeforeAfterRequestArgs args)
+        //{
+        //    args.Request.AddParameter("client_id", Configuration.ClientId, ParameterType.QueryString);
+        //    args.Request.AddParameter("client_secret", Configuration.ClientSecret, ParameterType.QueryString);
+        //    args.Request.AddParameter("code", args.Parameters.GetOrThrowUnexpectedResponse("code"), ParameterType.QueryString);
+
+        //    //{
+        //    //    client_id = Configuration.ClientId,
+        //    //    client_secret = Configuration.ClientSecret,
+        //    //    grant_type = GrantType
+        //    //});
+        //    //if (GrantType == "refresh_token")
+        //    //{
+        //    //    args.Request.AddObject(new
+        //    //    {
+        //    //        refresh_token = args.Parameters.GetOrThrowUnexpectedResponse("refresh_token")
+        //    //    });
+        //    //}
+        //    //else
+        //    //{
+        //    //    args.Request.AddObject(new
+        //    //    {
+        //    //        code = args.Parameters.GetOrThrowUnexpectedResponse("code"),
+        //    //        redirect_uri = Configuration.RedirectUri
+        //    //    });
+        //    //}
+        //    //base.BeforeGetAccessToken(args);
+        //}
 
         protected override Endpoint UserInfoServiceEndpoint
         {

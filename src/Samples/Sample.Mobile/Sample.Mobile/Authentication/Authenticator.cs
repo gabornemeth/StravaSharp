@@ -6,6 +6,7 @@ using System.Net;
 using RestSharp.Portable.OAuth2;
 using RestSharp.Portable.OAuth2.Infrastructure;
 using Xamarin.Forms;
+using System.Net.Http;
 
 namespace Sample.Mobile.Authentication
 {
@@ -40,27 +41,35 @@ namespace Sample.Mobile.Authentication
 
         public async Task<bool> OnPageLoaded(Uri uri)
         {
+            try
+            {
 #if __ANDROID__
             if (uri.AbsoluteUri.StartsWith(Client.Configuration.RedirectUri, StringComparison.InvariantCulture))
 #else
-            if (uri.AbsoluteUri.StartsWith(Client.Configuration.RedirectUri))
+                if (uri.AbsoluteUri.StartsWith(Client.Configuration.RedirectUri))
 #endif
-            {
-                Debug.WriteLine("Navigated to redirect url.");
-                var parameters = uri.Query.Remove(0, 1).ParseQueryString(); // query portion of the response
-                await Client.GetUserInfo(parameters);
-
-                if (!string.IsNullOrEmpty(Client.AccessToken))
                 {
-                    AccessToken = Client.AccessToken;
+                    Debug.WriteLine("Navigated to redirect url.");
+                    var parameters = uri.Query.Remove(0, 1).ParseQueryString(); // query portion of the response
+                    
+                    await Client.GetUserInfo(parameters);
 
-                    // dismiss login page
+                    if (!string.IsNullOrEmpty(Client.AccessToken))
+                    {
+                        AccessToken = Client.AccessToken;
+
+                        // dismiss login page
                         await Application.Current.MainPage.Navigation.PopAsync();
-                    return true;
+                        return true;
+                    }
                 }
-            }
 
-            return false;
+                return false;
+            }
+            catch ( Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task Authenticate()

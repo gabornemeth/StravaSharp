@@ -1,17 +1,25 @@
-﻿using RestSharp.Portable.OAuth2;
-using Sample.Web.ViewModels;
-using StravaSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Sample.ViewModels;
+using Sample.Web.ViewModels;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
+using Sample.Web.Authentication;
 
 namespace Sample.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IAuthenticatorHolder _authenticatorHolder;
+
+        public HomeController(IHttpContextAccessor httpContextAccessor, IAuthenticatorHolder authenticatorHolder)
+        {
+            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
+            _authenticatorHolder = authenticatorHolder ?? throw new ArgumentNullException(nameof(authenticatorHolder));
+        }
+
         public async Task<ActionResult> Index()
         {
             var authenticator = CreateAuthenticator();
@@ -30,47 +38,35 @@ namespace Sample.Web.Controllers
 
         Authenticator CreateAuthenticator()
         {
-            var redirectUrl = $"{Request.Url.Scheme}://{Request.Url.Host}:{Request.Url.Port}/Home/Callback";
-            var config = new RestSharp.Portable.OAuth2.Configuration.RuntimeClientConfiguration
+            if (_authenticatorHolder.Authenticator != null)
             {
-                IsEnabled = false,
-                ClientId = Config.ClientId,
-                ClientSecret = Config.ClientSecret,
-                RedirectUri = redirectUrl,
-                Scope = "view_private",
-            };
-            var client = new StravaClient(new Authentication.RequestFactory(), config);
+                return _authenticatorHolder.Authenticator;
+            }
+            var redirectUrl = $"{Request.Scheme}://{Request.Host}/Home/Callback";
+            var client = Config.CreateOAuth2Cient(config => config.RedirectUri = redirectUrl);
 
-            return new Authenticator(client);
+            var authenticator = new Authenticator(client, _httpContextAccessor);
+            _authenticatorHolder.Authenticator = authenticator;
+            return authenticator;
         }
 
         public async Task<ActionResult> List()
         {
             var authenticator = CreateAuthenticator();
-            var loginUri = await authenticator.GetLoginLinkUri();
+            if (authenticator.IsAuthenticated)
+            {
+                return RedirectToAction("Index");
+            }
 
+            var loginUri = await authenticator.GetLoginLinkUri();
             return Redirect(loginUri.AbsoluteUri);
         }
 
         public async Task<ActionResult> Callback()
         {
             var authenticator = CreateAuthenticator();
-            await authenticator.OnPageLoaded(Request.Url);
+            await authenticator.OnPageLoaded(new Uri(Request.GetDisplayUrl()));
             return RedirectToAction("Index");
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }
