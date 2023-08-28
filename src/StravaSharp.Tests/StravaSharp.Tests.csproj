@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\activities_id_efforts.json" />
     <None Remove="Resources\activities_zones.json" />
     <None Remove="Resources\athlete_activities.json" />
   </ItemGroup>
@@ -32,6 +33,7 @@
     <EmbeddedResource Include="Files\activity_watersport.json" />
     <EmbeddedResource Include="Files\gabornemeth.2018-04-21-20-04-57-385Z.GarminPush.19873008881.fit" />
     <EmbeddedResource Include="Files\activitiyZones.json" />
+    <EmbeddedResource Include="Resources\activities_id_efforts.json" />
     <EmbeddedResource Include="Resources\activities_zones.json" />
     <EmbeddedResource Include="Resources\athlete_activities.json" />
   </ItemGroup>

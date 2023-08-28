@@ -243,17 +243,22 @@ namespace StravaSharp
         //segment_efforts: array of objects
         // array of summary representations of the segment efforts, segment effort ids must be represented as 64-bit datatypes
 
-        //splits_metric: array of metric split summaries
-        // running activities only
-
+        /// <summary>
+        /// splits_metric: array of metric split summaries (running activities only)
+        /// </summary>
+        [JsonProperty("splits_metric")]
+        public ActivitySplit[] SplitsMetric { get; internal set; }
         //splits_standard: array of standard split summaries
         // running activities only
 
         //best_efforts: array of best effort summaries
         // running activities only
 
-        //photos: object
-        //photos summary
+        /// <summary>
+        /// Photos
+        /// </summary>
+        [JsonProperty("photos")]
+        public PhotoInfo Photos { get; internal set; }
     }
 
     /// <summary>

@@ -12,6 +12,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
@@ -89,7 +90,6 @@ namespace StravaSharp.Tests
             }
         }
 
-
         [Test]
         public async Task GetActivityZones()
         {
@@ -125,6 +125,22 @@ namespace StravaSharp.Tests
                 Assert.NotNull(zone);
                 Assert.NotNull(zone.DistributionBuckets);
             }
+        }
+
+        [Test]
+        public async Task GetSplits()
+        {
+            var client = TestHelper.CreateFakeStravaClient();
+            var activity = await client.Activities.Get(100);
+            Assert.True(activity.SplitsMetric.Length > 0);
+        }
+
+        [Test]
+        public async Task GetPhotos()
+        {
+            var client = TestHelper.CreateFakeStravaClient();
+            var activity = await client.Activities.Get(100);
+            Assert.True(activity.Photos.Count >= 0);
         }
     }
 }
