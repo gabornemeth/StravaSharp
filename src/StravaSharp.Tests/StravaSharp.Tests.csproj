@@ -4,18 +4,24 @@
     <TargetFramework>net6.0</TargetFramework>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\activities_zones.json" />
+    <None Remove="Resources\athlete_activities.json" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityParseTest.cs" />
     <Compile Include="ActivityTest.cs" />
     <Compile Include="ActivityZoneParseTest.cs" />
     <Compile Include="AthleteTest.cs" />
     <Compile Include="ClubTest.cs" />
+    <Compile Include="Fakes\FakeClient.cs" />
     <Compile Include="PolylineTest.cs" />
     <Compile Include="Resource.cs" />
     <Compile Include="SegmentTest.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StravaClientTest.cs" />
-    <Compile Include="TestAuthenticator.cs" />
+    <Compile Include="Fakes\TestAuthenticator.cs" />
     <Compile Include="TestHelper.cs" />
     <Compile Include="UploadTest.cs" />
   </ItemGroup>
@@ -26,6 +32,8 @@
     <EmbeddedResource Include="Files\activity_watersport.json" />
     <EmbeddedResource Include="Files\gabornemeth.2018-04-21-20-04-57-385Z.GarminPush.19873008881.fit" />
     <EmbeddedResource Include="Files\activitiyZones.json" />
+    <EmbeddedResource Include="Resources\activities_zones.json" />
+    <EmbeddedResource Include="Resources\athlete_activities.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -44,6 +52,7 @@
       <Version>4.0.7</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
+    <PackageReference Include="Moq" Version="4.20.69" />
     <PackageReference Include="NSubstitute">
       <Version>5.0.0</Version>
     </PackageReference>

@@ -96,7 +96,7 @@ namespace StravaSharp.Tests
             var client = TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
             Assert.True(activities.Count > 0);
-            
+
             await GoOnIfPremium(client, async () =>
             {
                 var zones = await client.Activities.GetActivityZones(activities[0].Id);
@@ -109,6 +109,22 @@ namespace StravaSharp.Tests
                 }
             });
         }
-        
+
+        [Test]
+        public async Task GetActivityZonesWithFake()
+        {
+            var client = TestHelper.CreateFakeStravaClient();
+            var activities = await client.Activities.GetAthleteActivities();
+            Assert.True(activities.Count > 0);
+
+            var zones = await client.Activities.GetActivityZones(activities[0].Id);
+            Assert.NotNull(zones);
+            Assert.True(zones.Count > 0);
+            foreach (var zone in zones)
+            {
+                Assert.NotNull(zone);
+                Assert.NotNull(zone.DistributionBuckets);
+            }
+        }
     }
 }

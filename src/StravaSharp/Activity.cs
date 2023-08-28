@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Numerics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -26,7 +27,7 @@ namespace StravaSharp
         public string ExternalId { get; internal set; }
 
         [JsonProperty("upload_id", NullValueHandling = NullValueHandling.Ignore)]
-        public long UploadId { get; internal set; }
+        public BigInteger UploadId { get; internal set; }
 
         [JsonProperty("name")]
         public string Name { get; internal set; }

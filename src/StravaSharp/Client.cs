@@ -39,7 +39,7 @@ namespace StravaSharp
     {
         private RestClient _restClient;
 
-        internal RestClient RestClient => _restClient;
+        virtual internal protected IRestClient RestClient => _restClient;
 
         public IAuthenticator Authenticator { get; private set; }
 

@@ -1,0 +1,17 @@
+[
+  {
+    "score": 0,
+    "distribution_buckets": [
+      {
+        "min": 0,
+        "max": 0,
+        "time": 0
+      }
+    ],
+    "type": "heartrate",
+    "sensor_based": true,
+    "points": 0,
+    "custom_zones": true,
+    "max": 0
+  }
+]

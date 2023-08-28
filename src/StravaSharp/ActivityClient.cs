@@ -219,7 +219,6 @@ namespace StravaSharp
 
             var response = await _client.RestClient.Execute<List<ActivityZone>>(request);
 
-            var responseasString = await _client.RestClient.Execute<string>(request);
             return response.Data;
         }
     }

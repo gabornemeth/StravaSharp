@@ -13,8 +13,6 @@ using RestSharp.Portable.OAuth2;
 using RestSharp.Portable.OAuth2.Infrastructure;
 using RestSharp.Portable.OAuth2.Models;
 using Newtonsoft.Json.Linq;
-using System.Threading.Tasks;
-using System.Linq;
 
 namespace StravaSharp
 {
