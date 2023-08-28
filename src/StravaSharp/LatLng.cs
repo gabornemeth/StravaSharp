@@ -51,11 +51,13 @@ namespace StravaSharp
                 return null;
 
             var result = serializer.Deserialize<float[]>(reader);
-            return new LatLng
-            {
-                Latitude = result[0],
-                Longitude = result[1]
-            };
+            if (result != null && result.Length == 2)
+                return new LatLng
+                {
+                    Latitude = result[0],
+                    Longitude = result[1]
+                };
+            else return null;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
