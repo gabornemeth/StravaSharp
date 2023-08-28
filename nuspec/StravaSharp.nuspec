@@ -11,7 +11,7 @@
     <language>en-US</language>
     <copyright>Copyright - Gabor Nemeth © 2015-2017</copyright>
     <tags>strava</tags>
-<!--    <releaseNotes>Simplified authentication interface.</releaseNotes>-->
+    <!--    <releaseNotes>Simplified authentication interface.</releaseNotes>-->
     <dependencies>
       <group targetFramework="netstandard1.1">
         <dependency id="Newtonsoft.Json" version="9.0.1" />
@@ -21,6 +21,7 @@
         <dependency id="Portable.BouncyCastle" version="1.8.1.2" />
       </group>
     </dependencies>
+    <version>0.6</version>
   </metadata>
   <files>
     <!-- NetStandard 1.1 -->
