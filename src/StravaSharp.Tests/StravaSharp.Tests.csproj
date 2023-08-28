@@ -9,6 +9,7 @@
     <None Remove="Resources\activities_id_efforts.json" />
     <None Remove="Resources\activities_zones.json" />
     <None Remove="Resources\athlete_activities.json" />
+    <None Remove="Resources\uploads.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityParseTest.cs" />
@@ -36,6 +37,7 @@
     <EmbeddedResource Include="Resources\activities_id_efforts.json" />
     <EmbeddedResource Include="Resources\activities_zones.json" />
     <EmbeddedResource Include="Resources\athlete_activities.json" />
+    <EmbeddedResource Include="Resources\uploads.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

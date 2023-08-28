@@ -4,12 +4,14 @@
     <id>StravaSharp</id>
     <title>StravaSharp</title>
     <authors>Gabor Nemeth</authors>
-    <licenseUrl>https://github.com/gabornemeth/StravaSharp/blob/master/LICENSE.md</licenseUrl>
+    <license type="expression">MIT</license>
+    <!-- <licenseUrl>https://github.com/gabornemeth/StravaSharp/blob/master/LICENSE.md</licenseUrl> -->
     <projectUrl>https://github.com/gabornemeth/StravaSharp/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <readme>docs\README.md</readme>
     <description>Strava client library.</description>
     <language>en-US</language>
-    <copyright>Copyright - Gabor Nemeth © 2015-2017</copyright>
+    <copyright>Copyright - Gabor Nemeth © 2015-2023</copyright>
     <tags>strava</tags>
     <!--    <releaseNotes>Simplified authentication interface.</releaseNotes>-->
     <dependencies>
@@ -21,10 +23,11 @@
         <dependency id="Portable.BouncyCastle" version="1.8.1.2" />
       </group>
     </dependencies>
-    <version>0.6</version>
+    <version>0.6.1</version>
   </metadata>
   <files>
     <!-- NetStandard 1.1 -->
-    <file src="../src/StravaSharp/bin/Release/netstandard1.1/StravaSharp.dll" target="lib\netstandard1.1" />
+    <file src="../src/StravaSharp/bin/Release/netstandard1.1/StravaSharp.dll" target="lib\netstandard1.1\" />
+    <file src="../README.md" target="docs\" />
   </files>
 </package>
