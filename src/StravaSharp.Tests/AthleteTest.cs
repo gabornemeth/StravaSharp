@@ -18,16 +18,18 @@ namespace StravaSharp.Tests
             var client = TestHelper.CreateStravaClient();
             var athlete = await client.Athletes.GetCurrent();
             Assert.NotNull(athlete);
-            Assert.AreEqual("Extrava", athlete.FirstName);
+            Assert.NotNull(athlete.FirstName);
+            Assert.NotNull(athlete.LastName);
         }
         
         [Test]
         public async Task GetAthlete()
         {
             var client = TestHelper.CreateStravaClient();
-            var athlete = await client.Athletes.Get(6632444);
+            var athlete = await client.Athletes.Get(TestAthleteId);
             Assert.NotNull(athlete);
-            Assert.AreEqual("Extrava", athlete.FirstName);
+            Assert.AreEqual("Gabor", athlete.FirstName);
+            Assert.AreEqual("Nemeth", athlete.LastName);
         }
     }
 }

@@ -12,13 +12,12 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
 {
     [TestFixture]
-    public class ActivityTest
+    public class ActivityTest : Test
     {
         [Test]
         public async Task GetActivities()
@@ -92,21 +91,23 @@ namespace StravaSharp.Tests
 
 
         [Test]
-        [Ignore("Premium feature.")]
         public async Task GetActivityZones()
         {
             var client = TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
             Assert.True(activities.Count > 0);
-
-            var zones = await client.Activities.GetActivityZones(activities[0].Id);
-            Assert.NotNull(zones);
-            Assert.True(zones.Count > 0);
-            foreach (var zone in zones)
+            
+            await GoOnIfPremium(client, async () =>
             {
-                Assert.NotNull(zone);
-                Assert.NotNull(zone.DistributionBuckets);
-            }
+                var zones = await client.Activities.GetActivityZones(activities[0].Id);
+                Assert.NotNull(zones);
+                Assert.True(zones.Count > 0);
+                foreach (var zone in zones)
+                {
+                    Assert.NotNull(zone);
+                    Assert.NotNull(zone.DistributionBuckets);
+                }
+            });
         }
         
     }

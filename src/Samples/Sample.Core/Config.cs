@@ -18,7 +18,7 @@ namespace Sample
                 ClientId = ClientId,
                 ClientSecret = ClientSecret,
                 RedirectUri = RedirectUrl,
-                Scope = "activity:read_all,write",
+                Scope = "activity:read_all,activity:write,profile:read_all,profile:write"
             };
             customize?.Invoke(config);
             return new StravaClient(new Authentication.RequestFactory(), config);

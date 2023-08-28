@@ -15,8 +15,20 @@ using NUnit.Framework;
 
 namespace StravaSharp.Tests
 {
+    public class Test
+    {
+        protected async Task GoOnIfPremium(Client client, Func<Task> action)
+        {
+            var currentUser = await client.Athletes.GetCurrent();
+            if (currentUser.Premium)
+            {
+                await action();
+            }
+        }
+    }
+
     [TestFixture]
-    public class SegmentTest
+    public class SegmentTest : Test
     {
         private Client _client;
 
@@ -60,7 +72,8 @@ namespace StravaSharp.Tests
 
         SegmentSummary GetTestSegment(IEnumerable<SegmentSummary> segments)
         {
-            var segmentForTesting = segments.FirstOrDefault(s => s.Name == "Hock János utca");
+            var rnd = new Random();
+            var segmentForTesting = segments.ElementAt(rnd.Next(segments.Count()));
             Assert.NotNull(segmentForTesting);
             return segmentForTesting;
         }
@@ -70,16 +83,20 @@ namespace StravaSharp.Tests
         {
             var segments = await RetrieveSegments();
             var segment = GetTestSegment(segments);
-            var efforts = (await _client.Segments.GetEfforts(segment.Id, 1, 2)).ToArray();
-            Assert.GreaterOrEqual(efforts.Length, 1);
-            Assert.LessOrEqual(efforts.Length, 2);
 
-            foreach (var effort in efforts)
+            await GoOnIfPremium(_client, async () =>
             {
-                Assert.NotNull(effort.Activity);
-                Assert.NotNull(effort.Athlete);
-                Assert.NotNull(effort.Segment);
-            }
+                var efforts = (await _client.Segments.GetEfforts(segment.Id, 1, 2)).ToArray();
+                Assert.GreaterOrEqual(efforts.Length, 1);
+                Assert.LessOrEqual(efforts.Length, 2);
+
+                foreach (var effort in efforts)
+                {
+                    Assert.NotNull(effort.Activity);
+                    Assert.NotNull(effort.Athlete);
+                    Assert.NotNull(effort.Segment);
+                }
+            });
         }
 
         [Test]
@@ -87,16 +104,11 @@ namespace StravaSharp.Tests
         {
             var segments = await RetrieveSegments();
             var segment = segments[0];
-            var leaderboard = await _client.Segments.GetLeaderboard(segment.Id, null, null);
-            Assert.NotNull(leaderboard);
-            //Assert.AreEqual(leaderboard.EntryCount, leaderboard.Entries.Count);
-            //Assert.AreEqual(2, efforts.Length);
-            //foreach (var effort in efforts)
-            //{
-            //    Assert.NotNull(effort.Activity);
-            //    Assert.NotNull(effort.Athlete);
-            //    Assert.NotNull(effort.Segment);
-            //}
+            await GoOnIfPremium(_client, async () =>
+            {
+                var leaderboard = await _client.Segments.GetLeaderboard(segment.Id, null, null);
+                Assert.NotNull(leaderboard);
+            });
         }
 
         [Test]
@@ -128,16 +140,19 @@ namespace StravaSharp.Tests
         {
             var segments = await RetrieveSegments();
             var segment = GetTestSegment(segments);
-            var effort = await RetrieveEffort(segment);
-
-            var streams = await _client.Segments.GetEffortStreams(effort, StreamType.Distance, StreamType.LatLng);
-            Assert.NotNull(streams);
-            Assert.True(streams.Count > 0);
-            foreach (var stream in streams)
+            await GoOnIfPremium(_client, async () =>
             {
-                Assert.NotNull(stream);
-                Assert.NotNull(stream.Data);
-            }
+                var effort = await RetrieveEffort(segment);
+
+                var streams = await _client.Segments.GetEffortStreams(effort, StreamType.Distance, StreamType.LatLng);
+                Assert.NotNull(streams);
+                Assert.True(streams.Count > 0);
+                foreach (var stream in streams)
+                {
+                    Assert.NotNull(stream);
+                    Assert.NotNull(stream.Data);
+                }
+            });
         }
     }
 }
