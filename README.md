@@ -1,6 +1,6 @@
 # StravaSharp
 
-[![Build Status](https://app.bitrise.io/app/863736459f8c67df/status.svg?token=UeYuCvD4a6S_XMPWdMriVg)](https://app.bitrise.io/app/863736459f8c67df)
+[![Build Status](https://app.bitrise.io/app/863736459f8c67df/status.svg?token=UeYuCvD4a6S_XMPWdMriVg&branch=develop)](https://app.bitrise.io/app/863736459f8c67df)
 
 **StravaSharp** makes [Strava V3 API](https://developers.strava.com/docs/reference/) consumable in .NET projects.
 
