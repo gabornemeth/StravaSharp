@@ -92,47 +92,6 @@ namespace StravaSharp
             return response.Data;
         }
 
-        /// <summary>
-        /// Gets leaderboard for a segment.
-        /// </summary>
-        /// <param name="segmentId">ID of the segment.</param>
-        /// <param name="gender"></param>
-        /// <returns>Leaderboard of the segment</returns>
-        public Task<Leaderboard> GetLeaderboard(long segmentId, Gender? gender, AgeGroup? ageGroup)
-        {
-            return GetLeaderboardInternal(segmentId, null, null, gender, ageGroup);
-        }
-
-		/// <summary>
-		/// Gets the leaderboard for a segment.
-		/// </summary>
-		/// <returns>The leaderboard.</returns>
-		/// <param name="segmentId">Segment identifier.</param>
-		/// <param name="page">Page.</param>
-		/// <param name="perPage">Items per page.</param>
-		/// <param name="gender">Gender.</param>
-		/// <param name="ageGroup">Age group.</param>
-        public Task<Leaderboard> GetLeaderboard(long segmentId, int page, int perPage, Gender? gender, AgeGroup? ageGroup)
-        {
-            return GetLeaderboardInternal(segmentId, page, perPage, gender, ageGroup);
-        }
-
-        private async Task<Leaderboard> GetLeaderboardInternal(long segmentId, int? page, int? perPage, Gender? gender, AgeGroup? ageGroup, bool following = false)
-        {
-            var request = new RestRequest(EndPoint + "/" + segmentId + "/leaderboard", Method.GET);
-            if (page != null)
-                request.AddParameter("page", page);
-            if (perPage != null)
-                request.AddParameter("per_page", perPage);
-            request.AddParameter("following", following ? "true" : "false");
-            if (gender.HasValue)
-                request.AddParameter("gender", gender.Value.ToStravaString());
-            if (ageGroup.HasValue)
-                request.AddParameter("age_group", ageGroup.Value.ToStravaString());
-            var response = await _client.RestClient.Execute<Leaderboard>(request);
-            return response.Data;
-        }
-
         public Task<List<Stream>> GetSegmentStreams(SegmentSummary segment, params StreamType[] types)
         {
             return GetSegmentStreams(segment.Id, types);

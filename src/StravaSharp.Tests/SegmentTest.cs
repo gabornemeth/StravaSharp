@@ -100,18 +100,6 @@ namespace StravaSharp.Tests
         }
 
         [Test]
-        public async Task GetLeaderboard()
-        {
-            var segments = await RetrieveSegments();
-            var segment = segments[0];
-            await GoOnIfPremium(_client, async () =>
-            {
-                var leaderboard = await _client.Segments.GetLeaderboard(segment.Id, null, null);
-                Assert.NotNull(leaderboard);
-            });
-        }
-
-        [Test]
         public async Task GetSegmentStreams()
         {
             var segments = await RetrieveSegments();
