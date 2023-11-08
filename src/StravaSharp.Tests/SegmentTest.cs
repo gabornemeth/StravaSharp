@@ -79,27 +79,6 @@ namespace StravaSharp.Tests
         }
 
         [Test]
-        public async Task GetEfforts()
-        {
-            var segments = await RetrieveSegments();
-            var segment = GetTestSegment(segments);
-
-            await GoOnIfPremium(_client, async () =>
-            {
-                var efforts = (await _client.Segments.GetEfforts(segment.Id, 1, 2)).ToArray();
-                Assert.GreaterOrEqual(efforts.Length, 1);
-                Assert.LessOrEqual(efforts.Length, 2);
-
-                foreach (var effort in efforts)
-                {
-                    Assert.NotNull(effort.Activity);
-                    Assert.NotNull(effort.Athlete);
-                    Assert.NotNull(effort.Segment);
-                }
-            });
-        }
-
-        [Test]
         public async Task GetSegmentStreams()
         {
             var segments = await RetrieveSegments();
@@ -113,34 +92,6 @@ namespace StravaSharp.Tests
                 Assert.NotNull(stream);
                 Assert.NotNull(stream.Data);
             }
-        }
-
-        private async Task<SegmentEffort> RetrieveEffort(SegmentSummary segment)
-        {
-            var efforts = (await _client.Segments.GetEfforts(segment.Id, 1, 2)).ToArray();
-            Assert.GreaterOrEqual(efforts.Length, 1);
-            Assert.LessOrEqual(efforts.Length, 2);
-            return efforts[0];
-        }
-
-        [Test]
-        public async Task GetEffortStreams()
-        {
-            var segments = await RetrieveSegments();
-            var segment = GetTestSegment(segments);
-            await GoOnIfPremium(_client, async () =>
-            {
-                var effort = await RetrieveEffort(segment);
-
-                var streams = await _client.Segments.GetEffortStreams(effort, StreamType.Distance, StreamType.LatLng);
-                Assert.NotNull(streams);
-                Assert.True(streams.Count > 0);
-                foreach (var stream in streams)
-                {
-                    Assert.NotNull(stream);
-                    Assert.NotNull(stream.Data);
-                }
-            });
         }
     }
 }

@@ -30,7 +30,7 @@ class Build : NukeBuild
     readonly Configuration Configuration = Configuration.Release;// IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
     [Parameter]
-    public Version Version { get; set; } = new Version(0, 6, 2);
+    public Version Version { get; set; } = new Version(0, 6, 5);
 
     Target Clean => _ => _
         .Before(Restore)

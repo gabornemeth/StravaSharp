@@ -16,7 +16,7 @@ namespace StravaSharp
     /// <summary>
     /// Meta representation of an athlete
     /// </summary>
-    public class AthleteMeta : StravaObject<int>
+    public class AthleteMeta : StravaObject<long>
     {
     }
 

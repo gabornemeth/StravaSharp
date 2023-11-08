@@ -1,0 +1,47 @@
+[
+  {
+    "id": 123456789,
+    "resource_state": 2,
+    "name": "Alpe d'Huez",
+    "activity": {
+      "id": 1234567890,
+      "resource_state": 1
+    },
+    "athlete": {
+      "id": 123445678689,
+      "resource_state": 1
+    },
+    "elapsed_time": 1657,
+    "moving_time": 1642,
+    "start_date": "2007-09-15T08:15:29Z",
+    "start_date_local": "2007-09-15T09:15:29Z",
+    "distance": 6148.92,
+    "start_index": 1102,
+    "end_index": 1366,
+    "device_watts": false,
+    "average_watts": 220.2,
+    "segment": {
+      "id": 788127,
+      "resource_state": 2,
+      "name": "Alpe d'Huez",
+      "activity_type": "Ride",
+      "distance": 6297.46,
+      "average_grade": 4.8,
+      "maximum_grade": 16.3,
+      "elevation_high": 416,
+      "elevation_low": 104.6,
+      "start_latlng": [ 52.98501000581467, -3.1869720001197366 ],
+      "end_latlng": [ 53.02204074375785, -3.2039630001245736 ],
+      "climb_category": 2,
+      "city": "Le Bourg D'Oisans",
+      "state": "RA",
+      "country": "France",
+      "private": false,
+      "hazardous": false,
+      "starred": false
+    },
+    "kom_rank": null,
+    "pr_rank": null,
+    "achievements": []
+  }
+]

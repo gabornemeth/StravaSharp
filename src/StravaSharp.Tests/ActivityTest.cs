@@ -68,7 +68,7 @@ namespace StravaSharp.Tests
                 var result = serializer.Deserialize<List<ActivitySummary>>(reader);
                 Assert.NotNull(result);
                 Assert.IsNotEmpty(result);
-                Assert.AreEqual(65459843344, result[0].UploadId);
+                Assert.True(65459843344 == result[0].UploadId);
             }
         }
 

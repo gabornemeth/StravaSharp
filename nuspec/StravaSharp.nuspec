@@ -23,7 +23,7 @@
         <dependency id="Portable.BouncyCastle" version="1.8.1.2" />
       </group>
     </dependencies>
-    <version>0.6.2</version>
+    <version>0.6.5</version>
   </metadata>
   <files>
     <!-- NetStandard 1.1 -->

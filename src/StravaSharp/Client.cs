@@ -37,11 +37,11 @@ namespace StravaSharp
     /// </summary>
     public class Client
     {
-        private RestClient _restClient;
+        private readonly RestClient _restClient;
 
         virtual internal protected IRestClient RestClient => _restClient;
 
-        public IAuthenticator Authenticator { get; private set; }
+        public IAuthenticator Authenticator { get; }
 
         public Client(IAuthenticator authenticator)
         {
@@ -56,21 +56,28 @@ namespace StravaSharp
             Athletes = new AthleteClient(this);
             Activities = new ActivityClient(this);
             Segments = new SegmentClient(this);
+            SegmentEfforts = new SegmentEffortsClient(this);
             Clubs = new ClubClient(this);
         }
 
-        public AthleteClient Athletes { get; private set; }
+        public AthleteClient Athletes { get; }
         /// <summary>
         /// Activities endpoint
         /// </summary>
-        public ActivityClient Activities { get; private set; }
+        public ActivityClient Activities { get; }
         /// <summary>
         /// Segments endpoint
         /// </summary>
-        public SegmentClient Segments { get; private set; }
+        public SegmentClient Segments { get; }
+
+        /// <summary>
+        /// Segment efforts endpoint
+        /// </summary>
+        public SegmentEffortsClient SegmentEfforts { get; }
+
         /// <summary>
         /// Clubs endpoint
         /// </summary>
-        public ClubClient Clubs { get; private set; }
+        public ClubClient Clubs { get; }
     }
 }

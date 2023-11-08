@@ -86,6 +86,10 @@ namespace StravaSharp.Tests
             {
                 json = GetFakeResponse("activities_id_efforts");
             }
+            else if (request.Resource.StartsWith("/api/v3/segment_efforts"))
+            {
+                json = GetFakeResponse("segment_efforts");
+            }
 
             if (json == null)
             {
