@@ -10,6 +10,7 @@
     <None Remove="Resources\activities_zones.json" />
     <None Remove="Resources\athlete_activities.json" />
     <None Remove="Resources\segment_efforts.json" />
+    <None Remove="Resources\update_activity.json" />
     <None Remove="Resources\uploads.json" />
   </ItemGroup>
   <ItemGroup>
@@ -38,6 +39,7 @@
     <EmbeddedResource Include="Files\activitiyZones.json" />
     <EmbeddedResource Include="Resources\activities_id_efforts.json" />
     <EmbeddedResource Include="Resources\activities_zones.json" />
+    <EmbeddedResource Include="Resources\update_activity.json" />
     <EmbeddedResource Include="Resources\segment_efforts.json" />
     <EmbeddedResource Include="Resources\athlete_activities.json" />
     <EmbeddedResource Include="Resources\uploads.json" />

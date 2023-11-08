@@ -110,7 +110,7 @@ namespace StravaSharp.Tests
         }
 
         [Test]
-        public async Task GetActivityZonesWithFake()
+        public async Task GetActivityZones_Parse()
         {
             var client = TestHelper.CreateFakeStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
@@ -127,7 +127,7 @@ namespace StravaSharp.Tests
         }
 
         [Test]
-        public async Task GetSplits()
+        public async Task GetSplits_Parse()
         {
             var client = TestHelper.CreateFakeStravaClient();
             var activity = await client.Activities.Get(100);
@@ -135,11 +135,19 @@ namespace StravaSharp.Tests
         }
 
         [Test]
-        public async Task GetPhotos()
+        public async Task GetPhotos_Parse()
         {
             var client = TestHelper.CreateFakeStravaClient();
             var activity = await client.Activities.Get(100);
             Assert.True(activity.Photos.Count >= 0);
+        }
+
+        [Test]
+        public async Task Update_Parse()
+        {
+            var client = TestHelper.CreateFakeStravaClient();
+            var activity = await client.Activities.Update(100);
+            Assert.NotNull(activity.Map);
         }
     }
 }

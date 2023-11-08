@@ -15,7 +15,7 @@ namespace StravaSharp
             _client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public async Task<IEnumerable<SegmentEffort>> Get(long segmentId, DateTime? startDateLocal = null, DateTime? endDateLocal = null, int? perPage = null)
+        public async Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, DateTime? startDateLocal = null, DateTime? endDateLocal = null, int? perPage = null)
         {
             var request = new RestRequest(EndPoint, Method.GET);
             request.AddParameter("segment_id", segmentId);

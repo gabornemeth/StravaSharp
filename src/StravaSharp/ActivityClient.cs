@@ -121,28 +121,14 @@ namespace StravaSharp
             return response.Data;
         }
 
-        /// <summary>
-        /// Delete an activity.
-        /// </summary>
-        /// <param name="activity">Activity to delete.</param>
-        /// <returns></returns>
-        public Task Delete(Activity activity)
+        public async Task<Activity> Update(long id)
         {
-            return Delete(activity.Id);
-        }
-
-        /// <summary>
-        /// Delete an activity.
-        /// </summary>
-        /// <param name="id">Identifier of the activity.</param>
-        /// <returns></returns>
-        public async Task Delete(long id)
-        {
-            var request = new RestRequest(EndPoint + "/{id}", Method.DELETE);
+            var request = new RestRequest(EndPoint + "/{id}", Method.PUT);
             request.AddParameter("id", id, ParameterType.UrlSegment);
-            await _client.RestClient.Execute(request);
-        }
+            var response = await _client.RestClient.Execute<Activity>(request);
+            return response.Data;
 
+        }
         /// <summary>
         /// List the laps of an activity.
         /// </summary>
