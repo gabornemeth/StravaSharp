@@ -117,7 +117,7 @@ namespace StravaSharp
         {
             var request = new RestRequest("/api/v3/uploads/{id}", Method.GET);
             request.AddParameter("id", id, ParameterType.UrlSegment);
-            var response = await _client.RestClient.Execute<UploadStatus>(request);
+            var response = await _client.RestClient.Execute<UploadStatus>(request).ConfigureAwait(false);
             return response.Data;
         }
 
@@ -125,7 +125,7 @@ namespace StravaSharp
         {
             var request = new RestRequest(EndPoint + "/{id}", Method.PUT);
             request.AddParameter("id", id, ParameterType.UrlSegment);
-            var response = await _client.RestClient.Execute<Activity>(request);
+            var response = await _client.RestClient.Execute<Activity>(request).ConfigureAwait(false);
             return response.Data;
 
         }
@@ -138,7 +138,7 @@ namespace StravaSharp
         {
             var request = new RestRequest("/api/v3/activities/{id}/laps", Method.GET);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
-            var response = await _client.RestClient.Execute<List<ActivitySummary>>(request);
+            var response = await _client.RestClient.Execute<List<ActivitySummary>>(request).ConfigureAwait(false);
             return response.Data;
         }
 

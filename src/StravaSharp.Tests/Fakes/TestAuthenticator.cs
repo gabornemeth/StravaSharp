@@ -42,7 +42,7 @@ namespace StravaSharp.Tests
             return false;
         }
 
-        public System.Threading.Tasks.Task PreAuthenticate(IRestClient client, IRestRequest request, System.Net.ICredentials credentials)
+        public Task PreAuthenticate(IRestClient client, IRestRequest request, System.Net.ICredentials credentials)
         {
             return Task.Run(() =>
             {
@@ -51,12 +51,12 @@ namespace StravaSharp.Tests
             });
         }
 
-        public System.Threading.Tasks.Task PreAuthenticate(IHttpClient client, IHttpRequestMessage request, System.Net.ICredentials credentials)
+        public Task PreAuthenticate(IHttpClient client, IHttpRequestMessage request, System.Net.ICredentials credentials)
         {
             throw new NotImplementedException();
         }
 
-        public System.Threading.Tasks.Task HandleChallenge(IHttpClient client, IHttpRequestMessage request, System.Net.ICredentials credentials, IHttpResponseMessage response)
+        public Task HandleChallenge(IHttpClient client, IHttpRequestMessage request, System.Net.ICredentials credentials, IHttpResponseMessage response)
         {
             throw new NotImplementedException();
         }

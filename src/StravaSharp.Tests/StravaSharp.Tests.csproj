@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <UserSecretsId>5d972208-a467-462b-a46e-4918c048cbc2</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -60,6 +61,7 @@
     <PackageReference Include="FubarCoder.RestSharp.Portable.OAuth2">
       <Version>4.0.7</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
     <PackageReference Include="Moq" Version="4.20.69" />
     <PackageReference Include="NSubstitute">

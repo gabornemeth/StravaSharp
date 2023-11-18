@@ -18,10 +18,16 @@ namespace StravaSharp
         /// UNIX epoch
         /// </summary>
         private static DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        
+
         public static long GetSecondsSinceUnixEpoch(this DateTime dt)
         {
             return Convert.ToInt64(dt.ToUniversalTime().Subtract(epoch).TotalSeconds);
+        }
+
+        public static string ToIso8601DateTimeString(this DateTime dt)
+        {
+            const string DefaultDateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+            return dt.ToString(DefaultDateTimeFormat);
         }
     }
 

@@ -25,5 +25,40 @@ namespace StravaSharp.Tests
                 Assert.NotNull(effort.Segment);
             }
         }
+
+        [Test]
+        public async Task GetSegmentEfforts_KnownSegment()
+        {
+            var client = TestHelper.CreateStravaClient();
+
+            // panoráma: 9034772
+            var efforts = (await client.SegmentEfforts.GetEfforts(9034772)).ToArray();
+            Assert.GreaterOrEqual(efforts.Length, 1);
+
+            foreach (var effort in efforts)
+            {
+                Assert.NotNull(effort.Activity);
+                Assert.NotNull(effort.Athlete);
+                Assert.NotNull(effort.Segment);
+            }
+        }
+
+        [Test]
+        public async Task GetSegmentEfforts_KnownSegment_WithDate()
+        {
+            var client = TestHelper.CreateStravaClient();
+
+            // panoráma: 9034772
+            var efforts = (await client.SegmentEfforts.GetEfforts(9034772, startDateLocal: new DateTime(2000, 1, 1), endDateLocal: DateTime.Now.AddDays(-1), perPage: 10)).ToArray();
+            Assert.GreaterOrEqual(efforts.Length, 1);
+
+            foreach (var effort in efforts)
+            {
+                Assert.NotNull(effort.Activity);
+                Assert.NotNull(effort.Athlete);
+                Assert.NotNull(effort.Segment);
+            }
+        }
+
     }
 }

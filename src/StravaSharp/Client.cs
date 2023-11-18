@@ -79,5 +79,13 @@ namespace StravaSharp
         /// Clubs endpoint
         /// </summary>
         public ClubClient Clubs { get; }
+
+        public async Task<bool> Deauthorize(string accessToken)
+        {
+            var request = new RestRequest("/oauth/deauthorize", Method.POST);
+            request.AddQueryParameter("access_token", accessToken);
+            var response = await RestClient.Execute(request);
+            return response.Content?.Contains(accessToken) ?? false;
+        }
     }
 }

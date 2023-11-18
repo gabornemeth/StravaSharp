@@ -20,9 +20,9 @@ namespace StravaSharp
             var request = new RestRequest(EndPoint, Method.GET);
             request.AddParameter("segment_id", segmentId);
             if (startDateLocal != null)
-                request.AddParameter("start_date_local", startDateLocal);
+                request.AddParameter("start_date_local", startDateLocal.Value.ToIso8601DateTimeString());
             if (endDateLocal != null)
-                request.AddParameter("end_date_local", endDateLocal);
+                request.AddParameter("end_date_local", endDateLocal.Value.ToIso8601DateTimeString());
             if (perPage != null)
                 request.AddParameter("per_page", perPage);
             var response = await _client.RestClient.Execute<SegmentEffort[]>(request);
