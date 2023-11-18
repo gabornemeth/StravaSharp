@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using RestSharp.Portable;
+using RestSharp;
 
 namespace StravaSharp
 {
@@ -17,16 +17,15 @@ namespace StravaSharp
 
         public async Task<IEnumerable<SegmentEffort>> GetEfforts(long segmentId, DateTime? startDateLocal = null, DateTime? endDateLocal = null, int? perPage = null)
         {
-            var request = new RestRequest(EndPoint, Method.GET);
+            var request = new RestRequest(EndPoint, Method.Get);
             request.AddParameter("segment_id", segmentId);
             if (startDateLocal != null)
                 request.AddParameter("start_date_local", startDateLocal.Value.ToIso8601DateTimeString());
             if (endDateLocal != null)
                 request.AddParameter("end_date_local", endDateLocal.Value.ToIso8601DateTimeString());
             if (perPage != null)
-                request.AddParameter("per_page", perPage);
-            var response = await _client.RestClient.Execute<SegmentEffort[]>(request);
-            return response.Data;
+                request.AddParameter("per_page", perPage.Value);
+            return await _client.RestClient.ExecuteForJson<SegmentEffort[]>(request);
         }
     }
 }

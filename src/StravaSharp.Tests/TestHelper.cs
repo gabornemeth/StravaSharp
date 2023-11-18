@@ -4,14 +4,8 @@
 // Author:
 //    Gabor Nemeth (gabor.nemeth.dev@gmail.com)
 //
-//    Copyright (C) 2015, Gabor Nemeth
+//    Copyright (C) 2015-2023, Gabor Nemeth
 //
-        
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Text;
 
 namespace StravaSharp.Tests
 {

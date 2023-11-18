@@ -7,6 +7,7 @@
 //    Copyright (C) 2016, Gabor Nemeth
 //
 
+using FluentAssertions;
 using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
@@ -21,9 +22,10 @@ namespace StravaSharp.Tests
         {
             var client = TestHelper.CreateStravaClient();
             var club = await client.Clubs.Get(Settings.ClubId);
-            Assert.NotNull(club);
-            Assert.True(string.IsNullOrEmpty(club.Name) == false);
-            Assert.True(string.IsNullOrEmpty(club.Country) == false);
+            
+            club.Should().NotBeNull();
+            club.Name.Should().NotBeNullOrEmpty();
+            club.Country.Should().NotBeNullOrEmpty();
         }
 
         [Test]
@@ -31,8 +33,8 @@ namespace StravaSharp.Tests
         {
             var client = TestHelper.CreateStravaClient();
             var members = await client.Clubs.GetMembers(Settings.ClubId);
-            Assert.NotNull(members);
-            Assert.True(members.Count > 0);
+            
+            members.Should().NotBeNullOrEmpty();
         }
 
         [Test]
@@ -40,8 +42,8 @@ namespace StravaSharp.Tests
         {
             var client = TestHelper.CreateStravaClient();
             var admins = await client.Clubs.GetAdmins(Settings.ClubId);
-            Assert.NotNull(admins);
-            Assert.True(admins.Count > 0);
+            
+            admins.Should().NotBeNullOrEmpty();
         }
     }
 }

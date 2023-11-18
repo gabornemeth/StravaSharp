@@ -25,7 +25,7 @@ namespace StravaSharp.Tests
         {
             var client = TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
-            Assert.True(activities.Count > 0);
+            Assert.True(activities.Count() > 0);
             var activity = activities.FirstOrDefault(a => a.Map?.SummaryPolyline != null);
             Assert.NotNull(activity);
             activity = await client.Activities.Get(activity.Id);

@@ -7,11 +7,13 @@
 //    Copyright (C) 2015, Gabor Nemeth
 //
 
+using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
@@ -24,7 +26,8 @@ namespace StravaSharp.Tests
         {
             var client = TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
-            Assert.True(activities.Count > 0);
+            Assert.NotNull(activities);
+            Assert.True(activities.Count() > 0);
         }
 
         [Test]
@@ -33,7 +36,7 @@ namespace StravaSharp.Tests
             var client = TestHelper.CreateStravaClient();
             const int itemsPerPage = 2;
             var activities = await client.Activities.GetAthleteActivities(0, itemsPerPage);
-            Assert.AreEqual(itemsPerPage, activities.Count);
+            Assert.AreEqual(itemsPerPage, activities.Count());
         }
 
         [Test]
@@ -41,7 +44,7 @@ namespace StravaSharp.Tests
         {
             var client = TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities(DateTime.Now, DateTime.Now.AddYears(-10));
-            Assert.True(activities.Count > 0);
+            Assert.True(activities.Count() > 0);
         }
 
         [Test]
@@ -49,11 +52,11 @@ namespace StravaSharp.Tests
         {
             var client = TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
-            Assert.True(activities.Count > 0);
+            Assert.True(activities.Count() > 0);
             foreach (var activity in activities)
             {
                 var laps = await client.Activities.GetLaps(activity.Id);
-                Assert.True(laps.Count > 0);
+                laps.Should().NotBeNullOrEmpty();
             }
         }
 
@@ -77,11 +80,11 @@ namespace StravaSharp.Tests
         {
             var client = TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
-            Assert.True(activities.Count > 0);
+            Assert.True(activities.Count() > 0);
 
-            var streams = await client.Activities.GetActivityStreams(activities[0].Id, StreamType.HeartRate, StreamType.LatLng);
+            var streams = await client.Activities.GetActivityStreams(activities.First().Id, StreamType.HeartRate, StreamType.LatLng);
             Assert.NotNull(streams);
-            Assert.True(streams.Count > 0);
+            Assert.True(streams.Count() > 0);
             foreach (var stream in streams)
             {
                 Assert.NotNull(stream);
@@ -94,17 +97,16 @@ namespace StravaSharp.Tests
         {
             var client = TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
-            Assert.True(activities.Count > 0);
+            Assert.True(activities.Count() > 0);
 
             await GoOnIfPremium(client, async () =>
             {
-                var zones = await client.Activities.GetActivityZones(activities[0].Id);
-                Assert.NotNull(zones);
-                Assert.True(zones.Count > 0);
+                var zones = await client.Activities.GetActivityZones(activities.First().Id);
+                zones.Should().NotBeNullOrEmpty();
                 foreach (var zone in zones)
                 {
-                    Assert.NotNull(zone);
-                    Assert.NotNull(zone.DistributionBuckets);
+                    zone.Should().NotBeNull();
+                    zone.DistributionBuckets.Should().NotBeNullOrEmpty();
                 }
             });
         }
@@ -114,11 +116,11 @@ namespace StravaSharp.Tests
         {
             var client = TestHelper.CreateFakeStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
-            Assert.True(activities.Count > 0);
+            Assert.True(activities.Count() > 0);
 
-            var zones = await client.Activities.GetActivityZones(activities[0].Id);
+            var zones = await client.Activities.GetActivityZones(activities.First().Id);
             Assert.NotNull(zones);
-            Assert.True(zones.Count > 0);
+            Assert.True(zones.Count() > 0);
             foreach (var zone in zones)
             {
                 Assert.NotNull(zone);

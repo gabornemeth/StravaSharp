@@ -7,8 +7,10 @@
 //    Copyright (C) 2015, Gabor Nemeth
 //
 
-using RestSharp.Portable;
+using Newtonsoft.Json;
+using RestSharp;
 using System;
+using System.Threading.Tasks;
 
 namespace StravaSharp
 {
@@ -33,12 +35,18 @@ namespace StravaSharp
 
     internal static class RequestExtensions
     {
-        public static void AddPaging(this IRestRequest request, int page = 0, int itemsPerPage = 0)
+        public static void AddPaging(this RestRequest request, int page = 0, int itemsPerPage = 0)
         {
             if (page != 0)
                 request.AddParameter("page", page);
             if (itemsPerPage != 0)
                 request.AddParameter("per_page", itemsPerPage);
+        }
+
+        public static async Task<T> ExecuteForJson<T>(this IRestClient restClient, RestRequest request)
+        {
+            var response = await restClient.ExecuteAsync(request).ConfigureAwait(false);
+            return JsonConvert.DeserializeObject<T>(response.Content);
         }
     }
 }

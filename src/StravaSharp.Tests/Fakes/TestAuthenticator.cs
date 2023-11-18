@@ -7,7 +7,8 @@
 //    Copyright (C) 2016, Gabor Nemeth
 //
 
-using RestSharp.Portable;
+using Org.BouncyCastle.Asn1.Ocsp;
+using RestSharp;
 using System;
 using System.Threading.Tasks;
 
@@ -16,51 +17,15 @@ namespace StravaSharp.Tests
     /// <summary>
     /// Authenticator used for tests
     /// </summary>
-    public class TestAuthenticator : RestSharp.Portable.IAuthenticator
+    public class TestAuthenticator : RestSharp.Authenticators.AuthenticatorBase
     {
-        public string AccessToken { get; private set; }
-
-        public TestAuthenticator(string accessToken)
+        public TestAuthenticator(string accessToken) : base(accessToken)
         {
-            AccessToken = accessToken;
         }
 
-        #region IAuthenticator implementation
-
-        public bool CanPreAuthenticate(IRestClient client, IRestRequest request, System.Net.ICredentials credentials)
+        protected override ValueTask<Parameter> GetAuthenticationParameter(string accessToken)
         {
-            return true;
+            return new ValueTask<Parameter>(new HeaderParameter("Authorization", "Bearer " + Token));
         }
-
-        public bool CanPreAuthenticate(IHttpClient client, IHttpRequestMessage request, System.Net.ICredentials credentials)
-        {
-            return false;
-        }
-
-        public bool CanHandleChallenge(IHttpClient client, IHttpRequestMessage request, System.Net.ICredentials credentials, IHttpResponseMessage response)
-        {
-            return false;
-        }
-
-        public Task PreAuthenticate(IRestClient client, IRestRequest request, System.Net.ICredentials credentials)
-        {
-            return Task.Run(() =>
-            {
-                if (!string.IsNullOrEmpty(AccessToken))
-                    request.AddHeader("Authorization", "Bearer " + AccessToken);
-            });
-        }
-
-        public Task PreAuthenticate(IHttpClient client, IHttpRequestMessage request, System.Net.ICredentials credentials)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task HandleChallenge(IHttpClient client, IHttpRequestMessage request, System.Net.ICredentials credentials, IHttpResponseMessage response)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
     }
 }

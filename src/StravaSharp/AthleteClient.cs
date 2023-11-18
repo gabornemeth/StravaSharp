@@ -8,7 +8,7 @@
 //
 
 using System.Threading.Tasks;
-using RestSharp.Portable;
+using RestSharp;
 
 namespace StravaSharp
 {
@@ -26,16 +26,14 @@ namespace StravaSharp
 
         public async Task<Athlete> GetCurrent()
         {
-            var request = new RestRequest("/api/v3/athlete", Method.GET);
-            var response = await _client.RestClient.Execute<Athlete>(request);
-            return response.Data;
+            var request = new RestRequest("/api/v3/athlete", Method.Get);
+            return await _client.RestClient.ExecuteForJson<Athlete>(request);
         }
 
         public async Task<Athlete> Get(long athleteId)
         {
-            var request = new RestRequest(string.Format("/api/v3/athletes/{0}", athleteId), Method.GET);
-            var response = await _client.RestClient.Execute<Athlete>(request);
-            return response.Data;
+            var request = new RestRequest(string.Format("/api/v3/athletes/{0}", athleteId), Method.Get);
+            return await _client.RestClient.ExecuteForJson<Athlete>(request);
         }
     }
 }

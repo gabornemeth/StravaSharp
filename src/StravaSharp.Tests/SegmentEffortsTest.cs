@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,9 +55,9 @@ namespace StravaSharp.Tests
 
             foreach (var effort in efforts)
             {
-                Assert.NotNull(effort.Activity);
-                Assert.NotNull(effort.Athlete);
-                Assert.NotNull(effort.Segment);
+                effort.Activity.Should().NotBeNull();
+                effort.Athlete.Should().NotBeNull();
+                effort.Segment.Should().NotBeNull();
             }
         }
 

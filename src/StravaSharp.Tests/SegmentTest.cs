@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace StravaSharp.Tests
@@ -85,8 +86,7 @@ namespace StravaSharp.Tests
             var segment = segments[0];
 
             var streams = await _client.Segments.GetSegmentStreams(segment, StreamType.Distance, StreamType.LatLng);
-            Assert.NotNull(streams);
-            Assert.True(streams.Count > 0);
+            streams.Should().NotBeNullOrEmpty();
             foreach (var stream in streams)
             {
                 Assert.NotNull(stream);

@@ -1,43 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using RestSharp.Portable;
-using RestSharp.Portable.HttpClient;
+﻿using System.Threading.Tasks;
+using RestSharp;
+using RestSharp.Authenticators;
 
 namespace StravaSharp
 {
-    class MyHttpClientFactory : RestSharp.Portable.HttpClient.Impl.DefaultHttpClientFactory
-    {
-        public override IHttpRequestMessage CreateRequestMessage(IRestClient client, IRestRequest request, IList<Parameter> parameters)
-        {
-            var msg = base.CreateRequestMessage(client, request, parameters);
-            return msg;
-        }
-
-        protected override HttpMessageHandler CreateMessageHandler(IRestClient client)
-        {
-            return new MyHttpMessageHandler();
-        }
-    }
-
-    class MyHttpMessageHandler : HttpClientHandler
-    {
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-        {
-            var response = await base.SendAsync(request, cancellationToken);
-            var responseAsString = await response.Content.ReadAsStringAsync();
-            return response;
-        }
-    }
-
     /// <summary>
     /// Strava client
     /// </summary>
     public class Client
     {
         private readonly RestClient _restClient;
+
+        internal RestClient RestClientInternal => _restClient;
 
         virtual internal protected IRestClient RestClient => _restClient;
 
@@ -46,13 +20,10 @@ namespace StravaSharp
         public Client(IAuthenticator authenticator)
         {
             Authenticator = authenticator;
-            _restClient = new RestClient(StravaClient.ApiBaseUrl)
+            _restClient = new RestClient("https://www.strava.com", options =>
             {
-                Authenticator = authenticator,
-#if DEBUG
-                HttpClientFactory = new MyHttpClientFactory(),
-#endif
-            };
+                options.Authenticator = authenticator;
+            });
             Athletes = new AthleteClient(this);
             Activities = new ActivityClient(this);
             Segments = new SegmentClient(this);
@@ -82,9 +53,9 @@ namespace StravaSharp
 
         public async Task<bool> Deauthorize(string accessToken)
         {
-            var request = new RestRequest("/oauth/deauthorize", Method.POST);
+            var request = new RestRequest("/oauth/deauthorize", Method.Post);
             request.AddQueryParameter("access_token", accessToken);
-            var response = await RestClient.Execute(request);
+            var response = await RestClient.ExecuteAsync(request);
             return response.Content?.Contains(accessToken) ?? false;
         }
     }

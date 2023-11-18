@@ -17,9 +17,7 @@ namespace StravaSharp.Tests
 
 
         [Test]
-#if !DEBUG
-        [Ignore("Delete requires application level permission.")]
-#endif
+        [Ignore("Deleting is no longer possible from code. You have to delete the activity manually after upload.")]
         public async Task Upload()
         {
             var client = TestHelper.CreateStravaClient();

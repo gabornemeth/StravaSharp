@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using RestSharp.Portable;
+using Newtonsoft.Json;
+using RestSharp;
 
 namespace StravaSharp
 {
@@ -17,33 +18,32 @@ namespace StravaSharp
 
         public async Task<Activity> Get(long activityId, bool includeAllEfforts = true)
         {
-            var request = new RestRequest(EndPoint + "/{id}", Method.GET);
+            var request = new RestRequest(EndPoint + "/{id}", Method.Get);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
-            var response = await _client.RestClient.Execute<Activity>(request);
-            return response.Data;
+            return await _client.RestClient.ExecuteForJson<Activity>(request);
         }
 
-        public Task<List<ActivitySummary>> GetAthleteActivities(int page = 0, int itemsPerPage = 0)
+        public Task<IEnumerable<ActivitySummary>> GetAthleteActivities(int page = 0, int itemsPerPage = 0)
         {
             return GetAthleteActivities(DateTime.MinValue, DateTime.MinValue, page, itemsPerPage);
         }
 
-        public Task<List<ActivitySummary>> GetAthleteActivities(DateTime before, DateTime after)
+        public Task<IEnumerable<ActivitySummary>> GetAthleteActivities(DateTime before, DateTime after)
         {
             return GetAthleteActivities(before, after, 0, 0);
         }
 
-        public Task<List<ActivitySummary>> GetAthleteActivitiesBefore(DateTime before)
+        public Task<IEnumerable<ActivitySummary>> GetAthleteActivitiesBefore(DateTime before)
         {
             return GetAthleteActivities(before, DateTime.MinValue, 0, 0);
         }
 
-        public Task<List<ActivitySummary>> GetAthleteActivitiesAfter(DateTime after)
+        public Task<IEnumerable<ActivitySummary>> GetAthleteActivitiesAfter(DateTime after)
         {
             return GetAthleteActivities(DateTime.MinValue, after, 0, 0);
         }
 
-        private async Task<List<ActivitySummary>> GetAthleteActivities(DateTime before, DateTime after, int page, int itemsPerPage)
+        private async Task<IEnumerable<ActivitySummary>> GetAthleteActivities(DateTime before, DateTime after, int page, int itemsPerPage)
         {
             var request = new RestRequest("/api/v3/athlete/activities");
             if (before != DateTime.MinValue)
@@ -51,18 +51,8 @@ namespace StravaSharp
             if (after != DateTime.MinValue)
                 request.AddQueryParameter("after", after.GetSecondsSinceUnixEpoch());
             request.AddPaging(page, itemsPerPage);
-            var response = await _client.RestClient.Execute<List<ActivitySummary>>(request);
-
-            return response.Data;
+            return await _client.RestClient.ExecuteForJson<ActivitySummary[]>(request);
         }
-
-        byte[] SerializeStream(System.IO.Stream stream)
-        {
-            var memoryStream = new System.IO.MemoryStream();
-            stream.CopyTo(memoryStream);
-            return memoryStream.ToArray();
-        }
-
 
         public async Task<UploadStatus> Upload(ActivityType activityType, DataType dataType, System.IO.Stream input, string fileName, string name = null, string description = null,
             bool @private = false, bool commute = false, string externalId = null)
@@ -85,9 +75,9 @@ namespace StravaSharp
             //var requestAsString = await msg.Content.ReadAsStringAsync();
             //return await httpClient.SendAsync<UploadStatus>(msg);
 
-            var request = new RestRequest("/api/v3/uploads", Method.POST);
-            request.ContentCollectionMode = ContentCollectionMode.MultiPart;
-            request.AddFile("file", input, Uri.EscapeDataString(fileName));
+            var request = new RestRequest("/api/v3/uploads", Method.Post);
+            //request.ContentCollectionMode = ContentCollectionMode.MultiPart;
+            request.AddFile("file", () => input, Uri.EscapeDataString(fileName));
 
             // workaround: multipart form-data parameters has to be enclosed in ""
             // https://github.com/dotnet/corefx/issues/26886
@@ -109,50 +99,44 @@ namespace StravaSharp
             {
                 request.AddParameter("\"external_id\"", externalId);
             }
-            var response = await _client.RestClient.Execute<UploadStatus>(request);
-            return response.Data;
+            return await _client.RestClient.ExecuteForJson<UploadStatus>(request);
         }
 
         public async Task<UploadStatus> GetUploadStatus(long id)
         {
-            var request = new RestRequest("/api/v3/uploads/{id}", Method.GET);
+            var request = new RestRequest("/api/v3/uploads/{id}", Method.Get);
             request.AddParameter("id", id, ParameterType.UrlSegment);
-            var response = await _client.RestClient.Execute<UploadStatus>(request).ConfigureAwait(false);
-            return response.Data;
+            return await _client.RestClient.ExecuteForJson<UploadStatus>(request);
         }
 
         public async Task<Activity> Update(long id)
         {
-            var request = new RestRequest(EndPoint + "/{id}", Method.PUT);
+            var request = new RestRequest(EndPoint + "/{id}", Method.Put);
             request.AddParameter("id", id, ParameterType.UrlSegment);
-            var response = await _client.RestClient.Execute<Activity>(request).ConfigureAwait(false);
-            return response.Data;
-
+            return await _client.RestClient.ExecuteForJson<Activity>(request);
         }
+
         /// <summary>
         /// List the laps of an activity.
         /// </summary>
         /// <param name="activityId">Identifier of the activity.</param>
         /// <returns>List of laps.</returns>
-        public async Task<List<ActivitySummary>> GetLaps(long activityId)
+        public async Task<IEnumerable<ActivitySummary>> GetLaps(long activityId)
         {
-            var request = new RestRequest("/api/v3/activities/{id}/laps", Method.GET);
+            var request = new RestRequest("/api/v3/activities/{id}/laps", Method.Get);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
-            var response = await _client.RestClient.Execute<List<ActivitySummary>>(request).ConfigureAwait(false);
-            return response.Data;
+            return await _client.RestClient.ExecuteForJson<ActivitySummary[]>(request);
         }
 
-        public async Task<List<Comment>> GetComments(long activityId, int page = 0, int itemsPerPage = 0)
+        public async Task<IEnumerable<Comment>> GetComments(long activityId, int page = 0, int itemsPerPage = 0)
         {
-            var request = new RestRequest("/api/v3/activities/{id}/comments", Method.GET);
+            var request = new RestRequest("/api/v3/activities/{id}/comments", Method.Get);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
             if (page != 0)
                 request.AddParameter("page", page);
             if (itemsPerPage != 0)
                 request.AddParameter("per_page", itemsPerPage);
-            var response = await _client.RestClient.Execute<List<Comment>>(request);
-
-            return response.Data;
+            return await _client.RestClient.ExecuteForJson<Comment[]>(request);
         }
 
         /// <summary>
@@ -162,31 +146,28 @@ namespace StravaSharp
         /// <param name="page"></param>
         /// <param name="itemsPerPage"></param>
         /// <returns></returns>
-        public async Task<List<AthleteSummary>> GetKudoers(long activityId, int page = 0, int itemsPerPage = 0)
+        public async Task<IEnumerable<AthleteSummary>> GetKudoers(long activityId, int page = 0, int itemsPerPage = 0)
         {
-            var request = new RestRequest("/api/v3/activities/{id}/kudos", Method.GET);
+            var request = new RestRequest("/api/v3/activities/{id}/kudos", Method.Get);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
             if (page != 0)
                 request.AddParameter("page", page);
             if (itemsPerPage != 0)
                 request.AddParameter("per_page", itemsPerPage);
-            var response = await _client.RestClient.Execute<List<AthleteSummary>>(request);
-
-            return response.Data;
+            return await _client.RestClient.ExecuteForJson<AthleteSummary[]>(request);
         }
 
-        public Task<List<Stream>> GetActivityStreams(ActivityMeta activity, params StreamType[] types)
+        public Task<IEnumerable<Stream>> GetActivityStreams(ActivityMeta activity, params StreamType[] types)
         {
             return GetActivityStreams(activity.Id, types);
         }
 
-        public async Task<List<Stream>> GetActivityStreams(long activityId, params StreamType[] types)
+        public async Task<IEnumerable<Stream>> GetActivityStreams(long activityId, params StreamType[] types)
         {
-            var request = new RestRequest("/api/v3/activities/{id}/streams/{types}", Method.GET);
+            var request = new RestRequest("/api/v3/activities/{id}/streams/{types}", Method.Get);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
             request.AddParameter("types", EnumHelper.ToString<StreamType>(types), ParameterType.UrlSegment);
-            var response = await _client.RestClient.Execute<List<Stream>>(request);
-            return response.Data;
+            return await _client.RestClient.ExecuteForJson<Stream[]>(request);
         }
 
         /// <summary>
@@ -194,14 +175,12 @@ namespace StravaSharp
         /// </summary>
         /// <param name="activityId"></param>
         /// <returns></returns>
-        public async Task<List<ActivityZone>> GetActivityZones(long activityId)
+        public async Task<IEnumerable<ActivityZone>> GetActivityZones(long activityId)
         {
-            var request = new RestRequest("/api/v3/activities/{id}/zones", Method.GET);
+            var request = new RestRequest("/api/v3/activities/{id}/zones", Method.Get);
             request.AddParameter("id", activityId, ParameterType.UrlSegment);
 
-            var response = await _client.RestClient.Execute<List<ActivityZone>>(request);
-
-            return response.Data;
+            return await _client.RestClient.ExecuteForJson<ActivityZone[]>(request);
         }
     }
 }
