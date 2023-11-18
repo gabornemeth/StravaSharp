@@ -13,6 +13,7 @@
     <AssemblyName>Sample.Mobile</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -133,14 +134,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FubarCoder.RestSharp.Portable.HttpClient">
-      <Version>4.0.7</Version>
+    <PackageReference Include="CommunityToolkit.Mvvm">
+      <Version>8.2.2</Version>
     </PackageReference>
-    <PackageReference Include="FubarCoder.RestSharp.Portable.OAuth2">
-      <Version>4.0.7</Version>
-    </PackageReference>
-    <PackageReference Include="MvvmLightLibs">
-      <Version>5.3.0</Version>
+    <PackageReference Include="Splat">
+      <Version>14.8.6</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
       <Version>5.0.0.2083</Version>

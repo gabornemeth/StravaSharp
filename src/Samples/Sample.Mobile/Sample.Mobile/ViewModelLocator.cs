@@ -1,17 +1,34 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using Sample.Mobile.ViewModels;
+using Splat;
+using System;
 using Xamarin.Forms;
 
 namespace Sample.Mobile
 {
+    class ServiceCollection : IServiceProvider
+    {
+        Splat.ModernDependencyResolver _container = new Splat.ModernDependencyResolver();
+
+        public ServiceCollection()
+        {
+            _container.Register<MobileMainViewModel, MobileMainViewModel>();
+        }
+
+        public object GetService(Type serviceType)
+        {
+            return _container.GetService(serviceType);
+        }
+    }
+
     public class ViewModelLocator
     {
         static ViewModelLocator()
         {
-            SimpleIoc.Default.Register<MobileMainViewModel>();
+            Ioc.Default.ConfigureServices(new ServiceCollection());
         }
 
-        public MobileMainViewModel MainViewModel => SimpleIoc.Default.GetInstance<MobileMainViewModel>();
+        public MobileMainViewModel MainViewModel => Ioc.Default.GetService<MobileMainViewModel>();
 
         private static ViewModelLocator _locator;
 

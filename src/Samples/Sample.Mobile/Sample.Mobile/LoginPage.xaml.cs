@@ -13,9 +13,9 @@ namespace Sample.Mobile
 	//[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LoginPage : ContentPage
 	{
-        private Authenticator _authenticator;
+        private MobileAuthenticator _authenticator;
 
-		public LoginPage (Authenticator authenticator)
+		public LoginPage (MobileAuthenticator authenticator)
 		{
             _authenticator = authenticator ?? throw new ArgumentNullException(nameof(authenticator));
 			InitializeComponent ();
@@ -24,7 +24,7 @@ namespace Sample.Mobile
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var loginUri = await _authenticator.GetLoginLinkUri();
+            var loginUri = _authenticator.GetLoginLinkUri();
             this.browser.Source = loginUri;
             this.browser.Navigated += Browser_Navigated;
         }

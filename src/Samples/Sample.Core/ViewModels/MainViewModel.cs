@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using StravaSharp;
 using System;
 using System.Collections.Generic;
@@ -9,16 +9,28 @@ using System.Threading.Tasks;
 
 namespace Sample.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ObservableObject
     {
-        Client _client;
+        private readonly Client _client;
 
         public MainViewModel(Client client)
         {
             _client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public bool IsAuthenticated { get; protected set; }
+        private bool _isAuthenticated;
+        
+        public bool IsAuthenticated
+        {
+            get => _isAuthenticated;
+            protected set
+            {
+                if (SetProperty(ref _isAuthenticated, value))
+                {
+                    GetActivitiesCommand.NotifyCanExecuteChanged();
+                }
+            }
+        }
 
         public IList<ActivityViewModel> Activities { get; } = new ObservableCollection<ActivityViewModel>();
 
@@ -33,7 +45,7 @@ namespace Sample.ViewModels
 
             if (activities.Any())
             {
-                Status = $"retrieved {activities.Count} activities from Strava";
+                Status = $"retrieved {activities.Count()} activities from Strava";
             }
             else
             {
@@ -41,14 +53,10 @@ namespace Sample.ViewModels
             }
         }
 
-        private RelayCommand _getActivitiesCommand;
-        public RelayCommand GetActivitiesCommand
-        {
-            get
-            {
-                return _getActivitiesCommand ?? (_getActivitiesCommand = new RelayCommand(async () => await GetActivitiesAsync()));
-            }
-        }
+        private IRelayCommand _getActivitiesCommand;
+
+        public IRelayCommand GetActivitiesCommand
+            => _getActivitiesCommand ??= new AsyncRelayCommand(async () => await GetActivitiesAsync(), () => IsAuthenticated);
 
         private string _status = string.Empty;
 
@@ -59,10 +67,7 @@ namespace Sample.ViewModels
         public string Status
         {
             get => _status;
-            set
-            {
-                Set(() => Status, ref _status, value);
-            }
+            set => SetProperty(ref _status, value);
         }
     }
 }

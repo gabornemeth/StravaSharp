@@ -12,8 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Authentication\RequestFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Authentication\Authenticator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Authentication\MobileAuthenticator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
       <SubType>Code</SubType>

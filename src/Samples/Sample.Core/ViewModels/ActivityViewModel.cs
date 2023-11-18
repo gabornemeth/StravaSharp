@@ -1,14 +1,15 @@
 ﻿using StravaSharp;
+using System;
 
 namespace Sample.ViewModels
 {
     public class ActivityViewModel
     {
-        private ActivitySummary _summary;
+        private readonly ActivitySummary _summary;
 
         public ActivityViewModel(ActivitySummary summary)
         {
-            _summary = summary;
+            _summary = summary ?? throw new ArgumentNullException(nameof(summary));
         }
 
         public string Name => _summary.Name;

@@ -36,7 +36,7 @@ namespace Sample.Web.Controllers
             return View(viewModel);
         }
 
-        Authenticator CreateAuthenticator()
+        WebAuthenticator CreateAuthenticator()
         {
             if (_authenticatorHolder.Authenticator != null)
             {
@@ -45,12 +45,12 @@ namespace Sample.Web.Controllers
             var redirectUrl = $"{Request.Scheme}://{Request.Host}/Home/Callback";
             var client = Config.CreateOAuth2Cient(config => config.RedirectUri = redirectUrl);
 
-            var authenticator = new Authenticator(client, _httpContextAccessor);
+            var authenticator = new WebAuthenticator(client, _httpContextAccessor);
             _authenticatorHolder.Authenticator = authenticator;
             return authenticator;
         }
 
-        public async Task<ActionResult> List()
+        public ActionResult List()
         {
             var authenticator = CreateAuthenticator();
             if (authenticator.IsAuthenticated)
@@ -58,7 +58,7 @@ namespace Sample.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            var loginUri = await authenticator.GetLoginLinkUri();
+            var loginUri = authenticator.GetLoginLinkUri();
             return Redirect(loginUri.AbsoluteUri);
         }
 

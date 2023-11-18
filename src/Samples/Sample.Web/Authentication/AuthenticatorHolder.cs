@@ -2,11 +2,11 @@
 {
     public interface IAuthenticatorHolder
     {
-        Authenticator Authenticator { get; set; }
+        WebAuthenticator Authenticator { get; set; }
     }
 
     public class AuthenticatorHolder : IAuthenticatorHolder
     {
-        public Authenticator Authenticator { get; set; }
+        public WebAuthenticator Authenticator { get; set; }
     }
 }

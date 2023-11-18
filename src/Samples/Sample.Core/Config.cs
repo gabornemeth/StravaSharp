@@ -1,27 +1,26 @@
 ﻿using System;
-using StravaSharp;
+using Sample.Core.Authentication;
 
 namespace Sample
 {
     public class Config
     {
         //TODO: Add your clientId and Secret from your strava account: https://www.strava.com/settings/api
-        public static string ClientId => "xxx";
-        public static string ClientSecret => "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-        public static string RedirectUrl => $"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        public static string ClientId => "";
+        public static string ClientSecret => "";
+        public static string RedirectUrl => "";
 
-        public static StravaClient CreateOAuth2Cient(Action<RestSharp.Portable.OAuth2.Configuration.RuntimeClientConfiguration> customize = null)
+        public static StravaClient CreateOAuth2Cient(Action<OAuth2ClientConfiguration> customize = null)
         {
-            var config = new RestSharp.Portable.OAuth2.Configuration.RuntimeClientConfiguration
+            var config = new OAuth2ClientConfiguration
             {
-                IsEnabled = false,
                 ClientId = ClientId,
                 ClientSecret = ClientSecret,
                 RedirectUri = RedirectUrl,
-                Scope = "activity:read_all,activity:write,profile:read_all,profile:write"
+                Scope = "activity:read_all,profile:read_all"
             };
             customize?.Invoke(config);
-            return new StravaClient(new Authentication.RequestFactory(), config);
+            return new StravaClient(config);
         }
     }
 }

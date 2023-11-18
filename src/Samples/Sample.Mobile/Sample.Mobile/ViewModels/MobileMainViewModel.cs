@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using Sample.Mobile.Authentication;
 using Sample.ViewModels;
 using StravaSharp;
@@ -6,29 +6,25 @@ using System.Threading.Tasks;
 
 namespace Sample.Mobile.ViewModels
 {
-    public class MobileMainViewModel:MainViewModel
+    public class MobileMainViewModel : MainViewModel
     {
-        private static readonly Authenticator auth = CreateAuthenticator();
+        private static readonly MobileAuthenticator auth = CreateAuthenticator();
 
-        public MobileMainViewModel():base(new Client(auth))
+        public MobileMainViewModel() : base(new Client(auth))
         {
             UpdateIsAuthenticated();
         }
 
-        static Authenticator CreateAuthenticator()
+        static MobileAuthenticator CreateAuthenticator()
         {
             var client = Config.CreateOAuth2Cient();
-            return new Authenticator(client);
+            return new MobileAuthenticator(client);
         }
 
-        private RelayCommand _authCommand;
-        public RelayCommand GetAuthentificationCommand
-        {
-            get
-            {
-                return _authCommand ?? (_authCommand = new RelayCommand(async () => await AuthenticateAsync()));
-            }
-        }
+        private IRelayCommand _authCommand;
+        
+        public IRelayCommand GetAuthenticationCommand
+            => _authCommand ??= new AsyncRelayCommand(AuthenticateAsync, () => !IsAuthenticated);
 
         private async Task AuthenticateAsync()
         {
@@ -36,20 +32,17 @@ namespace Sample.Mobile.ViewModels
             UpdateIsAuthenticated();
         }
 
-
-        private RelayCommand _updateCommand;
-        public RelayCommand GetUpdateCommand
-        {
-            get
-            {
-                return _updateCommand ?? (_updateCommand = new RelayCommand(() => UpdateIsAuthenticated()));
-            }
-        }
+        private IRelayCommand _updateCommand;
+        
+        public IRelayCommand GetUpdateCommand
+            => _updateCommand ??= new RelayCommand(UpdateIsAuthenticated);
+        
         private void UpdateIsAuthenticated()
         {
             IsAuthenticated = auth.IsAuthenticated;
-            Status = IsAuthenticated? "Authention sucessfull":"Not Authenticated";
-            this.RaisePropertyChanged(() => IsAuthenticated);
+            Status = IsAuthenticated ? "Authention sucessfull" : "Not Authenticated";
+            OnPropertyChanged(nameof(IsAuthenticated));
+            GetAuthenticationCommand.NotifyCanExecuteChanged();
         }
     }
 }

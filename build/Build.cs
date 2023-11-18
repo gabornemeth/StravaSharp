@@ -32,6 +32,21 @@ class Build : NukeBuild
     [Parameter]
     public Version Version { get; set; } = new Version(0, 7, 0);
 
+    private string VersionSuffix { get; set; } = "pre01";
+
+
+    private string GetVersion()
+    {
+        if (string.IsNullOrEmpty(VersionSuffix))
+        {
+            return Version.ToString();
+        }
+        else
+        {
+            return $"{Version}-{VersionSuffix}";
+        }
+    }
+
     Target Clean => _ => _
         .Before(Restore)
         .Executes(() =>
@@ -73,14 +88,14 @@ class Build : NukeBuild
             .FirstOrDefault();
         if (version != null)
         {
-            version.Value = Version.ToString();
+            version.Value = GetVersion();
         }
         else
         {
             var metadata = nuspec.Root.Descendants()
                 .Where(x => x.Name.LocalName == "metadata")
                 .First();
-            metadata.Add(new XElement(XName.Get("version", metadata.Name.NamespaceName), Version));
+            metadata.Add(new XElement(XName.Get("version", metadata.Name.NamespaceName), GetVersion()));
         }
 
         nuspec.Save(nuspecPath);
