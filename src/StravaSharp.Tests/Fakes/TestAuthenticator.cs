@@ -4,12 +4,10 @@
 // Author:
 //    Gabor Nemeth (gabor.nemeth.dev@gmail.com)
 //
-//    Copyright (C) 2016, Gabor Nemeth
+//    Copyright (C) 2016-2023, Gabor Nemeth
 //
 
-using Org.BouncyCastle.Asn1.Ocsp;
 using RestSharp;
-using System;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Sample.Core
 {
@@ -13,17 +14,19 @@ namespace Sample.Core
         //   input:
         public static IDictionary<string, string> ParseQueryString(this string input)
         {
-            var list = new List<KeyValuePair<string, string>>();
-            string[] array = input.Split('&');
-            for (int i = 0; i < array.Length; i++)
+            // remove the leading ? if it's there
+            if (input.StartsWith("?"))
             {
-                string[] array2 = array[i].Split('=');
-                string key = array2[0];
-                string value = string.Join("=", array2.Skip(1));
-                list.Add(new KeyValuePair<string, string>(key, value));
+                input = input.Substring(1);
             }
 
-            return list.ToDictionary(x => x.Key, x => x.Value);
+            return input.Split('&').
+                Select(keyValuePairs =>
+                {
+                    var keyAndValue = keyValuePairs.Split('=');
+                    return new KeyValuePair<string, string>(keyAndValue[0], keyAndValue[1]);
+                })
+                .ToDictionary(x => x.Key, x => x.Value);
         }
     }
 }

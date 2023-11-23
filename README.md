@@ -8,7 +8,7 @@ Portability is essential by design. You can use this library on any platform tha
 
 ## Getting started
 
-[Here](https://github.com/gabornemeth/StravaSharp/blob/master/GettingStarted.md) you can find some info about how to start integrating **StravaSharp** into your environment.
+[Here](https://github.com/gabornemeth/StravaSharp/blob/develop/GettingStarted.md) you can find some info about how to start integrating **StravaSharp** into your environment.
 
 ## Nuget
 
