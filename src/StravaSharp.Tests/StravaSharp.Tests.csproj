@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <UserSecretsId>5d972208-a467-462b-a46e-4918c048cbc2</UserSecretsId>
   </PropertyGroup>
@@ -48,6 +48,7 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StravaSharp.OAuth2Client\StravaSharp.OAuth2Client.csproj" />
     <ProjectReference Include="..\StravaSharp\StravaSharp.csproj">
       <Project>{fc4d49f5-1d55-4539-b23a-a44fde55b30b}</Project>
       <Name>StravaSharp</Name>

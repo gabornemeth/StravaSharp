@@ -20,7 +20,7 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetClub()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = await TestHelper.CreateStravaClient();
             var club = await client.Clubs.Get(Settings.ClubId);
             
             club.Should().NotBeNull();
@@ -31,7 +31,7 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetClubMembers()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = await TestHelper.CreateStravaClient();
             var members = await client.Clubs.GetMembers(Settings.ClubId);
             
             members.Should().NotBeNullOrEmpty();
@@ -40,7 +40,7 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetClubAdmins()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = await TestHelper.CreateStravaClient();
             var admins = await client.Clubs.GetAdmins(Settings.ClubId);
             
             admins.Should().NotBeNullOrEmpty();

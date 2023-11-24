@@ -15,7 +15,7 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetCurrentAthlete()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = await TestHelper.CreateStravaClient();
             var athlete = await client.Athletes.GetCurrent();
             Assert.NotNull(athlete);
             Assert.NotNull(athlete.FirstName);
@@ -25,7 +25,7 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetAthlete()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = await TestHelper.CreateStravaClient();
             var athlete = await client.Athletes.Get(TestAthleteId);
             Assert.NotNull(athlete);
             Assert.AreEqual("Gabor", athlete.FirstName);

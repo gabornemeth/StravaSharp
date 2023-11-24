@@ -28,7 +28,6 @@ namespace StravaSharp.Tests
 
     class FakeRestClient : Mock<IRestClient>
     {
-
         public FakeRestClient()
         {
             this.Setup(x => x.ExecuteAsync(It.IsAny<RestRequest>(), It.IsAny<CancellationToken>()))

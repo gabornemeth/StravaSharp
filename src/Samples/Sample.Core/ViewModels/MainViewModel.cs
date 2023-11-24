@@ -19,7 +19,7 @@ namespace Sample.ViewModels
         }
 
         private bool _isAuthenticated;
-        
+
         public bool IsAuthenticated
         {
             get => _isAuthenticated;

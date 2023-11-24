@@ -1,5 +1,5 @@
 ﻿using System;
-using Sample.Core.Authentication;
+using StravaSharp.OAuth2Client;
 
 namespace Sample
 {

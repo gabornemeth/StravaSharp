@@ -30,7 +30,7 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetSegmentEfforts_KnownSegment()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = await TestHelper.CreateStravaClient();
 
             // panoráma: 9034772
             var efforts = (await client.SegmentEfforts.GetEfforts(9034772)).ToArray();
@@ -47,7 +47,7 @@ namespace StravaSharp.Tests
         [Test]
         public async Task GetSegmentEfforts_KnownSegment_WithDate()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = await TestHelper.CreateStravaClient();
 
             // panoráma: 9034772
             var efforts = (await client.SegmentEfforts.GetEfforts(9034772, startDateLocal: new DateTime(2000, 1, 1), endDateLocal: DateTime.Now.AddDays(-1), perPage: 10)).ToArray();

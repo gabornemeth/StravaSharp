@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "..\build\_build.csproj", "{FD3E82FA-FDE9-4573-8F3A-910909226304}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StravaSharp.OAuth2Client", "StravaSharp.OAuth2Client\StravaSharp.OAuth2Client.csproj", "{71819863-7190-4B65-8612-F7B170D5C085}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{FD3E82FA-FDE9-4573-8F3A-910909226304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FD3E82FA-FDE9-4573-8F3A-910909226304}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD3E82FA-FDE9-4573-8F3A-910909226304}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71819863-7190-4B65-8612-F7B170D5C085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71819863-7190-4B65-8612-F7B170D5C085}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71819863-7190-4B65-8612-F7B170D5C085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71819863-7190-4B65-8612-F7B170D5C085}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

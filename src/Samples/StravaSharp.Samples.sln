@@ -5,8 +5,6 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Web", "Sample.Web\Sample.Web.csproj", "{00F95817-A02C-4A15-B1AC-C3990ADE6463}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StravaSharp", "StravaSharp", "{D7D8231E-97ED-439A-B17C-6619DA731F4A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web sample", "Web sample", "{51515C0F-4F10-428C-9FA3-B8C0B3733014}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile sample", "Mobile sample", "{76A0E024-2DE5-4D44-8475-58F2A62A7E27}"
@@ -15,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Core", "Sample.Core\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StravaSharp", "..\StravaSharp\StravaSharp.csproj", "{9448F233-7FCC-4A0B-A3E0-B2C59D8C28AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Mobile", "Sample.Mobile\Sample.Mobile.csproj", "{F66542C6-89B6-44D0-B787-29703A14FC03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Mobile", "Sample.Mobile\Sample.Mobile.csproj", "{F66542C6-89B6-44D0-B787-29703A14FC03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StravaSharp.OAuth2Client", "..\StravaSharp.OAuth2Client\StravaSharp.OAuth2Client.csproj", "{0862736D-F0E4-4111-8867-7DFF2613AB30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -261,13 +261,60 @@ Global
 		{F66542C6-89B6-44D0-B787-29703A14FC03}.Release|x86.ActiveCfg = Release|Any CPU
 		{F66542C6-89B6-44D0-B787-29703A14FC03}.Release|x86.Build.0 = Release|Any CPU
 		{F66542C6-89B6-44D0-B787-29703A14FC03}.Release|x86.Deploy.0 = Release|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Ad-Hoc|Any CPU.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Ad-Hoc|Any CPU.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Ad-Hoc|ARM.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Ad-Hoc|ARM.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Ad-Hoc|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Ad-Hoc|x64.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Ad-Hoc|x64.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Ad-Hoc|x86.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Ad-Hoc|x86.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.AppStore|Any CPU.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.AppStore|Any CPU.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.AppStore|ARM.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.AppStore|ARM.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.AppStore|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.AppStore|x64.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.AppStore|x64.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.AppStore|x86.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.AppStore|x86.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Debug|ARM.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Debug|x64.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Debug|x86.Build.0 = Debug|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Release|ARM.ActiveCfg = Release|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Release|ARM.Build.0 = Release|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Release|iPhone.Build.0 = Release|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Release|x64.ActiveCfg = Release|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Release|x64.Build.0 = Release|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Release|x86.ActiveCfg = Release|Any CPU
+		{0862736D-F0E4-4111-8867-7DFF2613AB30}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{00F95817-A02C-4A15-B1AC-C3990ADE6463} = {51515C0F-4F10-428C-9FA3-B8C0B3733014}
-		{9448F233-7FCC-4A0B-A3E0-B2C59D8C28AF} = {D7D8231E-97ED-439A-B17C-6619DA731F4A}
 		{F66542C6-89B6-44D0-B787-29703A14FC03} = {76A0E024-2DE5-4D44-8475-58F2A62A7E27}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

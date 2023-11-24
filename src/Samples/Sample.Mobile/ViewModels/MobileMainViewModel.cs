@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using ReactiveUI;
-using Sample.Mobile.Authentication;
 using Sample.ViewModels;
+using Sample.Mobile.Authentication;
 using StravaSharp;
 
 namespace Sample.Mobile.ViewModels

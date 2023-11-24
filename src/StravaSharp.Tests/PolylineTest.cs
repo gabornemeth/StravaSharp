@@ -23,7 +23,7 @@ namespace StravaSharp.Tests
         [Test]
         public async Task DecodeMap()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = await TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
             Assert.True(activities.Count() > 0);
             var activity = activities.FirstOrDefault(a => a.Map?.SummaryPolyline != null);

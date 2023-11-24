@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics;
 using RestSharp.Authenticators;
 using RestSharp;
-using Sample.Core.Authentication;
-using Sample.Core;
+using StravaSharp.OAuth2Client;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Sample.Mobile.Authentication

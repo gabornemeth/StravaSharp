@@ -8,6 +8,7 @@
 //
 
 using Microsoft.Extensions.Configuration;
+using System;
 
 namespace StravaSharp.Tests
 {
@@ -18,9 +19,13 @@ namespace StravaSharp.Tests
     {
         private readonly static IConfigurationRoot _configuration;
 
-        public static string AccessToken => _configuration.GetString(nameof(AccessToken));
+        public static string ClientId => _configuration.GetString(nameof(ClientId)) ?? Environment.GetEnvironmentVariable("STRAVASHARP_TEST_CLIENTID");
 
-        public static string RefreshToken => _configuration.GetString(nameof(RefreshToken));
+        public static string ClientSecret => _configuration.GetString(nameof(ClientSecret)) ?? Environment.GetEnvironmentVariable("STRAVASHARP_TEST_CLIENTSECRET");
+
+        public static string AccessToken => _configuration.GetString(nameof(AccessToken)) ?? Environment.GetEnvironmentVariable("STRAVASHARP_TEST_ACCESSTOKEN");
+
+        public static string RefreshToken => _configuration.GetString(nameof(RefreshToken)) ?? Environment.GetEnvironmentVariable("STRAVASHARP_TEST_REFRESHTOKEN");
 
         /// <summary>
         /// Identifier of test club: Femat-ZKSE

@@ -34,9 +34,9 @@ namespace StravaSharp.Tests
         private Client _client;
 
         [SetUp]
-        public void Setup()
+        public async Task Setup()
         {
-            _client = TestHelper.CreateStravaClient();
+            _client = await TestHelper.CreateStravaClient();
         }
 
         private async Task<SegmentSummary[]> RetrieveSegments()

@@ -20,7 +20,7 @@ namespace StravaSharp.Tests
         [Ignore("Deleting is no longer possible from code. You have to delete the activity manually after upload.")]
         public async Task Upload()
         {
-            var client = TestHelper.CreateStravaClient();
+            var client = await TestHelper.CreateStravaClient();
             using (var stream = Resource.GetStream(_fileName))
             {
                 Assert.NotNull(stream);

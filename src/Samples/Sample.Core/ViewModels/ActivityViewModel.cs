@@ -21,7 +21,7 @@ namespace Sample.ViewModels
             get
             {
                 if (_summary.Distance > 1000)
-                    return $"{(_summary.Distance / 1000.0f).ToString("F2")} km";
+                    return $"{_summary.Distance / 1000.0f:F2} km";
                 else
                     return $"{_summary.Distance} m";
             }

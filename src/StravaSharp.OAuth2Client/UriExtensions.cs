@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Sample.Core
+﻿namespace StravaSharp.OAuth2Client
 {
     public static class UriExtensions
     {

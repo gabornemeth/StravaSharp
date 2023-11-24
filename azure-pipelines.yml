@@ -1,0 +1,26 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- develop
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  buildConfiguration: 'Release'
+  solution: src/StravaSharp.sln
+
+steps:
+- script: |
+          dotnet build --configuration $(buildConfiguration) $(solution)
+          dotnet test $(solution)
+  env:
+    STRAVASHARP_TEST_ACCESSTOKEN: $(STRAVASHARP_TEST_ACCESSTOKEN)
+    STRAVASHARP_TEST_REFRESHTOKEN: $(STRAVASHARP_TEST_REFRESHTOKEN)
+    STRAVASHARP_TEST_CLIENTID: $(STRAVASHARP_TEST_CLIENTID)
+    STRAVASHARP_TEST_CLIENTSECRET: $(STRAVASHARP_TEST_CLIENTSECRET)
+
+  displayName: 'dotnet build $(buildConfiguration)'

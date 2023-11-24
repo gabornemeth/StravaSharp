@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
-using Sample.Core.Authentication;
+using StravaSharp.OAuth2Client;
 using RestSharp.Authenticators;
 using RestSharp;
 using System.Linq;
