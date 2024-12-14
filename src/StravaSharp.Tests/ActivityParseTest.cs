@@ -24,6 +24,9 @@ namespace StravaSharp.Tests
                 var result = serializer.Deserialize<Activity>(reader);
                 Assert.NotNull(result);
                 Assert.True(361720123456 == result.UploadId);
+#pragma warning disable CS0612 // Type or member is obsolete
+                Assert.AreEqual(ActivitySportType.WaterSport, result.SportType);
+#pragma warning restore CS0612 // Type or member is obsolete
             }
         }
     }

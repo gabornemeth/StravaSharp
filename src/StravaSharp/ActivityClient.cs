@@ -109,10 +109,11 @@ namespace StravaSharp
             return await _client.RestClient.ExecuteForJson<UploadStatus>(request);
         }
 
-        public async Task<Activity> Update(long id)
+        public async Task<Activity> Update(long id, UpdatableActivity updatableActivity)
         {
             var request = new RestRequest(EndPoint + "/{id}", Method.Put);
             request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddJsonBody(updatableActivity);
             return await _client.RestClient.ExecuteForJson<Activity>(request);
         }
 
