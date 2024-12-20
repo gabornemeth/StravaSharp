@@ -11,7 +11,7 @@ public class ActivityZoneParseTest : ParseTest
     {
         Parse<List<ActivityZone>>("activitiyZones.json", zones =>
         {
-            Assert.True(zones.Count > 0);
+            Assert.That(zones, Has.Count.GreaterThan(0));
         });
     }
 }

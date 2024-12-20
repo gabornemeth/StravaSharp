@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
@@ -29,9 +30,8 @@ namespace StravaSharp.Tests
                 var reader = new JsonTextReader(new StreamReader(stream));
                 //var result = serializer.Deserialize(reader);
                 var result = serializer.Deserialize<List<ActivitySummary>>(reader);
-                Assert.NotNull(result);
-                Assert.IsNotEmpty(result);
-                Assert.True(65459843344 == result[0].UploadId);
+                Assert.That(result, Is.Not.Null.And.Not.Empty);
+                Assert.That(result[0].UploadId, Is.EqualTo(new BigInteger(65459843344)));
             }
         }
 
@@ -40,15 +40,15 @@ namespace StravaSharp.Tests
         {
             var client = TestHelper.CreateFakeStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
-            Assert.True(activities.Count() > 0);
+            Assert.That(activities.Count(), Is.GreaterThan(0));
 
             var zones = await client.Activities.GetActivityZones(activities.First().Id);
-            Assert.NotNull(zones);
-            Assert.True(zones.Count() > 0);
+            Assert.That(zones, Is.Not.Null);
+            Assert.That(zones.Count(), Is.GreaterThan(0));
             foreach (var zone in zones)
             {
-                Assert.NotNull(zone);
-                Assert.NotNull(zone.DistributionBuckets);
+                Assert.That(zone, Is.Not.Null);
+                Assert.That(zone.DistributionBuckets, Is.Not.Null);
             }
         }
 
@@ -57,7 +57,7 @@ namespace StravaSharp.Tests
         {
             var client = TestHelper.CreateFakeStravaClient();
             var activity = await client.Activities.Get(100);
-            Assert.True(activity.SplitsMetric.Length > 0);
+            Assert.That(activity.SplitsMetric.Length, Is.GreaterThan(0));
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace StravaSharp.Tests
         {
             var client = TestHelper.CreateFakeStravaClient();
             var activity = await client.Activities.Get(100);
-            Assert.True(activity.Photos.Count >= 0);
+            Assert.That(activity.Photos.Count, Is.GreaterThanOrEqualTo(0));
         }
 
         [Test]
@@ -74,8 +74,8 @@ namespace StravaSharp.Tests
             var client = TestHelper.CreateFakeStravaClient();
             var updatableActivity = new UpdatableActivity { SportType = SportType.MountainBikeRide };
             var activity = await client.Activities.Update(100, updatableActivity);
-            Assert.NotNull(activity.Map);
-            Assert.AreEqual(SportType.MountainBikeRide, activity.SportType);
+            Assert.That(activity.Map, Is.Not.Null);
+            Assert.That(activity.SportType, Is.EqualTo(SportType.MountainBikeRide));
         }
     }
 }

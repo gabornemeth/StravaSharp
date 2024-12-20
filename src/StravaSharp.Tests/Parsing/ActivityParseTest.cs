@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
+using System.Numerics;
 
 namespace StravaSharp.Tests.Parsing;
 
@@ -10,7 +12,7 @@ public class ActivityParseTest : ParseTest
     {
         Parse<Activity>("activity_mountainbike.json", activity =>
         {
-            Assert.AreEqual(SportType.MountainBikeRide, activity.SportType);
+            Assert.That(activity.SportType, Is.EqualTo(SportType.MountainBikeRide));
         });
     }
 
@@ -19,9 +21,9 @@ public class ActivityParseTest : ParseTest
     {
         Parse<Activity>("activity_watersport.json", activity =>
         {
-            Assert.True(361720123456 == activity.UploadId);
+            activity.UploadId.Should().Be(361720123456);
 #pragma warning disable CS0612 // Type or member is obsolete
-            Assert.AreEqual(SportType.WaterSport, activity.SportType);
+            activity.SportType.Should().Be(SportType.WaterSport);
 #pragma warning restore CS0612 // Type or member is obsolete
         });
     }

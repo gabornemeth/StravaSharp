@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using RestSharp;
 
@@ -23,12 +24,33 @@ namespace StravaSharp
             return await _client.RestClient.ExecuteForJson<Segment>(request);
         }
 
-        public async Task<IEnumerable<SegmentSummary>> Explore(LatLng southWest, LatLng northEast, ActivityType activityType = ActivityType.Ride)
+        public enum SegmentActivityType
+        {
+            [EnumMember(Value = "running")]
+            Running,
+            [EnumMember(Value ="riding")]
+            Riding
+        }
+
+        public async Task<IEnumerable<SegmentSummary>> Explore(LatLng southWest, LatLng northEast, SegmentActivityType? activityType = null,
+            int? minimumClimbingCategory = null, int? maximumClimbingCategory = null)
         {
             var request = new RestRequest(EndPoint + "/explore", Method.Get);
             request.AddParameter("bounds",
                 string.Format("{0},{1},{2},{3}", southWest.Latitude.ToString(CultureInfo.InvariantCulture), southWest.Longitude.ToString(CultureInfo.InvariantCulture),
                 northEast.Latitude.ToString(CultureInfo.InvariantCulture), northEast.Longitude.ToString(CultureInfo.InvariantCulture)));
+            if (activityType != null)
+            {
+                request.AddParameter("activity_type", EnumHelper.ToString(activityType));
+            }
+            if (minimumClimbingCategory != null)
+            {
+                request.AddParameter("min_cat", minimumClimbingCategory.Value);
+            }
+            if (maximumClimbingCategory != null)
+            {
+                request.AddParameter("max_cat", maximumClimbingCategory.Value);
+            }
             var segments = await _client.RestClient.ExecuteForJson<SegmentCollection>(request);
             return segments.Segments;
         }

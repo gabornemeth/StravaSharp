@@ -1,9 +1,5 @@
-﻿using FluentAssertions;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using NUnit.Framework;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
@@ -17,13 +13,13 @@ namespace StravaSharp.Tests
             var client = TestHelper.CreateFakeStravaClient();
 
             var efforts = (await client.SegmentEfforts.GetEfforts(1234)).ToArray();
-            Assert.GreaterOrEqual(efforts.Length, 1);
+            Assert.That(efforts.Length, Is.GreaterThanOrEqualTo(1));
 
             foreach (var effort in efforts)
             {
-                Assert.NotNull(effort.Activity);
-                Assert.NotNull(effort.Athlete);
-                Assert.NotNull(effort.Segment);
+                Assert.That(effort.Activity, Is.Not.Null);
+                Assert.That(effort.Athlete, Is.Not.Null);
+                Assert.That(effort.Segment, Is.Not.Null);
             }
         }
     }

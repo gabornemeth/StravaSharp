@@ -14,7 +14,7 @@ namespace StravaSharp.Tests.Parsing
             {
                 var reader = new JsonTextReader(new StreamReader(stream));
                 var result = serializer.Deserialize<T>(reader);
-                Assert.NotNull(result);
+                Assert.That(result, Is.Not.Null);
                 assert(result);
             }
         }

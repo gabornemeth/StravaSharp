@@ -21,18 +21,18 @@ namespace StravaSharp.Tests.Integration
             var client = await TestHelper.CreateStravaClient();
             using (var stream = Resource.GetStream(_fileName))
             {
-                Assert.NotNull(stream);
+                Assert.That(stream, Is.Not.Null);
                 // upload the activity (as private)
-                var result = await client.Activities.Upload(ActivityType.Ride, DataType.Fit, stream, _fileName, null, null, true);
-                Assert.IsNotNull(result);
-                Assert.True(string.IsNullOrEmpty(result.Error));
+                var result = await client.Activities.Upload(DataType.Fit, stream, _fileName, null, null, true);
+                Assert.That(result, Is.Not.Null);
+                Assert.That(result.Error, Is.Null.Or.Empty);
                 // wait till upload has completed
                 while (result.ActivityId == 0 && result.IsReady == false && string.IsNullOrEmpty(result.Error))
                 {
                     result = await client.Activities.GetUploadStatus(result.Id);
                     await Task.Delay(1000);
                 }
-                Assert.True(string.IsNullOrEmpty(result.Error));
+                Assert.That(result.Error, Is.Null.Or.Empty);
             }
         }
     }

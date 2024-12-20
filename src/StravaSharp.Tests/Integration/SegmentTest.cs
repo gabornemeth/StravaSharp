@@ -33,8 +33,8 @@ namespace StravaSharp.Tests.Integration
             var southWest = new LatLng { Latitude = 46.828100f, Longitude = 16.781540f };
             var northEast = new LatLng { Latitude = 46.859259f, Longitude = 16.832550f };
             var segments = (await _client.Segments.Explore(southWest, northEast)).ToArray();
-            Assert.NotNull(segments);
-            Assert.True(segments.Length > 1);
+            Assert.That(segments, Is.Not.Null);
+            Assert.That(segments.Length, Is.GreaterThan(1));
             return segments;
         }
 
@@ -47,15 +47,15 @@ namespace StravaSharp.Tests.Integration
             foreach (var segment in segments)
             {
                 var segmentDetails = await _client.Segments.Get(segment.Id);
-                Assert.NotNull(segmentDetails);
-                Assert.NotNull(segmentDetails.Map);
-                Assert.NotNull(segmentDetails.Map.Polyline);
+                Assert.That(segmentDetails?.Map?.Polyline, Is.Not.Null);
                 // retrieve each coordinate of the segment's polylinef
                 var points = SharpGeo.Google.PolylineEncoder.Decode(segmentDetails.Map.Polyline);
-                Assert.NotNull(points);
-                Assert.True(points.Count > 0);
+                Assert.That(points, Is.Not.Null);
+                Assert.That(points.Count, Is.GreaterThan(0));
                 foreach (var point in points)
-                    Assert.True(point.IsEmpty == false);
+                {
+                    Assert.That(point.IsEmpty, Is.False);
+                }
             }
         }
 
@@ -63,7 +63,7 @@ namespace StravaSharp.Tests.Integration
         {
             var rnd = new Random();
             var segmentForTesting = segments.ElementAt(rnd.Next(segments.Count()));
-            Assert.NotNull(segmentForTesting);
+            Assert.That(segmentForTesting, Is.Not.Null);
             return segmentForTesting;
         }
 
@@ -77,8 +77,7 @@ namespace StravaSharp.Tests.Integration
             streams.Should().NotBeNullOrEmpty();
             foreach (var stream in streams)
             {
-                Assert.NotNull(stream);
-                Assert.NotNull(stream.Data);
+                Assert.That(stream?.Data, Is.Not.Null);
             }
         }
     }

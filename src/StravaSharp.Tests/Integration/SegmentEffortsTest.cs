@@ -19,13 +19,13 @@ namespace StravaSharp.Tests.Integration
 
             // panoráma: 9034772
             var efforts = (await client.SegmentEfforts.GetEfforts(9034772)).ToArray();
-            Assert.GreaterOrEqual(efforts.Length, 1);
+            Assert.That(efforts, Has.Length.GreaterThanOrEqualTo(1));
 
             foreach (var effort in efforts)
             {
-                Assert.NotNull(effort.Activity);
-                Assert.NotNull(effort.Athlete);
-                Assert.NotNull(effort.Segment);
+                Assert.That(effort.Activity, Is.Not.Null);
+                Assert.That(effort.Athlete, Is.Not.Null);
+                Assert.That(effort.Segment, Is.Not.Null);
             }
         }
 
@@ -37,7 +37,7 @@ namespace StravaSharp.Tests.Integration
 
             // panoráma: 9034772
             var efforts = (await client.SegmentEfforts.GetEfforts(9034772, startDateLocal: new DateTime(2000, 1, 1), endDateLocal: DateTime.Now.AddDays(-1), perPage: 10)).ToArray();
-            Assert.GreaterOrEqual(efforts.Length, 1);
+            Assert.That(efforts, Has.Length.GreaterThanOrEqualTo(1));
 
             foreach (var effort in efforts)
             {

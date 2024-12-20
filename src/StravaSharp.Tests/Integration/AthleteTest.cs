@@ -17,9 +17,8 @@ namespace StravaSharp.Tests.Integration
         {
             var client = await TestHelper.CreateStravaClient();
             var athlete = await client.Athletes.GetCurrent();
-            Assert.NotNull(athlete);
-            Assert.NotNull(athlete.FirstName);
-            Assert.NotNull(athlete.LastName);
+            Assert.That(athlete?.FirstName, Is.Not.Null);
+            Assert.That(athlete.LastName, Is.Not.Null);
         }
 
         [Test]
@@ -27,9 +26,8 @@ namespace StravaSharp.Tests.Integration
         {
             var client = await TestHelper.CreateStravaClient();
             var athlete = await client.Athletes.Get(TestAthleteId);
-            Assert.NotNull(athlete);
-            Assert.AreEqual("Gabor", athlete.FirstName);
-            Assert.AreEqual("Nemeth", athlete.LastName);
+            Assert.That(athlete?.FirstName, Is.EqualTo("Gabor"));
+            Assert.That(athlete.LastName, Is.EqualTo("Nemeth"));
         }
     }
 }

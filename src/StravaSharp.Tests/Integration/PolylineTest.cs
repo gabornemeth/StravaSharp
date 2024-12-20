@@ -22,14 +22,14 @@ namespace StravaSharp.Tests.Integration
         {
             var client = await TestHelper.CreateStravaClient();
             var activities = await client.Activities.GetAthleteActivities();
-            Assert.True(activities.Count() > 0);
+            Assert.That(activities.Count(), Is.GreaterThan(0));
             var activity = activities.FirstOrDefault(a => a.Map?.SummaryPolyline != null);
-            Assert.NotNull(activity);
+            Assert.That(activity, Is.Not.Null);
             activity = await client.Activities.Get(activity.Id);
-            Assert.NotNull(activity);
+            Assert.That(activity, Is.Not.Null);
             var points = SharpGeo.Google.PolylineEncoder.Decode(activity.Map.SummaryPolyline);
-            Assert.NotNull(points);
-            Assert.True(points.Count > 0);
+            Assert.That(points, Is.Not.Null);
+            Assert.That(points.Count, Is.GreaterThan(0));
         }
     }
 }
