@@ -16,6 +16,7 @@
   "elev_high": 331.4,
   "elev_low": 276.1,
   "type": "WaterSport",
+  "sport_type": "WaterSport",
   "start_date": "2012-12-13T03:43:19Z",
   "start_date_local": "2012-12-12T19:43:19Z",
   "timezone": "(GMT-08:00) America/Los_Angeles",
@@ -37,13 +38,13 @@
   "photos": {
     "count": 2,
     "primary": {
-        "id": null,
-        "source": 1,
-        "unique_id": "3FDGKL3-204E-4867-9E8D-89FC79EAAE17",
-        "urls": {
-            "100": "http://pics.com/28b9d28f-128x71.jpg",
-            "600": "http://pics.com/28b9d28f-768x431.jpg"
-        }
+      "id": null,
+      "source": 1,
+      "unique_id": "3FDGKL3-204E-4867-9E8D-89FC79EAAE17",
+      "urls": {
+        "100": "http://pics.com/28b9d28f-128x71.jpg",
+        "600": "http://pics.com/28b9d28f-768x431.jpg"
+      }
     }
   },
   "map": {

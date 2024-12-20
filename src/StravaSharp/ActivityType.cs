@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace StravaSharp
 {
+    [Obsolete($"Deprecated. Prefer to use {nameof(SportType)}.")]
     /// <summary>
     /// Type of the activity
     /// </summary>

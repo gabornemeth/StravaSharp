@@ -148,8 +148,10 @@ namespace StravaSharp.Tests
         public async Task Update_Parse()
         {
             var client = TestHelper.CreateFakeStravaClient();
-            var activity = await client.Activities.Update(100);
+            var updatableActivity = new UpdatableActivity { SportType = SportType.MountainBikeRide };
+            var activity = await client.Activities.Update(100, updatableActivity);
             Assert.NotNull(activity.Map);
+            Assert.AreEqual(SportType.MountainBikeRide, activity.SportType);
         }
     }
 }

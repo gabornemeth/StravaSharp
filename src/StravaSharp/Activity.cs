@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Numerics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -58,16 +57,23 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("total_elevation_gain")]
         public float TotalElevationGain { get; internal set; }
+
         /// <summary>
-        /// Activity type, ie.ride, run, swim, etc.
+        /// deprecated, use SportType instead. Activity type, ie.ride, run, swim, etc.
         /// </summary>
         [JsonProperty("type")]
         public ActivityType Type { get; internal set; }
 
-		/// <summary>
-		/// Starting date
-		/// </summary>
-		/// <value>The start date.</value>
+        /// <summary>
+        /// Sport type of the activity, ie.ride, run, swim, etc.
+        /// </summary>
+        [JsonProperty("sport_type")]
+        public SportType SportType { get; internal set; }
+
+        /// <summary>
+        /// Starting date
+        /// </summary>
+        /// <value>The start date.</value>
         [JsonProperty("start_date")]
         [JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime StartDate { get; internal set; }
@@ -319,5 +325,5 @@ namespace StravaSharp
         /// </summary>
         [JsonProperty("time")]
         public int Time { get; set; }
-    }    
+    }
 }
