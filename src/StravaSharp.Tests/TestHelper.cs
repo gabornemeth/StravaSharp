@@ -7,8 +7,6 @@
 //    Copyright (C) 2015-2023, Gabor Nemeth
 //
 
-using Newtonsoft.Json.Linq;
-using StravaSharp.OAuth2Client;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests
@@ -30,13 +28,9 @@ namespace StravaSharp.Tests
         public static async Task<Client> CreateStravaClient()
         {
             var authenticator = await GetAuthenticator();
-            return new Client(authenticator);
+            return Client.Create(authenticator);
         }
 
-        public static Client CreateFakeStravaClient()
-        {
-            var authenticator = new TestAuthenticator(Settings.AccessToken);
-            return new FakeClient(authenticator);
-        }
+        public static Client CreateFakeStravaClient() => new FakeClient();
     }
 }

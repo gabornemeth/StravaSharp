@@ -10,7 +10,7 @@
 using Microsoft.Extensions.Configuration;
 using System;
 
-namespace StravaSharp.Tests
+namespace StravaSharp.Tests.Integration
 {
     /// <summary>
     /// Test settings
@@ -35,7 +35,7 @@ namespace StravaSharp.Tests
         static Settings()
         {
             _configuration = new ConfigurationBuilder()
-                                 .AddUserSecrets<ActivityTest>()
+                                 .AddUserSecrets<Tests.ActivityTest>()
                                  .Build();
         }
     }

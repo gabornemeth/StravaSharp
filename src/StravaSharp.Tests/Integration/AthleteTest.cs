@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Threading.Tasks;
 
-namespace StravaSharp.Tests
+namespace StravaSharp.Tests.Integration
 {
     /// <summary>
     /// Athlete tests
@@ -21,7 +21,7 @@ namespace StravaSharp.Tests
             Assert.NotNull(athlete.FirstName);
             Assert.NotNull(athlete.LastName);
         }
-        
+
         [Test]
         public async Task GetAthlete()
         {

@@ -7,15 +7,12 @@
 //    Copyright (C) 2015, Gabor Nemeth
 //
 
-using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StravaSharp.Tests
+namespace StravaSharp.Tests.Integration
 {
     [TestFixture]
     public class PolylineTest

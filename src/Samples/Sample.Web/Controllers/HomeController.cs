@@ -26,7 +26,7 @@ namespace Sample.Web.Controllers
             var viewModel = new HomeViewModel(authenticator.IsAuthenticated);
             if (authenticator.IsAuthenticated)
             {
-                var client = new StravaSharp.Client(authenticator);
+                var client = StravaSharp.Client.Create(authenticator);
                 var activities = await client.Activities.GetAthleteActivities();
                 foreach (var activity in activities)
                 {

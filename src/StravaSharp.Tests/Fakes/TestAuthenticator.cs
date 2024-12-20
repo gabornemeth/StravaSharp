@@ -9,6 +9,7 @@
 
 using RestSharp;
 using StravaSharp.OAuth2Client;
+using StravaSharp.Tests.Integration;
 using System.Threading.Tasks;
 
 namespace StravaSharp.Tests

@@ -14,20 +14,8 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace StravaSharp.Tests
+namespace StravaSharp.Tests.Integration
 {
-    public class Test
-    {
-        protected async Task GoOnIfPremium(Client client, Func<Task> action)
-        {
-            var currentUser = await client.Athletes.GetCurrent();
-            if (currentUser.Premium)
-            {
-                await action();
-            }
-        }
-    }
-
     [TestFixture]
     public class SegmentTest : Test
     {

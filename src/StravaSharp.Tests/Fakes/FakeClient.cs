@@ -15,14 +15,8 @@ namespace StravaSharp.Tests
 {
     internal class FakeClient : Client
     {
-        private readonly FakeRestClient _restClient;
-
-        protected override IRestClient RestClient { get; }
-
-        public FakeClient(IAuthenticator authenticator) : base(authenticator)
+        public FakeClient() : base(new FakeRestClient().Object)
         {
-            _restClient = new FakeRestClient();
-            RestClient = _restClient.Object;
         }
     }
 

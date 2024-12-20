@@ -10,33 +10,39 @@
     <None Remove="Resources\activities_id_efforts.json" />
     <None Remove="Resources\activities_zones.json" />
     <None Remove="Resources\athlete_activities.json" />
+    <None Remove="Resources\Parsing\activity_mountainbike.json" />
     <None Remove="Resources\segment_efforts.json" />
     <None Remove="Resources\update_activity.json" />
     <None Remove="Resources\uploads.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityParseTest.cs" />
     <Compile Include="ActivityTest.cs" />
-    <Compile Include="ActivityZoneParseTest.cs" />
-    <Compile Include="AthleteTest.cs" />
-    <Compile Include="ClubTest.cs" />
+    <Compile Include="Parsing\ActivityParseTest.cs" />
+    <Compile Include="Integration\ActivityTest.cs" />
+    <Compile Include="Parsing\ActivityZoneParseTest.cs" />
+    <Compile Include="Integration\AthleteTest.cs" />
+    <Compile Include="Integration\ClubTest.cs" />
     <Compile Include="Fakes\FakeClient.cs" />
-    <Compile Include="PolylineTest.cs" />
+    <Compile Include="Integration\SegmentEffortsTest.cs" />
+    <Compile Include="Integration\PolylineTest.cs" />
+    <Compile Include="Parsing\ParseTest.cs" />
     <Compile Include="Resource.cs" />
     <Compile Include="SegmentEffortsTest.cs" />
-    <Compile Include="SegmentTest.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Integration\SegmentTest.cs" />
+    <Compile Include="Integration\Settings.cs" />
     <Compile Include="Fakes\TestAuthenticator.cs" />
+    <Compile Include="Test.cs" />
     <Compile Include="TestHelper.cs" />
-    <Compile Include="UploadTest.cs" />
+    <Compile Include="Integration\UploadTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Files\2011-08-10-17-51-31.fit" />
-    <EmbeddedResource Include="Files\activities.json" />
-    <EmbeddedResource Include="Files\userinfo.json" />
-    <EmbeddedResource Include="Files\activity_watersport.json" />
+    <EmbeddedResource Include="Resources\Parsing\activities.json" />
+    <EmbeddedResource Include="Resources\Parsing\activity_mountainbike.json" />
+    <EmbeddedResource Include="Resources\Parsing\userinfo.json" />
+    <EmbeddedResource Include="Resources\Parsing\activity_watersport.json" />
     <EmbeddedResource Include="Files\gabornemeth.2018-04-21-20-04-57-385Z.GarminPush.19873008881.fit" />
-    <EmbeddedResource Include="Files\activitiyZones.json" />
+    <EmbeddedResource Include="Resources\Parsing\activitiyZones.json" />
     <EmbeddedResource Include="Resources\activities_id_efforts.json" />
     <EmbeddedResource Include="Resources\activities_zones.json" />
     <EmbeddedResource Include="Resources\update_activity.json" />

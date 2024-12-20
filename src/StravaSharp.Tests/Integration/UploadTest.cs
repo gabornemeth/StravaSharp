@@ -1,8 +1,7 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Threading.Tasks;
 
-namespace StravaSharp.Tests
+namespace StravaSharp.Tests.Integration
 {
     [TestFixture("2011-08-10-17-51-31.fit")]
     [TestFixture("gabornemeth.2018-04-21-20-04-57-385Z.GarminPush.19873008881.fit")]
@@ -14,7 +13,6 @@ namespace StravaSharp.Tests
         {
             _fileName = fileName;
         }
-
 
         [Test]
         [Ignore("Deleting is no longer possible from code. You have to delete the activity manually after upload.")]

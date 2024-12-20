@@ -14,7 +14,7 @@ namespace Sample.Mobile.ViewModels
   
         public IRelayCommand UpdateCommand { get; }
 
-        public MobileMainViewModel(MobileAuthenticator authenticator) : base(new Client(authenticator))
+        public MobileMainViewModel(MobileAuthenticator authenticator) : base(Client.Create(authenticator))
         {
             AuthenticationCommand = new AsyncRelayCommand(AuthenticateAsync, () => !IsAuthenticated);
             UpdateCommand = new RelayCommand(UpdateIsAuthenticated);

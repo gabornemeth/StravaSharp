@@ -26,13 +26,13 @@ namespace StravaSharp
         /// The description of the activity 
         /// </summary>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
-        public string Description { get; internal set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// The name of the activity 
         /// </summary>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
-        public string Name { get; internal set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Deprecated. Prefer to use sport_type. In a request where both Type and SportType are present, this field will be ignored.

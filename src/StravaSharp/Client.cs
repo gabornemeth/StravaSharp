@@ -9,27 +9,31 @@ namespace StravaSharp
     /// </summary>
     public class Client
     {
-        private readonly RestClient _restClient;
-
-        internal RestClient RestClientInternal => _restClient;
+        private readonly IRestClient _restClient;
 
         virtual internal protected IRestClient RestClient => _restClient;
 
         public IAuthenticator Authenticator { get; }
 
-        public Client(IAuthenticator authenticator)
+        public Client(IRestClient restClient)
         {
-            Authenticator = authenticator;
-            _restClient = new RestClient("https://www.strava.com", options =>
-            {
-                options.Authenticator = authenticator;
-            });
+            _restClient = restClient;
             
             Athletes = new AthleteClient(this);
             Activities = new ActivityClient(this);
             Segments = new SegmentClient(this);
             SegmentEfforts = new SegmentEffortsClient(this);
             Clubs = new ClubClient(this);
+        }
+
+        public static Client Create(IAuthenticator authenticator)
+        {
+            var restClient = new RestClient("https://www.strava.com", options =>
+            {
+                options.Authenticator = authenticator;
+            });
+
+            return new Client(restClient);
         }
 
         public AthleteClient Athletes { get; }
