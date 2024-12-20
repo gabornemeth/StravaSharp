@@ -68,7 +68,7 @@ namespace StravaSharp
         /// Sport type of the activity, ie.ride, run, swim, etc.
         /// </summary>
         [JsonProperty("sport_type")]
-        public ActivitySportType SportType { get; internal set; }
+        public SportType SportType { get; internal set; }
 
         /// <summary>
         /// Starting date

@@ -44,7 +44,7 @@ namespace StravaSharp
         /// The SportType of the activity. In a request where both Type and SportType are present, this field will be used.
         /// </summary>
         [JsonProperty("sport_type", NullValueHandling = NullValueHandling.Ignore)]
-        public ActivitySportType? SportType { get; set; }
+        public SportType? SportType { get; set; }
 
         /// <summary>
         /// Identifier for the gear associated with the activity. "none" clears gear from activity 

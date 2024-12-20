@@ -6,7 +6,7 @@ namespace StravaSharp
     /// <summary>
     /// SportType of the activity. This supersedes <see cref="ActivityType"/>.
     /// </summary>
-    public enum ActivitySportType
+    public enum SportType
     {
         /// <summary>
         /// AlpineSki

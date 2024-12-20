@@ -6,6 +6,7 @@
     <AssemblyName>StravaSharp</AssemblyName>
     <RootNamespace>StravaSharp</RootNamespace>
     <DebugType>embedded</DebugType>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

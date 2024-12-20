@@ -24,6 +24,7 @@ namespace StravaSharp
             {
                 options.Authenticator = authenticator;
             });
+            
             Athletes = new AthleteClient(this);
             Activities = new ActivityClient(this);
             Segments = new SegmentClient(this);

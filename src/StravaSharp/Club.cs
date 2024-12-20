@@ -9,7 +9,6 @@
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System;
 using System.Runtime.Serialization;
 
 namespace StravaSharp
@@ -18,7 +17,7 @@ namespace StravaSharp
 	/// Sport type.
 	/// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum SportType
+    public enum ClubSportType
     {
 		/// <summary>
 		/// Cycling
@@ -81,7 +80,7 @@ namespace StravaSharp
         /// cycling, running, triathlon, other
         /// </summary>
         [JsonProperty("sport_type")]
-        public SportType SportType { get; internal set; }
+        public ClubSportType SportType { get; internal set; }
 
         [JsonProperty("city")]
         public string City { get; internal set; }
