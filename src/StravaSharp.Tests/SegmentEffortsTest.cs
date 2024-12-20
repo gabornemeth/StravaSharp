@@ -28,6 +28,7 @@ namespace StravaSharp.Tests
         }
 
         [Test]
+        [Ignore("Premium subscription required")]
         public async Task GetSegmentEfforts_KnownSegment()
         {
             var client = await TestHelper.CreateStravaClient();
@@ -45,6 +46,7 @@ namespace StravaSharp.Tests
         }
 
         [Test]
+        [Ignore("Premium subscription required")]
         public async Task GetSegmentEfforts_KnownSegment_WithDate()
         {
             var client = await TestHelper.CreateStravaClient();

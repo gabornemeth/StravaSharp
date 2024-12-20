@@ -46,6 +46,10 @@ namespace StravaSharp
         public static async Task<T> ExecuteForJson<T>(this IRestClient restClient, RestRequest request)
         {
             var response = await restClient.ExecuteAsync(request).ConfigureAwait(false);
+            if ((response.Content?.IndexOf("Payment Required", StringComparison.InvariantCultureIgnoreCase) ?? -1) > 0)
+            {
+                throw new SubscriptionRequiredException();
+            }
             return JsonConvert.DeserializeObject<T>(response.Content);
         }
     }
