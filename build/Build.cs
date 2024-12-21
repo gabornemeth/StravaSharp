@@ -30,22 +30,7 @@ class Build : NukeBuild
     readonly Configuration Configuration = Configuration.Release;// IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
     [Parameter]
-    public Version Version { get; set; } = new Version(0, 7, 0);
-
-    private string VersionSuffix { get; set; } = "pre01";
-
-
-    private string GetVersion()
-    {
-        if (string.IsNullOrEmpty(VersionSuffix))
-        {
-            return Version.ToString();
-        }
-        else
-        {
-            return $"{Version}-{VersionSuffix}";
-        }
-    }
+    public string Version { get; set; } = "0.7.0";
 
     Target Clean => _ => _
         .Before(Restore)
@@ -88,14 +73,14 @@ class Build : NukeBuild
             .FirstOrDefault();
         if (version != null)
         {
-            version.Value = GetVersion();
+            version.Value = Version;
         }
         else
         {
             var metadata = nuspec.Root.Descendants()
                 .Where(x => x.Name.LocalName == "metadata")
                 .First();
-            metadata.Add(new XElement(XName.Get("version", metadata.Name.NamespaceName), GetVersion()));
+            metadata.Add(new XElement(XName.Get("version", metadata.Name.NamespaceName), Version));
         }
 
         nuspec.Save(nuspecPath);

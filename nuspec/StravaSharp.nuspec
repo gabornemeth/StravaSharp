@@ -21,7 +21,7 @@
         <dependency id="System.Net.Http" version="4.3.4" />
       </group>
     </dependencies>
-    <version>0.7.0-pre01</version>
+    <version>0.7.0</version>
   </metadata>
   <files>
     <!-- NetStandard 1.1 -->
