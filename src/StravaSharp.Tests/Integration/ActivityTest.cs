@@ -102,12 +102,11 @@ namespace StravaSharp.Tests.Integration
             Assert.That(activity, Is.Not.Null);
 
             // Act
-            await client.Activities.Update(activityId, new UpdatableActivity
+            var updatedActivity = await client.Activities.Update(activityId, new UpdatableActivity
             {
                 Name = activity.Name == "Evening Ride" ? "Ride" : "Evening Ride",
                 Description = string.IsNullOrEmpty(activity.Description) ? "Testing update" : ""
             });
-            var updatedActivity = await client.Activities.Get(activityId, false);
 
             // Assert
             updatedActivity.Name.Should().NotBe(activity.Name);
